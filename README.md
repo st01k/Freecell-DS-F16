@@ -4,7 +4,6 @@ v0.1<br>
 <br>
 CS-221 - Final Project<br>
 Created: 20 Oct 2016<br>
-Last Modified: 20 Oct 2016<br>
 <hr>
 <b>Dev Team:</b><br><br>
 Casey Murphy<br>
@@ -15,7 +14,7 @@ Gordon Finnie<br>
 <b>Specifications:</b><br><br>
 blah, blah... put something here
 <hr>
-<b>Reference:</b><br>
+<b>Reference:</b><br><br>
 here too
 <hr>
 <b>Changelog:</b><br><br>
@@ -23,11 +22,14 @@ here too
 <hr>
 <b>Command Line Options:</b><br><br>
 OPTIONS:<br>
-<i>-t</i>      Test: Runs program in test mode, then exits.<br>
-<i>-h</i>      Help: Prints this file.<br>
+<i>-t</i><br>
+Test: Runs program in test mode, then exits.<br>
+<i>-h</i><br>
+Help: Prints this file.<br>
 <br>
 ARGUMENTS:<br>
-<i>none</i>    There are no arguments for this program.<br>
+<i>none</i><br>
+There are no arguments for this program.<br>
 <hr>
 Included in Freecell.zip:<br>
 - Freecell.zip (project zip file)<br>
