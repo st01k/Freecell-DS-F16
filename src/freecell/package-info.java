@@ -2,4 +2,4 @@
  * @author devTeam
  *
  */
-package FinalProject;
+package freecell;
