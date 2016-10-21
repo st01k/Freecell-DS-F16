@@ -1,8 +1,5 @@
 /**
- * 
- */
-/**
- * @author st01k
+ * @author devTeam
  *
  */
 package client;

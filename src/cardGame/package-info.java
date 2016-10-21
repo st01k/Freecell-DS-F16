@@ -1,8 +1,5 @@
 /**
- * 
- */
-/**
- * @author st01k
+ * @author 
  *
  */
 package cardGame;
