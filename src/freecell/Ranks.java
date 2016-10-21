@@ -1,4 +1,4 @@
-package finalDataStructures;
+package freecell;
 
 public enum Ranks
 {
