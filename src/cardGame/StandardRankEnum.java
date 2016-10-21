@@ -4,7 +4,7 @@ package cardGame;
  * @author Casey J. Murphy
  * @version 1.0
  */
-public enum StandardRank {
+public enum StandardRankEnum {
 
 	JOKER		('j', 0, "Joker"),
 	LOWACE		('a', 1, "Low Ace"),
@@ -32,7 +32,7 @@ public enum StandardRank {
 	 * @param value face value
 	 * @param name card name
 	 */
-	private StandardRank(char symbol, int value, String name) {
+	private StandardRankEnum(char symbol, int value, String name) {
 		
 		this.symbol = symbol;
 		this.value = value;

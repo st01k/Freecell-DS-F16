@@ -13,8 +13,8 @@ public class StandardDeck implements DeckInterface {
     // class constants
 	private static final int SKIPPEDRANKS = 2;	// skips jokers and low ace
 	private static final int SKIPPEDSUITS = 1;	// skips empty suit
-    private static final int SUITS = StandardSuit.values().length - SKIPPEDSUITS;
-    private static final int RANKS = StandardRank.values().length - SKIPPEDRANKS;
+    private static final int SUITS = StandardSuitEnum.values().length - SKIPPEDSUITS;
+    private static final int RANKS = StandardRankEnum.values().length - SKIPPEDRANKS;
     private static final int SIZE = SUITS * RANKS;
 
     // class variables
@@ -79,8 +79,8 @@ public class StandardDeck implements DeckInterface {
     	
         for (int i = 0; i < SIZE; i++)
         {
-        	StandardRank r = StandardRank.values()[(i % RANKS) + SKIPPEDRANKS];
-        	StandardSuit s = StandardSuit.values()[(i / RANKS) + SKIPPEDSUITS];
+        	StandardRankEnum r = StandardRankEnum.values()[(i % RANKS) + SKIPPEDRANKS];
+        	StandardSuitEnum s = StandardSuitEnum.values()[(i / RANKS) + SKIPPEDSUITS];
             deck[i] = new StandardCard(r, s);
         }
     }

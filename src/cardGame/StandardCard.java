@@ -11,12 +11,12 @@ import static java.lang.System.out;
 public class StandardCard implements CardInterface {
 	
     // class constants
-    private static final StandardRank rDEFAULT = StandardRank.values()[0];
-    private static final StandardSuit sDEFAULT = StandardSuit.values()[0];
+    private static final StandardRankEnum rDEFAULT = StandardRankEnum.values()[0];
+    private static final StandardSuitEnum sDEFAULT = StandardSuitEnum.values()[0];
 
     // instance variables
-    private StandardRank rank;
-    private StandardSuit suit;
+    private StandardRankEnum rank;
+    private StandardSuitEnum suit;
     private String name;
     private String sRank;
     private String sSuit;
@@ -40,7 +40,7 @@ public class StandardCard implements CardInterface {
      * @param r
      * @param s
      */
-    public StandardCard(StandardRank r, StandardSuit s) {
+    public StandardCard(StandardRankEnum r, StandardSuitEnum s) {
     	
         setRank(r);
         setSuit(s);
@@ -103,7 +103,7 @@ public class StandardCard implements CardInterface {
      * Sets rank string.
      * @param newRank new card rank as integer
      */
-    private void setRank(StandardRank newRank) {
+    private void setRank(StandardRankEnum newRank) {
     	
          rank = newRank;
          sRank = newRank.getName();
@@ -115,7 +115,7 @@ public class StandardCard implements CardInterface {
      * Sets suit symbol.
      * @param newSuit new card suit as integer
      */
-    private void setSuit(StandardSuit newSuit) {
+    private void setSuit(StandardSuitEnum newSuit) {
     	
         suit = newSuit;
         sSuit = newSuit.getName();
@@ -201,8 +201,8 @@ public class StandardCard implements CardInterface {
     	out.println("-------------------- Testing StandardCard Class:\n");
     	
     	StandardCard c1 = new StandardCard();
-    	StandardRank r = StandardRank.values()[4];
-    	StandardSuit s = StandardSuit.values()[4];
+    	StandardRankEnum r = StandardRankEnum.values()[4];
+    	StandardSuitEnum s = StandardSuitEnum.values()[4];
     	StandardCard c2 = new StandardCard(r, s);
     	
     	out.println("Rank Int: " + c2.getRank());

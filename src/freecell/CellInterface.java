@@ -14,7 +14,7 @@ public interface CellInterface
 	 * Places a card in a cell.
 	 * @return true is card was placed in cell; false otherwise
 	 */
-	boolean placeCard();
+	boolean placeCard(StandardCard c);
 	
 	/**
 	 * Removes a card from a cell.

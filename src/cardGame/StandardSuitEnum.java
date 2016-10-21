@@ -5,7 +5,7 @@ package cardGame;
  * @author Casey J. Murphy
  * @version 1.0
  */
-public enum StandardSuit {
+public enum StandardSuitEnum {
 
 	NOSUIT		('-', '-', 0, "No Suit"),
 	HEARTS		('h', '♥', 1, "Hearts"),
@@ -25,7 +25,7 @@ public enum StandardSuit {
 	 * @param value suit value, based on order
 	 * @param name suit name
 	 */
-	private StandardSuit(char defSymbol, char uniSymbol, int value, String name) {
+	private StandardSuitEnum(char defSymbol, char uniSymbol, int value, String name) {
 		
 		this.defSymbol = defSymbol;
 		this.uniSymbol = uniSymbol;
