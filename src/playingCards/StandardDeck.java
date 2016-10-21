@@ -48,6 +48,7 @@ public class StandardDeck implements DeckInterface {
      * Returns a card from the top of the deck.  If too few cards remain, reshuffles
      * deck, resets deckCount, and deals from the top.
      * @return top card
+     * @throws DeckException if deck is empty
      */
     public StandardCard getCard() throws DeckException {
     	
