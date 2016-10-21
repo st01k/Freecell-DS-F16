@@ -1,0 +1,17 @@
+StandardCard
+StandardDeck
+enums for both
+DeckInterface
+CardInterface
+
+Freecell Package:
+Board
+Engine
+
+FreeCell 
+HomeCell
+FoundationCell
+CellInterface
+
+PlayingPile (stack?)
+stack or pile interface
