@@ -1,4 +1,4 @@
-package cardGame;
+package playingCards;
 
 public class EmptyDeckException extends java.lang.RuntimeException {
 

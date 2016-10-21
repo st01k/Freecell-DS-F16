@@ -2,4 +2,4 @@
  * @author 
  *
  */
-package cardGame;
+package playingCards;

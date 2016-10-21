@@ -1,7 +1,7 @@
 package client;
 
-import cardGame.StandardCard;
-import cardGame.StandardDeck;
+import playingCards.StandardCard;
+import playingCards.StandardDeck;
 import static java.lang.System.out;
 
 public class FreecellDriver {

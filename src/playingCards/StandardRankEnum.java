@@ -1,4 +1,4 @@
-package cardGame;
+package playingCards;
 /**
  * Standard ranks enumeration
  * @author Casey J. Murphy

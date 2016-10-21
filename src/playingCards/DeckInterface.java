@@ -1,4 +1,4 @@
-package cardGame;
+package playingCards;
 
 /**
  * Interface for any kind of a card-based deck.

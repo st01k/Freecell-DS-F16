@@ -1,4 +1,4 @@
-package cardGame;
+package playingCards;
 
 import static java.lang.System.out;
 

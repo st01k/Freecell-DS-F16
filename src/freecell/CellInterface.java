@@ -1,6 +1,6 @@
 package freecell;
 
-import cardGame.StandardCard;
+import playingCards.StandardCard;
 
 /**
  * Interface for card placement into various types of cells.<br>

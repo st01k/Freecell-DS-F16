@@ -1,4 +1,4 @@
-package cardGame;
+package playingCards;
 
 /**
  * Standard suits enumeration
