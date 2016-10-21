@@ -51,7 +51,7 @@ public class StandardDeck implements DeckInterface {
      */
     public StandardCard getCard() throws DeckException {
     	
-        if (deckCount > SIZE)
+        if (deckCount > (SIZE - 1))
         {
             throw new DeckException("Deck is empty.");
         }
