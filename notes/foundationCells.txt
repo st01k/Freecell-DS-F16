@@ -1,0 +1,14 @@
+ 
+[20:51:26] <casey> so, are you going to make an interface for the cell and then we implement each accordingly?
+[20:52:13] <brandonlwharton> auto stacking the cards - every version of freecell i've seen this past semester does that - seems like a must to negate human error
+[20:52:47] <casey> can you all think of a particular distinction between pile and stack for the purpose of the playing pile... bc it seems to me that we just need to use a stack...? 
+[20:53:23] <brandonlwharton> absolutely, though the FreeCells can a be a single array
+[20:53:53] <casey> yea, i've noticed mine only does a few cards at a time... haven't figured out the logic yet, but i think it has something to do with the fact that you can't remove a card from the foundation piles... at least not in the version i've been playing
+[20:54:15] <brandonlwharton> i don't think any version i have seen allows that
+[20:54:30] <casey> don't even really need that since it'll only hold one card object at a time
+[20:55:07] <casey> and really, since you can't remove one from the foundation, the same is practically true for those cells
+[20:55:09] <brandonlwharton> the Foundation piles should be able to hold Ace - King
+[20:56:27] <brandonlwharton> if the foundation was stack thought it makes it much more simple to display the top card, as that is all that is shown
+[20:56:34] <casey> we can just hold one card in the foundation cells and make checks to ensure valid placement.  it would cut down on resource usage.  what do you think?
+[20:56:59] <brandonlwharton> and then throw them in the garabage?
+[20:57:06] <brandonlwharton> i don't see why not
