@@ -24,7 +24,7 @@ public class StandardCard implements CardInterface {
 
     // Constructors --------------------------------------------------------------------------------------------------------
     /**
-     * Default card is the two of hearts.
+     * Default card is the joker with no suit.
      */
     public StandardCard() {
     	
