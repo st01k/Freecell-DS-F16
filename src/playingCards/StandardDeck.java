@@ -49,11 +49,11 @@ public class StandardDeck implements DeckInterface {
      * deck, resets deckCount, and deals from the top.
      * @return top card
      */
-    public StandardCard getCard() throws EmptyDeckException {
+    public StandardCard getCard() throws DeckException {
     	
         if (deckCount > SIZE)
         {
-            throw new EmptyDeckException("Deck is empty.");
+            throw new DeckException("Deck is empty.");
         }
         
         StandardCard temp = deck[deckCount];
