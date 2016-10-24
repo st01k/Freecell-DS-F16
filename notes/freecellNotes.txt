@@ -17,3 +17,18 @@ Freecell
  display winnable status
  double click goes to foundation if possible, free cell if open, not pile
  
+ ---------------------------------------------------------------------------------------------------------
+ from: http://www.casteel.org/Pages/FreeCellrules.html
+ 
+As the game begins, Klondike deals all the cards from the deck face up into the tableau.
+The Game
+
+The object of the game is to build all the cards face up on the foundations. Each foundation builds upward, in sequence, starting with the Ace. Only aces may be moved to an empty foundation, and only the next higher card of the same suit can be added to the foundation.
+
+Only one card at a time may be moved in FreeCell, either the top card of a tableau column or the single card which was placed in a free cell. As a short cut, Klondike allows you to move a legal sequence of cards from one column to another, provided there are enough empty cells to have made this move one card at a time. The move will be scored as if you had moved one card at a time.
+
+Only the next higher card of the same suit can be added to each foundation. Cards may be moved to the foundation from the tableau or a free cell.
+
+Any card may be moved to an empty free cell or an empty tableau column.
+
+A card may be added to a non-empty column in the tableau only if it is the next lower value than the current top card and of alternating color. For example, only the 9 of hearts or diamonds (red suits) may play on the 10 of spades (a black suit).

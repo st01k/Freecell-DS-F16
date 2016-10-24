@@ -1,17 +1,28 @@
-StandardCard
-StandardDeck
-enums for both
-DeckInterface
+cardGame package:
+-----------------
 CardInterface
+DeckInterface
+-- classes
+Player
+StandardCard (with enum)
+StandardDeck (with enum)
 
-Freecell Package:
+freecell package:
+-----------------
+CellInterface
+-- classes
 Board
 Engine
-
 FreeCell 
 HomeCell
 FoundationCell
-CellInterface
+PlayingPile
 
-PlayingPile (stack?)
-stack or pile interface
+graphicalUI package:
+--------------------
+
+textUI package:
+---------------
+
+client package:
+---------------
