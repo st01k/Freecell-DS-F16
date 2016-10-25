@@ -1,0 +1,23 @@
+ http://fc-solve.shlomifish.org/faq.html#new_solver_is_too_slow
+
+    Make sure that the positions in the graph of the game are represented as a single segment of memory (normally a C struct) and can be compared for equivalence easily (using memcmp() or a similar function).
+
+    Use an efficient data structure to hold the states in the collection such as a hash table or a self-balancing binary search tree. There are libraries implementing them for most popular languages.
+
+    Often randomising the solution (see Freecell Solver's Random-DFS scan which was inspired by a different solver called “Freecell Tool”) can help a lot.
+
+    Freecell Solver makes heavy use of switch tasking: having several different searches operate on the same board, until the first search yields a solution. This normally yields a solution quicker than a singular scan.
+
+    Consider implementing moves as meta-moves: sequences of several single-card and/or sequence moves that implement a certain ends. This can yield a solution faster than using single-card moves (also known as atomic moves).
+-----------
+ The exact algorithm used by “fc-solve” can be configured using the various command line arguments it accepts which are documented in the README and USAGE files. Furthermore, the “-l” flag can load some predefined configurations, which are essentially a sequence of command line arguments loaded from a file.
+
+Some of the highlights of the methods supported by Freecell Solver are:
+
+    Switch-tasking in which different scans are interrupted, swapped with another scan, and then resumed.
+
+    Randomised and/or prioritised depth-first-search (DFS) scans, and Best-First-Search (BeFS) scans.
+
+    Different types of moves, with configurable order and grouping .
+
+    One can instantiate different instances of the solver, that will each solve different deals in different threads or processes.
