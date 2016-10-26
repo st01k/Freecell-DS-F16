@@ -2,4 +2,4 @@
  * @author GroovyLlama
  *
  */
-package client.gUI;
+package freecell.engine.gUI;
