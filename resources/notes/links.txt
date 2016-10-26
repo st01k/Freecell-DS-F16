@@ -1,0 +1,14 @@
+solvers:
+http://freecellgamesolutions.com/ 
+http://fc-solve.shlomifish.org/
+http://broadcast.oreilly.com/2009/01/january-column-graph-algorithm.html
+
+git:
+http://nvie.com/posts/a-successful-git-branching-model/
+
+diagrams:
+http://creately.com/blog/diagrams/class-diagram-relationships/
+
+windowbuilder (eclipse):
+https://www.eclipse.org/windowbuilder/download.php
+https://www.youtube.com/watch?v=oeswfZz4IW0

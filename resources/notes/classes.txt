@@ -1,0 +1,41 @@
+playingCards package:
+-----------------
+CardInterface
+DeckInterface
+StdCard
+StdDeck
+
+freecell package:
+-----------------
+Player
+
+freecell.board package:
+-----------------------
+CellInterface
+FreeCell 
+FoundationCell
+PlayingPile
+
+freecell.engine package:
+------------------------
+Rules
+Turn
+
+freecell.solver package:
+------------------------
+Pattern
+Search
+
+client package:
+---------------
+Driver
+
+client.gUI package:
+--------------------
+Paint
+GUI
+
+client.tUI package:
+-------------------
+Tester
+CLI
