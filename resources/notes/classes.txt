@@ -1,28 +1,41 @@
-cardGame package:
+playingCards package:
 -----------------
 CardInterface
 DeckInterface
--- classes
-Player
-StandardCard (with enum)
-StandardDeck (with enum)
+StdCard
+StdDeck
 
 freecell package:
 -----------------
+Player
+
+freecell.board package:
+-----------------------
 CellInterface
--- classes
-Board
-Engine
 FreeCell 
-HomeCell
 FoundationCell
 PlayingPile
 
-graphicalUI package:
---------------------
+freecell.engine package:
+------------------------
+Rules
+Turn
 
-textUI package:
----------------
+freecell.solver package:
+------------------------
+Pattern
+Search
 
 client package:
 ---------------
+Driver
+
+client.gUI package:
+--------------------
+Paint
+GUI
+
+client.tUI package:
+-------------------
+Tester
+CLI
