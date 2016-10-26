@@ -19,6 +19,7 @@ import static java.lang.System.out;
  */
 public class DebugTemplate {
 
+	// add me
 	private static boolean debug = false;
 	
 	/**
@@ -48,7 +49,7 @@ public class DebugTemplate {
 	public void callUsingThese() {
 		
 		// at the beginning of the method
-		if (debug) out.println("---PackageName.className.methodName--- ");
+		if (debug) out.println("---packageName.ClassName.methodName--- ");
 		
 		// where needed, something that shows var results or whatev is needed
 		//if (debug) out.println(opd1+" "+op+" "+opd2+" = "+stk.peek());
