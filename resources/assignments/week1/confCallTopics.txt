@@ -1,0 +1,31 @@
+for week 1 conf call (26 oct 16 @ 1600):
+
+- decide on project documentation format
+
+- relational diagram
+    purpose of each class
+    actions performed (methods)
+    objects held (variables)
+    translate to UML class diagram
+    
+- necessities in each class
+    private global debug boolean
+    public toggleDebug method
+    uniform unit test
+    provide example
+    
+- go over git project 'issues'
+    creating
+    assignment
+    updating
+    
+- make sure everyone knows how to push
+    to their branch and how to merge
+    when needed.
+    
+- data structures needed within
+    each class.  ie. stacks, 
+    queues, maps, iterator, 
+    runnable (for multi-threading
+    in the solver)
+    
