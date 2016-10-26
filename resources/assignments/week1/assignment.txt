@@ -1,0 +1,20 @@
+ As a group:
+
+Review the two attached Software Technical Design Specification templates provided as attachments within this module.
+Review the simplified UML modeling site:
+creately.com/blog/diagrams/class-diagram-relationships/
+
+Review the FreeCell Rules site:
+http://www.casteel.org/Pages/FreeCellrules.html
+
+Perform the following activities, submit them and be prepared to present them:
+------------------------------------------------------------------------------
+-Select one of the design spec templates and begin modifying and filling it in to fit the FreeCell development project.
+
+-Develop a preliminary list of software "things" you will need to implement this project (word doc)
+
+-Develop a preliminary set of objects (classes) with class diagrams providing class name and preliminary attribute list (PDF)
+
+-Develop a preliminary object relationship diagram showing how the various objects identified at this point will interach with each other
+
+*accompanying docs are in this folder
