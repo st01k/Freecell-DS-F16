@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui name="kpat"
+     version="30"
+     xmlns="http://www.kde.org/standards/kxmlgui/1.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
+                         http://www.kde.org/standards/kxmlgui/1.0/kxmlgui.xsd">
+<MenuBar>
+  <Menu name="game">
+    <Action name="new_game"/>
+    <Separator/>
+    <Action name="new_deal"/>
+    <Action name="new_numbered_deal"/>
+    <Action name="game_restart"/>
+    <Separator/>
+    <Action name="game_load"/>
+    <Action name="game_load_recent"/>
+    <Action name="game_save_as"/>
+    <Separator/>
+    <Action name="game_stats"/>
+  </Menu>
+  <Menu name="move" noMerge="1">
+    <text>Move</text>
+    <Action name="move_undo"/>
+    <Action name="move_redo"/>
+    <Separator/>
+    <ActionList name="game_actions"/>
+  </Menu>
+  <Menu name="settings">
+    <ActionList name="dealer_options"/>
+    <Separator/>
+    <Action name="select_deck"/>
+    <Action name="enable_autodrop"/>
+    <Action name="enable_solver"/>
+    <Action name="play_sounds"/>
+    <Action name="remember_state"/>
+  </Menu>
+  <Menu name="help">
+    <Action name="help_game" append="help_whats_this_merge"/>
+  </Menu>
+</MenuBar>
+<ToolBar name="mainToolBar">
+  <text>Main Toolbar</text>
+  <Action name="new_game"/>
+  <Action name="new_deal"/>
+  <Separator/>
+  <Action name="move_undo"/>
+  <Action name="move_redo"/>
+  <Separator/>
+  <ActionList name="game_actions"/>
+</ToolBar>
+</gui>

@@ -1,0 +1,668 @@
+
+J:\work\trunk\freecelljsolver\tests\unsolvables>java -jar ..\..\freecelljsolver.jar --usePropertiesFile -f games 
+equivalentBoardOptimization threshold : 1
+heuristic : CAUTIOUS
+back end : MONOLITHIC
+
+solving seed : 11982
+Unsolvable at seed 11982
+total boardss : 26951 ( outstanding candidates : 0, tried candidates : 26951 ), max depth : 83
+miliseconds used : 1532
+
+time used most : 1532 at seed : 11982
+
+solving seed : 146692
+Unsolvable at seed 146692
+total boardss : 8215 ( outstanding candidates : 0, tried candidates : 8215 ), max depth : 30
+miliseconds used : 437
+
+solving seed : 186216
+Unsolvable at seed 186216
+total boardss : 6376 ( outstanding candidates : 0, tried candidates : 6376 ), max depth : 45
+miliseconds used : 281
+
+solving seed : 455889
+Unsolvable at seed 455889
+total boardss : 7873 ( outstanding candidates : 0, tried candidates : 7873 ), max depth : 46
+miliseconds used : 360
+
+solving seed : 495505
+Unsolvable at seed 495505
+total boardss : 13156 ( outstanding candidates : 0, tried candidates : 13156 ), max depth : 41
+miliseconds used : 687
+
+solving seed : 512118
+Unsolvable at seed 512118
+total boardss : 13748 ( outstanding candidates : 0, tried candidates : 13748 ), max depth : 58
+miliseconds used : 594
+
+solving seed : 517776
+Unsolvable at seed 517776
+total boardss : 32026 ( outstanding candidates : 0, tried candidates : 32026 ), max depth : 90
+miliseconds used : 1594
+
+time used most : 1594 at seed : 517776
+
+solving seed : 781948
+Unsolvable at seed 781948
+total boardss : 3603 ( outstanding candidates : 0, tried candidates : 3603 ), max depth : 42
+miliseconds used : 156
+
+solving seed : 1155215
+Unsolvable at seed 1155215
+total boardss : 15017 ( outstanding candidates : 0, tried candidates : 15017 ), max depth : 35
+miliseconds used : 766
+
+solving seed : 1254900
+Unsolvable at seed 1254900
+total boardss : 9673 ( outstanding candidates : 0, tried candidates : 9673 ), max depth : 45
+miliseconds used : 437
+
+solving seed : 1387739
+Unsolvable at seed 1387739
+total boardss : 50872 ( outstanding candidates : 0, tried candidates : 50872 ), max depth : 232
+miliseconds used : 2766
+
+time used most : 2766 at seed : 1387739
+
+solving seed : 1495908
+Unsolvable at seed 1495908
+total boardss : 7272 ( outstanding candidates : 0, tried candidates : 7272 ), max depth : 46
+miliseconds used : 359
+
+solving seed : 1573069
+Unsolvable at seed 1573069
+total boardss : 14240 ( outstanding candidates : 0, tried candidates : 14240 ), max depth : 50
+miliseconds used : 656
+
+solving seed : 1631319
+Unsolvable at seed 1631319
+total boardss : 10294 ( outstanding candidates : 0, tried candidates : 10294 ), max depth : 31
+miliseconds used : 500
+
+solving seed : 1633509
+Unsolvable at seed 1633509
+total boardss : 19923 ( outstanding candidates : 0, tried candidates : 19923 ), max depth : 99
+miliseconds used : 907
+
+solving seed : 1662054
+Unsolvable at seed 1662054
+total boardss : 6209 ( outstanding candidates : 0, tried candidates : 6209 ), max depth : 36
+miliseconds used : 297
+
+solving seed : 2022676
+Unsolvable at seed 2022676
+total boardss : 11078 ( outstanding candidates : 0, tried candidates : 11078 ), max depth : 71
+miliseconds used : 531
+
+solving seed : 2070322
+Unsolvable at seed 2070322
+total boardss : 6984 ( outstanding candidates : 0, tried candidates : 6984 ), max depth : 45
+miliseconds used : 328
+
+solving seed : 2166989
+Unsolvable at seed 2166989
+total boardss : 9177 ( outstanding candidates : 0, tried candidates : 9177 ), max depth : 109
+miliseconds used : 375
+
+solving seed : 2167029
+Unsolvable at seed 2167029
+total boardss : 11854 ( outstanding candidates : 0, tried candidates : 11854 ), max depth : 102
+miliseconds used : 547
+
+solving seed : 2501890
+Unsolvable at seed 2501890
+total boardss : 31492 ( outstanding candidates : 0, tried candidates : 31492 ), max depth : 102
+miliseconds used : 1718
+
+solving seed : 2607073
+Unsolvable at seed 2607073
+total boardss : 2042 ( outstanding candidates : 0, tried candidates : 2042 ), max depth : 21
+miliseconds used : 110
+
+solving seed : 2681284
+Unsolvable at seed 2681284
+total boardss : 29481 ( outstanding candidates : 0, tried candidates : 29481 ), max depth : 110
+miliseconds used : 1765
+
+solving seed : 2712622
+Unsolvable at seed 2712622
+total boardss : 37337 ( outstanding candidates : 0, tried candidates : 37337 ), max depth : 128
+miliseconds used : 1875
+
+solving seed : 2843443
+Unsolvable at seed 2843443
+total boardss : 10442 ( outstanding candidates : 0, tried candidates : 10442 ), max depth : 34
+miliseconds used : 438
+
+solving seed : 2852003
+Unsolvable at seed 2852003
+total boardss : 42786 ( outstanding candidates : 0, tried candidates : 42786 ), max depth : 310
+miliseconds used : 2422
+
+solving seed : 2855691
+Unsolvable at seed 2855691
+total boardss : 9774 ( outstanding candidates : 0, tried candidates : 9774 ), max depth : 39
+miliseconds used : 484
+
+solving seed : 2923820
+Unsolvable at seed 2923820
+total boardss : 57226 ( outstanding candidates : 0, tried candidates : 57226 ), max depth : 135
+miliseconds used : 2938
+
+time used most : 2938 at seed : 2923820
+
+solving seed : 3163790
+Unsolvable at seed 3163790
+total boardss : 13514 ( outstanding candidates : 0, tried candidates : 13514 ), max depth : 45
+miliseconds used : 625
+
+solving seed : 3172889
+Unsolvable at seed 3172889
+total boardss : 18822 ( outstanding candidates : 0, tried candidates : 18822 ), max depth : 64
+miliseconds used : 875
+
+solving seed : 3194539
+Unsolvable at seed 3194539
+total boardss : 20350 ( outstanding candidates : 0, tried candidates : 20350 ), max depth : 212
+miliseconds used : 1031
+
+solving seed : 3217820
+Unsolvable at seed 3217820
+total boardss : 20208 ( outstanding candidates : 0, tried candidates : 20208 ), max depth : 62
+miliseconds used : 937
+
+solving seed : 3225183
+Unsolvable at seed 3225183
+total boardss : 11406 ( outstanding candidates : 0, tried candidates : 11406 ), max depth : 65
+miliseconds used : 532
+
+solving seed : 3366617
+Unsolvable at seed 3366617
+total boardss : 12273 ( outstanding candidates : 0, tried candidates : 12273 ), max depth : 100
+miliseconds used : 593
+
+solving seed : 3376982
+Unsolvable at seed 3376982
+total boardss : 14542 ( outstanding candidates : 0, tried candidates : 14542 ), max depth : 79
+miliseconds used : 735
+
+solving seed : 3402716
+Unsolvable at seed 3402716
+total boardss : 3795 ( outstanding candidates : 0, tried candidates : 3795 ), max depth : 22
+miliseconds used : 187
+
+solving seed : 3576395
+Unsolvable at seed 3576395
+total boardss : 18420 ( outstanding candidates : 0, tried candidates : 18420 ), max depth : 140
+miliseconds used : 907
+
+solving seed : 3595299
+Unsolvable at seed 3595299
+total boardss : 90851 ( outstanding candidates : 0, tried candidates : 90851 ), max depth : 237
+miliseconds used : 5078
+
+time used most : 5078 at seed : 3595299
+
+solving seed : 3878212
+Unsolvable at seed 3878212
+total boardss : 24134 ( outstanding candidates : 0, tried candidates : 24134 ), max depth : 205
+miliseconds used : 1187
+
+solving seed : 3946538
+Unsolvable at seed 3946538
+total boardss : 18078 ( outstanding candidates : 0, tried candidates : 18078 ), max depth : 79
+miliseconds used : 844
+
+solving seed : 4055965
+Unsolvable at seed 4055965
+total boardss : 23477 ( outstanding candidates : 0, tried candidates : 23477 ), max depth : 106
+miliseconds used : 1156
+
+solving seed : 4207758
+Unsolvable at seed 4207758
+total boardss : 22236 ( outstanding candidates : 0, tried candidates : 22236 ), max depth : 137
+miliseconds used : 1031
+
+solving seed : 4266168
+Unsolvable at seed 4266168
+total boardss : 12716 ( outstanding candidates : 0, tried candidates : 12716 ), max depth : 43
+miliseconds used : 594
+
+solving seed : 4269635
+Unsolvable at seed 4269635
+total boardss : 49316 ( outstanding candidates : 0, tried candidates : 49316 ), max depth : 179
+miliseconds used : 2469
+
+solving seed : 4324282
+Unsolvable at seed 4324282
+total boardss : 15688 ( outstanding candidates : 0, tried candidates : 15688 ), max depth : 67
+miliseconds used : 750
+
+solving seed : 4334954
+Unsolvable at seed 4334954
+total boardss : 9827 ( outstanding candidates : 0, tried candidates : 9827 ), max depth : 68
+miliseconds used : 484
+
+solving seed : 4440758
+Unsolvable at seed 4440758
+total boardss : 15214 ( outstanding candidates : 0, tried candidates : 15214 ), max depth : 107
+miliseconds used : 672
+
+solving seed : 4446355
+Unsolvable at seed 4446355
+total boardss : 5118 ( outstanding candidates : 0, tried candidates : 5118 ), max depth : 28
+miliseconds used : 250
+
+solving seed : 4765843
+Unsolvable at seed 4765843
+total boardss : 12926 ( outstanding candidates : 0, tried candidates : 12926 ), max depth : 46
+miliseconds used : 547
+
+solving seed : 4863685
+Unsolvable at seed 4863685
+total boardss : 9187 ( outstanding candidates : 0, tried candidates : 9187 ), max depth : 55
+miliseconds used : 406
+
+solving seed : 4910222
+Unsolvable at seed 4910222
+total boardss : 7955 ( outstanding candidates : 0, tried candidates : 7955 ), max depth : 45
+miliseconds used : 391
+
+solving seed : 5046726
+Unsolvable at seed 5046726
+total boardss : 22075 ( outstanding candidates : 0, tried candidates : 22075 ), max depth : 63
+miliseconds used : 922
+
+solving seed : 5050537
+Unsolvable at seed 5050537
+total boardss : 26128 ( outstanding candidates : 0, tried candidates : 26128 ), max depth : 211
+miliseconds used : 1359
+
+solving seed : 5086829
+Unsolvable at seed 5086829
+total boardss : 15175 ( outstanding candidates : 0, tried candidates : 15175 ), max depth : 55
+miliseconds used : 734
+
+solving seed : 5225172
+Unsolvable at seed 5225172
+total boardss : 55850 ( outstanding candidates : 0, tried candidates : 55850 ), max depth : 202
+miliseconds used : 3266
+
+solving seed : 5244797
+Unsolvable at seed 5244797
+total boardss : 18919 ( outstanding candidates : 0, tried candidates : 18919 ), max depth : 44
+miliseconds used : 906
+
+solving seed : 5260342
+Unsolvable at seed 5260342
+total boardss : 13681 ( outstanding candidates : 0, tried candidates : 13681 ), max depth : 161
+miliseconds used : 656
+
+solving seed : 5401675
+Unsolvable at seed 5401675
+total boardss : 11215 ( outstanding candidates : 0, tried candidates : 11215 ), max depth : 160
+miliseconds used : 532
+
+solving seed : 5478410
+Unsolvable at seed 5478410
+total boardss : 15453 ( outstanding candidates : 0, tried candidates : 15453 ), max depth : 39
+miliseconds used : 687
+
+solving seed : 5611185
+Unsolvable at seed 5611185
+total boardss : 7967 ( outstanding candidates : 0, tried candidates : 7967 ), max depth : 96
+miliseconds used : 375
+
+solving seed : 5672090
+Unsolvable at seed 5672090
+total boardss : 25863 ( outstanding candidates : 0, tried candidates : 25863 ), max depth : 166
+miliseconds used : 1313
+
+solving seed : 5817697
+Unsolvable at seed 5817697
+total boardss : 5238 ( outstanding candidates : 0, tried candidates : 5238 ), max depth : 28
+miliseconds used : 203
+
+solving seed : 6020049
+Unsolvable at seed 6020049
+total boardss : 8808 ( outstanding candidates : 0, tried candidates : 8808 ), max depth : 36
+miliseconds used : 390
+
+solving seed : 6099064
+Unsolvable at seed 6099064
+total boardss : 28326 ( outstanding candidates : 0, tried candidates : 28326 ), max depth : 101
+miliseconds used : 1250
+
+solving seed : 6100919
+Unsolvable at seed 6100919
+total boardss : 10107 ( outstanding candidates : 0, tried candidates : 10107 ), max depth : 52
+miliseconds used : 422
+
+solving seed : 6234527
+Unsolvable at seed 6234527
+total boardss : 16840 ( outstanding candidates : 0, tried candidates : 16840 ), max depth : 65
+miliseconds used : 813
+
+solving seed : 6314799
+Unsolvable at seed 6314799
+total boardss : 5860 ( outstanding candidates : 0, tried candidates : 5860 ), max depth : 46
+miliseconds used : 281
+
+solving seed : 6332629
+Unsolvable at seed 6332629
+total boardss : 34690 ( outstanding candidates : 0, tried candidates : 34690 ), max depth : 76
+miliseconds used : 2047
+
+solving seed : 6416342
+Unsolvable at seed 6416342
+total boardss : 10048 ( outstanding candidates : 0, tried candidates : 10048 ), max depth : 56
+miliseconds used : 437
+
+solving seed : 6749792
+Unsolvable at seed 6749792
+total boardss : 43988 ( outstanding candidates : 0, tried candidates : 43988 ), max depth : 95
+miliseconds used : 2266
+
+solving seed : 6761220
+Unsolvable at seed 6761220
+total boardss : 6748 ( outstanding candidates : 0, tried candidates : 6748 ), max depth : 35
+miliseconds used : 297
+
+solving seed : 6768658
+Unsolvable at seed 6768658
+total boardss : 4433 ( outstanding candidates : 0, tried candidates : 4433 ), max depth : 22
+miliseconds used : 203
+
+solving seed : 6844210
+Unsolvable at seed 6844210
+total boardss : 7587 ( outstanding candidates : 0, tried candidates : 7587 ), max depth : 51
+miliseconds used : 344
+
+solving seed : 6895558
+Unsolvable at seed 6895558
+total boardss : 9119 ( outstanding candidates : 0, tried candidates : 9119 ), max depth : 37
+miliseconds used : 453
+
+solving seed : 6898316
+Unsolvable at seed 6898316
+total boardss : 7786 ( outstanding candidates : 0, tried candidates : 7786 ), max depth : 43
+miliseconds used : 359
+
+solving seed : 7035805
+Unsolvable at seed 7035805
+total boardss : 17708 ( outstanding candidates : 0, tried candidates : 17708 ), max depth : 94
+miliseconds used : 828
+
+solving seed : 7261039
+Unsolvable at seed 7261039
+total boardss : 23672 ( outstanding candidates : 0, tried candidates : 23672 ), max depth : 65
+miliseconds used : 1141
+
+solving seed : 7334559
+Unsolvable at seed 7334559
+total boardss : 13831 ( outstanding candidates : 0, tried candidates : 13831 ), max depth : 65
+miliseconds used : 609
+
+solving seed : 7360592
+Unsolvable at seed 7360592
+total boardss : 55934 ( outstanding candidates : 0, tried candidates : 55934 ), max depth : 499
+miliseconds used : 2969
+
+solving seed : 7400819
+Unsolvable at seed 7400819
+total boardss : 39940 ( outstanding candidates : 0, tried candidates : 39940 ), max depth : 183
+miliseconds used : 2094
+
+solving seed : 7484159
+Unsolvable at seed 7484159
+total boardss : 47289 ( outstanding candidates : 0, tried candidates : 47289 ), max depth : 148
+miliseconds used : 2312
+
+solving seed : 7497878
+Unsolvable at seed 7497878
+total boardss : 19661 ( outstanding candidates : 0, tried candidates : 19661 ), max depth : 54
+miliseconds used : 1000
+
+solving seed : 7530003
+Unsolvable at seed 7530003
+total boardss : 5472 ( outstanding candidates : 0, tried candidates : 5472 ), max depth : 62
+miliseconds used : 250
+
+solving seed : 7536454
+Unsolvable at seed 7536454
+total boardss : 47299 ( outstanding candidates : 0, tried candidates : 47299 ), max depth : 104
+miliseconds used : 2172
+
+solving seed : 7705172
+Unsolvable at seed 7705172
+total boardss : 52308 ( outstanding candidates : 0, tried candidates : 52308 ), max depth : 212
+miliseconds used : 2563
+
+solving seed : 7748399
+Unsolvable at seed 7748399
+total boardss : 30325 ( outstanding candidates : 0, tried candidates : 30325 ), max depth : 131
+miliseconds used : 1515
+
+solving seed : 7777900
+Unsolvable at seed 7777900
+total boardss : 10081 ( outstanding candidates : 0, tried candidates : 10081 ), max depth : 32
+miliseconds used : 422
+
+solving seed : 7795097
+Unsolvable at seed 7795097
+total boardss : 7560 ( outstanding candidates : 0, tried candidates : 7560 ), max depth : 27
+miliseconds used : 328
+
+solving seed : 7801943
+Unsolvable at seed 7801943
+total boardss : 56274 ( outstanding candidates : 0, tried candidates : 56274 ), max depth : 143
+miliseconds used : 2657
+
+solving seed : 7814345
+Unsolvable at seed 7814345
+total boardss : 37799 ( outstanding candidates : 0, tried candidates : 37799 ), max depth : 100
+miliseconds used : 2078
+
+solving seed : 7825750
+Unsolvable at seed 7825750
+total boardss : 5140 ( outstanding candidates : 0, tried candidates : 5140 ), max depth : 27
+miliseconds used : 250
+
+solving seed : 7863486
+Unsolvable at seed 7863486
+total boardss : 15289 ( outstanding candidates : 0, tried candidates : 15289 ), max depth : 80
+miliseconds used : 890
+
+solving seed : 7887312
+Unsolvable at seed 7887312
+total boardss : 15319 ( outstanding candidates : 0, tried candidates : 15319 ), max depth : 69
+miliseconds used : 828
+
+solving seed : 7923001
+Unsolvable at seed 7923001
+total boardss : 3631 ( outstanding candidates : 0, tried candidates : 3631 ), max depth : 23
+miliseconds used : 172
+
+solving seed : 7965413
+Unsolvable at seed 7965413
+total boardss : 10147 ( outstanding candidates : 0, tried candidates : 10147 ), max depth : 100
+miliseconds used : 500
+
+solving seed : 8000527
+Unsolvable at seed 8000527
+total boardss : 18208 ( outstanding candidates : 0, tried candidates : 18208 ), max depth : 51
+miliseconds used : 938
+
+solving seed : 8046431
+Unsolvable at seed 8046431
+total boardss : 9113 ( outstanding candidates : 0, tried candidates : 9113 ), max depth : 39
+miliseconds used : 500
+
+solving seed : 8076134
+Unsolvable at seed 8076134
+total boardss : 26581 ( outstanding candidates : 0, tried candidates : 26581 ), max depth : 102
+miliseconds used : 1656
+
+solving seed : 8104908
+Unsolvable at seed 8104908
+total boardss : 23097 ( outstanding candidates : 0, tried candidates : 23097 ), max depth : 85
+miliseconds used : 1281
+
+solving seed : 8105324
+Unsolvable at seed 8105324
+total boardss : 14372 ( outstanding candidates : 0, tried candidates : 14372 ), max depth : 51
+miliseconds used : 766
+
+solving seed : 8114984
+Unsolvable at seed 8114984
+total boardss : 28499 ( outstanding candidates : 0, tried candidates : 28499 ), max depth : 129
+miliseconds used : 1531
+
+solving seed : 8119415
+Unsolvable at seed 8119415
+total boardss : 19032 ( outstanding candidates : 0, tried candidates : 19032 ), max depth : 80
+miliseconds used : 938
+
+solving seed : 8121228
+Unsolvable at seed 8121228
+total boardss : 9125 ( outstanding candidates : 0, tried candidates : 9125 ), max depth : 42
+miliseconds used : 375
+
+solving seed : 8237732
+Unsolvable at seed 8237732
+total boardss : 6152 ( outstanding candidates : 0, tried candidates : 6152 ), max depth : 107
+miliseconds used : 296
+
+solving seed : 8267373
+Unsolvable at seed 8267373
+total boardss : 5682 ( outstanding candidates : 0, tried candidates : 5682 ), max depth : 33
+miliseconds used : 235
+
+solving seed : 8354257
+Unsolvable at seed 8354257
+total boardss : 27968 ( outstanding candidates : 0, tried candidates : 27968 ), max depth : 101
+miliseconds used : 1390
+
+solving seed : 8381178
+Unsolvable at seed 8381178
+total boardss : 56412 ( outstanding candidates : 0, tried candidates : 56412 ), max depth : 341
+miliseconds used : 3079
+
+solving seed : 8527378
+Unsolvable at seed 8527378
+total boardss : 17510 ( outstanding candidates : 0, tried candidates : 17510 ), max depth : 44
+miliseconds used : 1000
+
+solving seed : 8608154
+Unsolvable at seed 8608154
+total boardss : 5044 ( outstanding candidates : 0, tried candidates : 5044 ), max depth : 37
+miliseconds used : 218
+
+solving seed : 8712426
+Unsolvable at seed 8712426
+total boardss : 3423 ( outstanding candidates : 0, tried candidates : 3423 ), max depth : 18
+miliseconds used : 125
+
+solving seed : 8719444
+Unsolvable at seed 8719444
+total boardss : 4880 ( outstanding candidates : 0, tried candidates : 4880 ), max depth : 23
+miliseconds used : 203
+
+solving seed : 8736337
+Unsolvable at seed 8736337
+total boardss : 9725 ( outstanding candidates : 0, tried candidates : 9725 ), max depth : 72
+miliseconds used : 438
+
+solving seed : 9093368
+Unsolvable at seed 9093368
+total boardss : 34108 ( outstanding candidates : 0, tried candidates : 34108 ), max depth : 159
+miliseconds used : 1734
+
+solving seed : 9110337
+Unsolvable at seed 9110337
+total boardss : 21051 ( outstanding candidates : 0, tried candidates : 21051 ), max depth : 113
+miliseconds used : 938
+
+solving seed : 9190487
+Unsolvable at seed 9190487
+total boardss : 19299 ( outstanding candidates : 0, tried candidates : 19299 ), max depth : 86
+miliseconds used : 1031
+
+solving seed : 9222830
+Unsolvable at seed 9222830
+total boardss : 3194 ( outstanding candidates : 0, tried candidates : 3194 ), max depth : 28
+miliseconds used : 141
+
+solving seed : 9262134
+Unsolvable at seed 9262134
+total boardss : 18699 ( outstanding candidates : 0, tried candidates : 18699 ), max depth : 80
+miliseconds used : 1031
+
+solving seed : 9414989
+Unsolvable at seed 9414989
+total boardss : 51435 ( outstanding candidates : 0, tried candidates : 51435 ), max depth : 100
+miliseconds used : 2672
+
+solving seed : 9415104
+Unsolvable at seed 9415104
+total boardss : 36079 ( outstanding candidates : 0, tried candidates : 36079 ), max depth : 107
+miliseconds used : 2250
+
+solving seed : 9435589
+Unsolvable at seed 9435589
+total boardss : 11489 ( outstanding candidates : 0, tried candidates : 11489 ), max depth : 44
+miliseconds used : 515
+
+solving seed : 9452398
+Unsolvable at seed 9452398
+total boardss : 121218 ( outstanding candidates : 0, tried candidates : 121218 ), max depth : 209
+miliseconds used : 7141
+
+time used most : 7141 at seed : 9452398
+
+solving seed : 9626317
+Unsolvable at seed 9626317
+total boardss : 9756 ( outstanding candidates : 0, tried candidates : 9756 ), max depth : 84
+miliseconds used : 469
+
+solving seed : 9647001
+Unsolvable at seed 9647001
+total boardss : 3189 ( outstanding candidates : 0, tried candidates : 3189 ), max depth : 27
+miliseconds used : 125
+
+solving seed : 9660366
+Unsolvable at seed 9660366
+total boardss : 5495 ( outstanding candidates : 0, tried candidates : 5495 ), max depth : 71
+miliseconds used : 250
+
+solving seed : 9747437
+Unsolvable at seed 9747437
+total boardss : 22036 ( outstanding candidates : 0, tried candidates : 22036 ), max depth : 61
+miliseconds used : 968
+
+solving seed : 9771903
+Unsolvable at seed 9771903
+total boardss : 58043 ( outstanding candidates : 0, tried candidates : 58043 ), max depth : 126
+miliseconds used : 3047
+
+solving seed : 9830419
+Unsolvable at seed 9830419
+total boardss : 8830 ( outstanding candidates : 0, tried candidates : 8830 ), max depth : 57
+miliseconds used : 360
+
+solving seed : 9855268
+Unsolvable at seed 9855268
+total boardss : 6979 ( outstanding candidates : 0, tried candidates : 6979 ), max depth : 34
+miliseconds used : 312
+
+solving seed : 9861848
+Unsolvable at seed 9861848
+total boardss : 14091 ( outstanding candidates : 0, tried candidates : 14091 ), max depth : 49
+miliseconds used : 672
+
+solving seed : 9917279
+Unsolvable at seed 9917279
+total boardss : 5922 ( outstanding candidates : 0, tried candidates : 5922 ), max depth : 39
+miliseconds used : 266
+

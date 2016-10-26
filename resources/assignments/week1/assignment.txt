@@ -1,4 +1,4 @@
- As a group:
+As a group:
 
 Review the two attached Software Technical Design Specification templates provided as attachments within this module.
 Review the simplified UML modeling site:
@@ -6,6 +6,7 @@ creately.com/blog/diagrams/class-diagram-relationships/
 
 Review the FreeCell Rules site:
 http://www.casteel.org/Pages/FreeCellrules.html
+
 
 Perform the following activities, submit them and be prepared to present them:
 ------------------------------------------------------------------------------

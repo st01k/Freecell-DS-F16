@@ -1,0 +1,8 @@
+client
+client.gUI
+client.tUI
+freecell
+freecell.board
+freecell.engine
+freecell.solver
+playingCards

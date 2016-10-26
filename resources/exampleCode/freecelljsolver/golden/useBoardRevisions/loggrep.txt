@@ -1,0 +1,159 @@
+java -Xmx1024M -jar freecelljsolver.jar --dual --range 1 1000000
+
+
+solving seed : 1
+solved at move : 89
+result by thread : 1
+total boards : 334 ( outstanding candidates : 215, tried candidates : 118 ), max depth : 88
+miliseconds used : 149
+
+time used most : 149 at seed : 1
+--
+solving seed : 92
+solved at move : 145
+result by thread : 1
+total boards : 12591 ( outstanding candidates : 345, tried candidates : 12245 ), max depth : 144
+miliseconds used : 321
+
+time used most : 321 at seed : 92
+--
+solving seed : 494
+solved at move : 107
+result by thread : 0
+total boards : 7582 ( outstanding candidates : 343, tried candidates : 7238 ), max depth : 261
+miliseconds used : 324
+
+time used most : 324 at seed : 494
+--
+solving seed : 530
+solved at move : 223
+result by thread : 0
+total boards : 16282 ( outstanding candidates : 610, tried candidates : 15671 ), max depth : 271
+miliseconds used : 642
+
+time used most : 642 at seed : 530
+--
+solving seed : 744
+solved at move : 184
+result by thread : 0
+total boards : 20415 ( outstanding candidates : 621, tried candidates : 19793 ), max depth : 905
+miliseconds used : 793
+
+time used most : 793 at seed : 744
+--
+solving seed : 1679
+solved at move : 357
+result by thread : 0
+total boards : 40118 ( outstanding candidates : 1303, tried candidates : 38814 ), max depth : 2350
+miliseconds used : 1639
+
+time used most : 1639 at seed : 1679
+--
+unsolvable - disable equivalent board compare and try again...
+result by thread : 1
+Unsolvable at seed 11982
+total boards : 61777 ( outstanding candidates : 0, tried candidates : 61777 ), max depth : 276
+miliseconds used : 2040
+
+time used most : 2040 at seed : 11982
+--
+solving seed : 17863
+solved at move : 368
+result by thread : 1
+total boards : 222151 ( outstanding candidates : 841, tried candidates : 221309 ), max depth : 1725
+miliseconds used : 6498
+
+time used most : 6498 at seed : 17863
+--
+solving seed : 55873
+solved at move : 288
+result by thread : 1
+total boards : 246213 ( outstanding candidates : 651, tried candidates : 245561 ), max depth : 873
+miliseconds used : 7584
+
+time used most : 7584 at seed : 55873
+--
+solving seed : 114255
+solved at move : 139
+result by thread : 1
+total boards : 342660 ( outstanding candidates : 374, tried candidates : 342285 ), max depth : 3367
+miliseconds used : 10899
+
+time used most : 10899 at seed : 114255
+--
+solving seed : 134455
+solved at move : 118
+result by thread : 1
+total boards : 381156 ( outstanding candidates : 300, tried candidates : 380855 ), max depth : 6060
+miliseconds used : 10994
+
+time used most : 10994 at seed : 134455
+--
+solving seed : 153189
+solved at move : 821
+result by thread : 0
+total boards : 284477 ( outstanding candidates : 2981, tried candidates : 281495 ), max depth : 4393
+miliseconds used : 13295
+
+time used most : 13295 at seed : 153189
+--
+solving seed : 220686
+solved at move : 359
+result by thread : 1
+total boards : 609920 ( outstanding candidates : 820, tried candidates : 609099 ), max depth : 14037
+miliseconds used : 20128
+
+time used most : 20128 at seed : 220686
+--
+solving seed : 230721
+solved at move : 728
+result by thread : 1
+total boards : 1351738 ( outstanding candidates : 1990, tried candidates : 1349747 ), max depth : 12897
+miliseconds used : 49282
+
+time used most : 49282 at seed : 230721
+--
+OutOfMemoryError : boards size exceeds limit : 1500000 at thread : 1
+OutOfMemoryError : boards size exceeds limit : 1500000 at thread : 0
+OutOfMemoryError : parallelSolve - unable at seed : 587567
+total boards : 1500001 ( outstanding candidates : 537, tried candidates : 1499464 ), max depth : 22239
+miliseconds used : 75670
+
+time used most : 75670 at seed : 587567
+--
+OutOfMemoryError : boards size exceeds limit : 1500000 at thread : 1
+OutOfMemoryError : boards size exceeds limit : 1500000 at thread : 0
+OutOfMemoryError : parallelSolve - unable at seed : 744633
+total boards : 1500001 ( outstanding candidates : 19620, tried candidates : 1480381 ), max depth : 14891
+miliseconds used : 76787
+
+time used most : 76787 at seed : 744633
+
+
+solving seed : 587567
+OutOfMemoryError : boards size exceeds limit : 1500000 at thread : 1
+OutOfMemoryError : boards size exceeds limit : 1500000 at thread : 0
+OutOfMemoryError : parallelSolve - unable at seed : 587567
+total boards : 1500001 ( outstanding candidates : 537, tried candidates : 1499464 ), max depth : 22239
+miliseconds used : 75670
+--
+solving seed : 666193
+OutOfMemoryError : boards size exceeds limit : 1500000 at thread : 1
+OutOfMemoryError : boards size exceeds limit : 1500000 at thread : 0
+OutOfMemoryError : parallelSolve - unable at seed : 666193
+total boards : 1500001 ( outstanding candidates : 138324, tried candidates : 1361677 ), max depth : 64888
+miliseconds used : 74195
+--
+solving seed : 744633
+OutOfMemoryError : boards size exceeds limit : 1500000 at thread : 1
+OutOfMemoryError : boards size exceeds limit : 1500000 at thread : 0
+OutOfMemoryError : parallelSolve - unable at seed : 744633
+total boards : 1500001 ( outstanding candidates : 19620, tried candidates : 1480381 ), max depth : 14891
+miliseconds used : 76787
+--
+solving seed : 983391
+OutOfMemoryError : boards size exceeds limit : 1500000 at thread : 1
+OutOfMemoryError : boards size exceeds limit : 1500000 at thread : 0
+OutOfMemoryError : parallelSolve - unable at seed : 983391
+total boards : 1500001 ( outstanding candidates : 2575, tried candidates : 1497426 ), max depth : 34057
+miliseconds used : 68458
