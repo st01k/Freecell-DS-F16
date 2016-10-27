@@ -16,7 +16,7 @@ public interface DeckInterface {
 	 * Returns a card from deck without removal from deck.
 	 * @return card
 	 */
-	public StandardCard getCard();
+	public StdCard getCard();
 	
 	/**
 	 * Sorts deck.

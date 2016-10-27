@@ -104,8 +104,12 @@ public class StdDeck implements DeckInterface {
     public void print()
     {
         for (int i = 0; i < SIZE; i++) {
-            out.print(deck[i].toString());
-            if ((i + 1) % 4 == 0) System.out.println();
+            out.print(deck[i]);
+            if ((i + 1) % 4 == 0) out.println();
         }
+    }
+    
+    public static void unitTest() {
+    	
     }
 }

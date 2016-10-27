@@ -1,15 +1,35 @@
+Attributes
+Preliminary Master List
+Final Project - Week 1
+Groovy Llama DevTeam
+
 -------------------------------------------- client
 
 client.Driver:
 -----------------------------
+static final scan : Scanner
+
 static debug : boolean
 
 static main(String[] args) : void
 static toggleDebug() : void
+static printHelp() : void
+static formFeed() : void
 
--------------------------------------------- client.tui
+client.Prompt:
+-----------------------------
+static debug : boolean
 
-client.tui.Prompt:
+static masterToggleDebug() : void
+prompt : String
+
+client.CLI:
+-----------------------------
+static debug : boolean
+
+static masterToggleDebug() : void
+
+client.Tester:
 -----------------------------
 static debug : boolean
 
@@ -19,7 +39,9 @@ static masterToggleDebug() : void
 
 playingCards.CardInterface:
 -----------------------------
-STUFF
+getRank() : int
+getSuit() : int
+isBlack() : boolean
 
 playingCards.DeckInterface:
 -----------------------------
@@ -148,6 +170,8 @@ trySolve(Turn t) : boolean
 freecell.solver.Pattern:
 -----------------------------
 static debug : boolean
+
+movesToSolution : int
 
 static toggleDebug() : void
 static unitTest() : void

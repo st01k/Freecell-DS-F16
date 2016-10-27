@@ -9,17 +9,13 @@ public class StdCard {
     // class constants
     static final Character[] uniSymAry = {'♦', '♣', '♥', '♠'};
     static final Character[] defSymAry = {'d', 'c', 'h', 's'};
-    static final Character[] rankAry = { 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K' };
+    static final String[] rankAry = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
     static final String[] suitAry = { "Diamonds", "Clubs", "Hearts", "Spades" };
 
     // instance variables
+    private boolean useUni = false;
     private int rank;
     private int suit;
-    private String sRank;
-    private String sSuit;
-    private String name;
-    private Character uniSym;
-    private Character defSym;
 
 // Constructors --------------------------------------------------------------------------------------------------------
     /**
@@ -30,7 +26,6 @@ public class StdCard {
     public StdCard() {
         setRank(0);
         setSuit(0);
-        setName();
     }
 
     /**
@@ -43,7 +38,23 @@ public class StdCard {
     public StdCard(int r, int s) {
         setRank(r);
         setSuit(s);
-        setName();
+    }
+    
+// Mutators ------------------------------------------------------------------------------------------------------------
+    /**
+     * Sets card rank.
+     * @param newRank new card rank as integer
+     */
+    private void setRank(int newRank) {
+        rank = newRank;
+    }
+
+    /**
+     * Sets card suit.
+     * @param newSuit new card suit as integer
+     */
+    private void setSuit(int newSuit) {
+        suit = newSuit;
     }
 
 // Accessors -----------------------------------------------------------------------------------------------------------
@@ -67,16 +78,16 @@ public class StdCard {
      * Returns rank as a proper playing card rank (2 - A)
      * @return rank string
      */
-    public String getRank() {
-        return sRank;
+    public String getRankString() {
+        return rankAry[rank].toString();
     }
 
     /**
      * Returns spelled out suit as a sting (i.e. diamonds)
      * @return suit string
      */
-    public String getSuit() {
-        return sSuit;
+    public String getSuitString() {
+        return suitAry[suit];
     }
     
     /**
@@ -84,7 +95,7 @@ public class StdCard {
      * @return suit default symbol
      */
     public String getDefSym() {
-    	return defSym.toString();
+    	return defSymAry[suit].toString();
     }
 
     /**
@@ -92,7 +103,7 @@ public class StdCard {
      * @return suit unicode symbol
      */
     public String getUniSym() {
-        return uniSym.toString();
+        return uniSymAry[suit].toString();
     }
 
     /**
@@ -100,7 +111,7 @@ public class StdCard {
      * @return name string
      */
     public String getName() {
-        return name;
+        return rankAry[rank] + " of " + suitAry[suit];
     }
 
     /**
@@ -111,34 +122,15 @@ public class StdCard {
      */
     @Override
     public String toString() {
-        return sRank + uniSym;
+    	if (useUni) return rankAry[rank] + uniSymAry[suit];
+        return rankAry[rank] + defSymAry[suit];
+    }
+    
+    public void toggleUnicode() {
+    	useUni = !useUni;
     }
 
-// Mutators ------------------------------------------------------------------------------------------------------------
-    /**
-     * Sets card rank.
-     * @param newRank new card rank as integer
-     */
-    private void setRank(int newRank) {
-        rank = newRank;
-        sRank = rankAry[rank].toString();
-    }
-
-    /**
-     * Sets card suit.
-     * @param newSuit new card suit as integer
-     */
-    private void setSuit(int newSuit) {
-        suit = newSuit;
-        sSuit = suitAry[suit];
-        uniSym = uniSymAry[suit];
-        defSym = defSymAry[suit];
-    }
-
-    /**
-     * Generates card name as text based on array definitions.
-     */
-    private void setName() {
-        name = rankAry[rank] + " of " + suitAry[suit];
+    public static void unitTest() {
+    	
     }
 }
