@@ -1,6 +1,6 @@
 package freecell.board;
 
-import playingCards.StandardCard;
+import playingCards.StdCard;
 
 /**
  * Interface for card placement into various types of cells.<br>
@@ -14,7 +14,7 @@ public interface CellInterface
 	 * Places a card in a cell.
 	 * @return true is card was placed in cell; false otherwise
 	 */
-	boolean placeCard(StandardCard c);
+	boolean placeCard(StdCard c);
 	
 	/**
 	 * Removes a card from a cell.

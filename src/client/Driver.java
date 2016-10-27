@@ -1,14 +1,15 @@
 package client;
 
+import static java.lang.System.out;
+
+import playingCards.StdCard;
+import playingCards.StdDeck;
+
 /**
  * Driver for Freecell card game.
  * @author GroovyLlama
  * @version 0.1
  */
-import playingCards.StandardCard;
-import playingCards.StandardDeck;
-import static java.lang.System.out;
-
 public class Driver {
 	
 	public static void main(String[] args) {
@@ -18,8 +19,8 @@ public class Driver {
 	
 	private static void test() {
 		
-		StandardCard.unitTest();
-		StandardDeck.unitTest();
+		StdCard.unitTest();
+		StdDeck.unitTest();
 		
 		out.println("Individualized Unit Testing Complete");
 	}
