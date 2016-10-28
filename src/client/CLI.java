@@ -50,6 +50,7 @@ public class CLI {
 			case ("gui")	: 
 				String[] test = {}; 
 				FreeGUI.main(test); 
+				out.println();
 				break;
 			case ("cls") 	: formFeed();
 				break; 

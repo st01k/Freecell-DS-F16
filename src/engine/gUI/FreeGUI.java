@@ -14,6 +14,8 @@ import static java.lang.System.out;
 		private static final String IMAGESDIR = OSutils.getPath() + "resources" + SEP + "images" + SEP;
 		private static final String CARDIMAGESDIR = IMAGESDIR + "cards" + SEP;
 		
+		private static boolean debug = false;
+		
 		/**
 	     * Creates new form FreeGUI
 	     */
@@ -33,8 +35,9 @@ import static java.lang.System.out;
 	    private void initComponents() {
 	    	
 	    	// path test logged to console
-	    	out.println(IMAGESDIR);
-	    	out.println(CARDIMAGESDIR);
+	    	if (debug) out.println("---engine.FreeGUI.initComponents--- ");
+	    	if (debug) out.println(IMAGESDIR);
+	    	if (debug) out.println(CARDIMAGESDIR);
 	    	
 	        BackgroundPan = new javax.swing.JLayeredPane();
 	        jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -1809,6 +1812,15 @@ import static java.lang.System.out;
 	    {
 			
 		}
+	    
+	    /**
+	     * Toggles debug state.
+	     * Allows for debug statements to logger.
+	     * Prints to console.
+	     */
+	    public static void toogleDebug() {
+	    	debug = !debug;
+	    }
 
 	    /**
 	     * @param args the command line arguments

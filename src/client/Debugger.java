@@ -1,7 +1,6 @@
 package client;
 
-import playingCards.StdCard;
-import playingCards.StdDeck;
+import playingCards.*;
 
 public class Debugger {
 
@@ -15,5 +14,6 @@ public class Debugger {
 		debug = !debug;
 		StdCard.toggleDebug();
 		StdDeck.toggleDebug();
+		engine.gUI.FreeGUI.toogleDebug();
 	}
 }
