@@ -1,4 +1,4 @@
-package freecell.board;
+package board;
 
 import playingCards.StdCard;
 

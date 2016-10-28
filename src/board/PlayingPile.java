@@ -1,4 +1,4 @@
-package freecell.board;
+package board;
 
 public class PlayingPile {
 

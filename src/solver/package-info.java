@@ -2,4 +2,4 @@
  * @author GroovyLlama
  *
  */
-package freecell.solver;
+package solver;

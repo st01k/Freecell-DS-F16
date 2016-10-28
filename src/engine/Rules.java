@@ -1,4 +1,4 @@
-package freecell.engine;
+package engine;
 
 public class Rules {
 

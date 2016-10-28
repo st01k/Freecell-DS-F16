@@ -1,27 +1,31 @@
 package playingCards;
 
+import static java.lang.System.out;
+
 /**
  *
  * @author groovyLlama devteam
  * @version 1.0
  */
-public class StdCard {
-    // class constants
-    static final Character[] uniSymAry = {'♦', '♣', '♥', '♠'};
-    static final Character[] defSymAry = {'d', 'c', 'h', 's'};
-    static final String[] rankAry = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
-    static final String[] suitAry = { "Diamonds", "Clubs", "Hearts", "Spades" };
+public class StdCard implements CardInterface {
+    
+	// class constants
+	static final String[] rankAry = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
+	static final String[] suitAry = { "Diamonds", "Clubs", "Hearts", "Spades" };
+	static final Character[] defSymAry = { 'd', 'c', 'h', 's' };
+	static final Character[] uniSymAry = { '♦', '♣', '♥', '♠' };
 
+	// class variables
+	private static boolean debug = false;
+	
     // instance variables
-    private boolean useUni = false;
+    private boolean unicode = false;
     private int rank;
     private int suit;
 
-// Constructors --------------------------------------------------------------------------------------------------------
+// Constructors ---------------------------------------------------------------
     /**
-     * Default Constructor<br>
-     * Default card is the two of diamonds.  Remaining instance variables
-     * are dynamically generated.
+     * Default card is the ace of diamonds.
      */
     public StdCard() {
         setRank(0);
@@ -29,9 +33,7 @@ public class StdCard {
     }
 
     /**
-     * Specific card Constructor<br>
-     * Creates a playing card based on rank and suit as integers.  Remaining
-     * instance variables are dynamically generated.
+     * Creates a playing card based on rank and suit as integers.
      * @param r
      * @param s
      */
@@ -40,7 +42,7 @@ public class StdCard {
         setSuit(s);
     }
     
-// Mutators ------------------------------------------------------------------------------------------------------------
+// Mutators -------------------------------------------------------------------
     /**
      * Sets card rank.
      * @param newRank new card rank as integer
@@ -56,13 +58,29 @@ public class StdCard {
     private void setSuit(int newSuit) {
         suit = newSuit;
     }
+    
+    /**
+     * Toggles use of unicode suit symbol.
+     */
+    public void toggleUnicode() {
+    	unicode = !unicode;
+    }
+    
+	/**
+	 * Toggles debug mode.
+	 */
+	public static void toggleDebug() {
+		
+		debug = !debug;
+	}
 
-// Accessors -----------------------------------------------------------------------------------------------------------
+// Accessors ------------------------------------------------------------------
     /**
      * Returns rank as an integer.
      * @return rank integer
      */
-    public int getRankInt() {
+	@Override
+    public int getRank() {
         return rank;
     }
 
@@ -70,7 +88,8 @@ public class StdCard {
      * Returns suit as an integer.
      * @return suit integer
      */
-    public int getSuitInt() {
+    @Override
+    public int getSuit() {
         return suit;
     }
 
@@ -83,7 +102,7 @@ public class StdCard {
     }
 
     /**
-     * Returns spelled out suit as a sting (i.e. diamonds)
+     * Returns suit as a word.
      * @return suit string
      */
     public String getSuitString() {
@@ -99,7 +118,7 @@ public class StdCard {
     }
 
     /**
-     * Returns unicode suit symbol
+     * Returns unicode suit symbol.
      * @return suit unicode symbol
      */
     public String getUniSym() {
@@ -115,22 +134,61 @@ public class StdCard {
     }
 
     /**
-     * Returns string with proper rank and suit as a unicode symbol.  If show
-     * is false, returns '###' to signify card is face down.
-     * @param show true for face up, false for face down
-     * @return name and symbol string
+     * Returns string with proper rank and suit as a default symbol (d,c,h,s).
+     * If unicode is toggled, returns suit symbol as unicode instead.
+     * @return rank and suit symbol
      */
     @Override
     public String toString() {
-    	if (useUni) return rankAry[rank] + uniSymAry[suit];
-        return rankAry[rank] + defSymAry[suit];
+    	
+    	Character sym;
+    	if (unicode) sym = uniSymAry[suit];
+    	else sym = defSymAry[suit];
+        String s = String.format("%2s%s ", rankAry[rank], sym);
+        return s;
     }
     
-    public void toggleUnicode() {
-    	useUni = !useUni;
+    /**
+     * Returns true if card is using unicode symbol.
+     * @return true if using unicode
+     */
+    public boolean isUnicode() {
+    	return unicode;
     }
-
+    
+ // Testing -------------------------------------------------------------------
+    /**
+     * Standard Card unit test.
+     */
     public static void unitTest() {
-    	
+    
+    	out.println("-------------------- Testing StdCard Class:\n");
+		
+		StdCard[] testSequence = {
+				
+				new StdCard(),
+				new StdCard(3,1),
+				new StdCard(7,2),
+				new StdCard(12,3)
+		};
+		
+		for (StdCard c : testSequence) {
+			
+			out.println("Full Name: " + c.getName());
+			out.println("Rank Int: " + c.getRank());
+			out.println("Rank String: " + c.getRankString());
+			out.println("Suit Int: " + c.getSuit());
+			out.println("Suit String: " + c.getSuitString());
+			out.println("Suit Default Symbol: " + c.getDefSym());
+			out.println("Suit Unicode Symbol: " + c.getUniSym());
+			out.println("Short Name (toString): " + c.toString());
+			out.println(c + " using unicode? " + c.isUnicode());
+			out.println("Toggling unicode...");
+			c.toggleUnicode();
+			out.println(c + " using unicode? " + c.isUnicode());
+			out.println();
+		}
+		
+    	out.println("-------------------- StdCard Unit Test Complete.\n");
     }
 }
