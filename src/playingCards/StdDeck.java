@@ -99,7 +99,7 @@ public class StdDeck implements DeckInterface {
             deck[rand] = deck[i];
             deck[i] = temp;
             
-            if (debug) out.println("random card: " + temp + "to position " + i);
+            if (debug) out.println(temp + "--> pos " + i);
         }
     }
 
