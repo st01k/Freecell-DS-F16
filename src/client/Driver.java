@@ -5,7 +5,7 @@ import static java.lang.System.out;
 /**
  * Driver for Freecell card game.
  * @author groovyLlama devteam
- * @version 0.1
+ * @version 0.2
  */
 public class Driver {
 	
@@ -14,15 +14,21 @@ public class Driver {
 		// TODO remove/comment next line to auto enter gui
 		args = "--test".split(" ");
 		
-		String op = "";
-		if (args.length > 0) op = args[0];
-		if (op.matches("-t") || op.matches("--test")) {
+		if (args.length > 0) {
 			
-			CLI.prompt();
-			out.println("\n~ groovyLlama devteam, fall 2016 ~\n");
+			String op = args[0];
+			switch(op) {
+			
+			case "-t" :
+			case "--test" :
+				CLI.prompt();
+				out.println("\n~ groovyLlama devteam, fall 2016 ~\n");
+				break;
+			default:
+				break;
+			}
 		}
-		else {
-			// TODO initialize and run GUI
-		}		
+
+		// TODO initialize and run GUI	
 	}
 }
