@@ -35,9 +35,11 @@ import static java.lang.System.out;
 	    private void initComponents() {
 	    	
 	    	// path test logged to console
-	    	if (debug) out.println("---engine.FreeGUI.initComponents--- ");
-	    	if (debug) out.println(IMAGESDIR);
-	    	if (debug) out.println(CARDIMAGESDIR);
+	    	if (debug) { 
+	    		out.println("---engine.FreeGUI.initComponents--- ");
+	    		out.println(IMAGESDIR);
+	    		out.println(CARDIMAGESDIR);
+	    	}
 	    	
 	        BackgroundPan = new javax.swing.JLayeredPane();
 	        jLayeredPane1 = new javax.swing.JLayeredPane();
