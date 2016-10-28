@@ -3,6 +3,8 @@ package client;
 import static java.lang.System.out;
 
 import java.util.Scanner;
+
+import engine.gUI.FreeGUI;
 import utils.*;
 
 public class CLI {
@@ -45,6 +47,10 @@ public class CLI {
 				break;
 			case ("debug") 	: toggleDebug();
 				break;
+			case ("gui")	: 
+				String[] test = {}; 
+				FreeGUI.main(test); 
+				break;
 			case ("cls") 	: formFeed();
 				break; 
 			case ("cred")	: credz();
@@ -75,6 +81,7 @@ public class CLI {
 		out.println("test\tRuns unit tests");
 		out.println("path\tPrints working directory");
 		out.println("debug\tToggles debug mode");
+		out.println("gui\tStarts GUI interface");
 		out.println("cls\tClear screen");
 		out.println("cred\tPrints credits");
 		out.println("exit\tExits current prompt");

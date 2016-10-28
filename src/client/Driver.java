@@ -21,8 +21,8 @@ public class Driver {
 			String op = args[0];
 			switch(op) {
 			
-			case "-t" :
-			case "--test" :
+			case "-t" 		:
+			case "--test" 	:
 				CLI.prompt();
 				out.println("\n~ groovyLlama devteam, fall 2016 ~\n");
 				break;
