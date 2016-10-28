@@ -1823,7 +1823,8 @@ import static java.lang.System.out;
 	    public static void toogleDebug() {
 	    	debug = !debug;
 	    }
-
+	    
+	    // TODO rename main for entry from driver
 	    /**
 	     * @param args the command line arguments
 	     */

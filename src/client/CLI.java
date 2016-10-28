@@ -48,6 +48,7 @@ public class CLI {
 			case ("debug") 	: toggleDebug();
 				break;
 			case ("gui")	: 
+				// TODO modify when main is removed from FreeGUI
 				String[] test = {}; 
 				FreeGUI.main(test); 
 				out.println();

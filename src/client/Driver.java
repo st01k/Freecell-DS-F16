@@ -33,6 +33,7 @@ public class Driver {
 		else {
 		
 			// TODO initialize and run GUI
+			// TODO modify following when main is removed from FreeGUI
 			FreeGUI.main(args);
 		}	
 	}
