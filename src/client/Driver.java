@@ -4,14 +4,14 @@ import static java.lang.System.out;
 
 /**
  * Driver for Freecell card game.
- * @author GroovyLlama
+ * @author groovyLlama devteam
  * @version 0.1
  */
 public class Driver {
 	
 	public static void main(String[] args) {
 		
-		// TODO remove next line to auto enter gui
+		// TODO remove/comment next line to auto enter gui
 		args = "this is here for auto entry into cli".split(" ");
 		if (args.length > 0) {
 			

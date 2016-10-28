@@ -7,13 +7,16 @@ import playingCards.StdDeck;
 public class Tester {
 
 	/**
-	 * Runs unit tests.
+	 * Tester entry point.
 	 */
-	public static void enter() {
+	static void enter() {
 		
 		testAll();
 	}
 	
+	/**
+	 * Runs all class unit tests.
+	 */
 	private static void testAll() {
 		
 		out.println("\nBegin Individualized Unit Testing\n");

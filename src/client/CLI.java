@@ -13,14 +13,14 @@ public class CLI {
 	private static final String dbgStr = "[debug]";
 	private static final int FFSZ = 50;	// form feed size
 	
-	// global variables
+	// class variables
 	private static boolean debug = false;
 	private static String prompt;
 
 	/**
 	 * Main prompt.
 	 */
-	public static void prompt() {
+	static void prompt() {
 		
 		out.println("<<<< Freecell CLI v0.1 >>>>");
 		out.println("Type 'help' any time.");
@@ -90,6 +90,9 @@ public class CLI {
 		for (int i = 0; i < FFSZ; i++) out.println();
 	}
 	
+	/**
+	 * Prints project credits.
+	 */
 	private static void credz() {
 		
 		out.println();
