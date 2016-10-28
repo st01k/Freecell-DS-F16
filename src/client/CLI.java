@@ -42,6 +42,8 @@ public class CLI {
 				break;
 			case ("test") 	: Tester.enter();
 				break;
+			case ("path")	: out.println(Driver.getPath()); 
+				break;
 			case ("debug") 	: masterToggleDebug();
 				break;
 			case ("cls") 	: formFeed();
@@ -64,6 +66,7 @@ public class CLI {
 		out.println("----------------------------------------------");
 		out.println("help\tPrints this menu");
 		out.println("test\tRuns unit tests");
+		out.println("path\tPrints working directory");
 		out.println("debug\tToggles debug mode");
 		out.println("cls\tClear screen");
 		out.println("cred\tPrints credits");

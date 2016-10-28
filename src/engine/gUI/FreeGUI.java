@@ -1,11 +1,18 @@
 package engine.gUI;
 
+import client.Driver;
+import static java.lang.System.out;
+
 	/**
 	 * @author Ryan Whytsell
 	 */
 	public class FreeGUI extends javax.swing.JFrame {
 		
 		private static final long serialVersionUID = -2499184546285035594L;
+		
+		private static final String SEP = Driver.getSeparator();
+		private static final String IMAGESDIR = Driver.getPath() + "resources" + SEP + "images" + SEP;
+		private static final String CARDIMAGESDIR = IMAGESDIR + "cards" + SEP;
 		
 		/**
 	     * Creates new form FreeGUI
@@ -24,7 +31,11 @@ package engine.gUI;
 	     * This method is called from within the constructor to initialize the form.
 	     */
 	    private void initComponents() {
-
+	    	
+	    	// status out to console
+	    	out.println(IMAGESDIR);
+	    	out.println(CARDIMAGESDIR);
+	    	
 	        BackgroundPan = new javax.swing.JLayeredPane();
 	        jLayeredPane1 = new javax.swing.JLayeredPane();
 	        TurnLabel = new javax.swing.JLabel();
@@ -248,7 +259,7 @@ package engine.gUI;
 	        jLayeredPane1.setBounds(440, 10, 380, 130);
 
 	        Background.setBackground(new java.awt.Color(100, 100, 100));
-	        Background.setIcon(new javax.swing.ImageIcon("resources\\images\\felt.png"));
+	        Background.setIcon(new javax.swing.ImageIcon(IMAGESDIR + "felt.png"));
 	        Background.setToolTipText("");
 	        Background.setOpaque(true);
 	        BackgroundPan.add(Background);
@@ -1622,7 +1633,7 @@ package engine.gUI;
 	        BackgroundPan.add(R8C0);
 	        R8C0.setBounds(1120, 150, 86, 125);
 
-	        free1.setIcon(new javax.swing.ImageIcon("E:\\Programming\\Freecell-DS-F16\\resources\\images\\cards\\FreeCell.png")); // NOI18N
+	        free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png")); // NOI18N
 	        free1.setToolTipText("");
 	        free1.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free1.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1631,7 +1642,7 @@ package engine.gUI;
 	        BackgroundPan.add(free1);
 	        free1.setBounds(20, 10, 86, 125);
 
-	        free2.setIcon(new javax.swing.ImageIcon("E:\\Programming\\Freecell-DS-F16\\resources\\images\\cards\\FreeCell.png")); // NOI18N
+	        free2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png")); // NOI18N
 	        free2.setToolTipText("");
 	        free2.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free2.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1640,7 +1651,7 @@ package engine.gUI;
 	        BackgroundPan.add(free2);
 	        free2.setBounds(120, 10, 86, 125);
 
-	        free3.setIcon(new javax.swing.ImageIcon("E:\\Programming\\Freecell-DS-F16\\resources\\images\\cards\\FreeCell.png")); // NOI18N
+	        free3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png")); // NOI18N
 	        free3.setToolTipText("");
 	        free3.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free3.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1649,7 +1660,7 @@ package engine.gUI;
 	        BackgroundPan.add(free3);
 	        free3.setBounds(220, 10, 86, 125);
 
-	        free4.setIcon(new javax.swing.ImageIcon("E:\\Programming\\Freecell-DS-F16\\resources\\images\\cards\\FreeCell.png")); // NOI18N
+	        free4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png")); // NOI18N
 	        free4.setToolTipText("");
 	        free4.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free4.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1658,7 +1669,7 @@ package engine.gUI;
 	        BackgroundPan.add(free4);
 	        free4.setBounds(320, 10, 86, 125);
 
-	        home1.setIcon(new javax.swing.ImageIcon("E:\\Programming\\Freecell-DS-F16\\resources\\images\\cards\\HomeCell.png")); // NOI18N
+	        home1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png")); // NOI18N
 	        home1.setToolTipText("");
 	        home1.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home1.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1667,7 +1678,7 @@ package engine.gUI;
 	        BackgroundPan.add(home1);
 	        home1.setBounds(850, 10, 86, 125);
 
-	        home2.setIcon(new javax.swing.ImageIcon("E:\\Programming\\Freecell-DS-F16\\resources\\images\\cards\\HomeCell.png")); // NOI18N
+	        home2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png")); // NOI18N
 	        home2.setToolTipText("");
 	        home2.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home2.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1676,7 +1687,7 @@ package engine.gUI;
 	        BackgroundPan.add(home2);
 	        home2.setBounds(960, 10, 86, 125);
 
-	        home3.setIcon(new javax.swing.ImageIcon("E:\\Programming\\Freecell-DS-F16\\resources\\images\\cards\\HomeCell.png")); // NOI18N
+	        home3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png")); // NOI18N
 	        home3.setToolTipText("");
 	        home3.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home3.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1685,7 +1696,7 @@ package engine.gUI;
 	        BackgroundPan.add(home3);
 	        home3.setBounds(1070, 10, 86, 125);
 
-	        home4.setIcon(new javax.swing.ImageIcon("E:\\Programming\\Freecell-DS-F16\\resources\\images\\cards\\HomeCell.png")); // NOI18N
+	        home4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png")); // NOI18N
 	        home4.setToolTipText("");
 	        home4.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home4.setMinimumSize(new java.awt.Dimension(86, 125));

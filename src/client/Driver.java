@@ -2,6 +2,8 @@ package client;
 
 import static java.lang.System.out;
 
+import engine.gUI.*;
+
 /**
  * Driver for Freecell card game.
  * @author groovyLlama devteam
@@ -9,10 +11,13 @@ import static java.lang.System.out;
  */
 public class Driver {
 	
+	private static final String SEP = System.getProperty("file.separator");
+	private static final String PATH = System.getProperty("user.dir");
+	
 	public static void main(String[] args) {
 		
 		// TODO remove/comment next line to auto enter gui
-		args = "--test".split(" ");
+		//args = "--test".split(" ");
 		
 		if (args.length > 0) {
 			
@@ -28,7 +33,31 @@ public class Driver {
 				break;
 			}
 		}
-
-		// TODO initialize and run GUI	
+		else {
+		
+			// TODO initialize and run GUI
+			FreeGUI.main(args);
+		}	
+	}
+	
+	/**
+	 * Returns true if program is being run on any Windows OS.
+	 * @return true if OS is Windows
+	 */
+	public static boolean isWindows() {
+		
+		return System.getProperty("os.name").contains("Windows");
+	}
+	
+	/**
+	 * Builds path to user's working directory.
+	 * @return path
+	 */
+	public static String getPath() {
+		return PATH + SEP;
+	}
+	
+	public static String getSeparator() {
+		return SEP;
 	}
 }
