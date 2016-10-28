@@ -3,8 +3,7 @@ package client;
 import static java.lang.System.out;
 
 import java.util.Scanner;
-import playingCards.StdCard;
-import playingCards.StdDeck;
+import utils.*;
 
 public class CLI {
 	
@@ -42,9 +41,9 @@ public class CLI {
 				break;
 			case ("test") 	: Tester.enter();
 				break;
-			case ("path")	: out.println(Driver.getPath()); 
+			case ("path")	: out.println(OSutils.getPath()); 
 				break;
-			case ("debug") 	: masterToggleDebug();
+			case ("debug") 	: toggleDebug();
 				break;
 			case ("cls") 	: formFeed();
 				break; 
@@ -54,6 +53,14 @@ public class CLI {
 				out.println("Invalid Command.  Type 'help' for a list of commands.");
 			}
 		} while (cont);
+	}
+	
+	/**
+	 * Toggle master debug switch in Debugger.
+	 */
+	private static void toggleDebug() {	
+		debug = !debug;
+		Debugger.masterToggleDebug();
 	}
 	
 	/**
@@ -74,15 +81,7 @@ public class CLI {
 		out.println();
 	}
 	
-	/**
-	 * Toggles debug mode.
-	 */
-	private static void masterToggleDebug() {
-		
-		debug = !debug;
-		StdCard.toggleDebug();
-		StdDeck.toggleDebug();
-	}
+
 	
 	/**
 	 * Prints a form feed to screen.  Scrolls up specified lines.

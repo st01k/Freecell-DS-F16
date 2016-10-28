@@ -1,6 +1,6 @@
 package engine.gUI;
 
-import client.Driver;
+import utils.OSutils;
 import static java.lang.System.out;
 
 	/**
@@ -10,8 +10,8 @@ import static java.lang.System.out;
 		
 		private static final long serialVersionUID = -2499184546285035594L;
 		
-		private static final String SEP = Driver.getSeparator();
-		private static final String IMAGESDIR = Driver.getPath() + "resources" + SEP + "images" + SEP;
+		private static final String SEP = OSutils.getSeparator();
+		private static final String IMAGESDIR = OSutils.getPath() + "resources" + SEP + "images" + SEP;
 		private static final String CARDIMAGESDIR = IMAGESDIR + "cards" + SEP;
 		
 		/**
