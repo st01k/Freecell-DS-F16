@@ -12,14 +12,17 @@ public class Driver {
 	public static void main(String[] args) {
 		
 		// TODO remove/comment next line to auto enter gui
-		args = "this is here for auto entry into cli".split(" ");
-		if (args.length > 0) {
+		args = "--test".split(" ");
+		
+		String op = "";
+		if (args.length > 0) op = args[0];
+		if (op.matches("-t") || op.matches("--test")) {
 			
 			CLI.prompt();
 			out.println("\n~ groovyLlama devteam, fall 2016 ~\n");
 		}
 		else {
-			// TODO initialize GUI
+			// TODO initialize and run GUI
 		}		
 	}
 }
