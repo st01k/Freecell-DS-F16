@@ -1,4 +1,4 @@
-package freecell.solver;
+package solver;
 
 public class Pattern {
 

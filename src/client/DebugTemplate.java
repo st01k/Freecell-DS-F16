@@ -64,7 +64,7 @@ public class DebugTemplate {
 	 */
 	public static void unitTestWithLoop() {
 		
-		out.println("-------------------- Testing TestDebugExample Class:\n");
+		out.println("-------------------- Testing DebugTemplate Class:\n");
 		
 		DebugTemplate[] testSequence = {
 				
@@ -81,7 +81,7 @@ public class DebugTemplate {
 			out.println();
 		}
 		
-   	out.println("-------------------- TestDebugExample Unit Test Complete.\n");
+   	out.println("-------------------- DebugTemplate Unit Test Complete.\n");
 	}
 	
 	/**

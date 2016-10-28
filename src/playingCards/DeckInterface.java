@@ -19,12 +19,6 @@ public interface DeckInterface {
 	public StdCard getCard();
 	
 	/**
-	 * Sorts deck.
-	 * Optional method.
-	 */
-	public void sort();
-	
-	/**
 	 * Prints deck to console.
 	 * Used for testing in text-based environment.
 	 * Optional method.

@@ -23,4 +23,4 @@ Some of the highlights of the methods supported by Freecell Solver are:
     One can instantiate different instances of the solver, that will each solve different deals in different threads or processes.
 -------------------------------------------------------------------------------
 The maximum amount of cards you can move is calculated by: 
-(#{free cells} + 1) * 2#{free piles} 
+({free cells} + 1) * 2{free piles} 

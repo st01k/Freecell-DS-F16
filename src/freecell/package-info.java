@@ -1,5 +1,0 @@
-/**
- * @author devTeam
- *
- */
-package freecell;

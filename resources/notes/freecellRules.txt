@@ -5,7 +5,7 @@ Freecell
  In the playing piles you have to build descending sequences, where red and black cards alternate. You can put any card in a free cell. 
  You can only move one card that lays on top of a pile or a free cell. Sequences can only be moved if you have enough free space (either free cells or free playing piles) to place the cards. 
  The maximum amount of cards you can move is calculated by: 
- (#{free cells} + 1) * 2#{free piles} 
+ ({free cells} + 1) * 2{free piles} 
  To solve this game it is recommended to grab the cards out of the playing sequences in the same order they have to be put into the foundation (first the aces, then the twos, etc.) 
  You should try to keep as many free cells and/or playing piles empty, so you can build sequences as long as possible.
  

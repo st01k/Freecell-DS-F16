@@ -10,55 +10,52 @@ import playingCards.StdCard;
  *
  */
 public class StdDeck implements DeckInterface {
-    // class constants
-    private static final int SUITS = StdCard.suitAry.length;
+    
+	// class constants
+	private static final int SUITS = StdCard.suitAry.length;
     private static final int RANKS = StdCard.rankAry.length;
     private static final int SIZE = SUITS * RANKS;
+    private static final String ERR1 = "ERROR: Deck Empty";
 
     // class variables
     private static int deckCount;
+ 	private static boolean debug = false;
 
     // instance variables
     private StdCard[] deck;
 
-// Constructors --------------------------------------------------------------------------------------------------------
+    // Constructors -----------------------------------------------------------
     /**
-     * Default Constructor<br>
      * Creates and initializes a new deck of 52 standard playing cards.
+     * Aces are low and no jokers are present.
      */
     public StdDeck() {
     	
         deck = new StdCard[SIZE];
         init();
     }
+    
+    // Mutators ---------------------------------------------------------------    
+	/**
+	 * Toggles debug mode.
+	 */
+	public static void toggleDebug() {
+		
+		debug = !debug;
+	}
 
-// Accessors -----------------------------------------------------------------------------------------------------------
+	// Accessors --------------------------------------------------------------
     /**
-     * Returns deck size
+     * Returns deck size.
      * @return deck size
      */
-    public int getSize() {
+    public int size() {
     	
         return SIZE;
     }
-
+    
     /**
-     * Returns a card from the top of the deck.  If too few cards remain, reshuffles
-     * deck, resets deckCount, and deals from the top.
-     * @return top card
-     */
-    public StdCard getCard () throws DeckException {
-    	
-        if (deckCount >= SIZE) throw new DeckException("Empty Deck");
-
-        StdCard temp = deck[deckCount];
-        deckCount++;
-        return temp;
-    }
-
-    /**
-     * Returns current deck count based on the number of cards that have been pulled
-     * from the top of the deck.
+     * Returns number of cards that have been pulled from top of the deck.
      * @return deck count
      */
     public int getDeckCount() {
@@ -66,7 +63,18 @@ public class StdDeck implements DeckInterface {
         return deckCount;
     }
 
-// Functionality -------------------------------------------------------------------------------------------------------
+    /**
+     * Returns a card from the top of the deck.
+     * @throws DeckException if deck is empty  
+     * @return top card
+     */
+    public StdCard getCard () throws DeckException {
+    	
+        if (deckCount >= SIZE) throw new DeckException("Empty Deck");
+        return deck[deckCount++];
+    }
+
+    // Functionality ----------------------------------------------------------
     /**
      * Initializes a deck of cards with proper suits and ranks.
      */
@@ -81,7 +89,10 @@ public class StdDeck implements DeckInterface {
     /**
      * Shuffles deck of cards.
      */
+    @Override
     public void shuffle() {
+    	
+    	if (debug) out.println("---playingCards.StdDeck.shuffle--- ");
     	
         deckCount = 0;
 
@@ -91,25 +102,55 @@ public class StdDeck implements DeckInterface {
             StdCard temp = deck[rand];
             deck[rand] = deck[i];
             deck[i] = temp;
+            
+            if (debug) out.println("random card: " + temp + "to position " + i);
         }
-    }
-    
-    public void sort() {
-    	init();
     }
 
     /**
      * Prints deck of cards in four rows.
      */
-    public void print()
-    {
+    @Override
+    public void print() {
         for (int i = 0; i < SIZE; i++) {
             out.print(deck[i]);
-            if ((i + 1) % 4 == 0) out.println();
+            if ((i + 1) % 13 == 0) out.println();
         }
     }
     
+    /**
+     * Toggles unicode mode for each card in deck.
+     */
+    public void toggleUnicode() {
+    	
+    	for (StdCard c : deck) c.toggleUnicode();
+    }
+
+    // Testing ----------------------------------------------------------------
     public static void unitTest() {
     	
+    	out.println("-------------------- Testing StdDeck Class:\n");
+    	
+    	StdDeck d = new StdDeck();
+		out.println("Deck initialized:");
+		d.print();
+		out.println();
+		
+		out.println("Turning on Unicode suit symbols...\n");
+		d.toggleUnicode();
+		
+		out.println("Shuffling deck...");
+		d.shuffle();
+		d.print();
+		out.println();
+		
+		out.println("Testing deck empty exception...");
+		// using up all cards
+		for (int i = 0; i < d.size(); i++) d.getCard();
+		// pulling one more
+		try { d.getCard(); }
+		catch (DeckException de) { out.println(ERR1); }
+		
+    	out.println("-------------------- StdDeck Unit Test Complete.\n");
     }
 }
