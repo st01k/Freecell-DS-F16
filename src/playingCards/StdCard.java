@@ -3,7 +3,7 @@ package playingCards;
 import static java.lang.System.out;
 
 /**
- *
+ * Standard playing card
  * @author groovyLlama devteam
  * @version 1.0
  */
@@ -34,8 +34,8 @@ public class StdCard implements CardInterface {
 
     /**
      * Creates a playing card based on rank and suit as integers.
-     * @param r
-     * @param s
+     * @param r rank from 0-12
+     * @param s suit from 0-3
      */
     public StdCard(int r, int s) {
         setRank(r);
@@ -70,7 +70,6 @@ public class StdCard implements CardInterface {
 	 * Toggles debug mode.
 	 */
 	public static void toggleDebug() {
-		
 		debug = !debug;
 	}
 

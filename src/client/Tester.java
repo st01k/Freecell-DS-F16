@@ -11,6 +11,7 @@ public class Tester {
 	 */
 	static void enter() {
 		
+		//TODO menu for individualized tests
 		testAll();
 	}
 	
@@ -19,11 +20,11 @@ public class Tester {
 	 */
 	private static void testAll() {
 		
-		out.println("\nBegin Individualized Unit Testing\n");
+		out.println("\nBegin Comprehensive Unit Testing\n");
 		
 		StdCard.unitTest();
 		StdDeck.unitTest();
 		
-		out.println("Individualized Unit Testing Complete\n");
+		out.println("Comprehensive Unit Testing Complete\n");
 	}
 }

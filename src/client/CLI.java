@@ -42,7 +42,7 @@ public class CLI {
 				break;
 			case ("test") 	: Tester.enter();
 				break;
-			case ("debug") 	: toggleDebug();
+			case ("debug") 	: masterToggleDebug();
 				break;
 			case ("cls") 	: formFeed();
 				break; 
@@ -74,7 +74,7 @@ public class CLI {
 	/**
 	 * Toggles debug mode.
 	 */
-	private static void toggleDebug() {
+	private static void masterToggleDebug() {
 		
 		debug = !debug;
 		StdCard.toggleDebug();
@@ -86,7 +86,6 @@ public class CLI {
 	 * Amount is specified with FFSZ constant.
 	 */
 	private static void formFeed() {
-		
 		for (int i = 0; i < FFSZ; i++) out.println();
 	}
 	
