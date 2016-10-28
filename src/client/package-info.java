@@ -1,5 +1,4 @@
 /**
- * @author GroovyLlama
- *
+ * @author groovyLlama devteam
  */
 package client;

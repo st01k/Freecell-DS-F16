@@ -83,6 +83,14 @@ public class StdCard implements CardInterface {
     public int getRank() {
         return rank;
     }
+	
+	/**
+	 * Returns face value of card.
+	 * @return face value
+	 */
+	public int getValue() {
+		return rank + 1;
+	}
 
     /**
      * Returns suit as an integer.
@@ -176,6 +184,7 @@ public class StdCard implements CardInterface {
 			
 			out.println("Full Name: " + c.getName());
 			out.println("Rank Int: " + c.getRank());
+			out.println("Rank Value: " + c.getValue());
 			out.println("Rank String: " + c.getRankString());
 			out.println("Suit Int: " + c.getSuit());
 			out.println("Suit String: " + c.getSuitString());
