@@ -163,6 +163,10 @@ public class StdCard implements CardInterface {
     	return unicode;
     }
     
+    public boolean isBlack() {
+    	return suit == 1 || suit == 3;
+    }
+    
  // Testing -------------------------------------------------------------------
     /**
      * Standard Card unit test.
@@ -181,7 +185,11 @@ public class StdCard implements CardInterface {
 		
 		for (StdCard c : testSequence) {
 			
+			String color = "Red";
+			if (c.isBlack()) color = "Black";
+			
 			out.println("Full Name: " + c.getName());
+			out.println("Color: " + color);
 			out.println("Rank Int: " + c.getRank());
 			out.println("Rank Value: " + c.getValue());
 			out.println("Rank String: " + c.getRankString());

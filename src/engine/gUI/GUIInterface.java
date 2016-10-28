@@ -2,7 +2,7 @@ package engine.gUI;
 
 import board.*;
 
-public interface GUI 
+public interface GUIInterface 
 {
 	void paint(Board gb);
 	

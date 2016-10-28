@@ -1,4 +1,4 @@
-package freecell.engine.gUI;
+package engine.gUI;
 
 	/**
 	 * @author Ryan Whytsell
