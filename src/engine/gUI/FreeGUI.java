@@ -32,7 +32,7 @@ import static java.lang.System.out;
 	     */
 	    private void initComponents() {
 	    	
-	    	// status out to console
+	    	// path test logged to console
 	    	out.println(IMAGESDIR);
 	    	out.println(CARDIMAGESDIR);
 	    	

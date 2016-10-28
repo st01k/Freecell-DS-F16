@@ -17,7 +17,7 @@ public class Driver {
 	public static void main(String[] args) {
 		
 		// TODO remove/comment next line to auto enter gui
-		//args = "--test".split(" ");
+		args = "--test".split(" ");
 		
 		if (args.length > 0) {
 			
@@ -50,13 +50,17 @@ public class Driver {
 	}
 	
 	/**
-	 * Builds path to user's working directory.
+	 * Returns path to user's working directory.
 	 * @return path
 	 */
 	public static String getPath() {
 		return PATH + SEP;
 	}
 	
+	/**
+	 * Returns OS specific directory separator.
+	 * @return directory separator
+	 */
 	public static String getSeparator() {
 		return SEP;
 	}
