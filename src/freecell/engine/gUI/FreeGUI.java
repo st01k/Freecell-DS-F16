@@ -1,22 +1,12 @@
 package freecell.engine.gUI;
 
-	
-	/*
-	 * To change this license header, choose License Headers in Project Properties.
-	 * To change this template file, choose Tools | Templates
-	 * and open the template in the editor.
-	 */
-
 	/**
-	 *
-	 * @author Ryan
+	 * @author Ryan Whytsell
 	 */
 	public class FreeGUI extends javax.swing.JFrame {
-
-	    /**
-		 * 
-		 */
+		
 		private static final long serialVersionUID = -2499184546285035594L;
+		
 		/**
 	     * Creates new form FreeGUI
 	     */
@@ -29,6 +19,7 @@ package freecell.engine.gUI;
 	    {
 	    	
 	    }
+	    
 	    /**
 	     * This method is called from within the constructor to initialize the form.
 	     */
@@ -257,7 +248,7 @@ package freecell.engine.gUI;
 	        jLayeredPane1.setBounds(440, 10, 380, 130);
 
 	        Background.setBackground(new java.awt.Color(100, 100, 100));
-	        Background.setIcon(new javax.swing.ImageIcon("E:\\Programming\\Freecell-DS-F16\\resources\\images\\felt.png")); // NOI18N
+	        Background.setIcon(new javax.swing.ImageIcon("resources\\images\\felt.png"));
 	        Background.setToolTipText("");
 	        Background.setOpaque(true);
 	        BackgroundPan.add(Background);
@@ -1718,12 +1709,35 @@ package freecell.engine.gUI;
 	        });
 
 	        RedoBtn.setText("Redo");
+	        RedoBtn.addActionListener(new java.awt.event.ActionListener() {
+	            public void actionPerformed(java.awt.event.ActionEvent evt) {
+	                RedoBtnActionPerformed(evt);
+	            }
+	        });
 
 	        HintBtn.setText("Hint");
+	        HintBtn.addActionListener(new java.awt.event.ActionListener() {
+	            public void actionPerformed(java.awt.event.ActionEvent evt) {
+	                HintBtnActionPerformed(evt);
+	            }
+	        });
 
 	        SolveBtn.setText("Solve");
+	        SolveBtn.addActionListener(new java.awt.event.ActionListener() {
+	            public void actionPerformed(java.awt.event.ActionEvent evt) {
+	                SolveBtnActionPerformed(evt);
+	            }
+
+	        });
 
 	        NewDealBtn.setText("New Deal");
+	        NewDealBtn.addActionListener(new java.awt.event.ActionListener() {
+	            public void actionPerformed(java.awt.event.ActionEvent evt) {
+	                NewDealBtnActionPerformed(evt);
+	            }
+
+				
+	        });
 
 	        javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
 	        MenuPanel.setLayout(MenuPanelLayout);
@@ -1758,21 +1772,38 @@ package freecell.engine.gUI;
 	        MenuPanel.setBounds(0, 0, 1287, 30);
 
 	        pack();
-	    }// </editor-fold>                        
+	    }                  
 
-	    private void UndoBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
-	        // TODO add your handling code here:
-	    }                                       
+	    private void UndoBtnActionPerformed(java.awt.event.ActionEvent evt) 
+	    {                                        
+	        
+	    }
+	    
+	    private void RedoBtnActionPerformed(java.awt.event.ActionEvent evt) 
+	    {
+	    	
+	    }
+	    
+		private void HintBtnActionPerformed(java.awt.event.ActionEvent evt) 
+		{
+			
+		}
+	    
+		private void SolveBtnActionPerformed(java.awt.event.ActionEvent evt)
+		{
+			
+		}
+		
+	    private void NewDealBtnActionPerformed(java.awt.event.ActionEvent evt) 
+	    {
+			
+		}
 
 	    /**
 	     * @param args the command line arguments
 	     */
 	    public static void main(String args[]) {
-	        /* Set the Nimbus look and feel */
-	        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-	        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-	         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-	         */
+	        // If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 	        try {
 	            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 	                if ("Nimbus".equals(info.getName())) {
