@@ -17,27 +17,11 @@ import static java.lang.System.out;
  * @author groovyLlama
  * @version 1.0
  */
-public class DebugTemplate {
-
-	// add me
+public class DebugUnitTestTemplate {	
+	
+	// start easy copy --------------------------------------------------------
 	private static boolean debug = false;
-	
-	/**
-	 * Don't mind these...
-	 */
-	DebugTemplate() {}
-	DebugTemplate(String in) {}
-	
-	/**
-	 * Returns well-formatted object string.
-	 * Preferably a one-liner.
-	 */
-	@Override
-	public String toString() {
 		
-		return "";
-	}
-	
 	/**
 	 * Toggles debug mode.
 	 */
@@ -46,17 +30,27 @@ public class DebugTemplate {
 		debug = !debug;
 	}
 	
+	/**
+	 * Unit test.
+	 */
+	public static void unitTest() {
+		out.println("-------------------- Testing ClassName Class:\n");
+		
+		out.println();
+		out.println("-------------------- ClassName Unit Test Complete.\n");
+	}
+	// end easy copy ----------------------------------------------------------
+	
 	public void callUsingThese() {
 		
-		// at the beginning of the method
+		// at the beginning of the method with debug statements
 		if (debug) out.println("---packageName.ClassName.methodName--- ");
 		
-		// where needed, something that shows var results or whatev is needed
+		// something that shows var results or whatev is needed
 		//if (debug) out.println(opd1+" "+op+" "+opd2+" = "+stk.peek());
 	}
 	
-	//----------------- Use whichever test unit best applies ------------------
-	
+	//----------------------- Example testing methods -------------------------
 	/**
 	 * Unit test with loop.
 	 * Test with multiple cases.
@@ -66,14 +60,14 @@ public class DebugTemplate {
 		
 		out.println("-------------------- Testing DebugTemplate Class:\n");
 		
-		DebugTemplate[] testSequence = {
+		DebugUnitTestTemplate[] testSequence = {
 				
-				new DebugTemplate(),
-				new DebugTemplate("whatever applies"),
-				new DebugTemplate("to make test objects")
+				new DebugUnitTestTemplate(),
+				//new DebugUnitTestTemplate("whatever applies"),
+				//new DebugUnitTestTemplate("to make test objects")
 		};
 		
-		for (DebugTemplate d : testSequence) {
+		for (DebugUnitTestTemplate d : testSequence) {
 		
 			out.println("Input: " + d.toString());
 			out.println("some method");

@@ -178,9 +178,7 @@ public class StdCard implements CardInterface {
 		StdCard[] testSequence = {
 				
 				new StdCard(),
-				new StdCard(3,1),
-				new StdCard(7,2),
-				new StdCard(12,3)
+				new StdCard(12,1)
 		};
 		
 		for (StdCard c : testSequence) {

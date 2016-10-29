@@ -7,6 +7,11 @@ import java.util.Scanner;
 import engine.gUI.FreeGUI;
 import utils.*;
 
+/**
+ * Freecell command-line interface.
+ * @author Casey
+ * @version 1.0
+ */
 public class CLI {
 	
 	// constants
@@ -43,7 +48,7 @@ public class CLI {
 				break;
 			case ("test") 	: Tester.enter();
 				break;
-			case ("path")	: out.println(OSutils.getPath()); 
+			case ("path")	: out.println(SysUtils.getPath()); 
 				break;
 			case ("debug") 	: toggleDebug();
 				break;

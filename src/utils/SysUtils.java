@@ -1,7 +1,13 @@
 package utils;
 
-public class OSutils {
+/**
+ * Utilities for host system information.
+ * @author Casey
+ * @version 0.1
+ */
+public class SysUtils {
 	
+	//constants
 	private static final String SEP = System.getProperty("file.separator");
 	private static final String PATH = System.getProperty("user.dir");
 	
@@ -14,7 +20,7 @@ public class OSutils {
 	}
 	
 	/**
-	 * Returns path to user's working directory.
+	 * Returns path to user's working directory with trailing separator.
 	 * @return path
 	 */
 	public static String getPath() {

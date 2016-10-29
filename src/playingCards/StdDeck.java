@@ -3,7 +3,7 @@ package playingCards;
 import static java.lang.System.out;
 
 import playingCards.StdCard;
-
+//TODO make me a stack
 /**
  * Standard deck
  * @author groovyLlama devteam
@@ -69,6 +69,10 @@ public class StdDeck implements DeckInterface {
     	
         if (deckCount >= SIZE) throw new DeckException("Empty Deck");
         return deck[deckCount++];
+    }
+    
+    public boolean isEmpty() {
+    	return deckCount == SIZE;
     }
 
     // Functionality ----------------------------------------------------------
