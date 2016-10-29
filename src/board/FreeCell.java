@@ -15,34 +15,62 @@ public class FreeCell implements CellInterface {
 	private static boolean debug = false;
 	
 	// class variables
-	StdCard card;
+	StdCard holder;
 	
+	/**
+	 * Creates empty freecell.
+	 */
 	public FreeCell() {
-		card = null;
+		holder = null;
 	}
 	
+	/**
+	 * Places a card in the freecell
+	 * if there is not one already present.
+	 */
 	@Override
 	public boolean placeCard(StdCard c) {
 		
-		if (card != null) return false;
+		if (holder != null) return false;
 		
-		card = c;
+		holder = c;
 		return true;
-	}
-
-	@Override
-	public boolean removeCard() {
-		
-		card = null;
-		return true;
-	}
-
-	public String toString() {
-		
-		if (card == null) return "[   ]";
-		return "[" + card.toString() + "]";
 	}
 	
+	/**
+	 * Removes card from freecell.
+	 * Returns card that was removed.
+	 */
+	@Override
+	public StdCard removeCard() {
+		
+		StdCard temp = holder;
+		holder = null;
+		return temp;
+	}
+	
+	/**
+	 * Returns card currently in cell.
+	 * Does not remove the card.
+	 * @return card currently in cell
+	 */
+	public StdCard peekCard() {
+		return holder;
+	}
+
+	/**
+	 * Dynamically generates cell string.
+	 * For use in CLI.
+	 */
+	public String toString() {
+		
+		if (holder == null) return "[   ]";
+		return "[" + holder.toString() + "]";
+	}
+	
+	/**
+	 * Toggles debug mode.
+	 */
 	public static void toggleDebug() {
 		debug = !debug;
 	}

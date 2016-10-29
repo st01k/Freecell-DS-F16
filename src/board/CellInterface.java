@@ -18,5 +18,11 @@ public interface CellInterface
 	/**
 	 * Removes a card from a cell.
 	 */
-	boolean removeCard();
+	StdCard removeCard();
+	
+	/**
+	 * Returns the card currently in cell.
+	 * @return card in cell, null if none
+	 */
+	StdCard peekCard();
 }

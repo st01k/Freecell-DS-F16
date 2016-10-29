@@ -31,6 +31,9 @@ public class Board {
 	// brandon, you had the right idea from the start
 	private PlayingPile[] pileAry;
 	
+	/**
+	 * Creates, initializes, and deals a freecell board.
+	 */
 	public Board() {
 		
 		freeAry = new FreeCell[CELLS];
@@ -47,6 +50,10 @@ public class Board {
 		return solvable;
 	}
 	
+	/**
+	 * Returns the number of moves that have been played.
+	 * @return number of moves played
+	 */
 	public int getNumMoves() {
 		return numMoves;
 	}
@@ -153,7 +160,10 @@ public class Board {
 		return max;
 	}
 	
-	public void toggleSolvable() {
+	/**
+	 * Toggles whether or not game can be won. 
+	 */
+	void toggleSolvable() {
 		solvable = !solvable;
 	}
 	

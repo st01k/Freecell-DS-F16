@@ -17,7 +17,7 @@ public class Turn {
 	private StdCard targetCard;
 	private Character destination;
 	
-	// TODO needs some kind of board map
+	// TODO needs some kind of board mapping/graph
 	// going with CLI board model for now
 	// with alphabetic mapping.
 	// see cli board by running 'test' in cli

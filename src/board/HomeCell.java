@@ -16,6 +16,17 @@ public class HomeCell implements CellInterface {
 	// class variables
 	StdCard holder;
 		
+	/**
+	 * Creates empty homecell.
+	 */
+	public HomeCell() {
+		holder = null;
+	}
+	
+	/**
+	 * Places a card in the home cell
+	 * if it is a valid placement.
+	 */
 	@Override
 	public boolean placeCard(StdCard c) {
 		
@@ -34,17 +45,37 @@ public class HomeCell implements CellInterface {
 		return false;
 	}
 
+	/**
+	 * Returns null.
+	 * Cannot remove a card from a home cell.
+	 */
 	@Override
-	public boolean removeCard() {
-		return false;
+	public StdCard removeCard() {
+		return null;
 	}
 
+	/**
+	 * Returns the card currently in cell.
+	 * Does not remove the card.
+	 * @return card currently in cell
+	 */
+	public StdCard peekCard() {
+		return holder;
+	}
+	
+	/**
+	 * Dynamically generates cell string.
+	 * For use in CLI.
+	 */
 	public String toString() {
 		
 		if (holder == null) return "[   ]";
 		return "[" + holder.toString() + "]";
 	}
 	
+	/**
+	 * Toggles debug mode.
+	 */
 	public static void toggleDebug() {
 		debug = !debug;
 	}
