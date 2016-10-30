@@ -96,15 +96,15 @@ public class Board {
 	public String toString() {
 		String s = "";
 		s += ("  A    B    C    D    E    F    G    H\n");
-		s += ("-----------------------------------------\n");
+		s += ("----------------------------------------\n");
 		s += buildCellsCLI();
 		s += ("\n");
 		
 		for (int i = 0; i < maxPileSize(); i++) s += buildRowCLI(i) + "\n";
 		
-		s += ("-----------------------------------------\n");
+		s += ("----------------------------------------\n");
 		s += ("  I    J    K    L    M    N    O    P\n");
-		s += ("-----------------------------------------\n");
+		s += ("----------------------------------------\n");
 		if (solvable) s += ("Is winnable");
 		else s += ("Game is lost");
 		s += ("\t\t\tMoves: " + numMoves);
