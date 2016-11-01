@@ -3,6 +3,7 @@ package engine;
 import java.util.Stack;
 
 import board.Board;
+import engine.gUI.FreeGUI;
 
 public class Engine 
 {
@@ -14,12 +15,16 @@ public class Engine
 	 */
 	
 	private static Stack<Board> BoardHistory = new Stack<Board>();
-	private static Board curBoard;
+	static Board curBoard;
 	
 	public static void snapshot()
 	{
 		BoardHistory.push(curBoard);
 	}
 	
-	
+	public static void start()
+	{
+		curBoard = new Board();
+		FreeGUI.start();
+	}
 }

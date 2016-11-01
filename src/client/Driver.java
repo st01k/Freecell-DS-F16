@@ -2,6 +2,7 @@ package client;
 
 import static java.lang.System.out;
 
+import engine.Engine;
 import engine.gUI.*;
 
 /**
@@ -14,7 +15,7 @@ public class Driver {
 	public static void main(String[] args) {
 		
 		// TODO remove/comment next line to auto enter gui
-		args = "--test".split(" ");
+		//args = "--test".split(" ");
 		
 		if (args.length > 0) {
 			
@@ -31,10 +32,8 @@ public class Driver {
 			}
 		}
 		else {
-		
-			// TODO initialize and run GUI
-			// TODO modify following when main is removed from FreeGUI
-			FreeGUI.start();
+			//Starts the engine (Vroom Vroom)
+			Engine.start();
 		}	
 	}
 }
