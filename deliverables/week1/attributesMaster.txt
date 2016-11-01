@@ -1,0 +1,185 @@
+Attributes
+Preliminary Master List
+Final Project - Week 1
+Groovy Llama DevTeam
+
+-------------------------------------------- client
+
+client.Driver:
+-----------------------------
+static final scan : Scanner
+
+static debug : boolean
+
+static main(String[] args) : void
+static toggleDebug() : void
+static printHelp() : void
+static formFeed() : void
+
+client.Prompt:
+-----------------------------
+static debug : boolean
+
+static masterToggleDebug() : void
+prompt : String
+
+client.CLI:
+-----------------------------
+static debug : boolean
+
+static masterToggleDebug() : void
+
+client.Tester:
+-----------------------------
+static debug : boolean
+
+static masterToggleDebug() : void
+
+-------------------------------------------- playingCards
+
+playingCards.CardInterface:
+-----------------------------
+getRank() : int
+getSuit() : int
+isBlack() : boolean
+
+playingCards.DeckInterface:
+-----------------------------
+STUFF
+
+playingCards.StdCard:
+-----------------------------
+static debug : boolean
+
+static toggleDebug() : void
+
+playingCards.StdDeck:
+-----------------------------
+static debug : boolean
+
+static toggleDebug() : void
+
+-------------------------------------------- freecell.board
+freecell.board.Board:
+-----------------------------
+static debug : boolean
+solvable : boolean
+playingPileStk[8] : Stack<playingPile>
+fCell1 : Freecell
+fCell2 : Freecell
+fCell3 : Freecell
+fCell4 : Freecell
+hCellHearts : Homecell
+hCellDiamonds : Homecell
+hCellSpades : Homecell
+hCellClubs : Homecell
+
+static toggleDebug() : void
+static unitTest() : void
+
+getState() : Board
+static unitTest() : void
+
+freecell.board.CellInterface:
+-----------------------------
+STUFF
+
+freecell.board.Freecell:
+-----------------------------
+static debug : boolean
+
+static toggleDebug() : void
+static unitTest() : void
+
+isOpen() : boolean
+
+freecell.board.Homecell:
+-----------------------------
+static debug : boolean
+
+static toggleDebug() : void
+static unitTest() : void
+
+isOpen() : boolean
+getValue() : StdCard
+
+freecell.board.Playingpile:
+-----------------------------
+static debug : boolean
+
+static toggleDebug() : void
+static unitTest() : void
+
+isOpen() : boolean
+numMoveableCards() : int
+
+-------------------------------------------- freecell.engine
+
+freecell.engine.Rules
+-----------------------------
+static debug : boolean
+
+static toggleDebug() : void
+static unitTest() : void
+
+isSequential() : boolean
+isAsc() : boolean
+isDesc() : boolean
+isAltColor() : boolean
+
+freecell.engine.Turn
+-----------------------------
+static debug : boolean
+
+static toggleDebug() : void
+static unitTest() : void
+
+isSolvable() : boolean
+getState() : Turn
+getMovesPlayed() : int
+
+freecell.engine.Engine:
+-----------------------------
+static debug : boolean
+history : stack<Turn>
+numMoves : int
+
+static toggleDebug() : void
+static unitTest() : void
+
+round() : boolean isSolvable
+
+freecell.engine.GUI
+-----------------------------
+static debug : boolean
+
+static toggleDebug() : void
+static unitTest() : void
+
+-------------------------------------------- freecell.solver
+
+freecell.solver.Solver:
+-----------------------------
+static debug : boolean
+
+static toggleDebug() : void
+static unitTest() : void
+
+trySolve(Turn t) : boolean
+
+freecell.solver.Pattern:
+-----------------------------
+static debug : boolean
+
+movesToSolution : int
+
+static toggleDebug() : void
+static unitTest() : void
+
+freecell.solver.Search:
+-----------------------------
+static debug : boolean
+
+static toggleDebug() : void
+static unitTest() : void
+

@@ -1,43 +1,47 @@
-Development Team:
+CS-221 - Final Project
+Created: 20 Oct 2016
+Last Modified: 28 Oct 2016
+
+groovyLlama devteam:
 Casey Murphy
 Ryan Whytsell
 Brandon Wharton
 Gordon Finnie
-
-CS-221 - Final Project
-Created: 20 Oct 2016
-Last Modified: 20 Oct 2016
 -------------------------------------------------------------------------------
 Freecell - v0.1
 Freecell Solver - v0.1
+
 -------------------------------------------------------------------------------
 Specifications:
 -------------------------------------------------------------------------------
 Freecell Game and Solver
+
 -------------------------------------------------------------------------------
 Reference:
 -------------------------------------------------------------------------------
+open source examples in resources/exampleCode
 
 -------------------------------------------------------------------------------
 Changelog:
 -------------------------------------------------------------------------------
 0.1 -   skeleton
+0.2 -   basic cli
+        basic gui
+        working card/deck
+        
 -------------------------------------------------------------------------------
 Command Line Options:
 -------------------------------------------------------------------------------
-OPTIONS:
--t      Test: Runs program in test mode, then exits.
--h      Help: Prints this file.
-
 ARGUMENTS:
-none    There are no arguments for this program.
+-test   Enters freecell CLI
 
 -------------------------------------------------------------------------------
 Included in Freecell.zip:
 -------------------------------------------------------------------------------
 - Freecell.zip (project zip file)
 
-In 'receivables' folder, inside project folder:
-- Freecell-UMLDiag.vsdx (UML Diagram)
-- Freecell-RelDiag.vsds (Relation Diagram)
+In 'deliverables' folder:
+- Deliverables by week in respective folders
+- Freecell-UMLDiag-Master.vsdx (UML Diagram)
+- Freecell-RelDiag-Master.vsds (Relation Diagram)
 - README.txt (this file)

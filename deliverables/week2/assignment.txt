@@ -1,0 +1,25 @@
+Refine all documents from Week 1 (from Gary):
+
+    Relational Diagram that more appropriately depicts OOP
+
+    UML refinement with color-coded class cards, main attribs, and business methods
+
+    Work on specifications documentation. New file from template with game rules as specs.
+
+    Master attrib/method list (for easy transition to diagram)
+
+    Convert all documents to PDF prior to submission
+    
+Project specific goals:
+
+    Engine mechanics rough design
+
+    Board mechanics rough design
+
+    Turn mechanics rough design
+
+    Basic card/deck operation
+
+    Basic cli
+
+    GUI design/basic operation merge to develop (doesn't need much functionality yet).
