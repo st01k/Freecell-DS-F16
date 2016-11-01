@@ -240,13 +240,13 @@ import static java.lang.System.out;
 
 	        TimeLabel.setText("Time: ");
 	        jLayeredPane1.add(TimeLabel);
-	        TimeLabel.setBounds(240, 20, 29, 14);
+	        TimeLabel.setBounds(240, 20, 35, 14);
 	        jLayeredPane1.add(Time);
 	        Time.setBounds(270, 20, 90, 0);
 
 	        SolvableLable.setText("Solvable: ");
 	        jLayeredPane1.add(SolvableLable);
-	        SolvableLable.setBounds(20, 60, 50, 14);
+	        SolvableLable.setBounds(20, 60, 55, 14);
 	        jLayeredPane1.add(Solvable);
 	        Solvable.setBounds(70, 60, 0, 0);
 
@@ -1786,10 +1786,13 @@ import static java.lang.System.out;
 
 	        getContentPane().add(MenuPanel);
 	        MenuPanel.setBounds(0, 0, 1287, 30);
-
+	        setLocationRelativeTo(null);
+	        setAlwaysOnTop(true);
 	        pack();
 	    }                  
 
+	    
+	    //TODO set button actions
 	    private void UndoBtnActionPerformed(java.awt.event.ActionEvent evt) 
 	    {                                        
 	        
@@ -1828,8 +1831,7 @@ import static java.lang.System.out;
 	    /**
 	     * @param args the command line arguments
 	     */
-	    public static void main(String args[]) {
-	        // If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+	    public static void start() {
 	        try {
 	            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 	                if ("Nimbus".equals(info.getName())) {
