@@ -1,4 +1,5 @@
 /**
  * @author groovyLlama devteam
+ * @version 1.0
  */
-package solver;
+package utils;

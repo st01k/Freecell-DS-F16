@@ -2,24 +2,39 @@ package client;
 
 import static java.lang.System.out;
 
+import engine.gUI.*;
+
 /**
  * Driver for Freecell card game.
- * @author GroovyLlama
- * @version 0.1
+ * @author groovyLlama devteam
+ * @version 0.2
  */
 public class Driver {
 	
 	public static void main(String[] args) {
 		
-		// TODO remove next line to auto enter gui
-		args = "this is here for auto entry into cli".split(" ");
+		// TODO remove/comment next line to auto enter gui
+		args = "--test".split(" ");
+		
 		if (args.length > 0) {
 			
-			CLI.prompt();
-			out.println("\n~ groovyLlama devteam, fall 2016 ~\n");
+			String op = args[0];
+			switch(op) {
+			
+			case "-t" 		:
+			case "--test" 	:
+				CLI.prompt();
+				out.println("\n~ groovyLlama devteam, fall 2016 ~\n");
+				break;
+			default:
+				break;
+			}
 		}
 		else {
-			// TODO initialize GUI
-		}		
+		
+			// TODO initialize and run GUI
+			// TODO modify following when main is removed from FreeGUI
+			FreeGUI.main(args);
+		}	
 	}
 }

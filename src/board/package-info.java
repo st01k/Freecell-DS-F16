@@ -1,5 +1,4 @@
 /**
- * @author GroovyLlama
- * @version 
+ * @author groovyLlama devteam
  */
 package board;

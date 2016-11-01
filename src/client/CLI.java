@@ -3,9 +3,15 @@ package client;
 import static java.lang.System.out;
 
 import java.util.Scanner;
-import playingCards.StdCard;
-import playingCards.StdDeck;
 
+import engine.gUI.FreeGUI;
+import utils.*;
+
+/**
+ * Freecell command-line interface.
+ * @author Casey
+ * @version 1.0
+ */
 public class CLI {
 	
 	// constants
@@ -13,14 +19,14 @@ public class CLI {
 	private static final String dbgStr = "[debug]";
 	private static final int FFSZ = 50;	// form feed size
 	
-	// global variables
+	// class variables
 	private static boolean debug = false;
 	private static String prompt;
 
 	/**
 	 * Main prompt.
 	 */
-	public static void prompt() {
+	static void prompt() {
 		
 		out.println("<<<< Freecell CLI v0.1 >>>>");
 		out.println("Type 'help' any time.");
@@ -42,7 +48,15 @@ public class CLI {
 				break;
 			case ("test") 	: Tester.enter();
 				break;
+			case ("path")	: out.println(SysUtils.getPath()); 
+				break;
 			case ("debug") 	: toggleDebug();
+				break;
+			case ("gui")	: 
+				// TODO modify when main is removed from FreeGUI
+				String[] test = {}; 
+				FreeGUI.main(test); 
+				out.println();
 				break;
 			case ("cls") 	: formFeed();
 				break; 
@@ -55,6 +69,14 @@ public class CLI {
 	}
 	
 	/**
+	 * Toggle master debug switch in Debugger.
+	 */
+	private static void toggleDebug() {	
+		debug = !debug;
+		Debugger.masterToggleDebug();
+	}
+	
+	/**
 	 * Prints help.
 	 */
 	private static void printHelp() {
@@ -64,32 +86,28 @@ public class CLI {
 		out.println("----------------------------------------------");
 		out.println("help\tPrints this menu");
 		out.println("test\tRuns unit tests");
+		out.println("path\tPrints working directory");
 		out.println("debug\tToggles debug mode");
+		out.println("gui\tStarts GUI interface");
 		out.println("cls\tClear screen");
 		out.println("cred\tPrints credits");
 		out.println("exit\tExits current prompt");
 		out.println();
 	}
 	
-	/**
-	 * Toggles debug mode.
-	 */
-	private static void toggleDebug() {
-		
-		debug = !debug;
-		StdCard.toggleDebug();
-		StdDeck.toggleDebug();
-	}
+
 	
 	/**
 	 * Prints a form feed to screen.  Scrolls up specified lines.
 	 * Amount is specified with FFSZ constant.
 	 */
 	private static void formFeed() {
-		
 		for (int i = 0; i < FFSZ; i++) out.println();
 	}
 	
+	/**
+	 * Prints project credits.
+	 */
 	private static void credz() {
 		
 		out.println();

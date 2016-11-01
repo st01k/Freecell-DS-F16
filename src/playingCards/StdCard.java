@@ -3,7 +3,7 @@ package playingCards;
 import static java.lang.System.out;
 
 /**
- *
+ * Standard playing card
  * @author groovyLlama devteam
  * @version 1.0
  */
@@ -34,8 +34,8 @@ public class StdCard implements CardInterface {
 
     /**
      * Creates a playing card based on rank and suit as integers.
-     * @param r
-     * @param s
+     * @param r rank from 0-12
+     * @param s suit from 0-3
      */
     public StdCard(int r, int s) {
         setRank(r);
@@ -70,7 +70,6 @@ public class StdCard implements CardInterface {
 	 * Toggles debug mode.
 	 */
 	public static void toggleDebug() {
-		
 		debug = !debug;
 	}
 
@@ -83,6 +82,14 @@ public class StdCard implements CardInterface {
     public int getRank() {
         return rank;
     }
+	
+	/**
+	 * Returns face value of card.
+	 * @return face value
+	 */
+	public int getValue() {
+		return rank + 1;
+	}
 
     /**
      * Returns suit as an integer.
@@ -94,7 +101,7 @@ public class StdCard implements CardInterface {
     }
 
     /**
-     * Returns rank as a proper playing card rank (2 - A)
+     * Returns rank as a proper playing card rank (A - K)
      * @return rank string
      */
     public String getRankString() {
@@ -156,6 +163,10 @@ public class StdCard implements CardInterface {
     	return unicode;
     }
     
+    public boolean isBlack() {
+    	return suit == 1 || suit == 3;
+    }
+    
  // Testing -------------------------------------------------------------------
     /**
      * Standard Card unit test.
@@ -167,15 +178,18 @@ public class StdCard implements CardInterface {
 		StdCard[] testSequence = {
 				
 				new StdCard(),
-				new StdCard(3,1),
-				new StdCard(7,2),
-				new StdCard(12,3)
+				new StdCard(12,1)
 		};
 		
 		for (StdCard c : testSequence) {
 			
+			String color = "Red";
+			if (c.isBlack()) color = "Black";
+			
 			out.println("Full Name: " + c.getName());
+			out.println("Color: " + color);
 			out.println("Rank Int: " + c.getRank());
+			out.println("Rank Value: " + c.getValue());
 			out.println("Rank String: " + c.getRankString());
 			out.println("Suit Int: " + c.getSuit());
 			out.println("Suit String: " + c.getSuitString());

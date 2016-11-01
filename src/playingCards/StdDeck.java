@@ -3,11 +3,11 @@ package playingCards;
 import static java.lang.System.out;
 
 import playingCards.StdCard;
-
+//TODO make me a stack
 /**
- * Simple deck class.
+ * Standard deck
  * @author groovyLlama devteam
- *
+ * @version 1.0
  */
 public class StdDeck implements DeckInterface {
     
@@ -40,7 +40,6 @@ public class StdDeck implements DeckInterface {
 	 * Toggles debug mode.
 	 */
 	public static void toggleDebug() {
-		
 		debug = !debug;
 	}
 
@@ -50,7 +49,6 @@ public class StdDeck implements DeckInterface {
      * @return deck size
      */
     public int size() {
-    	
         return SIZE;
     }
     
@@ -59,7 +57,6 @@ public class StdDeck implements DeckInterface {
      * @return deck count
      */
     public int getDeckCount() {
-    	
         return deckCount;
     }
 
@@ -72,6 +69,10 @@ public class StdDeck implements DeckInterface {
     	
         if (deckCount >= SIZE) throw new DeckException("Empty Deck");
         return deck[deckCount++];
+    }
+    
+    public boolean isEmpty() {
+    	return deckCount == SIZE;
     }
 
     // Functionality ----------------------------------------------------------
@@ -95,7 +96,6 @@ public class StdDeck implements DeckInterface {
     	if (debug) out.println("---playingCards.StdDeck.shuffle--- ");
     	
         deckCount = 0;
-
         for (int i = 0; i < SIZE; i++) {
         	
             int rand = i + (int) (Math.random() * (SIZE - i));
@@ -103,7 +103,7 @@ public class StdDeck implements DeckInterface {
             deck[rand] = deck[i];
             deck[i] = temp;
             
-            if (debug) out.println("random card: " + temp + "to position " + i);
+            if (debug) out.println(temp + "--> pos " + i);
         }
     }
 
@@ -112,7 +112,8 @@ public class StdDeck implements DeckInterface {
      */
     @Override
     public void print() {
-        for (int i = 0; i < SIZE; i++) {
+        
+    	for (int i = 0; i < SIZE; i++) {
             out.print(deck[i]);
             if ((i + 1) % 13 == 0) out.println();
         }
@@ -122,7 +123,6 @@ public class StdDeck implements DeckInterface {
      * Toggles unicode mode for each card in deck.
      */
     public void toggleUnicode() {
-    	
     	for (StdCard c : deck) c.toggleUnicode();
     }
 
