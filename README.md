@@ -1,38 +1,27 @@
 # Freecell-DS-F16
-Freecell Game and Solver - Final project for Data Structures (Fall 2016)<br>
-v0.1<br>
-<br>
-CS-221 - Final Project<br>
-Created: 20 Oct 2016<br>
+<div align="center">
+	<b>Freecell Game and Solver</b><br>
+	v0.3<br><br>
+	Final project for Data Structures (Fall 2016 - WVUP)<br><br>
+	<img src="https://github.com/st01k/Freecell-DS-F16/blob/master/resources/images/groovyLlama.png?raw=true" alt="groovyLlama" height="400" width="400"><br>
+
+	<b>groovyLlama devteam:</b><br><br>
+	Casey Murphy<br>
+	Ryan Whytsell<br>
+	Brandon Wharton<br>
+	Gordon Finnie<br>
+</div>
 <hr>
-<b>Dev Team:</b><br><br>
-Casey Murphy<br>
-Ryan Whytsell<br>
-Brandon Wharton<br>
-Gordon Finnie<br>
+<b>NAME</b><br><br>
+glFreecell [OPTIONS]
 <hr>
-<b>Specifications:</b><br><br>
-blah, blah... put something here
+<b>DESCRIPTION</b><br><br>
+Freecell card game
 <hr>
-<b>Reference:</b><br><br>
-here too
+<b>OPTIONS</b><br><br>
+<i>-t, --test</i>: Enters freecell CLI<br>
 <hr>
-<b>Changelog:</b><br><br>
+<b>CHANGELOG</b><br><br>
 0.1 -   skeleton<br>
-<hr>
-<b>Command Line Options:</b><br><br>
-OPTIONS:<br>
-<i>-t</i><br>
-Test: Runs program in test mode, then exits.<br>
-<i>-h</i><br>
-Help: Prints this file.<br>
-<br>
-ARGUMENTS:<br>
-<i>none</i><br>
-There are no arguments for this program.<br>
-<hr>
-Included in Freecell.zip:<br>
-- Freecell.zip (project zip file)<br>
-- Freecell-UMLDiag.vsdx (UML Diagram)<br>
-- Freecell-RelDiag.vsds (Relation Diagram)<br>
-- README.txt (this file)<br>
+0.2 -   basic cli, basic gui, working card/deck<br>
+0.3 -		initial card placement on board<br>

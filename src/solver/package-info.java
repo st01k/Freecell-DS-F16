@@ -1,4 +1,4 @@
 /**
  * @author groovyLlama devteam
  */
-package playingCards;
+package solver;

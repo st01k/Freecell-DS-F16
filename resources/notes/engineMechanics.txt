@@ -1,0 +1,14 @@
+turn    --> move played, turn created, sent to engine (move num, details)
+engine  --> gets turn, sends to board
+board	--> applies turn, returns board to engine
+engine	--> gets new board
+            creates new state (snapshot), sends to history stack
+            sends board to boardGraph to be used in solver
+gui     --> gets history.peek.getBoard() for paint
+            gets other status info from .getTurn().getMoveNum()
+                                        .getTurn().getSolvable()
+            (need something for backwards traversal for 'undo' (stack on doubly linked list?))
+            (same for redo, forward traversal through history without removal until/if a new path is made)
+
+history --> stack of states (bc will need num moves and solution as to not recalculate)
+state	--> board, turn, solution

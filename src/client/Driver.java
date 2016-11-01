@@ -1,26 +1,40 @@
 package client;
 
-/**
- * Driver for Freecell card game.
- * @author GroovyLlama
- * @version 0.1
- */
-import playingCards.StandardCard;
-import playingCards.StandardDeck;
 import static java.lang.System.out;
 
+import engine.gUI.*;
+
+/**
+ * Driver for Freecell card game.
+ * @author groovyLlama devteam
+ * @version 0.2
+ */
 public class Driver {
 	
 	public static void main(String[] args) {
 		
-		test();
-	}
-	
-	private static void test() {
+		// TODO remove/comment next line to auto enter gui
+		args = "--test".split(" ");
 		
-		StandardCard.unitTest();
-		StandardDeck.unitTest();
+		if (args.length > 0) {
+			
+			String op = args[0];
+			switch(op) {
+			
+			case "-t" 		:
+			case "--test" 	:
+				CLI.prompt();
+				out.println("\n~ groovyLlama devteam, fall 2016 ~\n");
+				break;
+			default:
+				break;
+			}
+		}
+		else {
 		
-		out.println("Individualized Unit Testing Complete");
+			// TODO initialize and run GUI
+			// TODO modify following when main is removed from FreeGUI
+			FreeGUI.main(args);
+		}	
 	}
 }

@@ -1,1 +1,0 @@
-grep Unsol log.txt
