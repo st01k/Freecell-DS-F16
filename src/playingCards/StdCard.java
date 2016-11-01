@@ -101,7 +101,7 @@ public class StdCard implements CardInterface {
     }
 
     /**
-     * Returns rank as a proper playing card rank (2 - A)
+     * Returns rank as a proper playing card rank (A - K)
      * @return rank string
      */
     public String getRankString() {

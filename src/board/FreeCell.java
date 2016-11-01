@@ -7,7 +7,7 @@ import playingCards.StdCard;
 /**
  * 
  * @author groovyLlama devteam
- * @version 0.2
+ * @version 0.3
  */
 public class FreeCell implements CellInterface {
 	
@@ -15,15 +15,10 @@ public class FreeCell implements CellInterface {
 	private static boolean debug = false;
 	
 	// class variables
-	StdCard holder;
+	private StdCard cell;
 	
-	/**
-	 * Creates empty freecell.
-	 */
-	public FreeCell() {
-		holder = null;
-	}
 	
+	// cell manipulation ------------------------------------------------------
 	/**
 	 * Places a card in the freecell
 	 * if there is not one already present.
@@ -31,9 +26,9 @@ public class FreeCell implements CellInterface {
 	@Override
 	public boolean placeCard(StdCard c) {
 		
-		if (holder != null) return false;
+		if (!isEmpty()) return false;
 		
-		holder = c;
+		cell = c;
 		return true;
 	}
 	
@@ -44,28 +39,35 @@ public class FreeCell implements CellInterface {
 	@Override
 	public StdCard removeCard() {
 		
-		StdCard temp = holder;
-		holder = null;
+		StdCard temp = cell;
+		cell = null;
 		return temp;
 	}
 	
+	// cell information -------------------------------------------------------
 	/**
 	 * Returns card currently in cell.
 	 * Does not remove the card.
 	 * @return card currently in cell
 	 */
 	public StdCard peekCard() {
-		return holder;
+		return cell;
+	}
+	
+	// cell checks ------------------------------------------------------------	
+	private boolean isEmpty() {
+		return cell == null;
 	}
 
+	// utilities --------------------------------------------------------------
 	/**
 	 * Dynamically generates cell string.
 	 * For use in CLI.
 	 */
 	public String toString() {
 		
-		if (holder == null) return "[   ]";
-		return "[" + holder.toString() + "]";
+		if (cell == null) return "[   ]";
+		return "[" + cell.toString() + "]";
 	}
 	
 	/**
