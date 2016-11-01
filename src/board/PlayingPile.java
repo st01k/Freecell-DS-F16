@@ -169,7 +169,7 @@ public class PlayingPile {
 		for (int i = 0; i < 5; i++) {
 		
 			StdCard c = d.getCard();
-			p.placeCardOnDeal(d.getCard());
+			p.placeCardOnDeal(c);
 			out.println("Placed: " + c);
 			out.println("Cards in pile: " + p.size());
 			out.println();
