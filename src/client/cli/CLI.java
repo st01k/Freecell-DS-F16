@@ -1,10 +1,12 @@
-package client;
+package client.cli;
 
 import static java.lang.System.out;
 
 import java.util.Scanner;
 
-import engine.gUI.FreeGUI;
+import client.gui.FreeGUI;
+import engine.Engine;
+
 import utils.*;
 
 /**
@@ -26,7 +28,7 @@ public class CLI {
 	/**
 	 * Main prompt.
 	 */
-	static void prompt() {
+	public static void prompt() {
 		
 		out.println("<<<< Freecell CLI v0.1 >>>>");
 		out.println("Type 'help' any time.");
@@ -53,8 +55,11 @@ public class CLI {
 			case ("debug") 	: toggleDebug();
 				break;
 			case ("gui")	:  
-				FreeGUI.start(); 
+				Engine.start(true); 
 				out.println();
+				break;
+			case ("cli")	:
+				Engine.start(false);
 				break;
 			case ("cls") 	: formFeed();
 				break; 
@@ -86,7 +91,8 @@ public class CLI {
 		out.println("test\tRuns unit tests");
 		out.println("path\tPrints working directory");
 		out.println("debug\tToggles debug mode");
-		out.println("gui\tStarts GUI interface");
+		out.println("gui\tStarts game with GUI interface");
+		out.println("cli\tStarts game with CLI interface");
 		out.println("cls\tClear screen");
 		out.println("cred\tPrints credits");
 		out.println("exit\tExits current prompt");

@@ -1,9 +1,9 @@
 package engine;
 
 import java.util.Stack;
-
+import client.gui.FreeGUI;
 import board.Board;
-import engine.gUI.FreeGUI;
+import solver.Solver;
 
 public class Engine 
 {
@@ -14,27 +14,37 @@ public class Engine
 	 * @version 0.1
 	 */
 	
-	private static Stack<Board> BoardHistory = new Stack<Board>();
+	private static Stack<Board> history = new Stack<Board>();
 	static Board curBoard;
-	private static boolean flag = true;
+	static Solver solver;
+	private static boolean isGui = false;
+	private static boolean gameOver = false;
+	private static boolean debug = false;
 	
 	public static void snapshot()
 	{
-		BoardHistory.push(curBoard);
+		history.push(curBoard);
 	}
 	
-	public static void start()
+	public static void start(boolean gui)
 	{
 		curBoard = new Board();
-		FreeGUI.start();
+		solver = new Solver();
+		isGui = gui;
+		if (isGui) FreeGUI.start();
 		gameLoop();
 	}
 
 	private static void gameLoop() 
 	{
-		while(flag)
+		while(!gameOver)
 		{
-			FreeGUI.Paint(curBoard);
+			//TODO turn controls
+			if (isGui) FreeGUI.Paint(curBoard);
 		}
+	}
+	
+	private static void toggleDebug() {
+		debug = !debug;
 	}
 }

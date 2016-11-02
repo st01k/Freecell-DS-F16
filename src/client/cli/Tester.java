@@ -1,4 +1,4 @@
-package client;
+package client.cli;
 
 import static java.lang.System.out;
 import board.Board;

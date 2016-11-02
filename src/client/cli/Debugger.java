@@ -1,11 +1,8 @@
-package client;
+package client.cli;
 
-import board.Board;
-import board.FreeCell;
-import board.HomeCell;
-import board.PlayingPile;
+import client.gui.FreeGUI;
+import board.*;
 import playingCards.*;
-import engine.gUI.*;
 
 public class Debugger {
 

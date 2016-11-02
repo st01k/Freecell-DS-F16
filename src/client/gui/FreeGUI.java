@@ -1,4 +1,4 @@
-package engine.gUI;
+package client.gui;
 
 import utils.SysUtils;
 import static java.lang.System.out;
