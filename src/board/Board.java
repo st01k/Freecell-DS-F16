@@ -1,6 +1,7 @@
 package board;
 
 import static java.lang.System.out;
+import engine.Turn;
 
 import playingCards.*;
 
@@ -23,7 +24,7 @@ public class Board {
 	private boolean solvable = false;
 	//TODO num moves from each turn
 	// belongs in turn, here for testing, for now
-	private int numMoves = 0;
+	private int moveNum;
 	private StdDeck d;
 	private FreeCell[] freeAry;
 	private HomeCell[] homeAry;
@@ -36,12 +37,17 @@ public class Board {
 	 */
 	public Board() {
 		
+		moveNum = 0;
 		freeAry = new FreeCell[CELLS];
 		homeAry = new HomeCell[CELLS];
 		pileAry = new PlayingPile[PILES];
 		init();
 	}
 	
+	public void updateBoard(Turn t) {
+		
+		moveNum = t.getMoveNum();
+	}
 	
 	//TODO will have to change these three accessors 
 	// with encapsulation in mind down the road.
@@ -75,14 +81,6 @@ public class Board {
 	 */
 	public boolean getSolvable() {
 		return solvable;
-	}
-	
-	/**
-	 * Returns the number of moves that have been played.
-	 * @return number of moves played
-	 */
-	public int getNumMoves() {
-		return numMoves;
 	}
 	
 	/**
@@ -134,7 +132,7 @@ public class Board {
 		s += ("----------------------------------------\n");
 		if (solvable) s += ("Is winnable");
 		else s += ("Game is lost");
-		s += ("\t\t\tMoves: " + numMoves);
+		s += ("\t\t\tMoves: " + moveNum);
 		
 		
 		return s;

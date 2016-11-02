@@ -4,7 +4,6 @@ import static java.lang.System.out;
 
 import java.util.Scanner;
 import engine.Engine;
-
 import utils.*;
 
 /**
@@ -57,12 +56,53 @@ public class CLI {
 				out.println();
 				break;
 			case ("cli")	:
-				Engine.start(false);
+				game();
 				break;
 			case ("cls") 	: formFeed();
 				break; 
 			case ("cred")	: credz();
 				break;
+			default 		:  
+				out.println("Invalid Command.  Type 'help' for a list of commands.");
+			}
+		} while (cont);
+	}
+	
+	/**
+	 * Main prompt.
+	 */
+	public static void game() {
+		
+		boolean cont = true;
+		do {
+
+			Engine.start(false);
+			
+			prompt = "main.game> ";
+			if (debug) prompt = dbgStr + "main.game> ";
+			out.print(prompt);
+			String in = scan.nextLine();
+			
+			switch(in) {
+			
+			case ("exit") 	: cont = false;
+				break;
+			case ("help") 	: printHelp();
+				break;
+			case ("debug") 	: toggleDebug();
+				break;
+			case ("cls") 	: formFeed();
+				break; 
+			case ("cred")	: credz();
+				break;
+				
+			case ("test") 	:
+			case ("path")	: 
+			case ("gui")	:
+			case ("cli")	:
+				out.println("Not available in this mode.");
+				break;
+				
 			default 		:  
 				out.println("Invalid Command.  Type 'help' for a list of commands.");
 			}

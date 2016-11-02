@@ -1,5 +1,7 @@
 package engine;
 
+import static java.lang.System.out;
+
 import java.util.Stack;
 import client.gui.FreeGUI;
 import board.Board;
@@ -13,12 +15,13 @@ import solver.Solver;
 public class Engine 
 {
 	
-	private static Stack<Board> history = new Stack<Board>();
-	static Board curBoard;
-	static Solver solver;
 	private static boolean gui = false;
 	private static boolean gameOver = false;
 	private static boolean debug = false;
+	private static Stack<Board> history = new Stack<Board>();
+	
+	static Board curBoard;
+	static Solver solver;
 	
 	/**
 	 * Saves current board to history.
@@ -47,10 +50,18 @@ public class Engine
 	 */
 	private static void gameLoop() 
 	{
+		int moveNum = 0;
+		
 		while(!gameOver)
 		{
-			//TODO turn controls
 			if (gui) FreeGUI.Paint(curBoard);
+			else out.println(curBoard.toString());
+			
+			//TODO turn controls
+			Turn turn = new Turn(moveNum, gui);
+			curBoard.updateBoard(turn);
+			
+			moveNum++;
 		}
 	}
 	
