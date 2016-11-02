@@ -16,6 +16,7 @@ public class Engine
 	
 	private static Stack<Board> BoardHistory = new Stack<Board>();
 	static Board curBoard;
+	private static boolean flag = true;
 	
 	public static void snapshot()
 	{
@@ -26,5 +27,14 @@ public class Engine
 	{
 		curBoard = new Board();
 		FreeGUI.start();
+		gameLoop();
+	}
+
+	private static void gameLoop() 
+	{
+		while(flag)
+		{
+			FreeGUI.Paint(curBoard);
+		}
 	}
 }
