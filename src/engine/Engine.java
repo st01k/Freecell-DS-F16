@@ -44,7 +44,7 @@ public class Engine
 		}
 	}
 	
-	private static void toggleDebug() {
+	public static void toggleDebug() {
 		debug = !debug;
 	}
 }

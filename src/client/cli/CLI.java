@@ -3,8 +3,6 @@ package client.cli;
 import static java.lang.System.out;
 
 import java.util.Scanner;
-
-import client.gui.FreeGUI;
 import engine.Engine;
 
 import utils.*;

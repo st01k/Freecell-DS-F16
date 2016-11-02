@@ -4,8 +4,6 @@ import static java.lang.System.out;
 import client.cli.CLI;
 
 import engine.Engine;
-import client.gui.*;
-import client.cli.*;
 
 /**
  * Driver for Freecell card game.
