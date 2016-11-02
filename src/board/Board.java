@@ -42,6 +42,33 @@ public class Board {
 		init();
 	}
 	
+	
+	//TODO will have to change these three accessors 
+	// with encapsulation in mind down the road.
+	/**
+	 * Returns the freecell array.
+	 * @return freecell array
+	 */
+	public FreeCell[] getFreecells() {
+		return freeAry;
+	}
+	
+	/**
+	 * Returns the homecell array.
+	 * @return homecell array
+	 */
+	public HomeCell[] getHomecells() {
+		return homeAry;
+	}
+	
+	/**
+	 * Returns the playing piles array
+	 * @return playing piles array
+	 */
+	public PlayingPile[] getPiles() {
+		return pileAry;
+	}
+	
 	/**
 	 * Returns true if the game is winnable.
 	 * @return true if game is winnable
@@ -148,9 +175,9 @@ public class Board {
 	/**
 	 * Returns the number of cards contained 
 	 * in the largest playing pile.
-	 * @return
+	 * @return size of the pile that is largest
 	 */
-	private int maxPileSize() {
+	int maxPileSize() {
 		
 		int max = 0;
 		for (PlayingPile p : pileAry) {

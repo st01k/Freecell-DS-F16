@@ -3,7 +3,6 @@ package client;
 import static java.lang.System.out;
 
 import engine.Engine;
-import engine.gUI.*;
 
 /**
  * Driver for Freecell card game.
@@ -15,7 +14,7 @@ public class Driver {
 	public static void main(String[] args) {
 		
 		// TODO remove/comment next line to auto enter gui
-		//args = "--test".split(" ");
+		args = "--test".split(" ");
 		
 		if (args.length > 0) {
 			

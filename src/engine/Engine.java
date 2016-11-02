@@ -11,7 +11,7 @@ public class Engine
 	/**
 	 * 
 	 * @author groovyLlama devteam
-	 * @version 0.3
+	 * @version 0.1
 	 */
 	
 	private static Stack<Board> BoardHistory = new Stack<Board>();
