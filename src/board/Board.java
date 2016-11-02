@@ -132,7 +132,7 @@ public class Board {
 		s += ("----------------------------------------\n");
 		if (solvable) s += ("Is winnable");
 		else s += ("Game is lost");
-		s += ("\t\t\tMoves: " + moveNum);
+		s += ("\t\t\tMove: " + moveNum);
 		
 		
 		return s;

@@ -66,10 +66,11 @@ public class Turn {
 	public boolean cliTurn() {
 		
 		//TODO add validation
-		out.println("\nEnter source position: ");
+		out.print("\nEnter source position: ");
 		String src = scan.nextLine();
-		out.println("Enter destination position: ");
+		out.print("Enter destination position: ");
 		String dest = scan.nextLine();
+		out.println();
 		
 		return false;
 	}
