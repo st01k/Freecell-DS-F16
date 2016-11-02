@@ -51,6 +51,7 @@ public class Engine
 	private static void gameLoop() 
 	{
 		int moveNum = 0;
+		snapshot();
 		
 		while(!gameOver)
 		{
@@ -58,10 +59,10 @@ public class Engine
 			else out.println(curBoard.toString());
 			
 			//TODO turn controls
-			Turn turn = new Turn(moveNum, gui);
+			// new turn prompts for turn actions
+			Turn turn = new Turn(++moveNum, gui);
 			curBoard.updateBoard(turn);
-			
-			moveNum++;
+			snapshot();
 		}
 	}
 	
