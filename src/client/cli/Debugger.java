@@ -1,8 +1,10 @@
 package client.cli;
 
-import client.gui.FreeGUI;
+import client.gui.*;
 import board.*;
 import playingCards.*;
+import engine.*;
+import solver.*;
 
 public class Debugger {
 
@@ -21,5 +23,7 @@ public class Debugger {
 		PlayingPile.toggleDebug();
 		Board.toggleDebug();
 		FreeGUI.toogleDebug();
+		Engine.toggleDebug();
+		Solver.toggleDebug();
 	}
 }
