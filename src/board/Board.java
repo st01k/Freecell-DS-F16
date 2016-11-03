@@ -20,7 +20,7 @@ public class Board {
 	private static boolean debug = false;
 	
 	// class variables
-	private boolean winnable = true;
+	private boolean winnable;
 	private int moveNum;
 	private StdDeck d;
 	private FreeCell[] freeAry;
@@ -32,6 +32,7 @@ public class Board {
 	 */
 	public Board() {
 		
+		winnable = true;
 		moveNum = 0;
 		freeAry = new FreeCell[CELLS];
 		homeAry = new HomeCell[CELLS];
@@ -86,11 +87,13 @@ public class Board {
 		
 		d = new StdDeck();
 		d.shuffle();
+		
 		for (int i = 0; i < CELLS; i++) {
 			freeAry[i] = new FreeCell();
 			homeAry[i] = new HomeCell();
 		}
 		for (int i = 0; i < PILES; i++) pileAry[i] = new PlayingPile();
+		
 		for (int i = 0; i < INITROWS; i++) fillRow();
 	}
 	
@@ -101,10 +104,12 @@ public class Board {
 	private void fillRow() {	
 		
 		if (debug) out.println("---board.Board.fillRow--- ");
+		
 		for (int i = 0; i < PILES && !d.isEmpty(); i++) {
 			
 			StdCard c = d.getCard();
 			pileAry[i].placeCardOnDeal(c);
+			
 			if (debug) out.println(i + " " + c);
 		}
 	}
@@ -113,7 +118,7 @@ public class Board {
 	/**
 	 * Moves a card from its source to a destination.
 	 * -2 : card into next available free cell
-	 * -1 : card into next available home cell
+	 * -1 : card into next available (or matching suit) home cell
 	 * 0 - 7 : card into respective playing pile
 	 * @param src source position
 	 * @param dest destination position
@@ -123,20 +128,20 @@ public class Board {
 		
 		if (debug) out.println("\n---board.Board.makeMove---");
 		
-		StdCard c = sourceSwitch(src);
+		StdCard sourceCard = sourceSwitch(src);
 		int destination = destSwitch(dest);
 		
-		if (debug) out.println("source card: " + c);
+		if (debug) out.println("source card: " + sourceCard);
 		if (debug) out.println("dest pos: " + destination);
 		
 		switch(destination) {
 		// into freecell
 		case -2	:
-			if (intoFreecell(c)) return true;
+			if (intoFreecell(sourceCard)) return true;
 			break;
 		// into homecell
 		case -1 :
-			if (intoHomecell(c)) return true;
+			if (intoHomecell(sourceCard)) return true;
 			break;
 		// into respective playing pile
 		case 0	:
@@ -147,7 +152,7 @@ public class Board {
 		case 5  :
 		case 6  :
 		case 7  :
-			if (intoPlayingPile(c, pileAry[destination])) return true;
+			if (intoPlayingPile(sourceCard, pileAry[destination])) return true;
 			break;
 		default	:
 			if (debug) out.println("ERROR - Unknown destination in board.Board.makeMove");
@@ -157,8 +162,9 @@ public class Board {
 	}
 	
 	/**
-	 * 
-	 * @param t
+	 * Updates the statistics on the board
+	 * for live status and board snapshot.
+	 * @param t turn to update to
 	 */
 	public void updateBoardStats(Turn t) {
 		
@@ -167,6 +173,11 @@ public class Board {
 	}
 	
 	// Placement --------------------------------------------------------------
+	/**
+	 * Places card into next available freecell.
+	 * @param c card to insert
+	 * @return true if the card was successfully placed.
+	 */
 	private boolean intoFreecell(StdCard c) {
 		
 		if (debug) out.println("\n---board.Board.intoFreeCell---");
@@ -178,17 +189,29 @@ public class Board {
 		return false;
 	}
 	
+	/**
+	 * Places card into next available homecell or into
+	 * its respective (by matching suit) homecell.
+	 * @param c card to be inserted
+	 * @return true if the card was successfully placed
+	 */
 	private boolean intoHomecell(StdCard c) {
 
 		if (debug) out.println("\n---board.Board.intoHomeCell---");
 		
-		// finds first available cell
+		// finds first available or matching cell
 		for (HomeCell h : homeAry) {
 			if (h.placeCard(c)) return true;
 		}
 		return false;
 	}
 	
+	/**
+	 * Places card into associated playing pile.
+	 * @param c card to be inserted
+	 * @param p playing pile destination
+	 * @return true if the card was successfully placed
+	 */
 	private boolean intoPlayingPile(StdCard c, PlayingPile p) {
 		
 		if (debug) out.println("\n---board.Board.intoPlayingPile---");
@@ -256,22 +279,13 @@ public class Board {
 		}
 		return s;
 	}
-
-	// Utilities --------------------------------------------------------------
-	/**
-	 * Returns the number of cards contained 
-	 * in the largest playing pile.
-	 * @return size of the pile that is largest
-	 */
-	int maxPileSize() {
-				
-		int max = 0;
-		for (PlayingPile p : pileAry) {
-			if (p.size() > max) max = p.size();
-		}
-		return max;
-	}
 	
+	// Mapping ----------------------------------------------------------------
+	/**
+	 * Removes card from its current position on the board.
+	 * @param src mapped source position of card
+	 * @return card in the source position
+	 */
 	StdCard sourceSwitch(String src) {
 		
 		if (debug) out.println("\n---board.Board.sourceSwitch---");
@@ -310,6 +324,12 @@ public class Board {
 		return c;
 	}
 	
+	/**
+	 * Translates alphabetic destination map location
+	 * to a number-based region on the board.
+	 * @param dest alphabetic position key
+	 * @return numeric position key
+	 */
 	private int destSwitch(String dest) {
 		
 		int key = 999;
@@ -344,6 +364,21 @@ public class Board {
 		}
 		
 		return key;
+	}
+
+	// Utilities --------------------------------------------------------------
+	/**
+	 * Returns the number of cards contained 
+	 * in the largest playing pile.
+	 * @return size of the pile that is largest
+	 */
+	int maxPileSize() {
+				
+		int max = 0;
+		for (PlayingPile p : pileAry) {
+			if (p.size() > max) max = p.size();
+		}
+		return max;
 	}
 	
 	/**

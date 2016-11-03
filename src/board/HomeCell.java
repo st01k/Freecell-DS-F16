@@ -4,7 +4,9 @@ import static java.lang.System.out;
 import playingCards.StdCard;
 
 /**
- * 
+ * Freecell home cell.  Top-right section of board.
+ * Virutal stack of suit ordered (asc) cards.  Not an actual stack.
+ * Only holds one card, but card must be validated for placement.
  * @author groovyLlama devteam
  * @version 0.4
  */
@@ -16,7 +18,7 @@ public class HomeCell implements CellInterface {
 	// class variables
 	private StdCard cell;
 	
-	// cell manipulation ------------------------------------------------------
+	// Cell Manipulation ------------------------------------------------------
 	/**
 	 * Places a card in the home cell
 	 * if it is a valid placement.
@@ -44,7 +46,7 @@ public class HomeCell implements CellInterface {
 		return null;
 	}
 
-	// cell information -------------------------------------------------------
+	// Cell Information -------------------------------------------------------
 	/**
 	 * Returns the card currently in cell.
 	 * Does not remove the card.
@@ -54,7 +56,7 @@ public class HomeCell implements CellInterface {
 		return cell;
 	} 
 	
-	// cell checks ------------------------------------------------------------
+	// Checks -----------------------------------------------------------------
 	/**
 	 * Returns true if the homecell is empty.
 	 * @return true if cell is empty.
@@ -98,7 +100,7 @@ public class HomeCell implements CellInterface {
 		return isSameSuit(c) && isAsc(c);
 	}
 	
-	// utilities --------------------------------------------------------------
+	// Utilities --------------------------------------------------------------
 	/**
 	 * Dynamically generates cell string.
 	 * For use in CLI.

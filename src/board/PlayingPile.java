@@ -7,7 +7,7 @@ import playingCards.StdCard;
 import playingCards.StdDeck;
 
 /**
- * 
+ * Freecell playing pile
  * @author groovyLlama devteam
  * @version 0.4
  */
@@ -18,9 +18,6 @@ public class PlayingPile {
 	
 	// class variables
 	private ArrayList<StdCard> pile;
-	// changed to arraylist to allow indexing
-	// and easier card placement in piles
-	// during board initialization
 
 	/**
 	 * Creates new empty playing pile.
@@ -29,7 +26,7 @@ public class PlayingPile {
 		pile = new ArrayList<StdCard>();
 	}
 	
-	// list manipulation ------------------------------------------------------
+	// List Manipulation ------------------------------------------------------
 	/**
 	 * Places a card in pile on the deal (without validation).
 	 * @param c card to be placed
@@ -67,7 +64,7 @@ public class PlayingPile {
 		return null;
 	}
 
-	// list information -------------------------------------------------------
+	// List Information -------------------------------------------------------
 	/**
 	 * Returns card at index position.
 	 * Does not remove the card from the pile.
@@ -100,7 +97,7 @@ public class PlayingPile {
 		return pile.size();
 	}
 	
-	// pile checks ------------------------------------------------------------
+	// Checks -----------------------------------------------------------------
 	/**
 	 * Returns true if pile is empty.
 	 * @return true if pile is empty
@@ -142,7 +139,7 @@ public class PlayingPile {
 		return isDsc(c) && isAltColor(c);
 	}
 	
-	// utilities --------------------------------------------------------------
+	// Utilities --------------------------------------------------------------
 	/**
 	 * Returns the contents of the pile as a string.
 	 */

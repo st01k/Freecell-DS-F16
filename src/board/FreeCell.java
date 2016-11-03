@@ -5,7 +5,8 @@ import static java.lang.System.out;
 import playingCards.StdCard;
 
 /**
- * 
+ * Free cell free cell.  Top-left section of board.
+ * Holds one card at a time.
  * @author groovyLlama devteam
  * @version 0.4
  */
@@ -18,7 +19,7 @@ public class FreeCell implements CellInterface {
 	private StdCard cell;
 	
 	
-	// cell manipulation ------------------------------------------------------
+	// Cell Manipulation ------------------------------------------------------
 	/**
 	 * Places a card in the freecell
 	 * if there is not one already present.
@@ -48,7 +49,7 @@ public class FreeCell implements CellInterface {
 		return temp;
 	}
 	
-	// cell information -------------------------------------------------------
+	// Cell Information -------------------------------------------------------
 	/**
 	 * Returns card currently in cell.
 	 * Does not remove the card.
@@ -58,12 +59,12 @@ public class FreeCell implements CellInterface {
 		return cell;
 	}
 	
-	// cell checks ------------------------------------------------------------	
+	// Checks -----------------------------------------------------------------	
 	private boolean isEmpty() {
 		return cell == null;
 	}
 
-	// utilities --------------------------------------------------------------
+	// Utilities --------------------------------------------------------------
 	/**
 	 * Dynamically generates cell string.
 	 * For use in CLI.

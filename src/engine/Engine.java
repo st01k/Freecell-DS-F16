@@ -7,27 +7,19 @@ import client.gui.FreeGUI;
 import board.Board;
 
 /**
- * 
+ * Drives freecell game.
  * @author groovyLlama devteam
- * @version 0.1
+ * @version 0.2
  */
 public class Engine 
 {
-	
+	// static variables
 	private static boolean gui = false;
 	private static boolean gameOver = false;
 	private static boolean debug = false;
 	private static Stack<Board> history = new Stack<Board>();
 	
 	static Board curBoard;
-	
-	/**
-	 * Saves current board to history.
-	 */
-	public static void snapshot()
-	{
-		history.push(curBoard);
-	}
 	
 	/**
 	 * Creates board and solver.
@@ -77,6 +69,21 @@ public class Engine
 		
 	}
 	
+	private static void hint() {
+		
+	}
+	
+	/**
+	 * Saves current board to history.
+	 */
+	public static void snapshot()
+	{
+		history.push(curBoard);
+	}
+	
+	/**
+	 * Prints most recent snapshot.
+	 */
 	public static void printSnapshot() {
 		
 		out.println("\n---engine.Engine.printSnapshot---\n");

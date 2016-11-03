@@ -74,7 +74,7 @@ public class CLI {
 	}
 	
 	/**
-	 * Main prompt.
+	 * CLI game Instructions and entry.
 	 */
 	public static void game() {
 		
@@ -114,8 +114,6 @@ public class CLI {
 		out.println("exit\tExits current prompt");
 		out.println();
 	}
-	
-
 	
 	/**
 	 * Prints a form feed to screen.  Scrolls up specified lines.

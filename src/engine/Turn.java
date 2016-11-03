@@ -8,20 +8,29 @@ import board.Board;
 
 
 /**
- * 
+ * Freecell turn.
+ * Alters current board when move is made.
  * @author groovyLlama devteam
  * @version 0.4
  */
 public class Turn {
 	
+	// static variables
 	private static Scanner scan = new Scanner(System.in);
 	private static boolean debug = false;
 
+	// class variables
 	private boolean winnable;
 	private int moveNum;
 	private String turnString;
 	private Board board;
 	
+	/**
+	 * Creates a freecell turn with statistics.
+	 * @param isGui true if preferred UI is gui
+	 * @param move move number
+	 * @param b current board
+	 */
 	public Turn(boolean isGui, int move, Board b) {
 		
 		moveNum = move;
@@ -31,6 +40,7 @@ public class Turn {
 		winnable = isWinnable();
 	}
 	
+	// Accessors --------------------------------------------------------------
 	public boolean getWinnable() {
 		return winnable;
 	}
@@ -39,6 +49,20 @@ public class Turn {
 		return moveNum;
 	}
 	
+	// Business ---------------------------------------------------------------
+	/**
+	 * Runs solver and sets winnable status on the turn.
+	 * @return true if game from this turn is winnable
+	 */
+	private boolean isWinnable() {
+		
+		//TODO run solver
+		// winnable = boolean solver result
+		// attach solution to turn when applicable
+		return true;
+	}
+	
+	// Turn Actions -----------------------------------------------------------
 	/**
 	 * Prompts user for turn input.
 	 * Returns true if the turn successfully changes the board.
@@ -81,22 +105,22 @@ public class Turn {
 		turnString = "build gui turn string in Turn.guiTurn";
 	}
 	
+	// Utilities --------------------------------------------------------------	
 	/**
-	 * Runs solver and sets winnable status on the turn.
-	 * @return true if game from this turn is winnable
+	 * Turn to string.
 	 */
-	private boolean isWinnable() {
-		
-		//TODO run solver = winnable
-		return true;
-	}
-	
+	@Override
 	public String toString() {
 		
 		return turnString + " | move number: " + moveNum + " | winnable: " + winnable;
 	}
-	
-	// Utilities --------------------------------------------------------------
+
+	/**
+	 * Checks for exit command and validates user input.
+	 * Exits if exit command is detected.
+	 * @param s user input
+	 * @return validated input
+	 */
 	private static String checkInput(String s) {
 		
 		//FIXME new line throws an exception
