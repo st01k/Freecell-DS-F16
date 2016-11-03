@@ -21,6 +21,8 @@ public class Engine
 	
 	static Board curBoard;
 	
+	
+	// Initialization ---------------------------------------------------------
 	/**
 	 * Creates board and solver.
 	 * Starts game in preferred user interface.
@@ -34,6 +36,7 @@ public class Engine
 		gameLoop();
 	}
 
+	// Game loop --------------------------------------------------------------
 	/**
 	 * Main game loop.
 	 */
@@ -57,6 +60,7 @@ public class Engine
 		}
 	}
 	
+	// In-game Action Handlers ------------------------------------------------
 	private static void newDeal() {
 		
 	}
@@ -73,6 +77,7 @@ public class Engine
 		
 	}
 	
+	// Utilities --------------------------------------------------------------
 	/**
 	 * Saves current board to history.
 	 */
