@@ -10,7 +10,7 @@ import board.Board;
 /**
  * 
  * @author groovyLlama devteam
- * @version 0.3
+ * @version 0.4
  */
 public class Turn {
 	
@@ -75,6 +75,8 @@ public class Turn {
 	public void guiTurn() {
 		
 		// TODO feed me!
+		// only need src and dest mapping to make move
+		//board.makeMove(src, dest);
 		scan.nextLine();	// added to stop infinite loop in engine
 		turnString = "build gui turn string in Turn.guiTurn";
 	}

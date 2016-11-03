@@ -8,7 +8,7 @@ import playingCards.*;
 /**
  * Freecell game board.
  * @author groovyLlama devteam
- * @version 0.2
+ * @version 0.3
  */
 public class Board {
 
