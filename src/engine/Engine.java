@@ -53,17 +53,37 @@ public class Engine
 		while(!gameOver)
 		{
 			if (debug) out.println("\n---engine.Engine.gameLoop---");
+			if (debug) printSnapshot();
 			
 			if (gui) FreeGUI.Paint(curBoard);
 			else out.println(curBoard.toString());
 			
-			//TODO turn controls
-			// new turn prompts for turn actions
 			//TODO auto stacks
 			Turn turn = new Turn(gui, ++moveNum, curBoard);
-			curBoard.updateBoard(turn);
+			curBoard.updateBoardStats(turn);
 			snapshot();
 		}
+	}
+	
+	private static void newDeal() {
+		
+	}
+	
+	private static void undo() {
+		
+	}
+	
+	private static void redo() {
+		
+	}
+	
+	public static void printSnapshot() {
+		
+		out.println("\n---engine.Engine.printSnapshot---\n");
+		out.print("*************** Begin Snapshot ***************");
+		out.println(history.peek());
+		out.println("\nstate: gui - " + gui + " | history size: " + history.size());
+		out.println("**************** End Snapshot ****************");
 	}
 	
 	/**

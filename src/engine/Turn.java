@@ -3,7 +3,6 @@ package engine;
 import static java.lang.System.out;
 
 import java.util.Scanner;
-
 import utils.SysUtils;
 import board.Board;
 
@@ -20,13 +19,9 @@ public class Turn {
 
 	private boolean winnable;
 	private int moveNum;
+	private String turnString;
 	private Board board;
 	
-	// TODO needs some kind of board mapping/graph
-	// going with CLI board model for now
-	// with alphabetic mapping.
-	// see cli board by running 'test' in cli
-	// if used, will need a getCardAt(position in map)
 	public Turn(boolean isGui, int move, Board b) {
 		
 		moveNum = move;
@@ -52,27 +47,22 @@ public class Turn {
 	public void cliTurn() {
 		
 		if (debug) out.println("\n---engine.Turn.cliTurn---");
-		//TODO add validation
-		out.print("\nEnter source position: ");
-		String inSrc = scan.nextLine();
-		if (inSrc.matches("exit")) SysUtils.exitDoor
-			("Exit from cliTurn @ input src");
-		inSrc = inSrc.substring(0, 1).toLowerCase();
+		//FIXME new line throws an exception
+		out.print("\nEnter position of the card to move: ");
+		String from = scan.nextLine();
+		String src = checkInput(from);
 		
-		String src = turnKey(inSrc);
 		out.print("Enter destination position: ");
-		String inDest = scan.nextLine();
-		if (inDest.matches("exit")) SysUtils.exitDoor
-			("Exit from cliTurn @ input dest");
-		inDest = inDest.substring(0, 1).toLowerCase();
+		String to = scan.nextLine();
+		String dest = checkInput(to);
 		
-		String dest = turnKey(inDest);
 		out.println();
 		
-		if (debug) out.println("src key: " + src + " | dest key: " + dest);
+		turnString = "src key: " + src + " | dest key: " + dest;
+		if (debug) out.println(this);
 		
 		if (!board.makeMove(src, dest)) 
-			out.println("invalid move in engine.Turn.makeMove");
+			out.println("invalid move detected in engine.Turn.cliTurn");
 	}
 	
 	//TODO automate free and home cell entry with double click
@@ -85,21 +75,7 @@ public class Turn {
 	public void guiTurn() {
 		
 		// TODO feed me!
-	}
-	
-	private String turnKey(String in) {
-		
-		if (debug) out.println("---engine.Turn.turnKey---");
-		
-		String key = "";
-		
-		if (in.matches("[a-p]")) key = in;
-		else {
-			if (debug) out.println("ERROR: invalid input in engine.Turn.turnKey");
-			key = "invalid";
-		}
-		if (debug) out.println("key: " + key);
-		return key;
+		turnString = "build gui turn string in Turn.guiTurn";
 	}
 	
 	/**
@@ -112,7 +88,29 @@ public class Turn {
 		return false;
 	}
 	
+	public String toString() {
+		
+		return turnString + " | move number: " + moveNum + " | winnable: " + winnable;
+	}
+	
 	// Utilities --------------------------------------------------------------
+	private static String checkInput(String s) {
+		
+		//FIXME new line throws an exception
+		if (s.matches("exit")) SysUtils.exitDoor
+			("Exit from cliTurn @ input move");
+				
+		s = s.substring(0, 1).toLowerCase();
+		
+		while (!s.matches("[a-p]")) {
+			out.println("Invalid position.  Re-enter: ");
+			s = scan.nextLine();
+			s = s.substring(0, 1).toLowerCase();
+		}
+		
+		return s;
+	}
+	
 	/**
 	 * Toggles debug mode.
 	 */

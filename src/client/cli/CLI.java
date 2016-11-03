@@ -3,6 +3,8 @@ package client.cli;
 import static java.lang.System.out;
 
 import java.util.Scanner;
+
+import playingCards.StdCard;
 import engine.Engine;
 import utils.*;
 
@@ -28,7 +30,8 @@ public class CLI {
 	public static void prompt() {
 		
 		out.println("<<<< Freecell CLI v0.1 >>>>");
-		out.println("Type 'help' any time.");
+		out.println("Type 'help' for commands.");
+		out.println("Type 'exit' any time.");
 		out.println();
 		
 		boolean cont = true;
@@ -50,6 +53,8 @@ public class CLI {
 			case ("path")	: out.println(SysUtils.getPath()); 
 				break;
 			case ("debug") 	: toggleDebug();
+				break;
+			case ("uni")	: StdCard.toggleUni();
 				break;
 			case ("gui")	:  
 				Engine.start(true); 
@@ -73,40 +78,12 @@ public class CLI {
 	 */
 	public static void game() {
 		
-		boolean cont = true;
-		do {
-
-			Engine.start(false);
-			
-			prompt = "main.game> ";
-			if (debug) prompt = dbgStr + "main.game> ";
-			out.print(prompt);
-			String in = scan.nextLine().toLowerCase();
-			
-			switch(in) {
-			
-			case ("exit") 	: cont = false;
-				break;
-			case ("help") 	: printHelp();
-				break;
-			case ("debug") 	: toggleDebug();
-				break;
-			case ("cls") 	: formFeed();
-				break; 
-			case ("cred")	: credz();
-				break;
-				
-			case ("test") 	:
-			case ("path")	: 
-			case ("gui")	:
-			case ("cli")	:
-				out.println("Not available in this mode.");
-				break;
-				
-			default 		:  
-				out.println("Invalid Command.  Type 'help' for a list of commands.");
-			}
-		} while (cont);
+		out.println("\nCell positions are referenced by the top letters.");
+		out.println("Pile positions are referenced by the bottom letters.");
+		out.println("Cards inserted into cells will fill the next open cell.");
+		out.println("Black: Spades & Clubs | Red: Hearts & Diamonds");
+		
+		Engine.start(false);
 	}
 	
 	/**
@@ -129,6 +106,7 @@ public class CLI {
 		out.println("test\tRuns unit tests");
 		out.println("path\tPrints working directory");
 		out.println("debug\tToggles debug mode");
+		out.println("uni\tToggles unicode characters");
 		out.println("gui\tStarts game in GUI");
 		out.println("cli\tStarts game in CLI");
 		out.println("cls\tClear screen");

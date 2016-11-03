@@ -130,14 +130,16 @@ public class Board {
 		if (debug) out.println("dest pos: " + destination);
 		
 		switch(destination) {
-		
-		case -2	:	// into freecell
+		// into freecell
+		case -2	:
 			if (intoFreecell(c)) return true;
 			break;
-		case -1 :	// into homecell
+		// into homecell
+		case -1 :
 			if (intoHomecell(c)) return true;
 			break;
-		case 0	:	// into respective playing pile
+		// into respective playing pile
+		case 0	:
 		case 1  :
 		case 2  :
 		case 3  :
@@ -158,7 +160,7 @@ public class Board {
 	 * 
 	 * @param t
 	 */
-	public void updateBoard(Turn t) {
+	public void updateBoardStats(Turn t) {
 		
 		moveNum = t.getMoveNum();
 		winnable = t.getWinnable();
@@ -203,6 +205,7 @@ public class Board {
 	@Override
 	public String toString() {
 		String s = "\n";
+		s += ("--------------------------------------------------------\n");
 		s += ("   A      B      C      D   |   E      F      G      H\n");
 		s += ("--------------------------------------------------------\n");
 		s += buildCellsCLI();
@@ -271,7 +274,7 @@ public class Board {
 	
 	StdCard sourceSwitch(String src) {
 		
-		if (debug) out.println("---board.Board.sourceSwitch---");
+		if (debug) out.println("\n---board.Board.sourceSwitch---");
 		
 		StdCard c = null;
 		
@@ -300,6 +303,8 @@ public class Board {
 		case "p"	:	c = pileAry[7].removeCard();	break;
 			
 		default		:
+			if (debug) out.println
+				("ERROR: invalid input in board.Board.sourceSwitch");
 		}
 		if (debug) out.println("removed: " + c);
 		return c;
@@ -336,7 +341,6 @@ public class Board {
 			
 		default		:
 			if (debug) out.println("ERROR: invalid input in board.Board.destSwitch");
-			break;
 		}
 		
 		return key;
