@@ -273,13 +273,12 @@ public class Board {
 		StdCard c = null;
 		
 		switch(src) {
-		
-		case "a"	:	c = freeAry[0].removeCard();
-		case "b"	:	c = freeAry[1].removeCard();
-		case "c"	:	c = freeAry[2].removeCard();
-		case "d"	:	c = freeAry[3].removeCard();
-			break;
-			
+		// freecells
+		case "a"	:	c = freeAry[0].removeCard();	break;
+		case "b"	:	c = freeAry[1].removeCard();	break;
+		case "c"	:	c = freeAry[2].removeCard();	break;
+		case "d"	:	c = freeAry[3].removeCard();	break;
+		// homecells
 		case "e"	:
 		case "f"	:
 		case "g"	:
@@ -287,7 +286,7 @@ public class Board {
 			if (debug) out.println
 				("ERROR: homecell remove in board.Board.sourceSwitch");
 			break;
-			
+		// playing piles
 		case "i"	:	c = pileAry[0].removeCard();	break;
 		case "j"	:	c = pileAry[1].removeCard();	break;
 		case "k"	:	c = pileAry[2].removeCard();	break;
@@ -308,21 +307,21 @@ public class Board {
 		int key = 999;
 		
 		switch(dest) {
-		
+		// freecells
 		case "a"	:
 		case "b"	:
 		case "c"	:
 		case "d"	:
 			key = -2;
 			break;
-			
+		// homecells
 		case "e"	:
 		case "f"	:
 		case "g"	:
 		case "h"	:
 			key = -1;
 			break;
-			
+		// playing piles
 		case "j"	:	key = 0;	break;
 		case "k"	:	key = 1;	break;
 		case "l"	:	key = 2;	break;
