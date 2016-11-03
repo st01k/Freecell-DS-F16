@@ -59,10 +59,11 @@ public class PlayingPile {
 	 */
 	StdCard removeCard() {
 		
+		if (debug) out.println("\n---board.PlayingPile.removeCard---");
+		
 		if (!pile.isEmpty()) return pile.remove(pile.size() - 1);
 		
-		if (debug) out.println("---board.PlayingPile.removeCard---\n" +
-								"Playing pile is empty.");
+		if (debug) out.println("Playing pile is empty.");
 		
 		return null;
 	}

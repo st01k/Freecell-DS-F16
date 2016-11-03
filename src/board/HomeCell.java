@@ -52,7 +52,7 @@ public class HomeCell implements CellInterface {
 	 */
 	public StdCard peekCard() {
 		return cell;
-	}// 
+	} 
 	
 	// cell checks ------------------------------------------------------------
 	/**
@@ -106,7 +106,7 @@ public class HomeCell implements CellInterface {
 	@Override
 	public String toString() {
 		
-		if (cell == null) return "[   ]";
+		if (cell == null) return "[    ]";
 		return "[" + cell.toString() + "]";
 	}
 	

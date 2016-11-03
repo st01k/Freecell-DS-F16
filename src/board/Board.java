@@ -200,16 +200,16 @@ public class Board {
 	@Override
 	public String toString() {
 		String s = "\n";
-		s += ("  A    B    C    D    E    F    G    H\n");
-		s += ("----------------------------------------\n");
+		s += ("   A      B      C      D   |   E      F      G      H\n");
+		s += ("--------------------------------------------------------\n");
 		s += buildCellsCLI();
 		s += ("\n");
 		
-		for (int i = 0; i < maxPileSize(); i++) s += buildRowCLI(i) + "\n";
+		for (int i = 0; i < maxPileSize(); i++) s += " " + buildRowCLI(i) + "\n";
 		
-		s += ("----------------------------------------\n");
-		s += ("  I    J    K    L    M    N    O    P\n");
-		s += ("----------------------------------------\n");
+		s += ("--------------------------------------------------------\n");
+		s += ("   I      J      K      L       M      N      O      P\n");
+		s += ("--------------------------------------------------------\n");
 		if (winnable) s += ("Is winnable");
 		else s += ("Game is lost");
 		s += ("\t\t\tMove: " + moveNum);
@@ -227,8 +227,8 @@ public class Board {
 		
 		String s = "";
 		
-		for (FreeCell f : freeAry) s += f.toString();
-		for (HomeCell h : homeAry) s += h.toString();
+		for (FreeCell f : freeAry) s += " " + f.toString();
+		for (HomeCell h : homeAry) s += " " + h.toString();
 		return s += "\n";
 	}
 	
@@ -245,8 +245,8 @@ public class Board {
 			
 			PlayingPile p = pileAry[i];
 			StdCard c = p.getCardAt(rowNum);
-			if (c == null) s += "   ";
-			else s += p.getCardAt(rowNum).toString() + " ";
+			if (c == null) s += "       ";
+			else s += " " + p.getCardAt(rowNum).toString() + "  ";
 		}
 		return s;
 	}
@@ -258,16 +258,17 @@ public class Board {
 	 * @return size of the pile that is largest
 	 */
 	int maxPileSize() {
-		
+				
 		int max = 0;
 		for (PlayingPile p : pileAry) {
 			if (p.size() > max) max = p.size();
 		}
-		
 		return max;
 	}
 	
 	StdCard sourceSwitch(String src) {
+		
+		if (debug) out.println("---board.Board.sourceSwitch---");
 		
 		StdCard c = null;
 		
@@ -283,20 +284,22 @@ public class Board {
 		case "f"	:
 		case "g"	:
 		case "h"	:
-			if (debug) out.println("ERROR: homecell remove in board.Board.sourceSwitch");
+			if (debug) out.println
+				("ERROR: homecell remove in board.Board.sourceSwitch");
 			break;
 			
-		case "j"	:	c = pileAry[0].removeCard();
-		case "k"	:	c = pileAry[1].removeCard();
-		case "l"	:	c = pileAry[2].removeCard();
-		case "m"	:	c = pileAry[3].removeCard();
-		case "n"	:	c = pileAry[4].removeCard();
-		case "o"	:	c = pileAry[5].removeCard();
-		case "p"	:	c = pileAry[6].removeCard();
-		case "q"	:	c = pileAry[7].removeCard();
+		case "i"	:	c = pileAry[0].removeCard();	break;
+		case "j"	:	c = pileAry[1].removeCard();	break;
+		case "k"	:	c = pileAry[2].removeCard();	break;
+		case "l"	:	c = pileAry[3].removeCard();	break;
+		case "m"	:	c = pileAry[4].removeCard();	break;
+		case "n"	:	c = pileAry[5].removeCard();	break;
+		case "o"	:	c = pileAry[6].removeCard();	break;
+		case "p"	:	c = pileAry[7].removeCard();	break;
 			
 		default		:
 		}
+		if (debug) out.println("removed: " + c);
 		return c;
 	}
 	

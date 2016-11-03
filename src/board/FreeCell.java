@@ -41,6 +41,8 @@ public class FreeCell implements CellInterface {
 	@Override
 	public StdCard removeCard() {
 		
+		if (debug) out.println("\n---board.FreeCell.removeCard---");
+		
 		StdCard temp = cell;
 		cell = null;
 		return temp;
@@ -68,7 +70,7 @@ public class FreeCell implements CellInterface {
 	 */
 	public String toString() {
 		
-		if (cell == null) return "[   ]";
+		if (cell == null) return "[    ]";
 		return "[" + cell.toString() + "]";
 	}
 	
