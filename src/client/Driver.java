@@ -35,9 +35,6 @@ public class Driver {
 				break;
 			}
 		}
-		else {
-			//Starts the engine (Vroom Vroom)
-			Engine.start(true);
-		}	
+		else Engine.start(true);
 	}
 }

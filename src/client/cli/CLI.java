@@ -27,9 +27,9 @@ public class CLI {
 		final String dbgStr = "[debug]";
 		String prompt;
 		
-		out.println("<<<< Freecell CLI v0.1 >>>>");
-		out.println("Type 'help' for commands.");
-		out.println("Type 'exit' any time.");
+		out.println("<<<<<<<<< Freecell CLI v0.1 >>>>>>>>>");
+		out.println("'help' for commands, 'exit' any time.");
+		out.println("-------------------------------------");
 		out.println();
 		
 		// prompt loop
@@ -79,7 +79,9 @@ public class CLI {
 	 */
 	public static void game() {
 		
-		out.println("\nCell positions are referenced by the top letters.");
+		out.println("\nCLI Freecell Instructions:");
+		out.println("--------------------------------------------------------");
+		out.println("Cell positions are referenced by the top letters.");
 		out.println("Pile positions are referenced by the bottom letters.");
 		out.println("Cards inserted into cells will fill the next open cell.");
 		out.println("Black: Spades & Clubs | Red: Hearts & Diamonds");

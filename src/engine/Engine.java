@@ -18,8 +18,7 @@ public class Engine
 	private static boolean gameOver = false;
 	private static boolean debug = false;
 	private static Stack<Board> history = new Stack<Board>();
-	
-	static Board curBoard;
+	private static Board curBoard;
 	
 	
 	// Initialization ---------------------------------------------------------
