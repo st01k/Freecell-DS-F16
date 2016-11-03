@@ -20,7 +20,7 @@ public class Board {
 	private static boolean debug = false;
 	
 	// class variables
-	private boolean winnable = false;
+	private boolean winnable = true;
 	private int moveNum;
 	private StdDeck d;
 	private FreeCell[] freeAry;
@@ -216,8 +216,8 @@ public class Board {
 		s += ("--------------------------------------------------------\n");
 		s += ("   I      J      K      L       M      N      O      P\n");
 		s += ("--------------------------------------------------------\n");
-		if (winnable) s += ("Is winnable");
-		else s += ("Game is lost");
+		if (winnable) s += ("Winnable");
+		else s += ("Lost    ");
 		s += ("\t\t\t\t\tMove: " + moveNum);
 		
 		

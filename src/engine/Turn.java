@@ -86,7 +86,7 @@ public class Turn {
 	private boolean isWinnable() {
 		
 		//TODO run solver = winnable
-		return false;
+		return true;
 	}
 	
 	public String toString() {
