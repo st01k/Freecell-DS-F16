@@ -26,6 +26,8 @@ public class FreeCell implements CellInterface {
 	@Override
 	public boolean placeCard(StdCard c) {
 		
+		if (debug) out.println("\n---board.FreeCell.placeCard---");
+		
 		if (!isEmpty()) return false;
 		
 		cell = c;

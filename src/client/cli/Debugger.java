@@ -24,6 +24,7 @@ public class Debugger {
 		Board.toggleDebug();
 		FreeGUI.toogleDebug();
 		Engine.toggleDebug();
+		Turn.toggleDebug();
 		Solver.toggleDebug();
 	}
 }

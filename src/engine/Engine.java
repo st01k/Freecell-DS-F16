@@ -5,7 +5,6 @@ import static java.lang.System.out;
 import java.util.Stack;
 import client.gui.FreeGUI;
 import board.Board;
-import solver.Solver;
 
 /**
  * 
@@ -21,7 +20,6 @@ public class Engine
 	private static Stack<Board> history = new Stack<Board>();
 	
 	static Board curBoard;
-	static Solver solver;
 	
 	/**
 	 * Saves current board to history.
@@ -39,7 +37,6 @@ public class Engine
 	public static void start(boolean isGui)
 	{
 		curBoard = new Board();
-		solver = new Solver();
 		gui = isGui;
 		if (gui) FreeGUI.start();
 		gameLoop();
@@ -55,12 +52,15 @@ public class Engine
 		
 		while(!gameOver)
 		{
+			if (debug) out.println("\n---engine.Engine.gameLoop---");
+			
 			if (gui) FreeGUI.Paint(curBoard);
 			else out.println(curBoard.toString());
 			
 			//TODO turn controls
 			// new turn prompts for turn actions
-			Turn turn = new Turn(++moveNum, gui);
+			//TODO auto stacks
+			Turn turn = new Turn(gui, ++moveNum, curBoard);
 			curBoard.updateBoard(turn);
 			snapshot();
 		}

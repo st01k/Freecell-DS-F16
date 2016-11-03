@@ -45,6 +45,8 @@ public class PlayingPile {
 	 */
 	boolean placeCard(StdCard c) {
 	
+		if (debug) out.println("\n---board.PlayingPile.placeCard---");
+		
 		if (!isValid(c)) return false;
 		
 		pile.add(c);

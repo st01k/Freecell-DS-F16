@@ -1,5 +1,7 @@
 package utils;
 
+import static java.lang.System.out;
+
 /**
  * Utilities for host system information.
  * @author Casey
@@ -33,5 +35,11 @@ public class SysUtils {
 	 */
 	public static String getSeparator() {
 		return SEP;
+	}
+	
+	public static void exitDoor(String message) {
+		
+		out.println("\n" + message + "\n");
+		System.exit(1);
 	}
 }

@@ -23,6 +23,8 @@ public class HomeCell implements CellInterface {
 	 */
 	@Override
 	public boolean placeCard(StdCard c) {
+		
+		if (debug) out.println("\n---board.HomeCell.placeCard---");
 
 		if (!isValid(c)) return false;
 		

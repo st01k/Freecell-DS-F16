@@ -37,7 +37,7 @@ public class CLI {
 			prompt = "main> ";
 			if (debug) prompt = dbgStr + "main> ";
 			out.print(prompt);
-			String in = scan.nextLine();
+			String in = scan.nextLine().toLowerCase();
 			
 			switch(in) {
 			
@@ -81,7 +81,7 @@ public class CLI {
 			prompt = "main.game> ";
 			if (debug) prompt = dbgStr + "main.game> ";
 			out.print(prompt);
-			String in = scan.nextLine();
+			String in = scan.nextLine().toLowerCase();
 			
 			switch(in) {
 			
@@ -129,8 +129,8 @@ public class CLI {
 		out.println("test\tRuns unit tests");
 		out.println("path\tPrints working directory");
 		out.println("debug\tToggles debug mode");
-		out.println("gui\tStarts game with GUI interface");
-		out.println("cli\tStarts game with CLI interface");
+		out.println("gui\tStarts game in GUI");
+		out.println("cli\tStarts game in CLI");
 		out.println("cls\tClear screen");
 		out.println("cred\tPrints credits");
 		out.println("exit\tExits current prompt");
