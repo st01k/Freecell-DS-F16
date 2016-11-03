@@ -133,6 +133,7 @@ public class Board {
 		
 		case -2	:	// into freecell
 			if (intoFreecell(c)) return true;
+			break;
 		case -1 :	// into homecell
 			if (intoHomecell(c)) return true;
 			break;
@@ -145,8 +146,10 @@ public class Board {
 		case 6  :
 		case 7  :
 			if (intoPlayingPile(c, pileAry[destination])) return true;
+			break;
 		default	:
 			if (debug) out.println("ERROR - Unknown destination in board.Board.makeMove");
+			break;
 		}
 		return false;
 	}
@@ -212,7 +215,7 @@ public class Board {
 		s += ("--------------------------------------------------------\n");
 		if (winnable) s += ("Is winnable");
 		else s += ("Game is lost");
-		s += ("\t\t\tMove: " + moveNum);
+		s += ("\t\t\t\t\tMove: " + moveNum);
 		
 		
 		return s;
@@ -322,14 +325,14 @@ public class Board {
 			key = -1;
 			break;
 		// playing piles
-		case "j"	:	key = 0;	break;
-		case "k"	:	key = 1;	break;
-		case "l"	:	key = 2;	break;
-		case "m"	:	key = 3;	break;
-		case "n"	:	key = 4;	break;
-		case "o"	:	key = 5;	break;
-		case "p"	:	key = 6;	break;
-		case "q"	:	key = 7;	break;
+		case "i"	:	key = 0;	break;
+		case "j"	:	key = 1;	break;
+		case "k"	:	key = 2;	break;
+		case "l"	:	key = 3;	break;
+		case "m"	:	key = 4;	break;
+		case "n"	:	key = 5;	break;
+		case "o"	:	key = 6;	break;
+		case "p"	:	key = 7;	break;
 			
 		default		:
 			if (debug) out.println("ERROR: invalid input in board.Board.destSwitch");

@@ -55,13 +55,15 @@ public class Turn {
 		//TODO add validation
 		out.print("\nEnter source position: ");
 		String inSrc = scan.nextLine();
-		if (inSrc.matches("exit")) SysUtils.exitDoor("Exit from cliTurn @ input src");
+		if (inSrc.matches("exit")) SysUtils.exitDoor
+			("Exit from cliTurn @ input src");
 		inSrc = inSrc.substring(0, 1).toLowerCase();
 		
 		String src = turnKey(inSrc);
 		out.print("Enter destination position: ");
 		String inDest = scan.nextLine();
-		if (inDest.matches("exit")) SysUtils.exitDoor("Exit from cliTurn @ input dest");
+		if (inDest.matches("exit")) SysUtils.exitDoor
+			("Exit from cliTurn @ input dest");
 		inDest = inDest.substring(0, 1).toLowerCase();
 		
 		String dest = turnKey(inDest);
@@ -69,7 +71,8 @@ public class Turn {
 		
 		if (debug) out.println("src key: " + src + " | dest key: " + dest);
 		
-		board.makeMove(src, dest);		
+		if (!board.makeMove(src, dest)) 
+			out.println("invalid move in engine.Turn.makeMove");
 	}
 	
 	//TODO automate free and home cell entry with double click
@@ -86,7 +89,7 @@ public class Turn {
 	
 	private String turnKey(String in) {
 		
-		if (debug) out.println("\n---engine.Turn.turnKey---");
+		if (debug) out.println("---engine.Turn.turnKey---");
 		
 		String key = "";
 		

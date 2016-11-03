@@ -49,6 +49,7 @@ public class PlayingPile {
 		
 		if (!isValid(c)) return false;
 		
+		if (debug) out.println("added: " + c);
 		pile.add(c);
 		return true;
 	}
@@ -119,7 +120,7 @@ public class PlayingPile {
 	private boolean isDsc(StdCard c) {
 		
 		if (isEmpty()) return true;
-		return c.getValue() - 1 == peekLastCard().getValue();
+		return c.getValue() + 1 == peekLastCard().getValue();
 	}
 	
 	/**
@@ -131,7 +132,7 @@ public class PlayingPile {
 	private boolean isAltColor(StdCard c) {
 		
 		if (isEmpty()) return true;
-		return peekLastCard().isBlack() != c.isBlack();
+		return c.isBlack() != peekLastCard().isBlack();
 	}
 	
 	/**
@@ -183,6 +184,14 @@ public class PlayingPile {
 		out.println();
 		out.println("Removing card: " + p.removeCard());
 		out.println("Cards in pile: " + p.size());
+		
+		out.println();
+		
+		StdCard b = new StdCard(1, 1);
+		out.println("New card: " + b);
+		out.println("is descending: " + p.isDsc(b));
+		out.println("is alt color: " + p.isAltColor(b));
+		out.print(b + "stacks onto pile: " + p.placeCard(b));
 		
 		out.println();
 		out.println("-------------------- PlayingPile Unit Test Complete.\n");
