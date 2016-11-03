@@ -75,6 +75,7 @@ public class Turn {
 	public void guiTurn() {
 		
 		// TODO feed me!
+		scan.nextLine();	// added to stop infinite loop in engine
 		turnString = "build gui turn string in Turn.guiTurn";
 	}
 	
