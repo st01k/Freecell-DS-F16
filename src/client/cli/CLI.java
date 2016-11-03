@@ -11,7 +11,7 @@ import utils.*;
 /**
  * Freecell command-line interface.
  * @author Casey
- * @version 1.0
+ * @version 1.1
  */
 public class CLI {
 	
@@ -37,8 +37,8 @@ public class CLI {
 		boolean cont = true;
 		do {
 
-			prompt = "main> ";
-			if (debug) prompt = dbgStr + "main> ";
+			prompt = "freecell> ";
+			if (debug) prompt = dbgStr + prompt;
 			out.print(prompt);
 			String in = scan.nextLine().toLowerCase();
 			

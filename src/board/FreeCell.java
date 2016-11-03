@@ -7,7 +7,7 @@ import playingCards.StdCard;
 /**
  * 
  * @author groovyLlama devteam
- * @version 0.3
+ * @version 0.4
  */
 public class FreeCell implements CellInterface {
 	

@@ -9,7 +9,7 @@ import playingCards.StdDeck;
 /**
  * 
  * @author groovyLlama devteam
- * @version 0.3
+ * @version 0.4
  */
 public class PlayingPile {
 	
