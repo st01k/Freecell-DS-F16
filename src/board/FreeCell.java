@@ -21,8 +21,7 @@ public class FreeCell implements CellInterface {
 	
 	// Cell Manipulation ------------------------------------------------------
 	/**
-	 * Places a card in the freecell
-	 * if there is not one already present.
+	 * Places a card in the freecell if there is not one already present.
 	 */
 	@Override
 	public boolean placeCard(StdCard c) {
@@ -60,6 +59,10 @@ public class FreeCell implements CellInterface {
 	}
 	
 	// Checks -----------------------------------------------------------------	
+	/**
+	 * Returns true if freecell is empty.
+	 * @return true if cell is empty
+	 */
 	private boolean isEmpty() {
 		return cell == null;
 	}

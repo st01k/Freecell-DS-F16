@@ -6,6 +6,11 @@ import playingCards.*;
 import engine.*;
 import solver.*;
 
+/**
+ * Debug switch.
+ * @author groovyLlama devteam
+ * @version 0.3
+ */
 public class Debugger {
 
 	private static boolean debug = false;

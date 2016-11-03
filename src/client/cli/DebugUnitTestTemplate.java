@@ -34,23 +34,24 @@ public class DebugUnitTestTemplate {
 	 * Unit test.
 	 */
 	public static void unitTest() {
-		out.println("-------------------- Testing ClassName Class:\n");
+		out.println("-------------------- Testing <ClassName> Class:\n");
 		
 		out.println();
-		out.println("-------------------- ClassName Unit Test Complete.\n");
+		out.println("-------------------- <ClassName> Unit Test Complete.\n");
 	}
 	// end easy copy ----------------------------------------------------------
 	
 	public void callUsingThese() {
 		
 		// at the beginning of the method with debug statements
-		if (debug) out.println("---packageName.ClassName.methodName--- ");
+		if (debug) out.println("---<packageName.ClassName.methodName>--- ");
 		
 		// something that shows var results or whatev is needed
 		//if (debug) out.println(opd1+" "+op+" "+opd2+" = "+stk.peek());
 	}
 	
 	//----------------------- Example testing methods -------------------------
+	// make sure the test is renamed to 'unitTest()'
 	/**
 	 * Unit test with loop.
 	 * Test with multiple cases.
@@ -85,7 +86,7 @@ public class DebugUnitTestTemplate {
 	 */
 	public static void unitTestWithoutLoop() {
 		
-		out.println("-------------------- Testing StackRefBased Class:\n");
+		out.println("-------------------- Testing <ClassName> Class:\n");
 		
 		out.println("Creating New Reference Based Stack...");
 		//StackRefBased<Integer> srb = new StackRefBased<Integer>();
@@ -114,6 +115,6 @@ public class DebugUnitTestTemplate {
 		//out.println(srb);
 		
 		out.println();
-    	out.println("-------------------- StackRefBased Unit Test Complete.\n");
+    	out.println("-------------------- <ClassName> Unit Test Complete.\n");
 	}
 }

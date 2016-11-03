@@ -12,6 +12,10 @@ import engine.Engine;
  */
 public class Driver {
 	
+	/**
+	 * Entry point into program.
+	 * @param args arguments from command line
+	 */
 	public static void main(String[] args) {
 		
 		// TODO remove/comment next line to auto enter gui

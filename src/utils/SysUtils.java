@@ -4,8 +4,8 @@ import static java.lang.System.out;
 
 /**
  * Utilities for host system information.
- * @author Casey
- * @version 0.1
+ * @author groovyLlama devteam
+ * @version 0.2
  */
 public class SysUtils {
 	

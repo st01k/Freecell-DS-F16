@@ -22,6 +22,7 @@ public class Tester {
 		
 		//TODO menu for individualized tests
 		testAll();
+		customTestExample();
 	}
 	
 	/**
@@ -39,5 +40,12 @@ public class Tester {
 		Board.unitTest();
 		
 		out.println("Comprehensive Unit Testing Complete\n");
+	}
+	
+	private static void customTestExample() {
+		
+		// tests for classes that have to interact here
+		// to reduce messy unit tests inside other classes
+		// and to reduce unneccessary imports for testing purposes.
 	}
 }

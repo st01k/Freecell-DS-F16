@@ -15,25 +15,24 @@ import utils.*;
  */
 public class CLI {
 	
-	// constants
-	private static final Scanner scan = new Scanner(System.in);
-	private static final String dbgStr = "[debug]";
-	private static final int FFSZ = 50;	// form feed size
-	
-	// class variables
+	// static variables
 	private static boolean debug = false;
-	private static String prompt;
 
 	/**
 	 * Main prompt.
 	 */
 	public static void prompt() {
 		
+		final Scanner scan = new Scanner(System.in);
+		final String dbgStr = "[debug]";
+		String prompt;
+		
 		out.println("<<<< Freecell CLI v0.1 >>>>");
 		out.println("Type 'help' for commands.");
 		out.println("Type 'exit' any time.");
 		out.println();
 		
+		// prompt loop
 		boolean cont = true;
 		do {
 
@@ -71,10 +70,12 @@ public class CLI {
 				out.println("Invalid Command.  Type 'help' for a list of commands.");
 			}
 		} while (cont);
+		
+		scan.close();
 	}
 	
 	/**
-	 * CLI game Instructions and entry.
+	 * CLI game instructions and entry.
 	 */
 	public static void game() {
 		
@@ -87,7 +88,7 @@ public class CLI {
 	}
 	
 	/**
-	 * Toggle master debug switch in Debugger.
+	 * Toggles master debug switch in Debugger.
 	 */
 	private static void toggleDebug() {	
 		debug = !debug;
@@ -95,7 +96,7 @@ public class CLI {
 	}
 	
 	/**
-	 * Prints help.
+	 * Prints commands.
 	 */
 	private static void printHelp() {
 		
@@ -120,6 +121,9 @@ public class CLI {
 	 * Amount is specified with FFSZ constant.
 	 */
 	private static void formFeed() {
+		
+		final int FFSZ = 50;
+		
 		for (int i = 0; i < FFSZ; i++) out.println();
 	}
 	

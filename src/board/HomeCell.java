@@ -20,8 +20,7 @@ public class HomeCell implements CellInterface {
 	
 	// Cell Manipulation ------------------------------------------------------
 	/**
-	 * Places a card in the home cell
-	 * if it is a valid placement.
+	 * Places a card in the home cell if it is a valid placement.
 	 */
 	@Override
 	public boolean placeCard(StdCard c) {
@@ -35,8 +34,7 @@ public class HomeCell implements CellInterface {
 	}
 
 	/**
-	 * Returns null.
-	 * Cannot remove a card from a home cell.
+	 * Returns null.  Cannot remove a card from a home cell.
 	 */
 	@Override
 	public StdCard removeCard() {
@@ -86,7 +84,10 @@ public class HomeCell implements CellInterface {
 	 */
 	private boolean isAsc(StdCard c) {
 		
+		// ace to empty home cell
 		if (isEmpty()) return c.getValue() == 1;
+		
+		// next ascending value
 		return c.getValue() == cell.getValue() + 1;
 	}
 	
