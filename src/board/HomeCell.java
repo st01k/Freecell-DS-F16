@@ -52,7 +52,7 @@ public class HomeCell implements CellInterface {
 	 */
 	public StdCard peekCard() {
 		return cell;
-	}
+	}// 
 	
 	// cell checks ------------------------------------------------------------
 	/**
