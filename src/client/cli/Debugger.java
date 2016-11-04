@@ -1,12 +1,16 @@
-package client;
+package client.cli;
 
-import board.Board;
-import board.FreeCell;
-import board.HomeCell;
-import board.PlayingPile;
+import client.gui.*;
+import board.*;
 import playingCards.*;
-import engine.gUI.*;
+import engine.*;
+import solver.*;
 
+/**
+ * Debug switch.
+ * @author groovyLlama devteam
+ * @version 0.3
+ */
 public class Debugger {
 
 	private static boolean debug = false;
@@ -24,5 +28,8 @@ public class Debugger {
 		PlayingPile.toggleDebug();
 		Board.toggleDebug();
 		FreeGUI.toogleDebug();
+		Engine.toggleDebug();
+		Turn.toggleDebug();
+		Solver.toggleDebug();
 	}
 }

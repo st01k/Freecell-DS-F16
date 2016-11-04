@@ -17,9 +17,9 @@ public class StdCard implements CardInterface {
 
 	// class variables
 	private static boolean debug = false;
+	private static boolean unicode = false;
 	
     // instance variables
-    private boolean unicode = false;
     private int rank;
     private int suit;
 
@@ -71,6 +71,10 @@ public class StdCard implements CardInterface {
 	 */
 	public static void toggleDebug() {
 		debug = !debug;
+	}
+	
+	public static void toggleUni() {
+		unicode = !unicode;
 	}
 
 // Accessors ------------------------------------------------------------------

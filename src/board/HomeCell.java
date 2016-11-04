@@ -4,9 +4,11 @@ import static java.lang.System.out;
 import playingCards.StdCard;
 
 /**
- * 
+ * Freecell home cell.  Top-right section of board.
+ * Virutal stack of suit ordered (asc) cards.  Not an actual stack.
+ * Only holds one card, but card must be validated for placement.
  * @author groovyLlama devteam
- * @version 0.3
+ * @version 0.4
  */
 public class HomeCell implements CellInterface {
 
@@ -16,13 +18,14 @@ public class HomeCell implements CellInterface {
 	// class variables
 	private StdCard cell;
 	
-	// cell manipulation ------------------------------------------------------
+	// Cell Manipulation ------------------------------------------------------
 	/**
-	 * Places a card in the home cell
-	 * if it is a valid placement.
+	 * Places a card in the home cell if it is a valid placement.
 	 */
 	@Override
 	public boolean placeCard(StdCard c) {
+		
+		if (debug) out.println("\n---board.HomeCell.placeCard---");
 
 		if (!isValid(c)) return false;
 		
@@ -31,8 +34,7 @@ public class HomeCell implements CellInterface {
 	}
 
 	/**
-	 * Returns null.
-	 * Cannot remove a card from a home cell.
+	 * Returns null.  Cannot remove a card from a home cell.
 	 */
 	@Override
 	public StdCard removeCard() {
@@ -42,7 +44,7 @@ public class HomeCell implements CellInterface {
 		return null;
 	}
 
-	// cell information -------------------------------------------------------
+	// Cell Information -------------------------------------------------------
 	/**
 	 * Returns the card currently in cell.
 	 * Does not remove the card.
@@ -50,9 +52,9 @@ public class HomeCell implements CellInterface {
 	 */
 	public StdCard peekCard() {
 		return cell;
-	}
+	} 
 	
-	// cell checks ------------------------------------------------------------
+	// Checks -----------------------------------------------------------------
 	/**
 	 * Returns true if the homecell is empty.
 	 * @return true if cell is empty.
@@ -82,7 +84,10 @@ public class HomeCell implements CellInterface {
 	 */
 	private boolean isAsc(StdCard c) {
 		
+		// ace to empty home cell
 		if (isEmpty()) return c.getValue() == 1;
+		
+		// next ascending value
 		return c.getValue() == cell.getValue() + 1;
 	}
 	
@@ -96,7 +101,7 @@ public class HomeCell implements CellInterface {
 		return isSameSuit(c) && isAsc(c);
 	}
 	
-	// utilities --------------------------------------------------------------
+	// Utilities --------------------------------------------------------------
 	/**
 	 * Dynamically generates cell string.
 	 * For use in CLI.
@@ -104,7 +109,7 @@ public class HomeCell implements CellInterface {
 	@Override
 	public String toString() {
 		
-		if (cell == null) return "[   ]";
+		if (cell == null) return "[    ]";
 		return "[" + cell.toString() + "]";
 	}
 	
