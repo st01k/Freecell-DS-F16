@@ -1,5 +1,8 @@
 package client.gui;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import utils.SysUtils;
 import static java.lang.System.out;
 
@@ -40,53 +43,69 @@ import board.*;
 	    	
 	    	for(int i = 0; i < freeArray.length; i++)
 	    	{
-		    	switch(i)
-		    	{
-			    	case(0):
-			    	{
-			    		if(freeArray[i].peekCard() == null) 
-			    		{
-			    			free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
-			    		}
-			    		else
-			    		{
-			    			free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
-			    		}
-			    	}
-			    	case(1):
-			    	{
-			    		if(freeArray[i].peekCard() == null) 
-			    		{
-			    			free2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
-			    		}
-			    		else
-			    		{
-			    			free2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
-			    		}
-			    	}
-			   		case(2):
-			   		{
-			   			if(freeArray[i].peekCard() == null) 
-			    		{
-			    			free3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
-			    		}
-			   			else
-			    		{
-			    			free3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
-			    		}
-			   		}
-		    		case(3):
-		    		{
-		    			if(freeArray[i].peekCard() == null) 
-			    		{
-			    			free4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
-			    		}
-		    			else
-			    		{
-			    			free4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
-			    		}			    		
-		    		}
-		    	}
+	    		
+	    		//TODO testing this format - casey
+	    		String filename = "";
+	    		
+	    		if (freeArray[i].peekCard() == null) {
+	    			
+	    			filename = "FreeCell.png";
+	    			freecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
+	    		}
+	    		else {
+	    			
+	    			filename = freeArray[i].peekCard().getRank() + freeArray[i].peekCard().getSuit() + ".png";
+	    			freecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
+	    		}
+	    		// end test format
+	    		
+//		    	switch(i)
+//		    	{
+//			    	case(0):
+//			    	{
+//			    		if(freeArray[i].peekCard() == null) 
+//			    		{
+//			    			free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
+//			    		}
+//			    		else
+//			    		{
+//			    			free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
+//			    		}
+//			    	}
+//			    	case(1):
+//			    	{
+//			    		if(freeArray[i].peekCard() == null) 
+//			    		{
+//			    			free2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
+//			    		}
+//			    		else
+//			    		{
+//			    			free2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
+//			    		}
+//			    	}
+//			   		case(2):
+//			   		{
+//			   			if(freeArray[i].peekCard() == null) 
+//			    		{
+//			    			free3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
+//			    		}
+//			   			else
+//			    		{
+//			    			free3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
+//			    		}
+//			   		}
+//		    		case(3):
+//		    		{
+//		    			if(freeArray[i].peekCard() == null) 
+//			    		{
+//			    			free4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
+//			    		}
+//		    			else
+//			    		{
+//			    			free4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
+//			    		}			    		
+//		    		}
+//		    	}
 	    	}
 	    	
 	    	//----------Home Cells---------------------
@@ -95,56 +114,76 @@ import board.*;
 
 	    	for(int i = 0; i < homeArray.length; i++)
 	    	{
-		    	switch(i)
-		    	{
-			    	case(0):
-			    	{
-			    		if(homeArray[i].peekCard() == null) 
-			    		{
-			    			home1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
-			    		}
-			    		else
-			    		{
-			    			home1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
-			    		}
-			    	}
-			    	case(1):
-			    	{
-			    		if(homeArray[i].peekCard() == null) 
-			    		{
-			    			home2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
-			    		}
-			    		else
-			    		{
-			    			home2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
-			    		}
-			    	}
-			   		case(2):
-			   		{
-			   			if(homeArray[i].peekCard() == null) 
-			    		{
-			    			home3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
-			    		}
-			   			else
-			    		{
-			    			home3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
-			    		}
-			   		}
-		    		case(3):
-		    		{
-		    			if(homeArray[i].peekCard() == null) 
-			    		{
-			    			home4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
-			    		}
-		    			else
-			    		{
-			    			home4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
-			    		}			    		
-		    		}
-		    	}
+	    		//TODO testing this format - casey
+	    		String pic = "";
+	    		
+	    		if (homeArray[i].peekCard() == null) {
+	    			
+	    			pic = "HomeCell.png";
+	    			homecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + pic));
+	    		}
+	    		else {
+	    			
+	    			pic = homeArray[i].peekCard().getRank() + homeArray[i].peekCard().getSuit() + ".png";
+	    			homecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + pic));
+	    		}
+	    		// end test format
+	    		
+//		    	switch(i)
+//		    	{
+//			    	case(0):
+//			    	{
+//			    		if(homeArray[i].peekCard() == null) 
+//			    		{
+//			    			home1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
+//			    		}
+//			    		else
+//			    		{
+//			    			home1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
+//			    		}
+//			    	}
+//			    	case(1):
+//			    	{
+//			    		if(homeArray[i].peekCard() == null) 
+//			    		{
+//			    			home2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
+//			    		}
+//			    		else
+//			    		{
+//			    			home2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
+//			    		}
+//			    	}
+//			   		case(2):
+//			   		{
+//			   			if(homeArray[i].peekCard() == null) 
+//			    		{
+//			    			home3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
+//			    		}
+//			   			else
+//			    		{
+//			    			home3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
+//			    		}
+//			   		}
+//		    		case(3):
+//		    		{
+//		    			if(homeArray[i].peekCard() == null) 
+//			    		{
+//			    			home4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
+//			    		}
+//		    			else
+//			    		{
+//			    			home4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
+//			    		}			    		
+//		    		}
+//		    	}
 	    	}
 	    	
 	    	//-------------Playing Piles--------------
+	    	
+	    	// looks like you are planning on painting the piles by column?
+	    	// might be easier to grab a pile at a time and paint that
+	    	// so you don't have to break them down further.  i had to go by
+	    	// column in the cli because that's the only way it prints.
 	    }
 
 	    /**
@@ -167,6 +206,22 @@ import board.*;
 	    		out.println(IMAGESDIR);
 	    		out.println(CARDIMAGESDIR);
 	    	}
+	    	
+	    	//TODO testing this format - casey
+	    	freecellJLabelAry = new javax.swing.JLabel[4];
+	    	
+	    	for (int i = 0; i < 4; i++) {
+	    		freecellJLabelAry[i] = new javax.swing.JLabel();
+	    		if (debug) out.println("init: freecell label #" + i);
+	    	}
+	    	
+	    	homecellJLabelAry = new javax.swing.JLabel[4];
+	    	
+	    	for (int i = 0; i < 4; i++) {
+	    		homecellJLabelAry[i] = new javax.swing.JLabel();
+	    		if (debug) out.println("init: homecell label #" + i);
+	    	}
+	    	// end test format
 
 	        BackgroundPan = new javax.swing.JLayeredPane();
 	        jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -2156,6 +2211,12 @@ import board.*;
 	    private static javax.swing.JLabel Turn;
 	    private static javax.swing.JLabel TurnLabel;
 	    private static javax.swing.JButton UndoBtn;
+	    
+	    //TODO testing this format - casey
+	    private static javax.swing.JLabel[] freecellJLabelAry;
+	    private static javax.swing.JLabel[] homecellJLabelAry;
+	    // end test format
+	    
 	    private static javax.swing.JLabel free1;
 	    private static javax.swing.JLabel free2;
 	    private static javax.swing.JLabel free3;
