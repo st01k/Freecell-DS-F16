@@ -99,9 +99,12 @@ public class Turn {
 	 */
 	public void guiTurn() {
 		
+		if (debug) out.println("\n---engine.Turn.guiTurn---");
 		// TODO feed me!
 		// only need src and dest mapping to make move
 		//board.makeMove(src, dest);
+		
+		if (debug) out.println("GUI turn is empty.  Press enter.");
 		scan.nextLine();	// added to stop infinite loop in engine
 		turnString = "build gui turn string in Turn.guiTurn";
 	}

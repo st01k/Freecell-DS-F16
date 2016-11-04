@@ -19,7 +19,6 @@ public class Engine
 	private static boolean debug = false;
 	private static Board curBoard;
 	private static Stack<Board> history;
-	private static FreeGUI gui;
 	
 	// Initialization ---------------------------------------------------------
 	/**
@@ -29,16 +28,30 @@ public class Engine
 	 */
 	public static void start(boolean _isGui) {
 		
+		if (debug) out.println("\n---engine.Engine.start---");
+		
 		curBoard = new Board();
 		history = new Stack<Board>();
 		isGui = _isGui;
-		
-		if (isGui) gui = new FreeGUI();
-		
+				
 		gameLoop();
 	}
 	
-	
+	/**
+	 * Initializes GUI if in GUI mode.
+	 * @return gui, null if CLI mode
+	 */
+	private static FreeGUI startGUI() {
+		
+		if (debug) out.println("\n---engine.Engine.startGUI---");
+		if (isGui) {
+			
+			FreeGUI gui = new FreeGUI();
+			gui.start();
+			return gui;
+		}
+		return null;
+	}
 
 	// Game loop --------------------------------------------------------------
 	/**
@@ -46,44 +59,50 @@ public class Engine
 	 */
 	private static void gameLoop() {
 		
+		if (debug) out.println("---engine.Engine.gameLoop---");
+		
 		int moveNum = 0;
 		snapshot();
 		
-		if (isGui) gui.start();		
+		FreeGUI gui = startGUI();
 		
 		while(!gameOver) {
 			
-			if (debug) out.println("\n---engine.Engine.gameLoop---");
+			if (debug) out.println("---inside game loop---");
 			if (debug) printSnapshot();
 			
-			if (isGui) gui.Paint(curBoard);
+			if (isGui) {
+				
+				gui.Paint(curBoard);
+			}
 			else out.println(curBoard);
 			
 			//TODO auto stacks
 			Turn turn = new Turn(isGui, ++moveNum, curBoard);
 			curBoard.updateBoardStats(turn);
+			
 			snapshot();
 		}
 	}
 	
 	// In-game Action Handlers ------------------------------------------------
-	private static void newDeal() {
+	public static void newDeal() {
 		
 	}
 	
-	private static void undo() {
+	public static void undo() {
 		
 	}
 	
-	private static void redo() {
+	public static void redo() {
 		
 	}
 	
-	private static void hint() {
+	public static void hint() {
 		
 	}
 	
-	private static void solve() {
+	public static void solve() {
 		
 	}
 	

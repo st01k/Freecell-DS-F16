@@ -3,6 +3,8 @@ package client.gui;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import engine.Engine;
+
 import utils.SysUtils;
 import static java.lang.System.out;
 
@@ -15,6 +17,8 @@ import board.*;
 
 		private static final long serialVersionUID = -2499184546285035594L;
 
+		private static final int NUMCELLS = 4;
+		private static final int NUMPILES = 8;
 		private static final String SEP = SysUtils.getSeparator();
 		private static final String IMAGESDIR = SysUtils.getPath() + "resources" + SEP + "images" + SEP;
 		private static final String CARDIMAGESDIR = IMAGESDIR + "cards" + SEP;
@@ -33,7 +37,7 @@ import board.*;
 	    {
 	    	if (debug)
 	    	{
-	    		out.println("---engine.FreeGUI.paint---");
+	    		out.println("\n---engine.FreeGUI.paint---");
 	    	}
 	    	
 	    	//-----------Free Cells------------
@@ -194,24 +198,20 @@ import board.*;
 
 	    	// path test logged to console
 	    	if (debug) {
-	    		out.println("---engine.FreeGUI.initComponents--- ");
-	    		out.println(IMAGESDIR);
-	    		out.println(CARDIMAGESDIR);
+	    		out.println("\n---engine.FreeGUI.initComponents--- ");
 	    	}
 	    	
 	    	//TODO testing this format - casey
-	    	freecellJLabelAry = new javax.swing.JLabel[4];
+	    	freecellJLabelAry = new javax.swing.JLabel[NUMCELLS];
 	    	
-	    	for (int i = 0; i < 4; i++) {
+	    	for (int i = 0; i < NUMCELLS; i++) {
 	    		freecellJLabelAry[i] = new javax.swing.JLabel();
-	    		if (debug) out.println("init: freecell label #" + i);
 	    	}
 	    	
-	    	homecellJLabelAry = new javax.swing.JLabel[4];
+	    	homecellJLabelAry = new javax.swing.JLabel[NUMCELLS];
 	    	
-	    	for (int i = 0; i < 4; i++) {
+	    	for (int i = 0; i < NUMCELLS; i++) {
 	    		homecellJLabelAry[i] = new javax.swing.JLabel();
-	    		if (debug) out.println("init: homecell label #" + i);
 	    	}
 	    	// end test format
 
@@ -1972,27 +1972,27 @@ import board.*;
 	    //TODO set button actions
 	    private void UndoBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
-
+	    	Engine.undo();
 	    }
 
 	    private void RedoBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
-
+	    	Engine.redo();
 	    }
 
 		private void HintBtnActionPerformed(java.awt.event.ActionEvent evt)
 		{
-
+			Engine.hint();
 		}
 
 		private void SolveBtnActionPerformed(java.awt.event.ActionEvent evt)
 		{
-
+			Engine.solve();
 		}
 
 	    private void NewDealBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
-
+	    	Engine.newDeal();
 		}
 
 	    /**
