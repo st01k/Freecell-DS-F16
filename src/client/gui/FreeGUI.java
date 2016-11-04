@@ -45,16 +45,13 @@ import board.*;
 	    		//TODO testing this format - casey
 	    		String filename = "";
 	    		
-	    		if (freeArray[i].peekCard() == null) {
-	    			
-	    			filename = "FreeCell.png";
-	    			freecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
-	    		}
+	    		if (freeArray[i].peekCard() == null) filename = "FreeCell.png";
 	    		else {
 	    			
 	    			filename = freeArray[i].peekCard().getRank() + freeArray[i].peekCard().getSuit() + ".png";
-	    			freecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
 	    		}
+	    		
+	    		freecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
 	    		// end test format
 	    		
 //		    	switch(i)
@@ -115,16 +112,13 @@ import board.*;
 	    		//TODO testing this format - casey
 	    		String filename = "";
 	    		
-	    		if (homeArray[i].peekCard() == null) {
-	    			
-	    			filename = "HomeCell.png";
-	    			homecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
-	    		}
+	    		if (homeArray[i].peekCard() == null) filename = "HomeCell.png";
 	    		else {
 	    			
 	    			filename = homeArray[i].peekCard().getRank() + homeArray[i].peekCard().getSuit() + ".png";
-	    			homecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
 	    		}
+	    		
+	    		homecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
 	    		// end test format
 	    		
 //		    	switch(i)
