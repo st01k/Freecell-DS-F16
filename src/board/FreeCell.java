@@ -5,9 +5,10 @@ import static java.lang.System.out;
 import playingCards.StdCard;
 
 /**
- * 
+ * Free cell free cell.  Top-left section of board.
+ * Holds one card at a time.
  * @author groovyLlama devteam
- * @version 0.3
+ * @version 0.4
  */
 public class FreeCell implements CellInterface {
 	
@@ -18,13 +19,14 @@ public class FreeCell implements CellInterface {
 	private StdCard cell;
 	
 	
-	// cell manipulation ------------------------------------------------------
+	// Cell Manipulation ------------------------------------------------------
 	/**
-	 * Places a card in the freecell
-	 * if there is not one already present.
+	 * Places a card in the freecell if there is not one already present.
 	 */
 	@Override
 	public boolean placeCard(StdCard c) {
+		
+		if (debug) out.println("\n---board.FreeCell.placeCard---");
 		
 		if (!isEmpty()) return false;
 		
@@ -39,12 +41,14 @@ public class FreeCell implements CellInterface {
 	@Override
 	public StdCard removeCard() {
 		
+		if (debug) out.println("\n---board.FreeCell.removeCard---");
+		
 		StdCard temp = cell;
 		cell = null;
 		return temp;
 	}
 	
-	// cell information -------------------------------------------------------
+	// Cell Information -------------------------------------------------------
 	/**
 	 * Returns card currently in cell.
 	 * Does not remove the card.
@@ -54,19 +58,23 @@ public class FreeCell implements CellInterface {
 		return cell;
 	}
 	
-	// cell checks ------------------------------------------------------------	
+	// Checks -----------------------------------------------------------------	
+	/**
+	 * Returns true if freecell is empty.
+	 * @return true if cell is empty
+	 */
 	private boolean isEmpty() {
 		return cell == null;
 	}
 
-	// utilities --------------------------------------------------------------
+	// Utilities --------------------------------------------------------------
 	/**
 	 * Dynamically generates cell string.
 	 * For use in CLI.
 	 */
 	public String toString() {
 		
-		if (cell == null) return "[   ]";
+		if (cell == null) return "[    ]";
 		return "[" + cell.toString() + "]";
 	}
 	

@@ -1,8 +1,9 @@
 package client;
 
 import static java.lang.System.out;
+import client.cli.CLI;
 
-import engine.gUI.*;
+import engine.Engine;
 
 /**
  * Driver for Freecell card game.
@@ -11,6 +12,10 @@ import engine.gUI.*;
  */
 public class Driver {
 	
+	/**
+	 * Entry point into program.
+	 * @param args arguments from command line
+	 */
 	public static void main(String[] args) {
 		
 		// TODO remove/comment next line to auto enter gui
@@ -30,11 +35,6 @@ public class Driver {
 				break;
 			}
 		}
-		else {
-		
-			// TODO initialize and run GUI
-			// TODO modify following when main is removed from FreeGUI
-			FreeGUI.main(args);
-		}	
+		else Engine.start(true);
 	}
 }
