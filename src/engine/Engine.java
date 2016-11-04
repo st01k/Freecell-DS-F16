@@ -87,23 +87,23 @@ public class Engine
 	
 	// In-game Action Handlers ------------------------------------------------
 	public static void newDeal() {
-		
+		if (debug) out.println("event: New Deal clicked");
 	}
 	
 	public static void undo() {
-		
+		if (debug) out.println("event: Undo clicked");
 	}
 	
 	public static void redo() {
-		
+		if (debug) out.println("event: Redo clicked");
 	}
 	
 	public static void hint() {
-		
+		if (debug) out.println("event: Hint clicked");
 	}
 	
 	public static void solve() {
-		
+		if (debug) out.println("event: Solve clicked");
 	}
 	
 	// Utilities --------------------------------------------------------------
