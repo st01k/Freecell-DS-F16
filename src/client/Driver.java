@@ -1,9 +1,9 @@
 package client;
 
 import static java.lang.System.out;
+import client.cli.CLI;
 
 import engine.Engine;
-import engine.gUI.*;
 
 /**
  * Driver for Freecell card game.
@@ -12,10 +12,14 @@ import engine.gUI.*;
  */
 public class Driver {
 	
+	/**
+	 * Entry point into program.
+	 * @param args arguments from command line
+	 */
 	public static void main(String[] args) {
 		
 		// TODO remove/comment next line to auto enter gui
-		//args = "--test".split(" ");
+		args = "--test".split(" ");
 		
 		if (args.length > 0) {
 			
@@ -31,9 +35,6 @@ public class Driver {
 				break;
 			}
 		}
-		else {
-			//Starts the engine (Vroom Vroom)
-			Engine.start();
-		}	
+		else Engine.start(true);
 	}
 }

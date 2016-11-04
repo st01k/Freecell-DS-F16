@@ -1,7 +1,9 @@
-package engine.gUI;
+package client.gui;
 
 import utils.SysUtils;
 import static java.lang.System.out;
+
+import board.Board;
 
 	/**
 	 * @author Ryan Whytsell
@@ -23,10 +25,19 @@ import static java.lang.System.out;
 	    {
 	        initComponents();
 	    }
-
-	    public void paint()
+	    public static void Paint(Board curboard)
 	    {
-	    	
+	    	if (debug)
+	    	{
+	    		out.println("---engine.FreeGUI.paint---");
+	    		out.println(IMAGESDIR);
+	    		out.println(CARDIMAGESDIR);
+	    	}
+	    }
+	    
+	    public static void consoleOut(String s)
+	    {
+	    	Output.setText(s);
 	    }
 	    
 	    /**
@@ -1861,7 +1872,7 @@ import static java.lang.System.out;
 	    private javax.swing.JLabel InfoBackground;
 	    private javax.swing.JPanel MenuPanel;
 	    private javax.swing.JButton NewDealBtn;
-	    private javax.swing.JLabel Output;
+	    private static javax.swing.JLabel Output;
 	    private javax.swing.JLabel R1C0;
 	    private javax.swing.JLabel R1C1;
 	    private javax.swing.JLabel R1C10;

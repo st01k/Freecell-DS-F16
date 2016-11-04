@@ -24,4 +24,5 @@ Freecell card game
 <b>CHANGELOG</b><br><br>
 0.1 -   skeleton<br>
 0.2 -   basic cli, basic gui, working card/deck<br>
-0.3 -		initial card placement on board<br>
+0.3 -   initial card placement on board<br>
+0.4 -   unpolished cli gameplay, gui rendering

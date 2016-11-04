@@ -1,4 +1,4 @@
-package engine.gUI;
+package client.gui;
 
 import board.*;
 
