@@ -34,8 +34,6 @@ import board.*;
 	    	if (debug)
 	    	{
 	    		out.println("---engine.FreeGUI.paint---");
-	    		out.println(IMAGESDIR);
-	    		out.println(CARDIMAGESDIR);
 	    	}
 	    	
 	    	//-----------Free Cells------------
