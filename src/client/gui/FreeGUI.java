@@ -113,17 +113,17 @@ import board.*;
 	    	for(int i = 0; i < homeArray.length; i++)
 	    	{
 	    		//TODO testing this format - casey
-	    		String pic = "";
+	    		String filename = "";
 	    		
 	    		if (homeArray[i].peekCard() == null) {
 	    			
-	    			pic = "HomeCell.png";
-	    			homecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + pic));
+	    			filename = "HomeCell.png";
+	    			homecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
 	    		}
 	    		else {
 	    			
-	    			pic = homeArray[i].peekCard().getRank() + homeArray[i].peekCard().getSuit() + ".png";
-	    			homecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + pic));
+	    			filename = homeArray[i].peekCard().getRank() + homeArray[i].peekCard().getSuit() + ".png";
+	    			homecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
 	    		}
 	    		// end test format
 	    		
@@ -1818,6 +1818,9 @@ import board.*;
 	        BackgroundPan.add(R8C0);
 	        R8C0.setBounds(1120, 150, 86, 125);
 
+	        
+	        //TODO if you go with the arrays, i'm sure you'll have to do this stuff for those
+	        // didn't want to mess with all this though, and risk breaking anything.
 	        free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png")); // NOI18N
 	        free1.setToolTipText(null);
 	        free1.setMaximumSize(new java.awt.Dimension(86, 125));
