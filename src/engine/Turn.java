@@ -35,9 +35,10 @@ public class Turn {
 		
 		moveNum = move;
 		board = b;
-		if (isGui) guiTurn();
-		else cliTurn();
 		winnable = isWinnable();
+		
+		if (isGui) guiTurn();
+		else cliTurn();		
 	}
 	
 	// Accessors --------------------------------------------------------------

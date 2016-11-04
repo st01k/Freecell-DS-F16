@@ -76,6 +76,10 @@ public class Engine
 		
 	}
 	
+	private static void solve() {
+		
+	}
+	
 	// Utilities --------------------------------------------------------------
 	/**
 	 * Saves current board to history.
