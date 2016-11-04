@@ -84,7 +84,7 @@ public class CLI {
 		out.println("Cell positions are referenced by the top letters.");
 		out.println("Pile positions are referenced by the bottom letters.");
 		out.println("Cards inserted into cells will fill the next open cell.");
-		out.println("Black: Spades & Clubs | Red: Hearts & Diamonds");
+		out.println("\nBlack: Spades & Clubs     |\t Red: Hearts & Diamonds");
 		
 		Engine.start(false);
 	}
