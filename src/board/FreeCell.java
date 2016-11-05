@@ -18,7 +18,6 @@ public class FreeCell implements CellInterface {
 	// class variables
 	private StdCard cell;
 	
-	
 	// Cell Manipulation ------------------------------------------------------
 	/**
 	 * Places a card in the freecell if there is not one already present.

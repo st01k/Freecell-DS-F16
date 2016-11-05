@@ -79,11 +79,10 @@ public class Turn {
 		if (debug) out.println(this);
 		
 		if (!board.makeMove(srcKey, destKey)) 
-			out.println("invalid move detected in engine.Turn.cliTurn");
+			if (debug) out.println
+				("invalid move detected in engine.Turn.cliTurn");
 	}
 	
-	//TODO automate free and home cell entry with double click
-	// so that cards go into next available slot
 	/**
 	 * Waits for user turn input from gui.
 	 * Returns true if the turn successfully changes the board.
@@ -95,7 +94,8 @@ public class Turn {
 		if (debug) out.println(this);
 		
 		if (!board.makeMove(srcKey, destKey)) 
-			out.println("invalid move detected in engine.Turn.guiTurn");
+		if (debug) out.println
+			("invalid move detected in engine.Turn.guiTurn");
 		
 		// added to stop infinite loop in engine
 		if (debug) out.println("\nGUI turn is empty.  Press enter.");
