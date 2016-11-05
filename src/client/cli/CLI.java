@@ -90,7 +90,7 @@ public class CLI {
 			
 			switch(in) {
 			
-			case ("exit") 	: SysUtils.exitDoor("");
+			case ("exit") 	: SysUtils.exitDoor("\n~ groovyLlama devteam, fall 2016 ~\n");
 				break;
 			case ("help") 	: printHelp();
 				break;
