@@ -63,6 +63,8 @@ public class CLI {
 				Engine.start(false);
 				out.println();
 				break;
+			case ("show")	: out.println("Only available in game.");
+				break;
 			case ("cls") 	: formFeed();
 				break; 
 			case ("cred")	: credz();
@@ -104,6 +106,8 @@ public class CLI {
 				break;
 			case ("cli")	: out.println("Already in game.");
 				break;
+			case ("show")	: Engine.printSnapshot();
+				break;
 			case ("cls") 	: formFeed();
 				break; 
 			case ("cred")	: credz();
@@ -122,28 +126,6 @@ public class CLI {
 	}
 	
 	/**
-	 * CLI game instructions.
-	 */
-	public static void cliInstructions() {
-		
-		out.println("CLI Freecell Instructions:");
-		out.println("--------------------------------------------------------");
-		out.println("Cell positions are referenced by the top letters.");
-		out.println("Pile positions are referenced by the bottom letters.");
-		out.println("Cards inserted into cells will fill the next open cell.");
-		out.println("\nBlack: Spades & Clubs     |\t Red: Hearts & Diamonds");
-		out.println();
-	}
-	
-	/**
-	 * Toggles master debug switch in Debugger.
-	 */
-	private static void toggleDebug() {	
-		debug = !debug;
-		Debugger.masterToggleDebug();
-	}
-	
-	/**
 	 * Prints commands.
 	 */
 	private static void printHelp() {
@@ -158,22 +140,26 @@ public class CLI {
 		out.println("uni\tToggles unicode characters");
 		out.println("gui\tStarts game in GUI");
 		out.println("cli\tStarts game in CLI");
+		out.println("show\tReprints current board");
 		out.println("cls\tClear screen");
 		out.println("cred\tPrints credits");
 		out.println("exit\tExits current prompt");
 		out.println();
 		cliInstructions();
 	}
-	
+
 	/**
-	 * Prints a form feed to screen.  Scrolls up specified lines.
-	 * Amount is specified with FFSZ constant.
+	 * CLI game instructions.
 	 */
-	private static void formFeed() {
+	public static void cliInstructions() {
 		
-		final int FFSZ = 50;
-		
-		for (int i = 0; i < FFSZ; i++) out.println();
+		out.println("CLI Freecell Instructions:");
+		out.println("--------------------------------------------------------");
+		out.println("Cell positions are referenced by the top letters.");
+		out.println("Pile positions are referenced by the bottom letters.");
+		out.println("Cards inserted into cells will fill the next open cell.");
+		out.println("\nBlack: Spades & Clubs     |\t Red: Hearts & Diamonds");
+		out.println();
 	}
 	
 	/**
@@ -199,5 +185,24 @@ public class CLI {
 		out.println("Ryan Whytsell 		- GUI Wizard");
 		out.println("Gordon Finnie 		- Guard Dawg");
 		out.println();
+	}
+	
+	/**
+	 * Prints a form feed to screen.  Scrolls up specified lines.
+	 * Amount is specified with FFSZ constant.
+	 */
+	private static void formFeed() {
+		
+		final int FFSZ = 50;
+		
+		for (int i = 0; i < FFSZ; i++) out.println();
+	}
+	
+	/**
+	 * Toggles master debug switch in Debugger.
+	 */
+	private static void toggleDebug() {	
+		debug = !debug;
+		Debugger.masterToggleDebug();
 	}
 }

@@ -3,7 +3,6 @@ package engine;
 import static java.lang.System.out;
 
 import java.util.Stack;
-
 import client.cli.CLI;
 import client.gui.FreeGUI;
 import board.Board;
@@ -21,7 +20,7 @@ public class Engine
 	private static boolean debug = false;
 	private static Board curBoard;
 	private static Stack<Board> history;
-	private static String src, dest = "";
+	private static String src, dest;
 	
 	// Initialization ---------------------------------------------------------
 	/**
