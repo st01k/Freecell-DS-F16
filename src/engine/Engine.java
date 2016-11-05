@@ -62,7 +62,7 @@ public class Engine
 	 */
 	private static void gameLoop() {
 		
-		if (debug) out.println("---engine.Engine.gameLoop---");
+		if (debug) out.println("\n---engine.Engine.gameLoop---");
 		
 		moveNum = 0;
 		snapshot();
@@ -71,7 +71,7 @@ public class Engine
 		
 		while(!gameOver) {
 			
-			if (debug) out.println("---inside game loop---");
+			if (debug) out.println("\n---start game loop---");
 			if (debug && isGui) printSnapshot();
 			
 			if (isGui) {

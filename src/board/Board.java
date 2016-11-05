@@ -132,9 +132,6 @@ public class Board {
 		StdCard sourceCard = showSource(src);
 		int destination = destSwitch(dest);
 		
-		if (debug) out.println("source card: " + sourceCard 
-				+ "dest pos: " + destination);
-		
 		if (sourceCard == null) return false;
 		switch(destination) {
 		// into freecell
@@ -384,7 +381,7 @@ public class Board {
 			if (debug) out.println
 				("ERROR: invalid input in board.Board.removeSource");
 		}
-		if (debug) out.println("removed: " + c);
+		if (debug) out.println("removed card: " + c);
 		return c;
 	}
 	
@@ -395,6 +392,8 @@ public class Board {
 	 * @return numeric position key
 	 */
 	private int destSwitch(String dest) {
+		
+		if (debug) out.println("\n---board.Board.destSwitch---");
 		
 		int key = 999;
 		
@@ -426,7 +425,7 @@ public class Board {
 		default		:
 			if (debug) out.println("ERROR: invalid input in board.Board.destSwitch");
 		}
-		
+		if (debug) out.println("dest pos: " + key);
 		return key;
 	}
 
