@@ -106,7 +106,7 @@ public class CLI {
 				break;
 			case ("uni")	: StdCard.toggleUni();
 				break;
-			case ("gui")	: out.println("Not available in this mode.");
+			case ("gui")	: out.println("Not available in CLI mode.");
 				break;
 			case ("cli")	: out.println("Already in game.");
 				break;
@@ -138,7 +138,7 @@ public class CLI {
 	private static void printHelp() {
 		
 		out.println();
-		out.println("Available Commands: ");
+		out.println("Commands: ");
 		out.println("----------------------------------------------");
 		out.println("help\tPrints this menu");
 		out.println("test\tRuns unit tests");
@@ -163,11 +163,17 @@ public class CLI {
 		
 		out.println("CLI Freecell Instructions:");
 		out.println("----------------------------------------------------------");
+		out.println("When prompted for 'source', enter the letter corresponding");
+		out.println("to the card you wish to move.  When prompted for 'dest',");
+		out.println("enter the corresponding letter of the card's destination.");
+		out.println();
 		out.println("Cell positions are referenced by the top letters.");
 		out.println("Pile positions are referenced by the bottom letters.");
+		out.println();
 		out.println("Cards inserted into cells will fill the next open cell.");
 		out.println("If card is bound for a home cell, it will auto match suit.");
-		out.println("\nBlack: Spades & Clubs     |\t Red: Hearts & Diamonds");
+		out.println();
+		out.println("Black: Spades & Clubs     |\t Red: Hearts & Diamonds");
 		out.println();
 	}
 	
