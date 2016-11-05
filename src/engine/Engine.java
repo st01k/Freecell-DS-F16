@@ -3,6 +3,8 @@ package engine;
 import static java.lang.System.out;
 
 import java.util.Stack;
+
+import client.cli.CLI;
 import client.gui.FreeGUI;
 import board.Board;
 
@@ -14,12 +16,12 @@ import board.Board;
 public class Engine 
 {
 	// static variables
-	private static boolean gui = false;
+	private static boolean isGui = false;
 	private static boolean gameOver = false;
 	private static boolean debug = false;
-	private static Stack<Board> history = new Stack<Board>();
 	private static Board curBoard;
-	
+	private static Stack<Board> history;
+	private static String src, dest = "";
 	
 	// Initialization ---------------------------------------------------------
 	/**
@@ -27,61 +29,117 @@ public class Engine
 	 * Starts game in preferred user interface.
 	 * @param isGui true if UI is gui
 	 */
-	public static void start(boolean isGui)
-	{
+	public static void start(boolean _isGui) {
+		
+		if (debug) out.println("\n---engine.Engine.start---");
+		
 		curBoard = new Board();
-		gui = isGui;
-		if (gui) FreeGUI.start();
+		history = new Stack<Board>();
+		isGui = _isGui;
+				
 		gameLoop();
+	}
+	
+	/**
+	 * Initializes GUI if in GUI mode.
+	 * @return gui, null if CLI mode
+	 */
+	private static FreeGUI startGUI() {
+		
+		if (debug) out.println("\n---engine.Engine.startGUI---");
+		if (isGui) {
+			
+			FreeGUI gui = new FreeGUI();
+			gui.start();
+			return gui;
+		}
+		return null;
 	}
 
 	// Game loop --------------------------------------------------------------
 	/**
 	 * Main game loop.
 	 */
-	private static void gameLoop() 
-	{
+	private static void gameLoop() {
+		
+		if (debug) out.println("---engine.Engine.gameLoop---");
+		
 		int moveNum = 0;
 		snapshot();
 		
-		while(!gameOver)
-		{
-			if (debug) out.println("\n---engine.Engine.gameLoop---");
-			if (debug) printSnapshot();
+		FreeGUI gui = startGUI();
+		
+		while(!gameOver) {
 			
-			if (gui) FreeGUI.Paint(curBoard);
-			else out.println(curBoard.toString());
+			if (debug) out.println("---inside game loop---");
+			if (debug && isGui) printSnapshot();
+			
+			if (isGui) {
+				
+				gui.Paint(curBoard);
+			}
+			else out.println(curBoard);
 			
 			//TODO auto stacks
-			Turn turn = new Turn(gui, ++moveNum, curBoard);
+			
+			if (isGui) {
+				src = "";
+				dest = "";
+			}
+			else {
+				src = getSourceCLI();
+				dest = getDestCLI();
+			}
+			
+			Turn turn = new Turn(isGui, ++moveNum, curBoard, src, dest);
 			curBoard.updateBoardStats(turn);
+			
 			snapshot();
 		}
 	}
 	
+	private static String getSourceCLI() {
+		return CLI.inGame("source");
+	}
+	
+	private static String getDestCLI() {
+		return CLI.inGame("dest");
+	}
+	
+	public static void setSourceGUI(String in) {
+		src = in;
+	}
+	
+	public static void setDestGUI(String in) {
+		dest = in;
+	}
+	
 	// In-game Action Handlers ------------------------------------------------
-	private static void newDeal() {
-		
+	public static void newDeal() {
+		if (debug) out.println("event: New Deal clicked");
 	}
 	
-	private static void undo() {
-		
+	public static void undo() {
+		if (debug) out.println("event: Undo clicked");
 	}
 	
-	private static void redo() {
-		
+	public static void redo() {
+		if (debug) out.println("event: Redo clicked");
 	}
 	
-	private static void hint() {
-		
+	public static void hint() {
+		if (debug) out.println("event: Hint clicked");
+	}
+	
+	public static void solve() {
+		if (debug) out.println("event: Solve clicked");
 	}
 	
 	// Utilities --------------------------------------------------------------
 	/**
 	 * Saves current board to history.
 	 */
-	public static void snapshot()
-	{
+	public static void snapshot() {
 		history.push(curBoard);
 	}
 	
@@ -93,7 +151,7 @@ public class Engine
 		out.println("\n---engine.Engine.printSnapshot---\n");
 		out.print("*************** Begin Snapshot ***************");
 		out.println(history.peek());
-		out.println("\nstate: gui - " + gui + " | history size: " + history.size());
+		out.println("\nstate: gui - " + isGui + " | history size: " + history.size());
 		out.println("**************** End Snapshot ****************");
 	}
 	

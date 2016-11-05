@@ -241,8 +241,7 @@ public class Board {
 		s += ("--------------------------------------------------------\n");
 		if (winnable) s += ("Winnable");
 		else s += ("Lost    ");
-		s += ("\t\t\t\t\tMove: " + moveNum);
-		
+		s += ("\t\t\t\t\tMove: " + moveNum + "\n");		
 		
 		return s;
 	}
