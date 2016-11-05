@@ -72,7 +72,7 @@ public class Engine
 		while(!gameOver) {
 			
 			if (debug) out.println("---inside game loop---");
-			if (debug) printSnapshot();
+			if (debug && isGui) printSnapshot();
 			
 			if (isGui) {
 				
