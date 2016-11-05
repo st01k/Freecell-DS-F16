@@ -83,6 +83,10 @@ public class Engine
 			//TODO auto stacks
 			
 			if (isGui) {
+				
+				// needs to be attached to mouse events
+				// and GUI setters
+				//TODO filler moves
 				src = "i";
 				dest = "a";
 			}
