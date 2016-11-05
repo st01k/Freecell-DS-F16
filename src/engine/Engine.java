@@ -83,8 +83,8 @@ public class Engine
 			//TODO auto stacks
 			
 			if (isGui) {
-				src = "";
-				dest = "";
+				src = "i";
+				dest = "a";
 			}
 			else {
 				src = getSourceCLI();
