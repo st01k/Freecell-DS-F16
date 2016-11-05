@@ -10,7 +10,7 @@ import board.Board;
 /**
  * Drives freecell game.
  * @author groovyLlama devteam
- * @version 0.2
+ * @version 0.3
  */
 public class Engine 
 {
@@ -62,7 +62,7 @@ public class Engine
 	 */
 	private static void gameLoop() {
 		
-		if (debug) out.println("---engine.Engine.gameLoop---");
+		if (debug) out.println("\n---engine.Engine.gameLoop---");
 		
 		moveNum = 0;
 		snapshot();
@@ -71,7 +71,7 @@ public class Engine
 		
 		while(!gameOver) {
 			
-			if (debug) out.println("---inside game loop---");
+			if (debug) out.println("\n---start game loop---");
 			if (debug && isGui) printSnapshot();
 			
 			if (isGui) {
@@ -95,7 +95,7 @@ public class Engine
 				dest = getDestCLI();
 			}
 			
-			//TODO if illegal move, don't inc moveNum
+			//TODO if illegal move, don't inc move count
 			Turn turn = new Turn(isGui, ++moveNum, curBoard, src, dest);
 			curBoard.updateBoardStats(turn);
 			
@@ -121,6 +121,7 @@ public class Engine
 	
 	// In-game Action Handlers ------------------------------------------------
 	public static void newDeal() {
+		
 		if (debug) out.println("event: New Deal clicked");
 		
 		curBoard = new Board();
@@ -132,18 +133,22 @@ public class Engine
 	}
 	
 	public static void undo() {
+		
 		if (debug) out.println("event: Undo clicked");
 	}
 	
 	public static void redo() {
+		
 		if (debug) out.println("event: Redo clicked");
 	}
 	
 	public static void hint() {
+		
 		if (debug) out.println("event: Hint clicked");
 	}
 	
 	public static void solve() {
+		
 		if (debug) out.println("event: Solve clicked");
 	}
 	
@@ -162,11 +167,18 @@ public class Engine
 	 */
 	public static void printSnapshot() {
 		
-		out.println("\n---engine.Engine.printSnapshot---\n");
-		out.print("*************** Begin Snapshot ***************");
+		if (debug) out.println("\n---engine.Engine.printSnapshot---\n");
+		out.println();
+		out.print("******************** Begin Snapshot ********************");
 		out.println(history.peek());
-		out.println("\nstate: gui - " + isGui + " | history size: " + history.size());
-		out.println("**************** End Snapshot ****************");
+		
+		if (debug) {
+			out.println
+			("\nstate: gui - " + isGui + " | history size: " + history.size());
+		}
+		
+		out.println("********************* End Snapshot *********************");
+		out.println();
 	}
 	
 	/**

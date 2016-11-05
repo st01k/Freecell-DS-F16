@@ -3,7 +3,6 @@ package engine;
 import static java.lang.System.out;
 
 import java.util.Scanner;
-import utils.SysUtils;
 import board.Board;
 
 
@@ -22,7 +21,6 @@ public class Turn {
 	// class variables
 	private boolean winnable;
 	private int moveNum;
-	private String turnString;
 	private Board board;
 	private String srcKey;
 	private String destKey;
@@ -80,7 +78,7 @@ public class Turn {
 		
 		if (!board.makeMove(srcKey, destKey)) 
 			if (debug) out.println
-				("invalid move detected in engine.Turn.cliTurn");
+				("\ninvalid move detected in engine.Turn.cliTurn");
 	}
 	
 	/**
