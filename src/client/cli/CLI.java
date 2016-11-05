@@ -11,23 +11,23 @@ import utils.*;
 /**
  * Freecell command-line interface.
  * @author Casey
- * @version 1.1
+ * @version 1.2
  */
 public class CLI {
 	
 	// static variables
 	private static boolean debug = false;
-
+	private static final Scanner scan = new Scanner(System.in);
+	private static final String dbgStr = "[debug]";
+	
+	private static String prompt;
+	
 	/**
 	 * Main prompt.
 	 */
 	public static void prompt() {
 		
-		final Scanner scan = new Scanner(System.in);
-		final String dbgStr = "[debug]";
-		String prompt;
-		
-		out.println("<<<<<<<<< Freecell CLI v0.1 >>>>>>>>>");
+		out.println("<<<<<<<<< Freecell CLI v0.4 >>>>>>>>>");
 		out.println("'help' for commands, 'exit' any time.");
 		out.println("-------------------------------------");
 		out.println();
@@ -60,7 +60,8 @@ public class CLI {
 				out.println();
 				break;
 			case ("cli")	:
-				game();
+				Engine.start(false);
+				out.println();
 				break;
 			case ("cls") 	: formFeed();
 				break; 
@@ -74,19 +75,64 @@ public class CLI {
 		scan.close();
 	}
 	
+	public static String inGame(String s) {
+
+		// prompt loop
+		boolean cont = true;
+		do {
+			
+			prompt = "freecell.play." + s + "> ";
+			if (debug) prompt = dbgStr + prompt;
+			out.print(prompt);
+			String in = scan.nextLine().toLowerCase();
+			
+			switch(in) {
+			
+			case ("exit") 	: SysUtils.exitDoor("");
+				break;
+			case ("help") 	: printHelp();
+				break;
+			case ("test") 	: Tester.enter();
+				break;
+			case ("path")	: out.println(SysUtils.getPath()); 
+				break;
+			case ("debug") 	: toggleDebug();
+				break;
+			case ("uni")	: StdCard.toggleUni();
+				break;
+			case ("gui")	: out.println("Not available in this mode.");
+				break;
+			case ("cli")	: out.println("Already in game.");
+				break;
+			case ("cls") 	: formFeed();
+				break; 
+			case ("cred")	: credz();
+				break;
+			default 		:
+				
+				if (in.matches("[a-p]")) {
+					in = in.toLowerCase();
+					return in;
+				}
+				
+				out.println("Invalid Command.  Type 'help' for a list of commands.");
+			}
+		} while(cont);
+		return "somethin's jacked";
+	}
+	
 	/**
-	 * CLI game instructions and entry.
+	 * CLI game instructions.
 	 */
-	public static void game() {
+	public static void cliInstructions() {
 		
-		out.println("\nCLI Freecell Instructions:");
+		out.println("CLI Freecell Instructions:");
 		out.println("--------------------------------------------------------");
 		out.println("Cell positions are referenced by the top letters.");
 		out.println("Pile positions are referenced by the bottom letters.");
 		out.println("Cards inserted into cells will fill the next open cell.");
 		out.println("\nBlack: Spades & Clubs     |\t Red: Hearts & Diamonds");
-		
-		Engine.start(false);
+		out.println();
 	}
 	
 	/**
@@ -116,6 +162,7 @@ public class CLI {
 		out.println("cred\tPrints credits");
 		out.println("exit\tExits current prompt");
 		out.println();
+		cliInstructions();
 	}
 	
 	/**

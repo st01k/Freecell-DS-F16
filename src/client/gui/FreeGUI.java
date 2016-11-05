@@ -1,57 +1,220 @@
 package client.gui;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+import engine.Engine;
+
 import utils.SysUtils;
 import static java.lang.System.out;
 
-import board.Board;
+import board.*;
 
 	/**
 	 * @author Ryan Whytsell
 	 */
 	public class FreeGUI extends javax.swing.JFrame {
-		
+
 		private static final long serialVersionUID = -2499184546285035594L;
-		
+
+		private static final int NUMCELLS = 4;
+		private static final int NUMPILES = 8;
 		private static final String SEP = SysUtils.getSeparator();
 		private static final String IMAGESDIR = SysUtils.getPath() + "resources" + SEP + "images" + SEP;
 		private static final String CARDIMAGESDIR = IMAGESDIR + "cards" + SEP;
-		
+
 		private static boolean debug = false;
-		
+
 		/**
 	     * Creates new form FreeGUI
 	     */
-	    public FreeGUI() 
+	    public FreeGUI()
 	    {
 	        initComponents();
 	    }
-	    public static void Paint(Board curboard)
+
+	    public void Paint(Board curboard)
 	    {
 	    	if (debug)
 	    	{
-	    		out.println("---engine.FreeGUI.paint---");
-	    		out.println(IMAGESDIR);
-	    		out.println(CARDIMAGESDIR);
+	    		out.println("\n---engine.FreeGUI.paint---");
 	    	}
+	    	
+	    	//-----------Free Cells------------
+	    	FreeCell[] freeArray = curboard.getFreecells().clone();
+	    	
+	    	for(int i = 0; i < freeArray.length; i++)
+	    	{
+	    		
+	    		//TODO testing this format - casey
+	    		String filename = "";
+	    		
+	    		if (freeArray[i].peekCard() == null) filename = "FreeCell.png";
+	    		else {
+	    			
+	    			filename = freeArray[i].peekCard().getRank() + freeArray[i].peekCard().getSuit() + ".png";
+	    		}
+	    		
+	    		freecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
+	    		// end test format
+	    		
+//		    	switch(i)
+//		    	{
+//			    	case(0):
+//			    	{
+//			    		if(freeArray[i].peekCard() == null) 
+//			    		{
+//			    			free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
+//			    		}
+//			    		else
+//			    		{
+//			    			free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
+//			    		}
+//			    	}
+//			    	case(1):
+//			    	{
+//			    		if(freeArray[i].peekCard() == null) 
+//			    		{
+//			    			free2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
+//			    		}
+//			    		else
+//			    		{
+//			    			free2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
+//			    		}
+//			    	}
+//			   		case(2):
+//			   		{
+//			   			if(freeArray[i].peekCard() == null) 
+//			    		{
+//			    			free3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
+//			    		}
+//			   			else
+//			    		{
+//			    			free3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
+//			    		}
+//			   		}
+//		    		case(3):
+//		    		{
+//		    			if(freeArray[i].peekCard() == null) 
+//			    		{
+//			    			free4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
+//			    		}
+//		    			else
+//			    		{
+//			    			free4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
+//			    		}			    		
+//		    		}
+//		    	}
+	    	}
+	    	
+	    	//----------Home Cells---------------------
+	    	
+	    	HomeCell[] homeArray = curboard.getHomecells().clone();
+
+	    	for(int i = 0; i < homeArray.length; i++)
+	    	{
+	    		//TODO testing this format - casey
+	    		String filename = "";
+	    		
+	    		if (homeArray[i].peekCard() == null) filename = "HomeCell.png";
+	    		else {
+	    			
+	    			filename = homeArray[i].peekCard().getRank() + homeArray[i].peekCard().getSuit() + ".png";
+	    		}
+	    		
+	    		homecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
+	    		// end test format
+	    		
+//		    	switch(i)
+//		    	{
+//			    	case(0):
+//			    	{
+//			    		if(homeArray[i].peekCard() == null) 
+//			    		{
+//			    			home1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
+//			    		}
+//			    		else
+//			    		{
+//			    			home1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
+//			    		}
+//			    	}
+//			    	case(1):
+//			    	{
+//			    		if(homeArray[i].peekCard() == null) 
+//			    		{
+//			    			home2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
+//			    		}
+//			    		else
+//			    		{
+//			    			home2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
+//			    		}
+//			    	}
+//			   		case(2):
+//			   		{
+//			   			if(homeArray[i].peekCard() == null) 
+//			    		{
+//			    			home3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
+//			    		}
+//			   			else
+//			    		{
+//			    			home3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
+//			    		}
+//			   		}
+//		    		case(3):
+//		    		{
+//		    			if(homeArray[i].peekCard() == null) 
+//			    		{
+//			    			home4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
+//			    		}
+//		    			else
+//			    		{
+//			    			home4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
+//			    		}			    		
+//		    		}
+//		    	}
+	    	}
+	    	
+	    	//-------------Playing Piles--------------
+	    	
+	    	// looks like you are planning on painting the piles by column?
+	    	// might be easier to grab a pile at a time and paint that
+	    	// so you don't have to break them down further.  i had to go by
+	    	// column in the cli because that's the only way it prints.
 	    }
-	    
+
+	    /**
+	     * Acts as a console
+	     * @param s String to show
+	     */
 	    public static void consoleOut(String s)
 	    {
 	    	Output.setText(s);
 	    }
-	    
+
 	    /**
 	     * This method is called from within the constructor to initialize the form.
 	     */
 	    private void initComponents() {
-	    	
+
 	    	// path test logged to console
-	    	if (debug) { 
-	    		out.println("---engine.FreeGUI.initComponents--- ");
-	    		out.println(IMAGESDIR);
-	    		out.println(CARDIMAGESDIR);
+	    	if (debug) {
+	    		out.println("\n---engine.FreeGUI.initComponents--- ");
 	    	}
 	    	
+	    	//TODO testing this format - casey
+	    	freecellJLabelAry = new javax.swing.JLabel[NUMCELLS];
+	    	
+	    	for (int i = 0; i < NUMCELLS; i++) {
+	    		freecellJLabelAry[i] = new javax.swing.JLabel();
+	    	}
+	    	
+	    	homecellJLabelAry = new javax.swing.JLabel[NUMCELLS];
+	    	
+	    	for (int i = 0; i < NUMCELLS; i++) {
+	    		homecellJLabelAry[i] = new javax.swing.JLabel();
+	    	}
+	    	// end test format
+
 	        BackgroundPan = new javax.swing.JLayeredPane();
 	        jLayeredPane1 = new javax.swing.JLayeredPane();
 	        TurnLabel = new javax.swing.JLabel();
@@ -1649,6 +1812,9 @@ import board.Board;
 	        BackgroundPan.add(R8C0);
 	        R8C0.setBounds(1120, 150, 86, 125);
 
+	        
+	        //TODO if you go with the arrays, i'm sure you'll have to do this stuff for those
+	        // didn't want to mess with all this though, and risk breaking anything.
 	        free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png")); // NOI18N
 	        free1.setToolTipText(null);
 	        free1.setMaximumSize(new java.awt.Dimension(86, 125));
@@ -1763,7 +1929,7 @@ import board.Board;
 	                NewDealBtnActionPerformed(evt);
 	            }
 
-				
+
 	        });
 
 	        javax.swing.GroupLayout MenuPanelLayout = new javax.swing.GroupLayout(MenuPanel);
@@ -1800,35 +1966,35 @@ import board.Board;
 	        setLocationRelativeTo(null);
 	        setAlwaysOnTop(true);
 	        pack();
-	    }                  
+	    }
 
-	    
+
 	    //TODO set button actions
-	    private void UndoBtnActionPerformed(java.awt.event.ActionEvent evt) 
-	    {                                        
-	        
-	    }
-	    
-	    private void RedoBtnActionPerformed(java.awt.event.ActionEvent evt) 
+	    private void UndoBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
-	    	
+	    	Engine.undo();
 	    }
-	    
-		private void HintBtnActionPerformed(java.awt.event.ActionEvent evt) 
+
+	    private void RedoBtnActionPerformed(java.awt.event.ActionEvent evt)
+	    {
+	    	Engine.redo();
+	    }
+
+		private void HintBtnActionPerformed(java.awt.event.ActionEvent evt)
 		{
-			
+			Engine.hint();
 		}
-	    
+
 		private void SolveBtnActionPerformed(java.awt.event.ActionEvent evt)
 		{
-			
+			Engine.solve();
 		}
-		
-	    private void NewDealBtnActionPerformed(java.awt.event.ActionEvent evt) 
+
+	    private void NewDealBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
-			
+	    	Engine.newDeal();
 		}
-	    
+
 	    /**
 	     * Toggles debug state.
 	     * Allows for debug statements to logger.
@@ -1837,12 +2003,18 @@ import board.Board;
 	    public static void toogleDebug() {
 	    	debug = !debug;
 	    }
-	    
+
 	    // TODO rename main for entry from driver
 	    /**
 	     * @param args the command line arguments
 	     */
-	    public static void start() {
+	    public void start() {
+
+	    	if(debug)
+	    	{
+	    	out.println("---client.gui.FreeGUI.start---");
+	    	}
+
 	        try {
 	            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 	                if ("Nimbus".equals(info.getName())) {
@@ -1865,7 +2037,7 @@ import board.Board;
 	            }
 	        });
 	    }
-                    
+
 	    private javax.swing.JLabel Background;
 	    private javax.swing.JLayeredPane BackgroundPan;
 	    private javax.swing.JButton HintBtn;
@@ -1873,174 +2045,180 @@ import board.Board;
 	    private javax.swing.JPanel MenuPanel;
 	    private javax.swing.JButton NewDealBtn;
 	    private static javax.swing.JLabel Output;
-	    private javax.swing.JLabel R1C0;
-	    private javax.swing.JLabel R1C1;
-	    private javax.swing.JLabel R1C10;
-	    private javax.swing.JLabel R1C11;
-	    private javax.swing.JLabel R1C12;
-	    private javax.swing.JLabel R1C13;
-	    private javax.swing.JLabel R1C14;
-	    private javax.swing.JLabel R1C15;
-	    private javax.swing.JLabel R1C16;
-	    private javax.swing.JLabel R1C17;
-	    private javax.swing.JLabel R1C18;
-	    private javax.swing.JLabel R1C2;
-	    private javax.swing.JLabel R1C3;
-	    private javax.swing.JLabel R1C4;
-	    private javax.swing.JLabel R1C5;
-	    private javax.swing.JLabel R1C6;
-	    private javax.swing.JLabel R1C7;
-	    private javax.swing.JLabel R1C8;
-	    private javax.swing.JLabel R1C9;
-	    private javax.swing.JLabel R2C0;
-	    private javax.swing.JLabel R2C1;
-	    private javax.swing.JLabel R2C10;
-	    private javax.swing.JLabel R2C11;
-	    private javax.swing.JLabel R2C12;
-	    private javax.swing.JLabel R2C13;
-	    private javax.swing.JLabel R2C14;
-	    private javax.swing.JLabel R2C15;
-	    private javax.swing.JLabel R2C16;
-	    private javax.swing.JLabel R2C17;
-	    private javax.swing.JLabel R2C18;
-	    private javax.swing.JLabel R2C2;
-	    private javax.swing.JLabel R2C3;
-	    private javax.swing.JLabel R2C4;
-	    private javax.swing.JLabel R2C5;
-	    private javax.swing.JLabel R2C6;
-	    private javax.swing.JLabel R2C7;
-	    private javax.swing.JLabel R2C8;
-	    private javax.swing.JLabel R2C9;
-	    private javax.swing.JLabel R3C0;
-	    private javax.swing.JLabel R3C1;
-	    private javax.swing.JLabel R3C10;
-	    private javax.swing.JLabel R3C11;
-	    private javax.swing.JLabel R3C12;
-	    private javax.swing.JLabel R3C13;
-	    private javax.swing.JLabel R3C14;
-	    private javax.swing.JLabel R3C15;
-	    private javax.swing.JLabel R3C16;
-	    private javax.swing.JLabel R3C17;
-	    private javax.swing.JLabel R3C18;
-	    private javax.swing.JLabel R3C2;
-	    private javax.swing.JLabel R3C3;
-	    private javax.swing.JLabel R3C4;
-	    private javax.swing.JLabel R3C5;
-	    private javax.swing.JLabel R3C6;
-	    private javax.swing.JLabel R3C7;
-	    private javax.swing.JLabel R3C8;
-	    private javax.swing.JLabel R3C9;
-	    private javax.swing.JLabel R4C0;
-	    private javax.swing.JLabel R4C1;
-	    private javax.swing.JLabel R4C10;
-	    private javax.swing.JLabel R4C11;
-	    private javax.swing.JLabel R4C12;
-	    private javax.swing.JLabel R4C13;
-	    private javax.swing.JLabel R4C14;
-	    private javax.swing.JLabel R4C15;
-	    private javax.swing.JLabel R4C16;
-	    private javax.swing.JLabel R4C17;
-	    private javax.swing.JLabel R4C18;
-	    private javax.swing.JLabel R4C2;
-	    private javax.swing.JLabel R4C3;
-	    private javax.swing.JLabel R4C4;
-	    private javax.swing.JLabel R4C5;
-	    private javax.swing.JLabel R4C6;
-	    private javax.swing.JLabel R4C7;
-	    private javax.swing.JLabel R4C8;
-	    private javax.swing.JLabel R4C9;
-	    private javax.swing.JLabel R5C0;
-	    private javax.swing.JLabel R5C1;
-	    private javax.swing.JLabel R5C10;
-	    private javax.swing.JLabel R5C11;
-	    private javax.swing.JLabel R5C12;
-	    private javax.swing.JLabel R5C13;
-	    private javax.swing.JLabel R5C14;
-	    private javax.swing.JLabel R5C15;
-	    private javax.swing.JLabel R5C16;
-	    private javax.swing.JLabel R5C17;
-	    private javax.swing.JLabel R5C18;
-	    private javax.swing.JLabel R5C2;
-	    private javax.swing.JLabel R5C3;
-	    private javax.swing.JLabel R5C4;
-	    private javax.swing.JLabel R5C5;
-	    private javax.swing.JLabel R5C6;
-	    private javax.swing.JLabel R5C7;
-	    private javax.swing.JLabel R5C8;
-	    private javax.swing.JLabel R5C9;
-	    private javax.swing.JLabel R6C0;
-	    private javax.swing.JLabel R6C1;
-	    private javax.swing.JLabel R6C10;
-	    private javax.swing.JLabel R6C11;
-	    private javax.swing.JLabel R6C12;
-	    private javax.swing.JLabel R6C13;
-	    private javax.swing.JLabel R6C14;
-	    private javax.swing.JLabel R6C15;
-	    private javax.swing.JLabel R6C16;
-	    private javax.swing.JLabel R6C17;
-	    private javax.swing.JLabel R6C18;
-	    private javax.swing.JLabel R6C2;
-	    private javax.swing.JLabel R6C3;
-	    private javax.swing.JLabel R6C4;
-	    private javax.swing.JLabel R6C5;
-	    private javax.swing.JLabel R6C6;
-	    private javax.swing.JLabel R6C7;
-	    private javax.swing.JLabel R6C8;
-	    private javax.swing.JLabel R6C9;
-	    private javax.swing.JLabel R7C0;
-	    private javax.swing.JLabel R7C1;
-	    private javax.swing.JLabel R7C10;
-	    private javax.swing.JLabel R7C11;
-	    private javax.swing.JLabel R7C12;
-	    private javax.swing.JLabel R7C13;
-	    private javax.swing.JLabel R7C14;
-	    private javax.swing.JLabel R7C15;
-	    private javax.swing.JLabel R7C16;
-	    private javax.swing.JLabel R7C17;
-	    private javax.swing.JLabel R7C18;
-	    private javax.swing.JLabel R7C2;
-	    private javax.swing.JLabel R7C3;
-	    private javax.swing.JLabel R7C4;
-	    private javax.swing.JLabel R7C5;
-	    private javax.swing.JLabel R7C6;
-	    private javax.swing.JLabel R7C7;
-	    private javax.swing.JLabel R7C8;
-	    private javax.swing.JLabel R7C9;
-	    private javax.swing.JLabel R8C0;
-	    private javax.swing.JLabel R8C1;
-	    private javax.swing.JLabel R8C10;
-	    private javax.swing.JLabel R8C11;
-	    private javax.swing.JLabel R8C12;
-	    private javax.swing.JLabel R8C13;
-	    private javax.swing.JLabel R8C14;
-	    private javax.swing.JLabel R8C15;
-	    private javax.swing.JLabel R8C16;
-	    private javax.swing.JLabel R8C17;
-	    private javax.swing.JLabel R8C18;
-	    private javax.swing.JLabel R8C2;
-	    private javax.swing.JLabel R8C3;
-	    private javax.swing.JLabel R8C4;
-	    private javax.swing.JLabel R8C5;
-	    private javax.swing.JLabel R8C6;
-	    private javax.swing.JLabel R8C7;
-	    private javax.swing.JLabel R8C8;
-	    private javax.swing.JLabel R8C9;
-	    private javax.swing.JButton RedoBtn;
-	    private javax.swing.JLabel Solvable;
-	    private javax.swing.JLabel SolvableLable;
-	    private javax.swing.JButton SolveBtn;
-	    private javax.swing.JLabel Time;
-	    private javax.swing.JLabel TimeLabel;
-	    private javax.swing.JLabel Turn;
-	    private javax.swing.JLabel TurnLabel;
-	    private javax.swing.JButton UndoBtn;
-	    private javax.swing.JLabel free1;
-	    private javax.swing.JLabel free2;
-	    private javax.swing.JLabel free3;
-	    private javax.swing.JLabel free4;
-	    private javax.swing.JLabel home1;
-	    private javax.swing.JLabel home2;
-	    private javax.swing.JLabel home3;
-	    private javax.swing.JLabel home4;
+	    private static javax.swing.JLabel R1C0;
+	    private static javax.swing.JLabel R1C1;
+	    private static javax.swing.JLabel R1C10;
+	    private static javax.swing.JLabel R1C11;
+	    private static javax.swing.JLabel R1C12;
+	    private static javax.swing.JLabel R1C13;
+	    private static javax.swing.JLabel R1C14;
+	    private static javax.swing.JLabel R1C15;
+	    private static javax.swing.JLabel R1C16;
+	    private static javax.swing.JLabel R1C17;
+	    private static javax.swing.JLabel R1C18;
+	    private static javax.swing.JLabel R1C2;
+	    private static javax.swing.JLabel R1C3;
+	    private static javax.swing.JLabel R1C4;
+	    private static javax.swing.JLabel R1C5;
+	    private static javax.swing.JLabel R1C6;
+	    private static javax.swing.JLabel R1C7;
+	    private static javax.swing.JLabel R1C8;
+	    private static javax.swing.JLabel R1C9;
+	    private static javax.swing.JLabel R2C0;
+	    private static javax.swing.JLabel R2C1;
+	    private static javax.swing.JLabel R2C10;
+	    private static javax.swing.JLabel R2C11;
+	    private static javax.swing.JLabel R2C12;
+	    private static javax.swing.JLabel R2C13;
+	    private static javax.swing.JLabel R2C14;
+	    private static javax.swing.JLabel R2C15;
+	    private static javax.swing.JLabel R2C16;
+	    private static javax.swing.JLabel R2C17;
+	    private static javax.swing.JLabel R2C18;
+	    private static javax.swing.JLabel R2C2;
+	    private static javax.swing.JLabel R2C3;
+	    private static javax.swing.JLabel R2C4;
+	    private static javax.swing.JLabel R2C5;
+	    private static javax.swing.JLabel R2C6;
+	    private static javax.swing.JLabel R2C7;
+	    private static javax.swing.JLabel R2C8;
+	    private static javax.swing.JLabel R2C9;
+	    private static javax.swing.JLabel R3C0;
+	    private static javax.swing.JLabel R3C1;
+	    private static javax.swing.JLabel R3C10;
+	    private static javax.swing.JLabel R3C11;
+	    private static javax.swing.JLabel R3C12;
+	    private static javax.swing.JLabel R3C13;
+	    private static javax.swing.JLabel R3C14;
+	    private static javax.swing.JLabel R3C15;
+	    private static javax.swing.JLabel R3C16;
+	    private static javax.swing.JLabel R3C17;
+	    private static javax.swing.JLabel R3C18;
+	    private static javax.swing.JLabel R3C2;
+	    private static javax.swing.JLabel R3C3;
+	    private static javax.swing.JLabel R3C4;
+	    private static javax.swing.JLabel R3C5;
+	    private static javax.swing.JLabel R3C6;
+	    private static javax.swing.JLabel R3C7;
+	    private static javax.swing.JLabel R3C8;
+	    private static javax.swing.JLabel R3C9;
+	    private static javax.swing.JLabel R4C0;
+	    private static javax.swing.JLabel R4C1;
+	    private static javax.swing.JLabel R4C10;
+	    private static javax.swing.JLabel R4C11;
+	    private static javax.swing.JLabel R4C12;
+	    private static javax.swing.JLabel R4C13;
+	    private static javax.swing.JLabel R4C14;
+	    private static javax.swing.JLabel R4C15;
+	    private static javax.swing.JLabel R4C16;
+	    private static javax.swing.JLabel R4C17;
+	    private static javax.swing.JLabel R4C18;
+	    private static javax.swing.JLabel R4C2;
+	    private static javax.swing.JLabel R4C3;
+	    private static javax.swing.JLabel R4C4;
+	    private static javax.swing.JLabel R4C5;
+	    private static javax.swing.JLabel R4C6;
+	    private static javax.swing.JLabel R4C7;
+	    private static javax.swing.JLabel R4C8;
+	    private static javax.swing.JLabel R4C9;
+	    private static javax.swing.JLabel R5C0;
+	    private static javax.swing.JLabel R5C1;
+	    private static javax.swing.JLabel R5C10;
+	    private static javax.swing.JLabel R5C11;
+	    private static javax.swing.JLabel R5C12;
+	    private static javax.swing.JLabel R5C13;
+	    private static javax.swing.JLabel R5C14;
+	    private static javax.swing.JLabel R5C15;
+	    private static javax.swing.JLabel R5C16;
+	    private static javax.swing.JLabel R5C17;
+	    private static javax.swing.JLabel R5C18;
+	    private static javax.swing.JLabel R5C2;
+	    private static javax.swing.JLabel R5C3;
+	    private static javax.swing.JLabel R5C4;
+	    private static javax.swing.JLabel R5C5;
+	    private static javax.swing.JLabel R5C6;
+	    private static javax.swing.JLabel R5C7;
+	    private static javax.swing.JLabel R5C8;
+	    private static javax.swing.JLabel R5C9;
+	    private static javax.swing.JLabel R6C0;
+	    private static javax.swing.JLabel R6C1;
+	    private static javax.swing.JLabel R6C10;
+	    private static javax.swing.JLabel R6C11;
+	    private static javax.swing.JLabel R6C12;
+	    private static javax.swing.JLabel R6C13;
+	    private static javax.swing.JLabel R6C14;
+	    private static javax.swing.JLabel R6C15;
+	    private static javax.swing.JLabel R6C16;
+	    private static javax.swing.JLabel R6C17;
+	    private static javax.swing.JLabel R6C18;
+	    private static javax.swing.JLabel R6C2;
+	    private static javax.swing.JLabel R6C3;
+	    private static javax.swing.JLabel R6C4;
+	    private static javax.swing.JLabel R6C5;
+	    private static javax.swing.JLabel R6C6;
+	    private static javax.swing.JLabel R6C7;
+	    private static javax.swing.JLabel R6C8;
+	    private static javax.swing.JLabel R6C9;
+	    private static javax.swing.JLabel R7C0;
+	    private static javax.swing.JLabel R7C1;
+	    private static javax.swing.JLabel R7C10;
+	    private static javax.swing.JLabel R7C11;
+	    private static javax.swing.JLabel R7C12;
+	    private static javax.swing.JLabel R7C13;
+	    private static javax.swing.JLabel R7C14;
+	    private static javax.swing.JLabel R7C15;
+	    private static javax.swing.JLabel R7C16;
+	    private static javax.swing.JLabel R7C17;
+	    private static javax.swing.JLabel R7C18;
+	    private static javax.swing.JLabel R7C2;
+	    private static javax.swing.JLabel R7C3;
+	    private static javax.swing.JLabel R7C4;
+	    private static javax.swing.JLabel R7C5;
+	    private static javax.swing.JLabel R7C6;
+	    private static javax.swing.JLabel R7C7;
+	    private static javax.swing.JLabel R7C8;
+	    private static javax.swing.JLabel R7C9;
+	    private static javax.swing.JLabel R8C0;
+	    private static javax.swing.JLabel R8C1;
+	    private static javax.swing.JLabel R8C10;
+	    private static javax.swing.JLabel R8C11;
+	    private static javax.swing.JLabel R8C12;
+	    private static javax.swing.JLabel R8C13;
+	    private static javax.swing.JLabel R8C14;
+	    private static javax.swing.JLabel R8C15;
+	    private static javax.swing.JLabel R8C16;
+	    private static javax.swing.JLabel R8C17;
+	    private static javax.swing.JLabel R8C18;
+	    private static javax.swing.JLabel R8C2;
+	    private static javax.swing.JLabel R8C3;
+	    private static javax.swing.JLabel R8C4;
+	    private static javax.swing.JLabel R8C5;
+	    private static javax.swing.JLabel R8C6;
+	    private static javax.swing.JLabel R8C7;
+	    private static javax.swing.JLabel R8C8;
+	    private static javax.swing.JLabel R8C9;
+	    private static javax.swing.JButton RedoBtn;
+	    private static javax.swing.JLabel Solvable;
+	    private static javax.swing.JLabel SolvableLable;
+	    private static javax.swing.JButton SolveBtn;
+	    private static javax.swing.JLabel Time;
+	    private static javax.swing.JLabel TimeLabel;
+	    private static javax.swing.JLabel Turn;
+	    private static javax.swing.JLabel TurnLabel;
+	    private static javax.swing.JButton UndoBtn;
+	    
+	    //TODO testing this format - casey
+	    private static javax.swing.JLabel[] freecellJLabelAry;
+	    private static javax.swing.JLabel[] homecellJLabelAry;
+	    // end test format
+	    
+	    private static javax.swing.JLabel free1;
+	    private static javax.swing.JLabel free2;
+	    private static javax.swing.JLabel free3;
+	    private static javax.swing.JLabel free4;
+	    private static javax.swing.JLabel home1;
+	    private static javax.swing.JLabel home2;
+	    private static javax.swing.JLabel home3;
+	    private static javax.swing.JLabel home4;
 	    private javax.swing.JLayeredPane jLayeredPane1;
 }
