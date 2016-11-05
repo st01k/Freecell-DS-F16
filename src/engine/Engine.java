@@ -3,6 +3,8 @@ package engine;
 import static java.lang.System.out;
 
 import java.util.Stack;
+
+import client.cli.CLI;
 import client.gui.FreeGUI;
 import board.Board;
 
@@ -19,6 +21,7 @@ public class Engine
 	private static boolean debug = false;
 	private static Board curBoard;
 	private static Stack<Board> history;
+	private static String src, dest = "";
 	
 	// Initialization ---------------------------------------------------------
 	/**
@@ -78,11 +81,37 @@ public class Engine
 			else out.println(curBoard);
 			
 			//TODO auto stacks
-			Turn turn = new Turn(isGui, ++moveNum, curBoard);
+			
+			if (isGui) {
+				src = "";
+				dest = "";
+			}
+			else {
+				src = getSourceCLI();
+				dest = getDestCLI();
+			}
+			
+			Turn turn = new Turn(isGui, ++moveNum, curBoard, src, dest);
 			curBoard.updateBoardStats(turn);
 			
 			snapshot();
 		}
+	}
+	
+	private static String getSourceCLI() {
+		return CLI.inGame("source");
+	}
+	
+	private static String getDestCLI() {
+		return CLI.inGame("dest");
+	}
+	
+	public static void setSourceGUI(String in) {
+		src = in;
+	}
+	
+	public static void setDestGUI(String in) {
+		dest = in;
 	}
 	
 	// In-game Action Handlers ------------------------------------------------

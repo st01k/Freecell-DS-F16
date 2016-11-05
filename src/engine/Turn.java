@@ -24,6 +24,8 @@ public class Turn {
 	private int moveNum;
 	private String turnString;
 	private Board board;
+	private String srcKey;
+	private String destKey;
 	
 	/**
 	 * Creates a freecell turn with statistics.
@@ -31,14 +33,16 @@ public class Turn {
 	 * @param move move number
 	 * @param b current board
 	 */
-	public Turn(boolean isGui, int move, Board b) {
+	public Turn(boolean isGui, int move, Board b, String src, String dest) {
 		
 		moveNum = move;
 		board = b;
+		srcKey = src;
+		destKey = dest;
 		winnable = isWinnable();
 		
 		if (isGui) guiTurn();
-		else cliTurn();		
+		else cliTurn();
 	}
 	
 	// Accessors --------------------------------------------------------------
@@ -69,24 +73,12 @@ public class Turn {
 	 * Returns true if the turn successfully changes the board.
 	 * @return true if the move is successful
 	 */
-	public void cliTurn() {
+	private void cliTurn() {
 		
 		if (debug) out.println("\n---engine.Turn.cliTurn---");
-		//FIXME new line throws an exception
-		out.print("\nEnter position of the card to move: ");
-		String from = scan.nextLine();
-		String src = checkInput(from);
-		
-		out.print("Enter destination position: ");
-		String to = scan.nextLine();
-		String dest = checkInput(to);
-		
-		out.println();
-		
-		turnString = "src key: " + src + " | dest key: " + dest;
 		if (debug) out.println(this);
 		
-		if (!board.makeMove(src, dest)) 
+		if (!board.makeMove(srcKey, destKey)) 
 			out.println("invalid move detected in engine.Turn.cliTurn");
 	}
 	
@@ -99,14 +91,15 @@ public class Turn {
 	 */
 	public void guiTurn() {
 		
-		if (debug) out.println("\n---engine.Turn.guiTurn---");
-		// TODO feed me!
-		// only need src and dest mapping to make move
-		//board.makeMove(src, dest);
+		if (debug) out.println("\n---engine.Turn.guiTurn---");		
+		if (debug) out.println(this);
 		
-		if (debug) out.println("GUI turn is empty.  Press enter.");
-		scan.nextLine();	// added to stop infinite loop in engine
-		turnString = "build gui turn string in Turn.guiTurn";
+		if (!board.makeMove(srcKey, destKey)) 
+			out.println("invalid move detected in engine.Turn.guiTurn");
+		
+		// added to stop infinite loop in engine
+		if (debug) out.println("\nGUI turn is empty.  Press enter.");
+		scan.nextLine();
 	}
 	
 	// Utilities --------------------------------------------------------------	
@@ -116,30 +109,8 @@ public class Turn {
 	@Override
 	public String toString() {
 		
-		return turnString + " | move number: " + moveNum + " | winnable: " + winnable;
-	}
-
-	/**
-	 * Checks for exit command and validates user input.
-	 * Exits if exit command is detected.
-	 * @param s user input
-	 * @return validated input
-	 */
-	private static String checkInput(String s) {
-		
-		//FIXME new line throws an exception
-		if (s.matches("exit")) SysUtils.exitDoor
-			("Exit from cliTurn @ input move");
-				
-		s = s.substring(0, 1).toLowerCase();
-		
-		while (!s.matches("[a-p]")) {
-			out.println("Invalid position.  Re-enter: ");
-			s = scan.nextLine();
-			s = s.substring(0, 1).toLowerCase();
-		}
-		
-		return s;
+		return "src key: " + srcKey + " | dest key: " + destKey + 
+				" | move number: " + moveNum + " | winnable: " + winnable;
 	}
 	
 	/**
