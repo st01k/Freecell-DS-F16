@@ -115,6 +115,16 @@ public class Board {
 	}
 
 	// Update -----------------------------------------------------------------
+	/**
+	 * Tries to place a card, if it fails returns false.
+	 * If successful returns true.
+	 * -2 : card into next available free cell
+	 * -1 : card into next available (or matching suit) home cell
+	 * 0 - 7 : card into respective playing pile
+	 * @param src source card mapped position
+	 * @param dest mapped destination
+	 * @return true on legal move; false otherwise
+	 */
 	public boolean tryMove(String src, String dest) {
 		
 		if (debug) out.println("\n---board.Board.tryMove---");
@@ -154,10 +164,8 @@ public class Board {
 	}
 	
 	/**
-	 * Moves a card from its source to a destination.
-	 * -2 : card into next available free cell
-	 * -1 : card into next available (or matching suit) home cell
-	 * 0 - 7 : card into respective playing pile
+	 * Attempts move.  If successful moves a card from its source 
+	 * to the mapped destination.  Returns false on failure.
 	 * @param src source position
 	 * @param dest destination position
 	 * @return true if card was successfully moved
@@ -177,9 +185,8 @@ public class Board {
 	}
 	
 	/**
-	 * Updates the statistics on the board
-	 * for live status and board snapshot.
-	 * @param t turn to update to
+	 * Updates the statistics on the board for live status and board snapshot.
+	 * @param t updated turn number
 	 */
 	public void updateBoardStats(Turn t) {
 		
@@ -296,56 +303,13 @@ public class Board {
 	
 	// Mapping ----------------------------------------------------------------
 	/**
-	 * Removes card from its current position on the board.
-	 * @param src mapped source position of card
-	 * @return card in the source position
-	 */
-	StdCard removeSource(String src) {
-		
-		if (debug) out.println("\n---board.Board.sourceSwitch---");
-		
-		StdCard c = null;
-		
-		switch(src) {
-		// freecells
-		case "a"	:	c = freeAry[0].removeCard();	break;
-		case "b"	:	c = freeAry[1].removeCard();	break;
-		case "c"	:	c = freeAry[2].removeCard();	break;
-		case "d"	:	c = freeAry[3].removeCard();	break;
-		// homecells
-		case "e"	:
-		case "f"	:
-		case "g"	:
-		case "h"	:
-			if (debug) out.println
-				("ERROR: homecell remove in board.Board.sourceSwitch");
-			break;
-		// playing piles
-		case "i"	:	c = pileAry[0].removeCard();	break;
-		case "j"	:	c = pileAry[1].removeCard();	break;
-		case "k"	:	c = pileAry[2].removeCard();	break;
-		case "l"	:	c = pileAry[3].removeCard();	break;
-		case "m"	:	c = pileAry[4].removeCard();	break;
-		case "n"	:	c = pileAry[5].removeCard();	break;
-		case "o"	:	c = pileAry[6].removeCard();	break;
-		case "p"	:	c = pileAry[7].removeCard();	break;
-			
-		default		:
-			if (debug) out.println
-				("ERROR: invalid input in board.Board.sourceSwitch");
-		}
-		if (debug) out.println("removed: " + c);
-		return c;
-	}
-	
-	/**
 	 * Shows card at mapped position on the board.
 	 * @param src mapped source position of card
 	 * @return card in the source position
 	 */
 	StdCard showSource(String src) {
 		
-		if (debug) out.println("\n---board.Board.sourceSwitch---");
+		if (debug) out.println("\n---board.Board.showSource---");
 		
 		StdCard c = null;
 		
@@ -361,7 +325,7 @@ public class Board {
 		case "g"	:
 		case "h"	:
 			if (debug) out.println
-				("ERROR: homecell remove in board.Board.sourceSwitch");
+				("ERROR: homecell remove in board.Board.showSource");
 			break;
 		// playing piles
 		case "i"	:	c = pileAry[0].peekLastCard();	break;
@@ -375,9 +339,52 @@ public class Board {
 			
 		default		:
 			if (debug) out.println
-				("ERROR: invalid input in board.Board.sourceSwitch");
+				("ERROR: invalid input in board.Board.showSource");
 		}
 		if (debug) out.println("source card: " + c);
+		return c;
+	}
+	
+	/**
+	 * Removes card from its current position on the board.
+	 * @param src mapped source position of card
+	 * @return card in the source position
+	 */
+	StdCard removeSource(String src) {
+		
+		if (debug) out.println("\n---board.Board.removeSource---");
+		
+		StdCard c = null;
+		
+		switch(src) {
+		// freecells
+		case "a"	:	c = freeAry[0].removeCard();	break;
+		case "b"	:	c = freeAry[1].removeCard();	break;
+		case "c"	:	c = freeAry[2].removeCard();	break;
+		case "d"	:	c = freeAry[3].removeCard();	break;
+		// homecells
+		case "e"	:
+		case "f"	:
+		case "g"	:
+		case "h"	:
+			if (debug) out.println
+				("ERROR: homecell remove in board.Board.removeSource");
+			break;
+		// playing piles
+		case "i"	:	c = pileAry[0].removeCard();	break;
+		case "j"	:	c = pileAry[1].removeCard();	break;
+		case "k"	:	c = pileAry[2].removeCard();	break;
+		case "l"	:	c = pileAry[3].removeCard();	break;
+		case "m"	:	c = pileAry[4].removeCard();	break;
+		case "n"	:	c = pileAry[5].removeCard();	break;
+		case "o"	:	c = pileAry[6].removeCard();	break;
+		case "p"	:	c = pileAry[7].removeCard();	break;
+			
+		default		:
+			if (debug) out.println
+				("ERROR: invalid input in board.Board.removeSource");
+		}
+		if (debug) out.println("removed: " + c);
 		return c;
 	}
 	

@@ -11,17 +11,19 @@ import utils.*;
 /**
  * Freecell command-line interface.
  * @author Casey
- * @version 1.2
+ * @version 1.3
  */
 public class CLI {
 	
-	// static variables
-	private static boolean debug = false;
+	// static constants
 	private static final Scanner scan = new Scanner(System.in);
 	private static final String dbgStr = "[debug]";
 	
+	// static variables
 	private static String prompt;
+	private static boolean debug = false;
 	
+	// Prompts ----------------------------------------------------------------
 	/**
 	 * Main prompt.
 	 */
@@ -129,6 +131,7 @@ public class CLI {
 		return "somethin's jacked";
 	}
 	
+	// Prints -----------------------------------------------------------------
 	/**
 	 * Prints commands.
 	 */
@@ -148,7 +151,7 @@ public class CLI {
 		out.println("new\tResets game with a new deal");
 		out.println("cls\tClear screen");
 		out.println("cred\tPrints credits");
-		out.println("exit\tExits current prompt");
+		out.println("exit\tExits program");
 		out.println();
 		cliInstructions();
 	}
@@ -159,10 +162,11 @@ public class CLI {
 	public static void cliInstructions() {
 		
 		out.println("CLI Freecell Instructions:");
-		out.println("--------------------------------------------------------");
+		out.println("----------------------------------------------------------");
 		out.println("Cell positions are referenced by the top letters.");
 		out.println("Pile positions are referenced by the bottom letters.");
 		out.println("Cards inserted into cells will fill the next open cell.");
+		out.println("If card is bound for a home cell, it will auto match suit.");
 		out.println("\nBlack: Spades & Clubs     |\t Red: Hearts & Diamonds");
 		out.println();
 	}
@@ -192,6 +196,7 @@ public class CLI {
 		out.println();
 	}
 	
+	// Utilities --------------------------------------------------------------
 	/**
 	 * Prints a form feed to screen.  Scrolls up specified lines.
 	 * Amount is specified with FFSZ constant.

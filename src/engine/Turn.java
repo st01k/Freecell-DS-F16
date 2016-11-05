@@ -83,8 +83,6 @@ public class Turn {
 				("invalid move detected in engine.Turn.cliTurn");
 	}
 	
-	//TODO automate free and home cell entry with double click
-	// so that cards go into next available slot
 	/**
 	 * Waits for user turn input from gui.
 	 * Returns true if the turn successfully changes the board.

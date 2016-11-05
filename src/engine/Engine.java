@@ -44,9 +44,9 @@ public class Engine
 	 * Initializes GUI if in GUI mode.
 	 * @return gui, null if CLI mode
 	 */
-	private static FreeGUI startGUI() {
+	private static FreeGUI checkUiMode() {
 		
-		if (debug) out.println("\n---engine.Engine.startGUI---");
+		if (debug) out.println("\n---engine.Engine.checkUiMode---");
 		if (isGui) {
 			
 			FreeGUI gui = new FreeGUI();
@@ -67,7 +67,7 @@ public class Engine
 		moveNum = 0;
 		snapshot();
 		
-		FreeGUI gui = startGUI();
+		FreeGUI gui = checkUiMode();
 		
 		while(!gameOver) {
 			
@@ -95,6 +95,7 @@ public class Engine
 				dest = getDestCLI();
 			}
 			
+			//TODO if illegal move, don't inc moveNum
 			Turn turn = new Turn(isGui, ++moveNum, curBoard, src, dest);
 			curBoard.updateBoardStats(turn);
 			
@@ -125,6 +126,7 @@ public class Engine
 		curBoard = new Board();
 		history = new Stack<Board>();
 		moveNum = 0;
+		snapshot();
 		if (!isGui) out.println(curBoard);
 		// else gui.paint
 	}
@@ -144,6 +146,8 @@ public class Engine
 	public static void solve() {
 		if (debug) out.println("event: Solve clicked");
 	}
+	
+	//TODO automate free and home cell entry with double click
 	
 	// Utilities --------------------------------------------------------------
 	/**
