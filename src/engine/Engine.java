@@ -3,7 +3,6 @@ package engine;
 import static java.lang.System.out;
 
 import java.util.Stack;
-
 import client.cli.CLI;
 import client.gui.FreeGUI;
 import board.Board;
@@ -21,7 +20,8 @@ public class Engine
 	private static boolean debug = false;
 	private static Board curBoard;
 	private static Stack<Board> history;
-	private static String src, dest = "";
+	private static String src, dest;
+	private static int moveNum;
 	
 	// Initialization ---------------------------------------------------------
 	/**
@@ -44,9 +44,9 @@ public class Engine
 	 * Initializes GUI if in GUI mode.
 	 * @return gui, null if CLI mode
 	 */
-	private static FreeGUI startGUI() {
+	private static FreeGUI checkUiMode() {
 		
-		if (debug) out.println("\n---engine.Engine.startGUI---");
+		if (debug) out.println("\n---engine.Engine.checkUiMode---");
 		if (isGui) {
 			
 			FreeGUI gui = new FreeGUI();
@@ -64,10 +64,10 @@ public class Engine
 		
 		if (debug) out.println("---engine.Engine.gameLoop---");
 		
-		int moveNum = 0;
+		moveNum = 0;
 		snapshot();
 		
-		FreeGUI gui = startGUI();
+		FreeGUI gui = checkUiMode();
 		
 		while(!gameOver) {
 			
@@ -83,14 +83,19 @@ public class Engine
 			//TODO auto stacks
 			
 			if (isGui) {
-				src = "";
-				dest = "";
+				
+				// needs to be attached to mouse events
+				// and GUI setters
+				//TODO filler moves
+				src = "i";
+				dest = "a";
 			}
 			else {
 				src = getSourceCLI();
 				dest = getDestCLI();
 			}
 			
+			//TODO if illegal move, don't inc moveNum
 			Turn turn = new Turn(isGui, ++moveNum, curBoard, src, dest);
 			curBoard.updateBoardStats(turn);
 			
@@ -117,6 +122,13 @@ public class Engine
 	// In-game Action Handlers ------------------------------------------------
 	public static void newDeal() {
 		if (debug) out.println("event: New Deal clicked");
+		
+		curBoard = new Board();
+		history = new Stack<Board>();
+		moveNum = 0;
+		snapshot();
+		if (!isGui) out.println(curBoard);
+		// else gui.paint
 	}
 	
 	public static void undo() {
@@ -134,6 +146,8 @@ public class Engine
 	public static void solve() {
 		if (debug) out.println("event: Solve clicked");
 	}
+	
+	//TODO automate free and home cell entry with double click
 	
 	// Utilities --------------------------------------------------------------
 	/**
