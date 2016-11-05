@@ -21,6 +21,7 @@ public class Engine
 	private static Board curBoard;
 	private static Stack<Board> history;
 	private static String src, dest;
+	private static int moveNum;
 	
 	// Initialization ---------------------------------------------------------
 	/**
@@ -63,7 +64,7 @@ public class Engine
 		
 		if (debug) out.println("---engine.Engine.gameLoop---");
 		
-		int moveNum = 0;
+		moveNum = 0;
 		snapshot();
 		
 		FreeGUI gui = startGUI();
@@ -120,6 +121,12 @@ public class Engine
 	// In-game Action Handlers ------------------------------------------------
 	public static void newDeal() {
 		if (debug) out.println("event: New Deal clicked");
+		
+		curBoard = new Board();
+		history = new Stack<Board>();
+		moveNum = 0;
+		if (!isGui) out.println(curBoard);
+		// else gui.paint
 	}
 	
 	public static void undo() {

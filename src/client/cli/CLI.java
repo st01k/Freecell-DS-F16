@@ -65,6 +65,8 @@ public class CLI {
 				break;
 			case ("show")	: out.println("Only available in game.");
 				break;
+			case ("new")	: out.println("Only available in game.");
+				break;
 			case ("cls") 	: formFeed();
 				break; 
 			case ("cred")	: credz();
@@ -108,6 +110,8 @@ public class CLI {
 				break;
 			case ("show")	: Engine.printSnapshot();
 				break;
+			case ("new")	: Engine.newDeal();
+				break;
 			case ("cls") 	: formFeed();
 				break; 
 			case ("cred")	: credz();
@@ -141,6 +145,7 @@ public class CLI {
 		out.println("gui\tStarts game in GUI");
 		out.println("cli\tStarts game in CLI");
 		out.println("show\tReprints current board");
+		out.println("new\tResets game with a new deal");
 		out.println("cls\tClear screen");
 		out.println("cred\tPrints credits");
 		out.println("exit\tExits current prompt");

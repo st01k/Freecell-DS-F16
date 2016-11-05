@@ -125,6 +125,7 @@ public class Board {
 		if (debug) out.println("source card: " + sourceCard 
 				+ "dest pos: " + destination);
 		
+		if (sourceCard == null) return false;
 		switch(destination) {
 		// into freecell
 		case -2	:
@@ -170,7 +171,7 @@ public class Board {
 			return true;
 		}
 		else {
-			out.println("Illegal move.");
+			out.println("\nIllegal move.");
 			return false;
 		}
 	}
