@@ -381,7 +381,6 @@ public class Board {
 			if (debug) out.println
 				("ERROR: invalid input in board.Board.removeSource");
 		}
-		if (debug) out.println("removed card: " + c);
 		return c;
 	}
 	

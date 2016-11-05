@@ -95,7 +95,7 @@ public class Engine
 				dest = getDestCLI();
 			}
 			
-			//TODO if illegal move, don't inc moveNum
+			//TODO if illegal move, don't inc move count
 			Turn turn = new Turn(isGui, ++moveNum, curBoard, src, dest);
 			curBoard.updateBoardStats(turn);
 			

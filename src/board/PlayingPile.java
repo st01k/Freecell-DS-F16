@@ -58,10 +58,18 @@ public class PlayingPile {
 	StdCard removeCard() {
 		
 		if (debug) out.println("\n---board.PlayingPile.removeCard---");
-		if (!pile.isEmpty()) return pile.remove(pile.size() - 1);
-		if (debug) out.println("Playing pile is empty.");
 		
-		return null;
+		if (pile.isEmpty()) {
+			
+			if (debug) out.println("Playing pile is empty.");
+			return null;
+		}
+		else {
+			
+			if (debug) out.println("removed card: " + peekLastCard());
+			return pile.remove(pile.size() - 1);
+		}
+		
 	}
 
 	// List Information -------------------------------------------------------
