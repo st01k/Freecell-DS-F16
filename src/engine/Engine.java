@@ -18,10 +18,11 @@ public class Engine
 	private static boolean isGui = false;
 	private static boolean gameOver = false;
 	private static boolean debug = false;
+	private static int moveNum;
+	private static String src, dest;
 	private static Board curBoard;
 	private static Stack<Board> history;
-	private static String src, dest;
-	private static int moveNum;
+	private static FreeGUI gui;
 	
 	// Initialization ---------------------------------------------------------
 	/**
@@ -48,7 +49,7 @@ public class Engine
 		
 		if (debug) out.println("\n---engine.Engine.checkUiMode---");
 		if (isGui) {
-			
+		
 			FreeGUI gui = new FreeGUI();
 			gui.start();
 			return gui;
@@ -67,7 +68,7 @@ public class Engine
 		moveNum = 0;
 		snapshot();
 		
-		FreeGUI gui = checkUiMode();
+		gui = checkUiMode();
 		
 		while(!gameOver) {
 			
@@ -122,14 +123,14 @@ public class Engine
 	// In-game Action Handlers ------------------------------------------------
 	public static void newDeal() {
 		
-		if (debug) out.println("event: New Deal clicked");
+		if (debug) out.println("event: New Deal");
 		
 		curBoard = new Board();
 		history = new Stack<Board>();
 		moveNum = 0;
 		snapshot();
 		if (!isGui) out.println(curBoard);
-		// else gui.paint
+		else gui.Paint(curBoard);
 	}
 	
 	public static void undo() {
