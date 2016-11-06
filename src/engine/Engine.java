@@ -71,7 +71,7 @@ public class Engine
 		
 		while(!gameOver) {
 			
-			if (debug) out.println("\n---start game loop---");
+			if (debug) out.println("\n---loop begin---");
 			if (debug && isGui) printSnapshot();
 			
 			if (isGui) {
@@ -134,22 +134,22 @@ public class Engine
 	
 	public static void undo() {
 		
-		if (debug) out.println("event: Undo clicked");
+		if (debug) out.println("event: Undo");
 	}
 	
 	public static void redo() {
 		
-		if (debug) out.println("event: Redo clicked");
+		if (debug) out.println("event: Redo");
 	}
 	
 	public static void hint() {
 		
-		if (debug) out.println("event: Hint clicked");
+		if (debug) out.println("event: Hint");
 	}
 	
 	public static void solve() {
 		
-		if (debug) out.println("event: Solve clicked");
+		if (debug) out.println("event: Solve");
 	}
 	
 	//TODO automate free and home cell entry with double click

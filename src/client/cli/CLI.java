@@ -183,6 +183,8 @@ public class CLI {
 	private static void credz() {
 		
 		out.println();
+		out.println("==============> Brought to you by...");
+		out.println();
 		out.println(".-----.----.-----.-----.--.--.--.--.");
 		out.println("|  _  |   _|  _  |  _  |  |  |  |  |");
 		out.println("|___  |__| |_____|_____|\\___/|___  |");
@@ -193,7 +195,7 @@ public class CLI {
 		out.println("|.  |__|__|___._|__|__|__|___._|");
 		out.println("|:      |");
 		out.println("|::.. . |	DevTeam");
-		out.println("`-------'");
+		out.println("`-------'    ~ Fall 2016 ~");
 		out.println();
 		out.println("Casey Murphy 		- Lead Ninja");
 		out.println("Brandon Wharton 	- Jedi Master");

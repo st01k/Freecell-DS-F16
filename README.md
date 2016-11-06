@@ -26,3 +26,4 @@ Freecell card game
 0.2 -   basic cli, basic gui, working card/deck<br>
 0.3 -   initial card placement on board<br>
 0.4 -   unpolished cli gameplay, gui rendering
+0.5 -   cli gameplay mostly working

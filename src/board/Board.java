@@ -103,7 +103,7 @@ public class Board {
 	 */
 	private void fillRow() {	
 		
-		if (debug) out.println("---board.Board.fillRow--- ");
+		if (debug) out.println("\n---board.Board.fillRow--- ");
 		
 		for (int i = 0; i < PILES && !d.isEmpty(); i++) {
 			
