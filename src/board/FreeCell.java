@@ -18,7 +18,6 @@ public class FreeCell implements CellInterface {
 	// class variables
 	private StdCard cell;
 	
-	
 	// Cell Manipulation ------------------------------------------------------
 	/**
 	 * Places a card in the freecell if there is not one already present.
@@ -30,6 +29,7 @@ public class FreeCell implements CellInterface {
 		
 		if (!isEmpty()) return false;
 		
+		if (debug) out.println("placed card: " + c);
 		cell = c;
 		return true;
 	}
@@ -44,6 +44,8 @@ public class FreeCell implements CellInterface {
 		if (debug) out.println("\n---board.FreeCell.removeCard---");
 		
 		StdCard temp = cell;
+		if (debug) out.println("removed card: " + temp);
+		
 		cell = null;
 		return temp;
 	}

@@ -116,24 +116,23 @@ public class Board {
 
 	// Update -----------------------------------------------------------------
 	/**
-	 * Moves a card from its source to a destination.
+	 * Tries to place a card, if it fails returns false.
+	 * If successful returns true.
 	 * -2 : card into next available free cell
 	 * -1 : card into next available (or matching suit) home cell
 	 * 0 - 7 : card into respective playing pile
-	 * @param src source position
-	 * @param dest destination position
-	 * @return true if card was successfully moved
+	 * @param src source card mapped position
+	 * @param dest mapped destination
+	 * @return true on legal move; false otherwise
 	 */
-	public boolean makeMove(String src, String dest) {
+	public boolean tryMove(String src, String dest) {
 		
-		if (debug) out.println("\n---board.Board.makeMove---");
+		if (debug) out.println("\n---board.Board.tryMove---");
 		
-		StdCard sourceCard = sourceSwitch(src);
+		StdCard sourceCard = showSource(src);
 		int destination = destSwitch(dest);
 		
-		if (debug) out.println("source card: " + sourceCard);
-		if (debug) out.println("dest pos: " + destination);
-		
+		if (sourceCard == null) return false;
 		switch(destination) {
 		// into freecell
 		case -2	:
@@ -162,9 +161,29 @@ public class Board {
 	}
 	
 	/**
-	 * Updates the statistics on the board
-	 * for live status and board snapshot.
-	 * @param t turn to update to
+	 * Attempts move.  If successful moves a card from its source 
+	 * to the mapped destination.  Returns false on failure.
+	 * @param src source position
+	 * @param dest destination position
+	 * @return true if card was successfully moved
+	 */
+	public boolean makeMove(String src, String dest) {
+		
+		if (debug) out.println("\n---board.Board.makeMove---");
+		
+		if (tryMove(src, dest)) {
+			removeSource(src);
+			return true;
+		}
+		else {
+			out.println("\nIllegal move.");
+			return false;
+		}
+	}
+	
+	/**
+	 * Updates the statistics on the board for live status and board snapshot.
+	 * @param t updated turn number
 	 */
 	public void updateBoardStats(Turn t) {
 		
@@ -281,13 +300,56 @@ public class Board {
 	
 	// Mapping ----------------------------------------------------------------
 	/**
+	 * Shows card at mapped position on the board.
+	 * @param src mapped source position of card
+	 * @return card in the source position
+	 */
+	StdCard showSource(String src) {
+		
+		if (debug) out.println("\n---board.Board.showSource---");
+		
+		StdCard c = null;
+		
+		switch(src) {
+		// freecells
+		case "a"	:	c = freeAry[0].peekCard();	break;
+		case "b"	:	c = freeAry[1].peekCard();	break;
+		case "c"	:	c = freeAry[2].peekCard();	break;
+		case "d"	:	c = freeAry[3].peekCard();	break;
+		// homecells
+		case "e"	:
+		case "f"	:
+		case "g"	:
+		case "h"	:
+			if (debug) out.println
+				("ERROR: homecell remove in board.Board.showSource");
+			break;
+		// playing piles
+		case "i"	:	c = pileAry[0].peekLastCard();	break;
+		case "j"	:	c = pileAry[1].peekLastCard();	break;
+		case "k"	:	c = pileAry[2].peekLastCard();	break;
+		case "l"	:	c = pileAry[3].peekLastCard();	break;
+		case "m"	:	c = pileAry[4].peekLastCard();	break;
+		case "n"	:	c = pileAry[5].peekLastCard();	break;
+		case "o"	:	c = pileAry[6].peekLastCard();	break;
+		case "p"	:	c = pileAry[7].peekLastCard();	break;
+			
+		default		:
+			if (debug) out.println
+				("ERROR: invalid input in board.Board.showSource");
+		}
+		if (debug) out.println("source card: " + c);
+		return c;
+	}
+	
+	/**
 	 * Removes card from its current position on the board.
 	 * @param src mapped source position of card
 	 * @return card in the source position
 	 */
-	StdCard sourceSwitch(String src) {
+	StdCard removeSource(String src) {
 		
-		if (debug) out.println("\n---board.Board.sourceSwitch---");
+		if (debug) out.println("\n---board.Board.removeSource---");
 		
 		StdCard c = null;
 		
@@ -303,7 +365,7 @@ public class Board {
 		case "g"	:
 		case "h"	:
 			if (debug) out.println
-				("ERROR: homecell remove in board.Board.sourceSwitch");
+				("ERROR: homecell remove in board.Board.removeSource");
 			break;
 		// playing piles
 		case "i"	:	c = pileAry[0].removeCard();	break;
@@ -317,9 +379,8 @@ public class Board {
 			
 		default		:
 			if (debug) out.println
-				("ERROR: invalid input in board.Board.sourceSwitch");
+				("ERROR: invalid input in board.Board.removeSource");
 		}
-		if (debug) out.println("removed: " + c);
 		return c;
 	}
 	
@@ -330,6 +391,8 @@ public class Board {
 	 * @return numeric position key
 	 */
 	private int destSwitch(String dest) {
+		
+		if (debug) out.println("\n---board.Board.destSwitch---");
 		
 		int key = 999;
 		
@@ -361,7 +424,7 @@ public class Board {
 		default		:
 			if (debug) out.println("ERROR: invalid input in board.Board.destSwitch");
 		}
-		
+		if (debug) out.println("dest pos: " + key);
 		return key;
 	}
 

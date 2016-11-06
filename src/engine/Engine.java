@@ -3,7 +3,6 @@ package engine;
 import static java.lang.System.out;
 
 import java.util.Stack;
-
 import client.cli.CLI;
 import client.gui.FreeGUI;
 import board.Board;
@@ -11,7 +10,7 @@ import board.Board;
 /**
  * Drives freecell game.
  * @author groovyLlama devteam
- * @version 0.2
+ * @version 0.3
  */
 public class Engine 
 {
@@ -21,7 +20,8 @@ public class Engine
 	private static boolean debug = false;
 	private static Board curBoard;
 	private static Stack<Board> history;
-	private static String src, dest = "";
+	private static String src, dest;
+	private static int moveNum;
 	
 	// Initialization ---------------------------------------------------------
 	/**
@@ -44,9 +44,9 @@ public class Engine
 	 * Initializes GUI if in GUI mode.
 	 * @return gui, null if CLI mode
 	 */
-	private static FreeGUI startGUI() {
+	private static FreeGUI checkUiMode() {
 		
-		if (debug) out.println("\n---engine.Engine.startGUI---");
+		if (debug) out.println("\n---engine.Engine.checkUiMode---");
 		if (isGui) {
 			
 			FreeGUI gui = new FreeGUI();
@@ -62,16 +62,16 @@ public class Engine
 	 */
 	private static void gameLoop() {
 		
-		if (debug) out.println("---engine.Engine.gameLoop---");
+		if (debug) out.println("\n---engine.Engine.gameLoop---");
 		
-		int moveNum = 0;
+		moveNum = 0;
 		snapshot();
 		
-		FreeGUI gui = startGUI();
+		FreeGUI gui = checkUiMode();
 		
 		while(!gameOver) {
 			
-			if (debug) out.println("---inside game loop---");
+			if (debug) out.println("\n---start game loop---");
 			if (debug && isGui) printSnapshot();
 			
 			if (isGui) {
@@ -83,14 +83,19 @@ public class Engine
 			//TODO auto stacks
 			
 			if (isGui) {
-				src = "";
-				dest = "";
+				
+				// needs to be attached to mouse events
+				// and GUI setters
+				//TODO filler moves
+				src = "i";
+				dest = "a";
 			}
 			else {
 				src = getSourceCLI();
 				dest = getDestCLI();
 			}
 			
+			//TODO if illegal move, don't inc move count
 			Turn turn = new Turn(isGui, ++moveNum, curBoard, src, dest);
 			curBoard.updateBoardStats(turn);
 			
@@ -116,24 +121,38 @@ public class Engine
 	
 	// In-game Action Handlers ------------------------------------------------
 	public static void newDeal() {
+		
 		if (debug) out.println("event: New Deal clicked");
+		
+		curBoard = new Board();
+		history = new Stack<Board>();
+		moveNum = 0;
+		snapshot();
+		if (!isGui) out.println(curBoard);
+		// else gui.paint
 	}
 	
 	public static void undo() {
+		
 		if (debug) out.println("event: Undo clicked");
 	}
 	
 	public static void redo() {
+		
 		if (debug) out.println("event: Redo clicked");
 	}
 	
 	public static void hint() {
+		
 		if (debug) out.println("event: Hint clicked");
 	}
 	
 	public static void solve() {
+		
 		if (debug) out.println("event: Solve clicked");
 	}
+	
+	//TODO automate free and home cell entry with double click
 	
 	// Utilities --------------------------------------------------------------
 	/**
@@ -148,11 +167,18 @@ public class Engine
 	 */
 	public static void printSnapshot() {
 		
-		out.println("\n---engine.Engine.printSnapshot---\n");
-		out.print("*************** Begin Snapshot ***************");
+		if (debug) out.println("\n---engine.Engine.printSnapshot---\n");
+		out.println();
+		out.print("******************** Begin Snapshot ********************");
 		out.println(history.peek());
-		out.println("\nstate: gui - " + isGui + " | history size: " + history.size());
-		out.println("**************** End Snapshot ****************");
+		
+		if (debug) {
+			out.println
+			("\nstate: gui - " + isGui + " | history size: " + history.size());
+		}
+		
+		out.println("********************* End Snapshot *********************");
+		out.println();
 	}
 	
 	/**
