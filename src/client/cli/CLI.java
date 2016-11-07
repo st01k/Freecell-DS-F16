@@ -10,7 +10,7 @@ import utils.*;
 
 /**
  * Freecell command-line interface.
- * @author Casey
+ * @author groovyLlama devteam
  * @version 1.3
  */
 public class CLI {

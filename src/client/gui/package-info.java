@@ -1,8 +1,4 @@
 /**
- * 
- */
-/**
- * @author st01k
- * @version 
+ * @author groovyLlama devteam
  */
 package client.gui;
