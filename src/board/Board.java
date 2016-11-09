@@ -67,16 +67,6 @@ public class Board {
 		return pileAry;
 	}
 	
-	//TODO check for empty, think it's already in place
-	public StdCard getFreecellCard(int index) {
-		return freeAry[index].removeCard();
-	}
-	
-	//TODO pop instead of full access to pile
-	public StdCard getPileCard(int pile) {
-		return pileAry[pile].removeCard();
-	}
-	
 	// Initialization ---------------------------------------------------------
 	/**
 	 * Initializes board with a full deck dealt.
@@ -103,7 +93,7 @@ public class Board {
 	 */
 	private void fillRow() {	
 		
-		if (debug) out.println("---board.Board.fillRow--- ");
+		if (debug) out.println("\n---board.Board.fillRow--- ");
 		
 		for (int i = 0; i < PILES && !d.isEmpty(); i++) {
 			
@@ -304,7 +294,7 @@ public class Board {
 	 * @param src mapped source position of card
 	 * @return card in the source position
 	 */
-	StdCard showSource(String src) {
+	private StdCard showSource(String src) {
 		
 		if (debug) out.println("\n---board.Board.showSource---");
 		
@@ -347,7 +337,7 @@ public class Board {
 	 * @param src mapped source position of card
 	 * @return card in the source position
 	 */
-	StdCard removeSource(String src) {
+	private StdCard removeSource(String src) {
 		
 		if (debug) out.println("\n---board.Board.removeSource---");
 		

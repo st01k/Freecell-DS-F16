@@ -2012,7 +2012,7 @@ import board.*;
 
 	    	if(debug)
 	    	{
-	    	out.println("---client.gui.FreeGUI.start---");
+	    	out.println("\n---client.gui.FreeGUI.start---");
 	    	}
 
 	        try {

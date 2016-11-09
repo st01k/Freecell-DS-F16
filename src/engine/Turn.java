@@ -95,8 +95,9 @@ public class Turn {
 		if (debug) out.println
 			("invalid move detected in engine.Turn.guiTurn");
 		
-		// added to stop infinite loop in engine
-		if (debug) out.println("\nGUI turn is empty.  Press enter.");
+		//TODO remove me when gui turn is available
+		if (debug) out.println("\nGUI turn is empty.  Press enter...");
+		//TODO added to stop infinite loop in engine
 		scan.nextLine();
 	}
 	
