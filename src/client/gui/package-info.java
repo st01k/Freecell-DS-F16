@@ -1,4 +1,4 @@
 /**
  * @author groovyLlama devteam
  */
-package engine.gUI;
+package client.gui;

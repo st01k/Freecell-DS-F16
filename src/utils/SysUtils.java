@@ -1,9 +1,11 @@
 package utils;
 
+import static java.lang.System.out;
+
 /**
  * Utilities for host system information.
- * @author Casey
- * @version 0.1
+ * @author groovyLlama devteam
+ * @version 0.2
  */
 public class SysUtils {
 	
@@ -33,5 +35,11 @@ public class SysUtils {
 	 */
 	public static String getSeparator() {
 		return SEP;
+	}
+	
+	public static void exitDoor(String message) {
+		
+		out.println("\n" + message + "\n");
+		System.exit(1);
 	}
 }

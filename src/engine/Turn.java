@@ -1,55 +1,128 @@
 package engine;
 
-import playingCards.StdCard;
+import static java.lang.System.out;
+
+import java.util.Scanner;
+import board.Board;
+
 
 /**
- * 
+ * Freecell turn.
+ * Alters current board when move is made.
  * @author groovyLlama devteam
- * @version 0.3
+ * @version 0.4
  */
 public class Turn {
-
-	private boolean winnable;
-	// sent in by engine round num, maybe?
-	// not static inc as to preserve states
-	// on undo/redo
-	private int moveNum;
-	private Character source;
-	private Character destination;
-	private StdCard srcCard;
 	
-	// TODO needs some kind of board mapping/graph
-	// going with CLI board model for now
-	// with alphabetic mapping.
-	// see cli board by running 'test' in cli
-	// if used, will need a getCardAt(position in map)
-	public Turn(int move, StdCard c, Character src, Character dest) {
-		
-		moveNum = move;
-		srcCard = c;
-		source = src;
-		destination = dest;
-	}
+	// static variables
+	private static Scanner scan = new Scanner(System.in);
+	private static boolean debug = false;
+
+	// class variables
+	private boolean winnable;
+	private int moveNum;
+	private Board board;
+	private String srcKey;
+	private String destKey;
 	
 	/**
-	 * Returns the turn's winnable status.
-	 * @return true if game from this turn is winnable
+	 * Creates a freecell turn with statistics.
+	 * @param isGui true if preferred UI is gui
+	 * @param move move number
+	 * @param b current board
 	 */
-	public boolean isWinnable() {
+	public Turn(boolean isGui, int move, Board b, String src, String dest) {
 		
-		//TODO runs solver = winnable
+		moveNum = move;
+		board = b;
+		srcKey = src;
+		destKey = dest;
+		winnable = isWinnable();
+		
+		if (isGui) guiTurn();
+		else cliTurn();
+	}
+	
+	// Accessors --------------------------------------------------------------
+	public boolean getWinnable() {
 		return winnable;
 	}
 	
+	public int getMoveNum() {
+		return moveNum;
+	}
+	
+	// Business ---------------------------------------------------------------
 	/**
-	 * Moves a card from its source to a destination.
-	 * @param src source position
-	 * @param dest destination position
-	 * @return true if card was successfully moved
+	 * Runs solver and sets winnable status on the turn.
+	 * @return true if game from this turn is winnable
 	 */
-	public boolean moveCard(Character src, Character dest) {
+	private boolean isWinnable() {
 		
-		//TODO feed me!
-		return false;
+		//TODO run solver
+		// winnable = boolean solver result
+		// attach solution to turn when applicable
+		return true;
+	}
+	
+	// Turn Actions -----------------------------------------------------------
+	/**
+	 * Prompts user for turn input.
+	 * Returns true if the turn successfully changes the board.
+	 * @return true if the move is successful
+	 */
+	private void cliTurn() {
+		
+		if (debug) out.println("\n---engine.Turn.cliTurn---");
+		if (debug) out.println(this);
+		
+		if (!board.makeMove(srcKey, destKey)) 
+			if (debug) out.println
+				("\ninvalid move detected in engine.Turn.cliTurn");
+	}
+	
+	/**
+	 * Waits for user turn input from gui.
+	 * Returns true if the turn successfully changes the board.
+	 * @return true if the move is successful
+	 */
+	public void guiTurn() {
+		
+		if (debug) out.println("\n---engine.Turn.guiTurn---");		
+		if (debug) out.println(this);
+		
+		if (!board.makeMove(srcKey, destKey)) 
+		if (debug) out.println
+			("invalid move detected in engine.Turn.guiTurn");
+		
+		//TODO remove me when gui turn is available
+		if (debug) out.println("\nGUI turn is empty.  Press enter...");
+		//TODO added to stop infinite loop in engine
+		scan.nextLine();
+	}
+	
+	// Utilities --------------------------------------------------------------	
+	/**
+	 * Turn to string.
+	 */
+	@Override
+	public String toString() {
+		
+		return "src key: " + srcKey + " | dest key: " + destKey + 
+				" | move number: " + moveNum + " | winnable: " + winnable;
+	}
+	
+	/**
+	 * Toggles debug mode.
+	 */
+	public static void toggleDebug() {
+		debug = !debug;
+	}
+	
+	/**
+	 * Unit test.
+	 */
+	public static void unitTest() {
+		//TODO add me to tester
 	}
 }

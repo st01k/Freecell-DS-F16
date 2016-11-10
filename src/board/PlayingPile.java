@@ -7,9 +7,9 @@ import playingCards.StdCard;
 import playingCards.StdDeck;
 
 /**
- * 
+ * Freecell playing pile
  * @author groovyLlama devteam
- * @version 0.3
+ * @version 0.4
  */
 public class PlayingPile {
 	
@@ -18,9 +18,6 @@ public class PlayingPile {
 	
 	// class variables
 	private ArrayList<StdCard> pile;
-	// changed to arraylist to allow indexing
-	// and easier card placement in piles
-	// during board initialization
 
 	/**
 	 * Creates new empty playing pile.
@@ -29,7 +26,7 @@ public class PlayingPile {
 		pile = new ArrayList<StdCard>();
 	}
 	
-	// list manipulation ------------------------------------------------------
+	// List Manipulation ------------------------------------------------------
 	/**
 	 * Places a card in pile on the deal (without validation).
 	 * @param c card to be placed
@@ -45,8 +42,11 @@ public class PlayingPile {
 	 */
 	boolean placeCard(StdCard c) {
 	
+		if (debug) out.println("\n---board.PlayingPile.placeCard---");
+		
 		if (!isValid(c)) return false;
 		
+		if (debug) out.println("added: " + c);
 		pile.add(c);
 		return true;
 	}
@@ -57,15 +57,22 @@ public class PlayingPile {
 	 */
 	StdCard removeCard() {
 		
-		if (!pile.isEmpty()) return pile.remove(pile.size() - 1);
+		if (debug) out.println("\n---board.PlayingPile.removeCard---");
 		
-		if (debug) out.println("---board.PlayingPile.removeCard---\n" +
-								"Playing pile is empty.");
+		if (pile.isEmpty()) {
+			
+			if (debug) out.println("Playing pile is empty.");
+			return null;
+		}
+		else {
+			
+			if (debug) out.println("removed card: " + peekLastCard());
+			return pile.remove(pile.size() - 1);
+		}
 		
-		return null;
 	}
 
-	// list information -------------------------------------------------------
+	// List Information -------------------------------------------------------
 	/**
 	 * Returns card at index position.
 	 * Does not remove the card from the pile.
@@ -98,7 +105,7 @@ public class PlayingPile {
 		return pile.size();
 	}
 	
-	// pile checks ------------------------------------------------------------
+	// Checks -----------------------------------------------------------------
 	/**
 	 * Returns true if pile is empty.
 	 * @return true if pile is empty
@@ -116,7 +123,7 @@ public class PlayingPile {
 	private boolean isDsc(StdCard c) {
 		
 		if (isEmpty()) return true;
-		return c.getValue() - 1 == peekLastCard().getValue();
+		return c.getValue() + 1 == peekLastCard().getValue();
 	}
 	
 	/**
@@ -128,7 +135,7 @@ public class PlayingPile {
 	private boolean isAltColor(StdCard c) {
 		
 		if (isEmpty()) return true;
-		return peekLastCard().isBlack() != c.isBlack();
+		return c.isBlack() != peekLastCard().isBlack();
 	}
 	
 	/**
@@ -140,7 +147,7 @@ public class PlayingPile {
 		return isDsc(c) && isAltColor(c);
 	}
 	
-	// utilities --------------------------------------------------------------
+	// Utilities --------------------------------------------------------------
 	/**
 	 * Returns the contents of the pile as a string.
 	 */
@@ -169,7 +176,7 @@ public class PlayingPile {
 		for (int i = 0; i < 5; i++) {
 		
 			StdCard c = d.getCard();
-			p.placeCardOnDeal(d.getCard());
+			p.placeCardOnDeal(c);
 			out.println("Placed: " + c);
 			out.println("Cards in pile: " + p.size());
 			out.println();
@@ -180,6 +187,14 @@ public class PlayingPile {
 		out.println();
 		out.println("Removing card: " + p.removeCard());
 		out.println("Cards in pile: " + p.size());
+		
+		out.println();
+		
+		StdCard b = new StdCard(1, 1);
+		out.println("New card: " + b);
+		out.println("is descending: " + p.isDsc(b));
+		out.println("is alt color: " + p.isAltColor(b));
+		out.print(b + "stacks onto pile: " + p.placeCard(b));
 		
 		out.println();
 		out.println("-------------------- PlayingPile Unit Test Complete.\n");

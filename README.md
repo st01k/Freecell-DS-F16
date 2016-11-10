@@ -1,9 +1,9 @@
 # Freecell-DS-F16
 <div align="center">
 	<b>Freecell Game and Solver</b><br>
-	v0.3<br><br>
+	v0.5<br><br>
 	Final project for Data Structures (Fall 2016 - WVUP)<br><br>
-	<img src="https://github.com/st01k/Freecell-DS-F16/blob/master/resources/images/groovyLlama.png?raw=true" alt="groovyLlama" height="400" width="400"><br>
+	<img src="https://github.com/st01k/Freecell-DS-F16/blob/cDev/resources/images/groovyLlama.jpg?raw=true" alt="groovyLlama" height="400" width="400"><br>
 
 	<b>groovyLlama devteam:</b><br><br>
 	Casey Murphy<br>
@@ -24,4 +24,6 @@ Freecell card game
 <b>CHANGELOG</b><br><br>
 0.1 -   skeleton<br>
 0.2 -   basic cli, basic gui, working card/deck<br>
-0.3 -		initial card placement on board<br>
+0.3 -   initial card placement on board<br>
+0.4 -   unpolished cli gameplay, gui rendering<br>
+0.5 -   cli gameplay mostly working
