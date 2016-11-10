@@ -79,7 +79,7 @@ public class PlayingPile {
 	 * @param index index of card
 	 * @return card at index
 	 */
-	StdCard getCardAt(int index) {
+	public StdCard getCardAt(int index) {
 		
 		//TODO throw exception?
 		if (index > size() - 1) return null;
@@ -101,7 +101,7 @@ public class PlayingPile {
 	 * Returns the size of the pile.
 	 * @return number of cards in pile
 	 */
-	int size() {
+	public int size() {
 		return pile.size();
 	}
 	
