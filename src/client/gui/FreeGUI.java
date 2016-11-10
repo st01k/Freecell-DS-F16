@@ -1,10 +1,9 @@
 package client.gui;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import engine.Engine;
-
+import playingCards.StdCard;
 import utils.SysUtils;
 import static java.lang.System.out;
 
@@ -19,9 +18,12 @@ import board.*;
 
 		private static final int NUMCELLS = 4;
 		private static final int NUMPILES = 8;
+		private static final int MAX_PILE_SIZE = 19;
 		private static final String SEP = SysUtils.getSeparator();
 		private static final String IMAGESDIR = SysUtils.getPath() + "resources" + SEP + "images" + SEP;
 		private static final String CARDIMAGESDIR = IMAGESDIR + "cards" + SEP;
+
+		
 
 		private static boolean debug = false;
 
@@ -41,145 +43,62 @@ import board.*;
 	    	}
 	    	
 	    	//-----------Free Cells------------
-	    	FreeCell[] freeArray = curboard.getFreecells().clone();
 	    	
-	    	for(int i = 0; i < freeArray.length; i++)
+	    	FreeCell[] fcArray = curboard.getFreecells().clone();
+	    	for(int i = 0, len = fcArray.length; i < len; i++)
 	    	{
+	    		StdCard temp = fcArray[i].peekCard();
 	    		
-	    		//TODO testing this format - casey
-	    		String filename = "";
-	    		
-	    		if (freeArray[i].peekCard() == null) filename = "FreeCell.png";
-	    		else {
-	    			
-	    			filename = freeArray[i].peekCard().getRank() + freeArray[i].peekCard().getSuit() + ".png";
+	    		if(temp != null)
+	    		{
+	    			String filename = temp.getValue() + temp.getDefSym() + ".jpg";
+	    			fcAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
+	    		}
+	    		else
+	    		{
+	    			fcAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
 	    		}
 	    		
-	    		freecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
-	    		// end test format
-	    		
-//		    	switch(i)
-//		    	{
-//			    	case(0):
-//			    	{
-//			    		if(freeArray[i].peekCard() == null) 
-//			    		{
-//			    			free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
-//			    		}
-//			    		else
-//			    		{
-//			    			free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
-//			    		}
-//			    	}
-//			    	case(1):
-//			    	{
-//			    		if(freeArray[i].peekCard() == null) 
-//			    		{
-//			    			free2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
-//			    		}
-//			    		else
-//			    		{
-//			    			free2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
-//			    		}
-//			    	}
-//			   		case(2):
-//			   		{
-//			   			if(freeArray[i].peekCard() == null) 
-//			    		{
-//			    			free3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
-//			    		}
-//			   			else
-//			    		{
-//			    			free3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
-//			    		}
-//			   		}
-//		    		case(3):
-//		    		{
-//		    			if(freeArray[i].peekCard() == null) 
-//			    		{
-//			    			free4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
-//			    		}
-//		    			else
-//			    		{
-//			    			free4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + freeArray[i].peekCard().getRank() + "" + freeArray[i].peekCard().getSuit() +".png"));
-//			    		}			    		
-//		    		}
-//		    	}
 	    	}
 	    	
 	    	//----------Home Cells---------------------
-	    	
-	    	HomeCell[] homeArray = curboard.getHomecells().clone();
 
-	    	for(int i = 0; i < homeArray.length; i++)
+	    	HomeCell[] hcArray = curboard.getHomecells().clone();
+	    	for(int i = 0, len = hcArray.length; i < len; i++)
 	    	{
-	    		//TODO testing this format - casey
-	    		String filename = "";
+	    		StdCard temp = hcArray[i].peekCard();
 	    		
-	    		if (homeArray[i].peekCard() == null) filename = "HomeCell.png";
-	    		else {
-	    			
-	    			filename = homeArray[i].peekCard().getRank() + homeArray[i].peekCard().getSuit() + ".png";
+	    		if(temp != null)
+	    		{
+	    			String filename = temp.getValue() + temp.getDefSym() + ".jpg";
+	    			hcAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
+	    		}
+	    		else
+	    		{
+	    			hcAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
 	    		}
 	    		
-	    		homecellJLabelAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
-	    		// end test format
-	    		
-//		    	switch(i)
-//		    	{
-//			    	case(0):
-//			    	{
-//			    		if(homeArray[i].peekCard() == null) 
-//			    		{
-//			    			home1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
-//			    		}
-//			    		else
-//			    		{
-//			    			home1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
-//			    		}
-//			    	}
-//			    	case(1):
-//			    	{
-//			    		if(homeArray[i].peekCard() == null) 
-//			    		{
-//			    			home2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
-//			    		}
-//			    		else
-//			    		{
-//			    			home2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
-//			    		}
-//			    	}
-//			   		case(2):
-//			   		{
-//			   			if(homeArray[i].peekCard() == null) 
-//			    		{
-//			    			home3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
-//			    		}
-//			   			else
-//			    		{
-//			    			home3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
-//			    		}
-//			   		}
-//		    		case(3):
-//		    		{
-//		    			if(homeArray[i].peekCard() == null) 
-//			    		{
-//			    			home4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
-//			    		}
-//		    			else
-//			    		{
-//			    			home4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + homeArray[i].peekCard().getRank() + "" + homeArray[i].peekCard().getSuit() +".png"));
-//			    		}			    		
-//		    		}
-//		    	}
 	    	}
 	    	
 	    	//-------------Playing Piles--------------
 	    	
-	    	// looks like you are planning on painting the piles by column?
-	    	// might be easier to grab a pile at a time and paint that
-	    	// so you don't have to break them down further.  i had to go by
-	    	// column in the cli because that's the only way it prints.
+	    	PlayingPile[] pPile = curboard.getPiles().clone();
+	    	for(int i = 0, len = pPile.length; i < len; i++)
+	    	{
+	    		for(int j = 0, len2 = pPile[i].size(); j < len2; j++)
+	    		{
+	    			StdCard temp = pPile[i].getCardAt(j);
+	    			if(temp != null)
+	    			{
+		    			String filename = temp.getValue() + temp.getDefSym() + ".jpg";
+		    			PlayPile[i][j].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
+	    			}
+	    			else
+	    			{
+	    				PlayPile[i][j].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "blank.png"));
+	    			}
+	    		}
+	    	}
 	    }
 
 	    /**
@@ -197,23 +116,10 @@ import board.*;
 	    private void initComponents() {
 
 	    	// path test logged to console
-	    	if (debug) {
+	    	if (debug) 
+	    	{
 	    		out.println("\n---engine.FreeGUI.initComponents--- ");
 	    	}
-	    	
-	    	//TODO testing this format - casey
-	    	freecellJLabelAry = new javax.swing.JLabel[NUMCELLS];
-	    	
-	    	for (int i = 0; i < NUMCELLS; i++) {
-	    		freecellJLabelAry[i] = new javax.swing.JLabel();
-	    	}
-	    	
-	    	homecellJLabelAry = new javax.swing.JLabel[NUMCELLS];
-	    	
-	    	for (int i = 0; i < NUMCELLS; i++) {
-	    		homecellJLabelAry[i] = new javax.swing.JLabel();
-	    	}
-	    	// end test format
 
 	        BackgroundPan = new javax.swing.JLayeredPane();
 	        jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -398,7 +304,7 @@ import board.*;
 	        setBackground(new java.awt.Color(255, 255, 255));
 	        setMaximumSize(new java.awt.Dimension(1280, 720));
 	        setMinimumSize(new java.awt.Dimension(1280, 720));
-	        setName("MainFrame"); // NOI18N
+	        setName("MainFrame");
 	        setPreferredSize(new java.awt.Dimension(1280, 720));
 	        setResizable(false);
 	        setSize(new java.awt.Dimension(1280, 720));
@@ -1812,10 +1718,7 @@ import board.*;
 	        BackgroundPan.add(R8C0);
 	        R8C0.setBounds(1120, 150, 86, 125);
 
-	        
-	        //TODO if you go with the arrays, i'm sure you'll have to do this stuff for those
-	        // didn't want to mess with all this though, and risk breaking anything.
-	        free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png")); // NOI18N
+	        free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
 	        free1.setToolTipText(null);
 	        free1.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free1.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1824,7 +1727,7 @@ import board.*;
 	        BackgroundPan.add(free1);
 	        free1.setBounds(20, 10, 86, 125);
 
-	        free2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png")); // NOI18N
+	        free2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
 	        free2.setToolTipText(null);
 	        free2.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free2.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1833,7 +1736,7 @@ import board.*;
 	        BackgroundPan.add(free2);
 	        free2.setBounds(120, 10, 86, 125);
 
-	        free3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png")); // NOI18N
+	        free3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
 	        free3.setToolTipText(null);
 	        free3.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free3.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1842,7 +1745,7 @@ import board.*;
 	        BackgroundPan.add(free3);
 	        free3.setBounds(220, 10, 86, 125);
 
-	        free4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png")); // NOI18N
+	        free4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png")); 
 	        free4.setToolTipText(null);
 	        free4.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free4.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1851,7 +1754,7 @@ import board.*;
 	        BackgroundPan.add(free4);
 	        free4.setBounds(320, 10, 86, 125);
 
-	        home1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png")); // NOI18N
+	        home1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
 	        home1.setToolTipText(null);
 	        home1.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home1.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1860,7 +1763,7 @@ import board.*;
 	        BackgroundPan.add(home1);
 	        home1.setBounds(850, 10, 86, 125);
 
-	        home2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png")); // NOI18N
+	        home2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
 	        home2.setToolTipText(null);
 	        home2.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home2.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1869,7 +1772,7 @@ import board.*;
 	        BackgroundPan.add(home2);
 	        home2.setBounds(960, 10, 86, 125);
 
-	        home3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png")); // NOI18N
+	        home3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
 	        home3.setToolTipText(null);
 	        home3.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home3.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1878,7 +1781,7 @@ import board.*;
 	        BackgroundPan.add(home3);
 	        home3.setBounds(1070, 10, 86, 125);
 
-	        home4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png")); // NOI18N
+	        home4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
 	        home4.setToolTipText(null);
 	        home4.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home4.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1966,6 +1869,226 @@ import board.*;
 	        setLocationRelativeTo(null);
 	        setAlwaysOnTop(true);
 	        pack();
+	        
+	       
+	       for(int i = 0; i < NUMCELLS; i++)
+	       {
+	    	   switch(i)
+	    	   {
+		    	   case(0):
+		    	   {
+		    		   fcAry[i] = free1;
+		    		   hcAry[i] = home1;
+		    		   break;
+		    	   }
+		    	   case(1):
+		    	   {
+		    		   fcAry[i] = free2;
+		    		   hcAry[i] = home2;
+		    		   break;
+		    	   }
+		    	   case(2):
+		    	   {
+		    		   fcAry[i] = free3;
+		    		   hcAry[i] = home3;
+		    		   break;
+		    	   }
+		    	   case(3):
+		    	   {
+		    		   fcAry[i] = free4;
+		    		   hcAry[i] = home4;
+		    		   break;
+		    	   }
+	    	   }
+	       }
+	       
+	       for(int i = 0; i < NUMPILES; i++)
+	       {
+	    	   switch(i)
+	    	   {
+		    	   case(0):
+		    	   {
+		    		   PlayPile[i][0] = R1C0;
+		    		   PlayPile[i][1] = R1C1;
+		    		   PlayPile[i][2] = R1C2;
+		    		   PlayPile[i][3] = R1C3;
+		    		   PlayPile[i][4] = R1C4;
+		    		   PlayPile[i][5] = R1C5;
+		    		   PlayPile[i][6] = R1C6;
+		    		   PlayPile[i][7] = R1C7;
+		    		   PlayPile[i][8] = R1C8;
+		    		   PlayPile[i][9] = R1C9;
+		    		   PlayPile[i][10] = R1C10;
+		    		   PlayPile[i][11] = R1C11;
+		    		   PlayPile[i][12] = R1C12;
+		    		   PlayPile[i][13] = R1C13;
+		    		   PlayPile[i][14] = R1C14;
+		    		   PlayPile[i][15] = R1C15;
+		    		   PlayPile[i][16] = R1C16;
+		    		   PlayPile[i][17] = R1C17;
+		    		   break;
+		    	   }
+		    	   case(1):
+		    	   {
+		    		   PlayPile[i][0] = R2C0;
+		    		   PlayPile[i][1] = R2C1;
+		    		   PlayPile[i][2] = R2C2;
+		    		   PlayPile[i][3] = R2C3;
+		    		   PlayPile[i][4] = R2C4;
+		    		   PlayPile[i][5] = R2C5;
+		    		   PlayPile[i][6] = R2C6;
+		    		   PlayPile[i][7] = R2C7;
+		    		   PlayPile[i][8] = R2C8;
+		    		   PlayPile[i][9] = R2C9;
+		    		   PlayPile[i][10] = R2C10;
+		    		   PlayPile[i][11] = R2C11;
+		    		   PlayPile[i][12] = R2C12;
+		    		   PlayPile[i][13] = R2C13;
+		    		   PlayPile[i][14] = R2C14;
+		    		   PlayPile[i][15] = R2C15;
+		    		   PlayPile[i][16] = R2C16;
+		    		   PlayPile[i][17] = R2C17;
+		    		   break;
+		    	   }
+		    	   case(2):
+		    	   {
+		    		   PlayPile[i][0] = R3C0;
+		    		   PlayPile[i][1] = R3C1;
+		    		   PlayPile[i][2] = R3C2;
+		    		   PlayPile[i][3] = R3C3;
+		    		   PlayPile[i][4] = R3C4;
+		    		   PlayPile[i][5] = R3C5;
+		    		   PlayPile[i][6] = R3C6;
+		    		   PlayPile[i][7] = R3C7;
+		    		   PlayPile[i][8] = R3C8;
+		    		   PlayPile[i][9] = R3C9;
+		    		   PlayPile[i][10] = R3C10;
+		    		   PlayPile[i][11] = R3C11;
+		    		   PlayPile[i][12] = R3C12;
+		    		   PlayPile[i][13] = R3C13;
+		    		   PlayPile[i][14] = R3C14;
+		    		   PlayPile[i][15] = R3C15;
+		    		   PlayPile[i][16] = R3C16;
+		    		   PlayPile[i][17] = R3C17;
+		    		   break;
+		    	   }
+		    	   case(3):
+		    	   {
+		    		   PlayPile[i][0] = R4C0;
+		    		   PlayPile[i][1] = R4C1;
+		    		   PlayPile[i][2] = R4C2;
+		    		   PlayPile[i][3] = R4C3;
+		    		   PlayPile[i][4] = R4C4;
+		    		   PlayPile[i][5] = R4C5;
+		    		   PlayPile[i][6] = R4C6;
+		    		   PlayPile[i][7] = R4C7;
+		    		   PlayPile[i][8] = R4C8;
+		    		   PlayPile[i][9] = R4C9;
+		    		   PlayPile[i][10] = R4C10;
+		    		   PlayPile[i][11] = R4C11;
+		    		   PlayPile[i][12] = R4C12;
+		    		   PlayPile[i][13] = R4C13;
+		    		   PlayPile[i][14] = R4C14;
+		    		   PlayPile[i][15] = R4C15;
+		    		   PlayPile[i][16] = R4C16;
+		    		   PlayPile[i][17] = R4C17;
+		    		   break;
+		    	   }
+		    	   case(4):
+		    	   {
+		    		   PlayPile[i][0] = R5C0;
+		    		   PlayPile[i][1] = R5C1;
+		    		   PlayPile[i][2] = R5C2;
+		    		   PlayPile[i][3] = R5C3;
+		    		   PlayPile[i][4] = R5C4;
+		    		   PlayPile[i][5] = R5C5;
+		    		   PlayPile[i][6] = R5C6;
+		    		   PlayPile[i][7] = R5C7;
+		    		   PlayPile[i][8] = R5C8;
+		    		   PlayPile[i][9] = R5C9;
+		    		   PlayPile[i][10] = R5C10;
+		    		   PlayPile[i][11] = R5C11;
+		    		   PlayPile[i][12] = R5C12;
+		    		   PlayPile[i][13] = R5C13;
+		    		   PlayPile[i][14] = R5C14;
+		    		   PlayPile[i][15] = R5C15;
+		    		   PlayPile[i][16] = R5C16;
+		    		   PlayPile[i][17] = R5C17;
+		    		   break;
+		    	   }
+		    	   case(5):
+		    	   {
+		    		   PlayPile[i][0] = R6C0;
+		    		   PlayPile[i][1] = R6C1;
+		    		   PlayPile[i][2] = R6C2;
+		    		   PlayPile[i][3] = R6C3;
+		    		   PlayPile[i][4] = R6C4;
+		    		   PlayPile[i][5] = R6C5;
+		    		   PlayPile[i][6] = R6C6;
+		    		   PlayPile[i][7] = R6C7;
+		    		   PlayPile[i][8] = R6C8;
+		    		   PlayPile[i][9] = R6C9;
+		    		   PlayPile[i][10] = R6C10;
+		    		   PlayPile[i][11] = R6C11;
+		    		   PlayPile[i][12] = R6C12;
+		    		   PlayPile[i][13] = R6C13;
+		    		   PlayPile[i][14] = R6C14;
+		    		   PlayPile[i][15] = R6C15;
+		    		   PlayPile[i][16] = R6C16;
+		    		   PlayPile[i][17] = R6C17;
+		    		   break;
+		    	   }
+		    	   case(6):
+		    	   {
+		    		   PlayPile[i][0] = R7C0;
+		    		   PlayPile[i][1] = R7C1;
+		    		   PlayPile[i][2] = R7C2;
+		    		   PlayPile[i][3] = R7C3;
+		    		   PlayPile[i][4] = R7C4;
+		    		   PlayPile[i][5] = R7C5;
+		    		   PlayPile[i][6] = R7C6;
+		    		   PlayPile[i][7] = R7C7;
+		    		   PlayPile[i][8] = R7C8;
+		    		   PlayPile[i][9] = R7C9;
+		    		   PlayPile[i][10] = R7C10;
+		    		   PlayPile[i][11] = R7C11;
+		    		   PlayPile[i][12] = R7C12;
+		    		   PlayPile[i][13] = R7C13;
+		    		   PlayPile[i][14] = R7C14;
+		    		   PlayPile[i][15] = R7C15;
+		    		   PlayPile[i][16] = R7C16;
+		    		   PlayPile[i][17] = R7C17;
+		    		   break;
+		    	   }
+		    	   case(7):
+		    	   {
+		    		   PlayPile[i][0] = R8C0;
+		    		   PlayPile[i][1] = R8C1;
+		    		   PlayPile[i][2] = R8C2;
+		    		   PlayPile[i][3] = R8C3;
+		    		   PlayPile[i][4] = R8C4;
+		    		   PlayPile[i][5] = R8C5;
+		    		   PlayPile[i][6] = R8C6;
+		    		   PlayPile[i][7] = R8C7;
+		    		   PlayPile[i][8] = R8C8;
+		    		   PlayPile[i][9] = R8C9;
+		    		   PlayPile[i][10] = R8C10;
+		    		   PlayPile[i][11] = R8C11;
+		    		   PlayPile[i][12] = R8C12;
+		    		   PlayPile[i][13] = R8C13;
+		    		   PlayPile[i][14] = R8C14;
+		    		   PlayPile[i][15] = R8C15;
+		    		   PlayPile[i][16] = R8C16;
+		    		   PlayPile[i][17] = R8C17;
+		    		   break;
+		    	   }
+		    	   default:
+		    	   {
+		    		   
+		    	   }
+	    	   }
+	       }
+	       
 	    }
 
 
@@ -2206,12 +2329,6 @@ import board.*;
 	    private static javax.swing.JLabel Turn;
 	    private static javax.swing.JLabel TurnLabel;
 	    private static javax.swing.JButton UndoBtn;
-	    
-	    //TODO testing this format - casey
-	    private static javax.swing.JLabel[] freecellJLabelAry;
-	    private static javax.swing.JLabel[] homecellJLabelAry;
-	    // end test format
-	    
 	    private static javax.swing.JLabel free1;
 	    private static javax.swing.JLabel free2;
 	    private static javax.swing.JLabel free3;
@@ -2221,4 +2338,8 @@ import board.*;
 	    private static javax.swing.JLabel home3;
 	    private static javax.swing.JLabel home4;
 	    private javax.swing.JLayeredPane jLayeredPane1;
+	    
+	    private static JLabel fcAry[] = new JLabel[NUMCELLS];
+	    private static JLabel hcAry[] = new JLabel[NUMCELLS];
+	    private static JLabel PlayPile[][] = new JLabel[NUMPILES][MAX_PILE_SIZE];
 }
