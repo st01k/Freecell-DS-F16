@@ -1966,6 +1966,86 @@ import board.*;
 	        setLocationRelativeTo(null);
 	        setAlwaysOnTop(true);
 	        pack();
+	        
+	       JLabel PlayPile[][] = new JLabel[8][19];
+	       
+	       for(int i = 0; i < 8; i++)
+	       {
+	    	   switch(i)
+	    	   {
+		    	   case(0):
+		    	   {
+		    		   PlayPile[i][0] = R1C0;
+		    		   PlayPile[i][1] = R1C1;
+		    		   PlayPile[i][2] = R1C2;
+		    		   PlayPile[i][3] = R1C3;
+		    		   PlayPile[i][4] = R1C4;
+		    		   PlayPile[i][5] = R1C5;
+		    		   PlayPile[i][6] = R1C6;
+		    		   PlayPile[i][7] = R1C7;
+		    		   PlayPile[i][8] = R1C8;
+		    		   PlayPile[i][9] = R1C9;
+		    		   PlayPile[i][10] = R1C10;
+		    		   PlayPile[i][11] = R1C11;
+		    		   PlayPile[i][12] = R1C12;
+		    		   PlayPile[i][13] = R1C13;
+		    		   PlayPile[i][14] = R1C14;
+		    		   PlayPile[i][15] = R1C15;
+		    		   PlayPile[i][16] = R1C16;
+		    		   PlayPile[i][17] = R1C17;
+		    	   }
+		    	   case(1):
+		    	   {
+		    		   PlayPile[i][0] = R2C0;
+		    		   PlayPile[i][1] = R2C1;
+		    		   PlayPile[i][2] = R2C2;
+		    		   PlayPile[i][3] = R2C3;
+		    		   PlayPile[i][4] = R2C4;
+		    		   PlayPile[i][5] = R2C5;
+		    		   PlayPile[i][6] = R2C6;
+		    		   PlayPile[i][7] = R2C7;
+		    		   PlayPile[i][8] = R2C8;
+		    		   PlayPile[i][9] = R2C9;
+		    		   PlayPile[i][10] = R2C10;
+		    		   PlayPile[i][11] = R2C11;
+		    		   PlayPile[i][12] = R2C12;
+		    		   PlayPile[i][13] = R2C13;
+		    		   PlayPile[i][14] = R2C14;
+		    		   PlayPile[i][15] = R2C15;
+		    		   PlayPile[i][16] = R2C16;
+		    		   PlayPile[i][17] = R2C17;
+		    	   }
+		    	   case(2):
+		    	   {
+		    		   
+		    	   }
+		    	   case(3):
+		    	   {
+		    		   
+		    	   }
+		    	   case(4):
+		    	   {
+		    		   
+		    	   }
+		    	   case(5):
+		    	   {
+		    		   
+		    	   }
+		    	   case(6):
+		    	   {
+		    		   
+		    	   }
+		    	   case(7):
+		    	   {
+		    		   
+		    	   }
+		    	   default:
+		    	   {
+		    		   
+		    	   }
+	    	   }
+	       }
+	       
 	    }
 
 
