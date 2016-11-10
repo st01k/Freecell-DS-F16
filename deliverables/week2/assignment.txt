@@ -23,3 +23,16 @@ Project specific goals:
     Basic cli
 
     GUI design/basic operation merge to develop (doesn't need much functionality yet).
+    
+---
+
+On BlackBoard:
+
+Working through Chapter 9 will provide some very good information on how to develop a good Object Oriented design.  A good design minimizes coding time as well as troubleshooting code after it has been written and is being tested.  Review the web links on the Model View Control (MVC) design pattern and building java based GUI's, including the use of Eclipse Vi8sual Editor (VE).
+
+Perform the following activities, submit them and be prepared to present them:
+
+    Refine your list of software "things" you will need to implement this project (word doc)
+    Refine your set of objects (classes) with class diagrams providing class name and preliminary attribute list and important methods(PDF).  Be sure to include all interfaces and/or abstract classes you will be using
+    Refine upir object relationship diagram showing how the various objects identified at this point will interact with each other
+    Provide information including classes, etc,  on how you will develop your User Interface 
