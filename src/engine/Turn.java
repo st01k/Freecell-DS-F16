@@ -4,6 +4,7 @@ import static java.lang.System.out;
 
 import java.util.Scanner;
 import board.Board;
+import board.KeyMap;
 
 
 /**
@@ -24,6 +25,7 @@ public class Turn {
 	private Board board;
 	private String srcKey;
 	private String destKey;
+	private KeyMap keyMap;
 	
 	/**
 	 * Creates a freecell turn with statistics.
@@ -108,7 +110,7 @@ public class Turn {
 	@Override
 	public String toString() {
 		
-		return "src key: " + srcKey + " | dest key: " + destKey + 
+		return 	"src key: " + srcKey + " | dest key: " + destKey + 
 				" | move number: " + moveNum + " | winnable: " + winnable;
 	}
 	

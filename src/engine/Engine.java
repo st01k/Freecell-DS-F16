@@ -85,18 +85,23 @@ public class Engine
 			
 			if (isGui) {
 				
-				// needs to be attached to mouse events
-				// and GUI setters
 				//TODO filler moves
 				src = "i";
 				dest = "a";
+				
+				// open a scanner and wait for input in method
+				// in gui send strings to the method
+				// scanner catches them on input and returns here
 			}
 			else {
 				src = getSourceCLI();
 				dest = getDestCLI();
 			}
 			
+			// generate keymap here
+			
 			//TODO if illegal move, don't inc move count
+			// pass in keymap movenum and board, decohese isGui
 			Turn turn = new Turn(isGui, ++moveNum, curBoard, src, dest);
 			curBoard.updateBoardStats(turn);
 			
@@ -129,6 +134,7 @@ public class Engine
 		history = new Stack<Board>();
 		moveNum = 0;
 		snapshot();
+		
 		if (!isGui) out.println(curBoard);
 		else gui.Paint(curBoard);
 	}
@@ -153,7 +159,15 @@ public class Engine
 		if (debug) out.println("event: Solve");
 	}
 	
-	//TODO automate free and home cell entry with double click
+	public static void doubleClick(String src) {
+		
+		if (debug) out.println("event: Double-Click (" + src + ")");
+	}
+	
+	public static void dragDrop(String src, String dest) {
+		
+		if (debug) out.println("event: Drag and Drop (" + src + ", " + dest + ")");
+	}
 	
 	// Utilities --------------------------------------------------------------
 	/**
