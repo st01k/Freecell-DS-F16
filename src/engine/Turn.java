@@ -29,7 +29,7 @@ public class Turn {
 	 * @param move move number
 	 * @param b current board
 	 */
-	public Turn(boolean isGui, int move, Board b, KeyMap km) {
+	public Turn(int move, Board b, KeyMap km) {
 		
 		moveNum = move;
 		board = b;
@@ -71,7 +71,8 @@ public class Turn {
 		
 		return 	"src key: " + keymap.getSrcKey().getKey() + 
 				" | dest key: " + keymap.getDestKey().getKey() + 
-				" | move number: " + moveNum + " | winnable: " + winnable;
+				" | move number: " + moveNum + 
+				" | winnable: " + winnable;
 	}
 	
 	/**

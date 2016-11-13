@@ -2,6 +2,7 @@ package engine;
 
 import static java.lang.System.out;
 
+import java.util.Scanner;
 import java.util.Stack;
 import client.cli.CLI;
 import client.gui.FreeGUI;
@@ -89,7 +90,9 @@ public class Engine
 				//TODO filler moves
 				src = "i";
 				dest = "a";
-				
+				Scanner scan = new Scanner(System.in);
+				out.println("Press Enter for filler move.");
+				scan.nextLine();
 				// open a scanner and wait for input in method
 				// in gui send strings to the method
 				// scanner catches them on input and returns here
@@ -104,7 +107,7 @@ public class Engine
 			// check keymap
 			if (keymap.isValid()) {
 				
-				Turn turn = new Turn(isGui, ++moveNum, curBoard, keymap);
+				Turn turn = new Turn(++moveNum, curBoard, keymap);
 				curBoard.updateBoardStats(turn);
 				
 				snapshot();
