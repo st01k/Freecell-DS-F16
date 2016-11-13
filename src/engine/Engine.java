@@ -159,6 +159,7 @@ public class Engine
 	public static void undo() {
 		
 		if (debug) out.println("event: Undo");
+		if (debug) out.println("currently unavailable");
 	}
 	
 	/**
@@ -167,6 +168,7 @@ public class Engine
 	public static void redo() {
 		
 		if (debug) out.println("event: Redo");
+		if (debug) out.println("currently unavailable");
 	}
 	
 	/**
@@ -175,6 +177,7 @@ public class Engine
 	public static void hint() {
 		
 		if (debug) out.println("event: Hint");
+		if (debug) out.println("currently unavailable");
 	}
 	
 	/**
@@ -183,6 +186,7 @@ public class Engine
 	public static void solve() {
 		
 		if (debug) out.println("event: Solve");
+		if (debug) out.println("currently unavailable");
 	}
 	
 	/**

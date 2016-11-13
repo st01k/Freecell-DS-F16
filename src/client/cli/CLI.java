@@ -69,6 +69,14 @@ public class CLI {
 				break;
 			case ("new")	: out.println("Only available in game.");
 				break;
+			case ("undo")	: out.println("Only available in game.");
+				break;
+			case ("redo")	: out.println("Only available in game.");
+				break;
+			case ("hint")	: out.println("Only available in game.");
+				break;
+			case ("solve")	: out.println("Only available in game.");
+				break;
 			case ("cls") 	: formFeed();
 				break; 
 			case ("cred")	: credz();
@@ -94,7 +102,8 @@ public class CLI {
 			
 			switch(in) {
 			
-			case ("exit") 	: SysUtils.exitDoor("\n~ groovyLlama devteam, fall 2016 ~\n");
+			case ("exit") 	: SysUtils.exitDoor
+								("\n~ groovyLlama devteam, fall 2016 ~\n");
 				break;
 			case ("help") 	: printHelp();
 				break;
@@ -113,6 +122,14 @@ public class CLI {
 			case ("show")	: Engine.printSnapshot();
 				break;
 			case ("new")	: Engine.newDeal();
+				break;
+			case ("undo")	: Engine.undo();
+				break;
+			case ("redo")	: Engine.redo();
+				break;
+			case ("hint")	: Engine.hint();
+				break;
+			case ("solve")	: Engine.solve();
 				break;
 			case ("cls") 	: formFeed();
 				break; 
@@ -149,6 +166,10 @@ public class CLI {
 		out.println("cli\tStarts game in CLI");
 		out.println("show\tReprints current board");
 		out.println("new\tResets game with a new deal");
+		out.println("undo\tUndo last move");
+		out.println("redo\tRedo next move");
+		out.println("hint\tDisplays next move in solution");
+		out.println("solve\tInitiates automated gameplay");
 		out.println("cls\tClear screen");
 		out.println("cred\tPrints credits");
 		out.println("exit\tExits program");

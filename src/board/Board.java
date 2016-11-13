@@ -32,6 +32,8 @@ public class Board {
 	 */
 	public Board() {
 		
+		//TODO winnable dynamically gen'd on move 0
+		// instead of hard set to true.
 		winnable = true;
 		moveNum = 0;
 		freeAry = new FreeCell[CELLS];
