@@ -30,7 +30,7 @@ public class HomeCell implements CellInterface {
 
 		if (!isValid(c)) return false;
 		
-		if (debug) out.println("placed card: " + c);
+		if (debug) out.println("placed card: " + c + "\ninto " + key);
 		cell = c;
 		return true;
 	}

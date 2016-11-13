@@ -47,7 +47,7 @@ public class PlayingPile {
 		
 		if (!isValid(c)) return false;
 		
-		if (debug) out.println("added: " + c);
+		if (debug) out.println("placed card: " + c + "\ninto " + key);
 		pile.add(c);
 		return true;
 	}
@@ -67,7 +67,7 @@ public class PlayingPile {
 		}
 		else {
 			
-			if (debug) out.println("removed card: " + peekLastCard());
+			if (debug) out.println("removed card: " + peekLastCard() + "\nfrom " + key);
 			return pile.remove(pile.size() - 1);
 		}
 		

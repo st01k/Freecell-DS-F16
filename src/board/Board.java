@@ -66,6 +66,8 @@ public class Board {
 	 */
 	private void genMap() {
 		
+		if (debug) out.println("\n---board.Board.genMap---");
+		
 		for (Key k : Key.values()) {
 			
 			if (k.isFreecell()) {
@@ -94,7 +96,7 @@ public class Board {
 	 */
 	private void dealRow() {	
 		
-		if (debug) out.println("\n---board.Board.dealRow--- ");
+		if (debug) out.println("\n---board.Board.dealRow---");
 		
 		for (int i = 0; i < PILES && !d.isEmpty(); i++) {
 			
@@ -146,7 +148,7 @@ public class Board {
 	 */
 	public StdCard getCardAt(Key k) {
 		
-		if (debug) out.println("\n---board.Board.getCardAt--- ");
+		if (debug) out.println("\n---board.Board.getCardAt---");
 		if (debug) out.println(k);
 		
 		StdCard c;
@@ -175,6 +177,7 @@ public class Board {
 	// Update -----------------------------------------------------------------
 	/**
 	 * Moves source card to destination.
+	 * Must be sent a valid keymap.
 	 * @param k keymap
 	 */
 	public void makeMove(KeyMap k) {
@@ -227,7 +230,7 @@ public class Board {
 			break;
 		case 2 	:
 			if (debug) out.println
-				("ERROR: homecell remove in board.Board.makeMove");
+				("ERROR: homecell remove in board.Board.remove");
 			break;
 		case 3 	:
 			pileAry[src.getPosition()].removeCard();
@@ -245,6 +248,8 @@ public class Board {
 	 */
 	public void updateBoardStats(Turn t) {
 		
+		if (debug) out.println("\n---board.Board.updateBoardStats---");
+		
 		moveNum = t.getMoveNum();
 		winnable = t.getWinnable();
 	}
@@ -254,6 +259,8 @@ public class Board {
 	 * @return true if game is won
 	 */
 	public boolean winCheck() {
+		
+		if (debug) out.println("\n---board.Board.winCheck---");
 		
 		int king = StdCard.getMaxValue();
 		for (HomeCell h : homeAry) {

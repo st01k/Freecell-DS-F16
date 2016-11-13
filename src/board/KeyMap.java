@@ -88,6 +88,7 @@ public class KeyMap {
 		
 		if (debug) out.println("\n---board.KeyMap.isValid---");
 		if (debug) out.println(this);
+		
 		// no card
 		if (srcCard == null) return false;
 		// same card
@@ -131,13 +132,7 @@ public class KeyMap {
 	 */
 	public String toString() {
 		
-		String s = "";
-		s += "source: " + src.getKey() + ", ";
-		s += src.getRegion() + ", " + src.getPosition();
-		s += " (" + srcCard + ") | ";
-		s += "dest: " + dest.getKey() + ", ";
-		s += dest.getRegion() + ", " + dest.getPosition();
-		return s;
+		return "s - " + src + "\nd - " + dest;
 	}
 	
 	/**

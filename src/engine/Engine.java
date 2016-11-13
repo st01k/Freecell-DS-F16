@@ -237,7 +237,10 @@ public class Engine
 	 * @return true if game has been won
 	 */
 	public static boolean checkGameOver() {
-		return curBoard.winCheck();
+		
+		boolean status = curBoard.winCheck();
+		if (debug) out.println(status);
+		return status;
 	}
 	
 	/**

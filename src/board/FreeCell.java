@@ -30,7 +30,7 @@ public class FreeCell implements CellInterface {
 		
 		if (!isEmpty()) return false;
 		
-		if (debug) out.println("placed card: " + c);
+		if (debug) out.println("placed card: " + c + "\ninto " + key);
 		cell = c;
 		return true;
 	}
@@ -45,7 +45,7 @@ public class FreeCell implements CellInterface {
 		if (debug) out.println("\n---board.FreeCell.removeCard---");
 		
 		StdCard temp = cell;
-		if (debug) out.println("removed card: " + temp);
+		if (debug) out.println("removed card: " + temp + "\nfrom " + key);
 		
 		cell = null;
 		return temp;
