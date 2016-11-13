@@ -110,20 +110,30 @@ public class Engine
 		}
 	}
 	
+	/**
+	 * Calls in game cli prompt, returns source string.
+	 * @return source string
+	 */
 	private static String getSourceCLI() {
 		return CLI.inGame("source");
 	}
 	
+	/**
+	 * Calls in game cli prompt, returns destination string.
+	 * @return destination string
+	 */
 	private static String getDestCLI() {
 		return CLI.inGame("dest");
 	}
 	
 	public static void getMappingGUI() {
 		
-		
 	}
 	
 	// In-game Action Handlers ------------------------------------------------
+	/**
+	 * Deals a new game, resets game stats.
+	 */
 	public static void newDeal() {
 		
 		if (debug) out.println("event: New Deal");
@@ -137,31 +147,52 @@ public class Engine
 		else gui.Paint(curBoard);
 	}
 	
+	/**
+	 * Reverts game state to previous turn.
+	 */
 	public static void undo() {
 		
 		if (debug) out.println("event: Undo");
 	}
 	
+	/**
+	 * Reapplies the most recent turn if it exists.
+	 */
 	public static void redo() {
 		
 		if (debug) out.println("event: Redo");
 	}
 	
+	/**
+	 * Shows next move in the solution from current turn.
+	 */
 	public static void hint() {
 		
 		if (debug) out.println("event: Hint");
 	}
 	
+	/**
+	 * Initiates turn movement without user interaction towards the current solution.
+	 */
 	public static void solve() {
 		
 		if (debug) out.println("event: Solve");
 	}
 	
+	/**
+	 * Double click confirmation.
+	 * @param src source clicked (card position)
+	 */
 	public static void doubleClick(String src) {
 		
 		if (debug) out.println("event: Double-Click (" + src + ")");
 	}
 	
+	/**
+	 * Drag and drop confirmation
+	 * @param src source card clicked (card position) 
+	 * @param dest destination position of card clicked
+	 */
 	public static void dragDrop(String src, String dest) {
 		
 		if (debug) out.println("event: Drag and Drop (" + src + ", " + dest + ")");

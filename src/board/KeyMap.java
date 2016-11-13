@@ -3,6 +3,11 @@ package board;
 import static java.lang.System.out;
 import playingCards.StdCard;
 
+/**
+ * Key mapping for a move.
+ * @author groovyLlama devteam
+ * @version 0.1
+ */
 public class KeyMap {
 
 	private static boolean debug = false;
@@ -12,6 +17,12 @@ public class KeyMap {
 	StdCard srcCard;
 	Board board;
 	
+	/**
+	 * Constructs a key map for a move.
+	 * @param s source position
+	 * @param d destination position
+	 * @param b current board
+	 */
 	public KeyMap(String s, String d, Board b) {
 		
 		board = b;
@@ -19,6 +30,11 @@ public class KeyMap {
 		genCard();
 	}
 	
+	/**
+	 * Generates source and destination keys.
+	 * @param s source position
+	 * @param d destination position
+	 */
 	private void genKeys(String s, String d) {
 		
 		if (debug) out.println("\n---board.KeyMap.genKeys--- ");
@@ -31,24 +47,43 @@ public class KeyMap {
 		if (debug) out.println(src + "\n" + dest);
 	}
 	
+	/**
+	 * Generates the card in the source position.
+	 */
 	private void genCard() {
 		
 		if (debug) out.println("\n---board.KeyMap.genCard--- ");
 		srcCard = board.getCardAt(src);
 	}
 	
+	/**
+	 * Returns source card.
+	 * @return source card
+	 */
 	public StdCard getSourceCard() {
 		return srcCard;
 	}
 	
+	/**
+	 * Returns source position key.
+	 * @return source key
+	 */
 	public Key getSrcKey() {
 		return src;
 	}
 	
+	/**
+	 * Returns destination position key.
+	 * @return destination key
+	 */
 	public Key getDestKey() {
 		return dest;
 	}
 	
+	/**
+	 * Tests keymap for move validity.
+	 * @return true if move is valid
+	 */
 	public boolean isValid() {
 		
 		if (debug) out.println("\n---board.KeyMap.isValid---");
@@ -91,6 +126,9 @@ public class KeyMap {
 		return false;
 	}
 	
+	/**
+	 * Returns keymap string.
+	 */
 	public String toString() {
 		
 		String s = "";
@@ -102,6 +140,9 @@ public class KeyMap {
 		return s;
 	}
 	
+	/**
+	 * Toggles debug mode.
+	 */
 	public static void toggleDebug() {
 		debug = !debug;
 	}

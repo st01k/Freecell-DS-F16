@@ -7,31 +7,40 @@ public class Solver {
 	private boolean movePossible;
 	// alert user that there are no moves
 	// gray out hint button
+	private Solution solution;
 	
 	public Solver() {
 		
 		init();
+		solution = new Solution();
 	}
 	
-	public boolean getPossibeMove() {
+	public boolean moveIsPossible() {
 		
 		return movePossible;
 	}
 	
-	private void setPossibleMove(boolean in) {
+	public Solution getSolution() {
+		return solution;
+	}
+	
+	private void setMovePossible(boolean in) {
 		
 		movePossible = in;
 	}
 	
 	private void init() {
 		
-		
+		findMoves();
+		//TODO create threads based on possible moves
 	}
 	
 	private void findMoves() {
 		
-		// find all possible moves
+		//TODO find all possible moves
 		
+		// if moves possible
+		setMovePossible(true);
 	}
 	
 	public static void toggleDebug() {

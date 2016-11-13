@@ -65,6 +65,11 @@ public class HomeCell implements CellInterface {
 		return cell;
 	}
 	
+	/**
+	 * Checks if card can be moved into homecell.
+	 * @param c card to check
+	 * @return true if move is valid
+	 */
 	public boolean check(StdCard c) {
 		return isValid(c);
 	}

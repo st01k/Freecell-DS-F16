@@ -61,6 +61,9 @@ public class Board {
 		genMap();
 	}
 	
+	/**
+	 * Generates key members on cells and piles for mapping.
+	 */
 	private void genMap() {
 		
 		for (Key k : Key.values()) {
@@ -136,6 +139,11 @@ public class Board {
 		return pileAry[index];
 	}
 	
+	/**
+	 * Gets card on the board at specified key.
+	 * @param k key
+	 * @return card in key position
+	 */
 	public StdCard getCardAt(Key k) {
 		
 		if (debug) out.println("\n---board.Board.getCardAt--- ");
@@ -166,14 +174,8 @@ public class Board {
 
 	// Update -----------------------------------------------------------------
 	/**
-	 * Tries to place a card, if it fails returns false.
-	 * If successful returns true.
-	 * -2 : card into next available free cell
-	 * -1 : card into next available (or matching suit) home cell
-	 * 0 - 7 : card into respective playing pile
-	 * @param src source card mapped position
-	 * @param dest mapped destination
-	 * @return true on legal move; false otherwise
+	 * Moves source card to destination.
+	 * @param k keymap
 	 */
 	public void makeMove(KeyMap k) {
 		
@@ -185,6 +187,11 @@ public class Board {
 		remove(k.getSrcKey());
 	}
 	
+	/**
+	 * Places card at destination based on keymap.
+	 * @param c source card
+	 * @param dest destination position
+	 */
 	void place(StdCard c, Key dest) {
 		
 		int pos = dest.getPosition();
@@ -208,6 +215,10 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * Removes card at source position, based on keymap.
+	 * @param src source position
+	 */
 	void remove(Key src) {
 		
 		switch(src.getRegion()) {
@@ -305,8 +316,7 @@ public class Board {
 		s += ("--------------------------------------------------------\n");
 		s += ("   I      J      K      L       M      N      O      P\n");
 		s += ("--------------------------------------------------------\n");
-		if (winnable) s += ("Winnable");
-		else s += ("Lost    ");
+		s += (winnable)? "Winnable" : "Lost    ";
 		s += ("\t\t\t\t\tMove: " + moveNum + "\n");		
 		
 		return s;

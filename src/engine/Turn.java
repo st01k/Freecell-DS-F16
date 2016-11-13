@@ -2,6 +2,8 @@ package engine;
 
 import static java.lang.System.out;
 
+import solver.Solver;
+import solver.Solution;
 import board.Board;
 import board.KeyMap;
 
@@ -10,7 +12,7 @@ import board.KeyMap;
  * Freecell turn.
  * Alters current board when move is made.
  * @author groovyLlama devteam
- * @version 0.4
+ * @version 0.5
  */
 public class Turn {
 	
@@ -22,6 +24,7 @@ public class Turn {
 	private int moveNum;
 	private Board board;
 	private KeyMap keymap;
+	private Solution solution;
 	
 	/**
 	 * Creates a freecell turn with statistics.
@@ -40,10 +43,18 @@ public class Turn {
 	}
 	
 	// Accessors --------------------------------------------------------------
+	/**
+	 * Returns winnable status.
+	 * @return true if game is winnable from current turn
+	 */
 	public boolean getWinnable() {
 		return winnable;
 	}
 	
+	/**
+	 * Returns move number.
+	 * @return move number
+	 */
 	public int getMoveNum() {
 		return moveNum;
 	}
@@ -56,10 +67,12 @@ public class Turn {
 	private boolean isWinnable() {
 		
 		if (debug) out.println("\n---engine.Turn.isWinnable---");
-		//TODO run solver
-		// winnable = boolean solver result
-		// attach solution to turn when applicable
-		return true;
+		
+		Solver solver = new Solver();
+		solution = solver.getSolution();
+		
+		if (solution == null) return false;
+		else return true;
 	}
 	
 	// Utilities --------------------------------------------------------------	

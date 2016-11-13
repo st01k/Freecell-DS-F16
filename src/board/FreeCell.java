@@ -70,6 +70,11 @@ public class FreeCell implements CellInterface {
 		return cell;
 	}
 	
+	/**
+	 * Checks if card can be moved into freecell.
+	 * @param c card to check
+	 * @return true if move is valid
+	 */
 	public boolean check() {
 		return isEmpty();
 	}

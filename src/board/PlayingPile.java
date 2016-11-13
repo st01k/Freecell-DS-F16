@@ -107,6 +107,11 @@ public class PlayingPile {
 		return getCardAt(size() - 1);
 	}
 	
+	/**
+	 * Checks if card can be moved into playing pile.
+	 * @param c card to check
+	 * @return true if move is valid
+	 */
 	public boolean check(StdCard c) {
 		return isValid(c);
 	}
