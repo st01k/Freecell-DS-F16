@@ -69,8 +69,8 @@ public class Turn {
 	@Override
 	public String toString() {
 		
-		return 	"src key: " + keymap.getSource().getKey() + 
-				" | dest key: " + keymap.getDestination().getKey() + 
+		return 	"src key: " + keymap.getSrcKey().getKey() + 
+				" | dest key: " + keymap.getDestKey().getKey() + 
 				" | move number: " + moveNum + " | winnable: " + winnable;
 	}
 	

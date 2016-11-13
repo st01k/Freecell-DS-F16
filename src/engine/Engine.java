@@ -108,11 +108,8 @@ public class Engine
 				curBoard.updateBoardStats(turn);
 				
 				snapshot();
-			}
-			
-			//TODO if illegal move, don't inc move count
-			// pass in keymap movenum and board, decohese isGui
-			
+			}		
+			else { if (debug) out.println("\nIllegal Move\n"); }
 		}
 	}
 	

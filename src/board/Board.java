@@ -181,8 +181,8 @@ public class Board {
 		
 		StdCard c = k.srcCard;
 		
-		place(c, k.getDestination());
-		remove(k.getSource());
+		place(c, k.getDestKey());
+		remove(k.getSrcKey());
 	}
 	
 	void place(StdCard c, Key dest) {

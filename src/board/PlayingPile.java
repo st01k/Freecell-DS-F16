@@ -92,7 +92,7 @@ public class PlayingPile {
 	public StdCard getCardAt(int index) {
 		
 		//TODO throw exception?
-		if (index > size() - 1) return null;
+		if (index > size() - 1 || index < 0) return null;
 		return pile.get(index);
 	}
 	
@@ -132,7 +132,7 @@ public class PlayingPile {
 	 * Returns true if pile is empty.
 	 * @return true if pile is empty
 	 */
-	private boolean isEmpty() {
+	boolean isEmpty() {
 		return pile.isEmpty();
 	}
 	

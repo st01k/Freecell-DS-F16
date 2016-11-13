@@ -41,11 +41,11 @@ public class KeyMap {
 		return srcCard;
 	}
 	
-	public Key getSource() {
+	public Key getSrcKey() {
 		return src;
 	}
 	
-	public Key getDestination() {
+	public Key getDestKey() {
 		return dest;
 	}
 	
@@ -58,7 +58,7 @@ public class KeyMap {
 		// same card
 		if (src.equals(dest)) return false;
 		// homecell remove
-		if (src.getRegion() == 2) return false;
+		if (src.isHomecell()) return false;
 		
 		
 		switch(dest.getRegion()) {
@@ -68,6 +68,7 @@ public class KeyMap {
 			for (FreeCell f : fAry) {
 				if (f.check()) return true;
 			}
+			//FreeCell f = fAry[dest.getPosition()];
 			break;
 		// into homecell
 		case 2 	:
@@ -75,6 +76,8 @@ public class KeyMap {
 			for (HomeCell h : hAry) {
 				if (h.check(srcCard)) return true;
 			}
+			//HomeCell h = hAry[dest.getPosition()];
+			
 			break;
 		// into respective playing pile
 		case 3	:
