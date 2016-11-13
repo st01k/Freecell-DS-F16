@@ -77,10 +77,7 @@ public class Engine
 			if (debug) out.println("\n---loop begin---");
 			if (debug && isGui) printSnapshot();
 			
-			if (isGui) {
-				
-				gui.Paint(curBoard);
-			}
+			if (isGui) gui.Paint(curBoard);
 			else out.println(curBoard);
 			
 			//TODO auto stacks
@@ -109,7 +106,6 @@ public class Engine
 				
 				Turn turn = new Turn(++moveNum, curBoard, keymap);
 				curBoard.updateBoardStats(turn);
-				
 				snapshot();
 			}		
 			else { if (debug) out.println("\nIllegal Move\n"); }
@@ -192,8 +188,9 @@ public class Engine
 		out.println(history.peek());
 		
 		if (debug) {
-			out.println
-			("\nstate: gui - " + isGui + " | history size: " + history.size());
+			String client = (isGui)? "GUI" : "CLI";
+			out.println			 
+				("\nstate [client: " + client + " | history size: " + history.size() + "]");
 		}
 		
 		out.println("********************* End Snapshot *********************");
