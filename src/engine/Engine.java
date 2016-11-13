@@ -39,6 +39,7 @@ public class Engine
 		curBoard = new Board();
 		history = new Stack<Board>();
 		isGui = _isGui;
+		gameOver = false;
 				
 		gameLoop();
 	}
@@ -110,6 +111,9 @@ public class Engine
 			
 			gameOver = checkGameOver();
 		}
+		
+		out.println(curBoard);
+		out.println("\nYou won the game!!!");
 	}
 	
 	/**
