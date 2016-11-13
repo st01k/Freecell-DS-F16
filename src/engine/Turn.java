@@ -68,7 +68,7 @@ public class Turn {
 		
 		if (debug) out.println("\n---engine.Turn.isWinnable---");
 		
-		Solver solver = new Solver();
+		Solver solver = new Solver(board);
 		solution = solver.getSolution();
 		
 		if (solution == null) return false;
