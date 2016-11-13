@@ -203,11 +203,11 @@ public class Board {
 		switch(dest.getRegion()) {
 		// into freecell
 		case 1	:
-			intoFreecell(c);
+			intoFreecell(c, dest.getPosition());
 			break;
 		// into homecell
 		case 2 :
-			intoHomecell(c);
+			intoHomecell(c, dest.getPosition());
 			break;
 		// into respective playing pile
 		case 3	:
@@ -265,9 +265,11 @@ public class Board {
 		if (debug) out.println("\n---board.Board.winCheck---");
 		
 		int king = StdCard.getMaxValue();
+		if (debug) out.println("king value: " + king);
 		for (HomeCell h : homeAry) {
 			
 			if (h.isEmpty()) return false;
+			if (debug) out.println(h.peekCard().getValue());
 			if (h.peekCard().getValue() != king) return false;
 		}
 		return true;
@@ -279,9 +281,12 @@ public class Board {
 	 * @param c card to insert
 	 * @return true if the card was successfully placed.
 	 */
-	boolean intoFreecell(StdCard c) {
+	boolean intoFreecell(StdCard c, int index) {
 		
 		if (debug) out.println("\n---board.Board.intoFreeCell---");
+		
+		// tries user selected placement
+		if (freeAry[index].placeCard(c)) return true;
 		
 		// finds first available cell
 		for (FreeCell f : freeAry) {
@@ -296,9 +301,12 @@ public class Board {
 	 * @param c card to be inserted
 	 * @return true if the card was successfully placed
 	 */
-	boolean intoHomecell(StdCard c) {
+	boolean intoHomecell(StdCard c, int index) {
 
 		if (debug) out.println("\n---board.Board.intoHomeCell---");
+		
+		// tries user selected placement
+		if (homeAry[index].placeCard(c)) return true;
 		
 		// finds first available or matching cell
 		for (HomeCell h : homeAry) {

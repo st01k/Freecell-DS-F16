@@ -14,7 +14,7 @@ public class StdCard implements CardInterface {
 	static final String[] suitAry = { "Diamonds", "Clubs", "Hearts", "Spades" };
 	static final Character[] defSymAry = { 'd', 'c', 'h', 's' };
 	static final Character[] uniSymAry = { '♦', '♣', '♥', '♠' };
-	static final int maxValue = rankAry.length + 1;
+	static final int maxValue = rankAry.length;
 
 	// class variables
 	private static boolean debug = false;

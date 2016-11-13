@@ -107,7 +107,7 @@ public class Engine
 				curBoard.updateBoardStats(turn);
 				snapshot();
 			}		
-			else { if (debug) out.println("\nIllegal Move\n"); }
+			else { out.println("\nIllegal Move\n"); }
 			
 			gameOver = checkGameOver();
 		}

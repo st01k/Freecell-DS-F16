@@ -65,16 +65,11 @@ public class CLI {
 				Engine.start(false);
 				out.println();
 				break;
-			case ("show")	: out.println("Only available in game.");
-				break;
-			case ("new")	: out.println("Only available in game.");
-				break;
-			case ("undo")	: out.println("Only available in game.");
-				break;
-			case ("redo")	: out.println("Only available in game.");
-				break;
-			case ("hint")	: out.println("Only available in game.");
-				break;
+			case ("show")	:
+			case ("new")	:
+			case ("undo")	:
+			case ("redo")	:
+			case ("hint")	:
 			case ("solve")	: out.println("Only available in game.");
 				break;
 			case ("cls") 	: formFeed();
@@ -145,7 +140,7 @@ public class CLI {
 				out.println("Invalid Command.  Type 'help' for a list of commands.");
 			}
 		} while(cont);
-		return "somethin's jacked";
+		return "";
 	}
 	
 	// Prints -----------------------------------------------------------------
