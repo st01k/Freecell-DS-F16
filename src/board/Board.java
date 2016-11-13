@@ -249,16 +249,19 @@ public class Board {
 		winnable = t.getWinnable();
 	}
 	
+	/**
+	 * Checks if the game is won based on all homecells containing a king.
+	 * @return true if game is won
+	 */
 	public boolean winCheck() {
 		
-		for (HomeCell h : homeAry) if (h.isEmpty()) return false;
-		
 		int king = StdCard.getMaxValue();
-		return
-				homeAry[0].peekCard().getValue() == king &&
-				homeAry[1].peekCard().getValue() == king &&
-				homeAry[2].peekCard().getValue() == king &&
-				homeAry[3].peekCard().getValue() == king;
+		for (HomeCell h : homeAry) {
+			
+			if (h.isEmpty()) return false;
+			if (h.peekCard().getValue() != king) return false;
+		}
+		return true;
 	}
 	
 	// Placement --------------------------------------------------------------
