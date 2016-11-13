@@ -8,7 +8,7 @@ import playingCards.*;
 /**
  * Freecell game board.
  * @author groovyLlama devteam
- * @version 0.3
+ * @version 0.4
  */
 public class Board {
 
@@ -247,6 +247,18 @@ public class Board {
 		
 		moveNum = t.getMoveNum();
 		winnable = t.getWinnable();
+	}
+	
+	public boolean winCheck() {
+		
+		for (HomeCell h : homeAry) if (h.isEmpty()) return false;
+		
+		int king = StdCard.getMaxValue();
+		return
+				homeAry[0].peekCard().getValue() == king &&
+				homeAry[1].peekCard().getValue() == king &&
+				homeAry[2].peekCard().getValue() == king &&
+				homeAry[3].peekCard().getValue() == king;
 	}
 	
 	// Placement --------------------------------------------------------------

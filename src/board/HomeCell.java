@@ -87,7 +87,7 @@ public class HomeCell implements CellInterface {
 	 * Returns true if the homecell is empty.
 	 * @return true if cell is empty.
 	 */
-	private boolean isEmpty() {
+	boolean isEmpty() {
 		
 		return cell == null;
 	}

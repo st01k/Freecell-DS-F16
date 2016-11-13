@@ -12,7 +12,7 @@ import board.KeyMap;
 /**
  * Drives freecell game.
  * @author groovyLlama devteam
- * @version 0.4
+ * @version 0.5
  */
 public class Engine 
 {
@@ -107,6 +107,8 @@ public class Engine
 				snapshot();
 			}		
 			else { if (debug) out.println("\nIllegal Move\n"); }
+			
+			gameOver = checkGameOver();
 		}
 	}
 	
@@ -224,6 +226,14 @@ public class Engine
 		
 		out.println("********************* End Snapshot *********************");
 		out.println();
+	}
+	
+	/**
+	 * Determines if game has been won.
+	 * @return true if game has been won
+	 */
+	public static boolean checkGameOver() {
+		return curBoard.winCheck();
 	}
 	
 	/**
