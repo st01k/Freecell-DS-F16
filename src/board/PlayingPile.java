@@ -18,6 +18,7 @@ public class PlayingPile {
 	
 	// class variables
 	private ArrayList<StdCard> pile;
+	private Key key;
 
 	/**
 	 * Creates new empty playing pile.
@@ -71,6 +72,15 @@ public class PlayingPile {
 		}
 		
 	}
+	
+	/**
+	 * Sets the board key on this pile.
+	 * @param k key
+	 */
+	public void setKey(Key k) {
+		
+		key = k;
+	}
 
 	// List Information -------------------------------------------------------
 	/**
@@ -97,12 +107,24 @@ public class PlayingPile {
 		return getCardAt(size() - 1);
 	}
 	
+	public boolean check(StdCard c) {
+		return isValid(c);
+	}
+	
 	/**
 	 * Returns the size of the pile.
 	 * @return number of cards in pile
 	 */
 	public int size() {
 		return pile.size();
+	}
+	
+	/**
+	 * Returns the key of this board element.
+	 * @return
+	 */
+	public Key getKey() {
+		return key;
 	}
 	
 	// Checks -----------------------------------------------------------------

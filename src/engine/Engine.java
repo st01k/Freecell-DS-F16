@@ -6,6 +6,7 @@ import java.util.Stack;
 import client.cli.CLI;
 import client.gui.FreeGUI;
 import board.Board;
+import board.KeyMap;
 
 /**
  * Drives freecell game.
@@ -99,13 +100,19 @@ public class Engine
 			}
 			
 			// generate keymap here
+			KeyMap keymap = new KeyMap(src, dest, curBoard);
+			// check keymap
+			if (keymap.isValid()) {
+				
+				Turn turn = new Turn(isGui, ++moveNum, curBoard, keymap);
+				curBoard.updateBoardStats(turn);
+				
+				snapshot();
+			}
 			
 			//TODO if illegal move, don't inc move count
 			// pass in keymap movenum and board, decohese isGui
-			Turn turn = new Turn(isGui, ++moveNum, curBoard, src, dest);
-			curBoard.updateBoardStats(turn);
 			
-			snapshot();
 		}
 	}
 	
@@ -117,12 +124,9 @@ public class Engine
 		return CLI.inGame("dest");
 	}
 	
-	public static void setSourceGUI(String in) {
-		src = in;
-	}
-	
-	public static void setDestGUI(String in) {
-		dest = in;
+	public static void getMappingGUI() {
+		
+		
 	}
 	
 	// In-game Action Handlers ------------------------------------------------

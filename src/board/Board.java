@@ -40,9 +40,69 @@ public class Board {
 		init();
 	}
 	
+	// Initialization ---------------------------------------------------------
+	/**
+	 * Initializes board with a full deck dealt.
+	 */
+	private void init() {
+		
+		final int INITROWS = 7;
+		
+		d = new StdDeck();
+		d.shuffle();
+		
+		for (int i = 0; i < CELLS; i++) {
+			freeAry[i] = new FreeCell();
+			homeAry[i] = new HomeCell();
+		}
+		for (int i = 0; i < PILES; i++) pileAry[i] = new PlayingPile();
+		
+		for (int i = 0; i < INITROWS; i++) dealRow();
+		genMap();
+	}
+	
+	private void genMap() {
+		
+		for (Key k : Key.values()) {
+			
+			if (k.isFreecell()) {
+				
+				int pos = k.getPosition();
+				freeAry[pos].setKey(k);
+			}
+			
+			if (k.isHomecell()) {
+				
+				int pos = k.getPosition();
+				homeAry[pos].setKey(k);
+			}
+			
+			if (k.isPlayingPile()) {
+				
+				int pos = k.getPosition();
+				pileAry[pos].setKey(k);
+			}
+		}
+	}
+	
+	/**
+	 * Fills a row of cards by cycling through each pile.
+	 * @param rowNum row number to fill
+	 */
+	private void dealRow() {	
+		
+		if (debug) out.println("\n---board.Board.dealRow--- ");
+		
+		for (int i = 0; i < PILES && !d.isEmpty(); i++) {
+			
+			StdCard c = d.getCard();
+			pileAry[i].placeCardOnDeal(c);
+			
+			if (debug) out.println(i + " " + c);
+		}
+	}
+	
 	// Accessors --------------------------------------------------------------
-	//TODO will have to change these three accessors 
-	// with encapsulation in mind down the road.
 	/**
 	 * Returns the freecell array.
 	 * @return freecell array
@@ -67,42 +127,42 @@ public class Board {
 		return pileAry;
 	}
 	
-	// Initialization ---------------------------------------------------------
 	/**
-	 * Initializes board with a full deck dealt.
+	 * Returns a specific playing pile.
+	 * @param index
+	 * @return playing pile at index
 	 */
-	private void init() {
-		
-		final int INITROWS = 7;
-		
-		d = new StdDeck();
-		d.shuffle();
-		
-		for (int i = 0; i < CELLS; i++) {
-			freeAry[i] = new FreeCell();
-			homeAry[i] = new HomeCell();
-		}
-		for (int i = 0; i < PILES; i++) pileAry[i] = new PlayingPile();
-		
-		for (int i = 0; i < INITROWS; i++) fillRow();
+	public PlayingPile getPile(int index) {
+		return pileAry[index];
 	}
 	
-	/**
-	 * Fills a row of cards by cycling through each pile.
-	 * @param rowNum row number to fill
-	 */
-	private void fillRow() {	
+	public StdCard getCardAt(Key k) {
 		
-		if (debug) out.println("\n---board.Board.fillRow--- ");
+		if (debug) out.println("\n---board.Board.getCardAt--- ");
+		if (debug) out.println(k);
 		
-		for (int i = 0; i < PILES && !d.isEmpty(); i++) {
-			
-			StdCard c = d.getCard();
-			pileAry[i].placeCardOnDeal(c);
-			
-			if (debug) out.println(i + " " + c);
+		StdCard c;
+		int pos = k.getPosition();
+		
+		switch (k.getRegion()) {
+		
+		case 1	: c = freeAry[pos].peekCard();
+			break;
+		case 2 	: c = homeAry[pos].peekCard();
+			break;
+		case 3 	: c = pileAry[pos].peekLastCard();
+			break;
+		default	: 
+			if (debug) out.println
+				("ERROR: invalid input in board.Board.getCardAt");
+			c = null;
 		}
+		
+		if (debug) out.println("source card: " + c);
+		return c;
 	}
+	
+
 
 	// Update -----------------------------------------------------------------
 	/**
@@ -115,59 +175,56 @@ public class Board {
 	 * @param dest mapped destination
 	 * @return true on legal move; false otherwise
 	 */
-	public boolean tryMove(String src, String dest) {
-		
-		if (debug) out.println("\n---board.Board.tryMove---");
-		
-		StdCard sourceCard = showSource(src);
-		int destination = destSwitch(dest);
-		
-		if (sourceCard == null) return false;
-		switch(destination) {
-		// into freecell
-		case -2	:
-			if (intoFreecell(sourceCard)) return true;
-			break;
-		// into homecell
-		case -1 :
-			if (intoHomecell(sourceCard)) return true;
-			break;
-		// into respective playing pile
-		case 0	:
-		case 1  :
-		case 2  :
-		case 3  :
-		case 4  :
-		case 5  :
-		case 6  :
-		case 7  :
-			if (intoPlayingPile(sourceCard, pileAry[destination])) return true;
-			break;
-		default	:
-			if (debug) out.println("ERROR - Unknown destination in board.Board.makeMove");
-			break;
-		}
-		return false;
-	}
-	
-	/**
-	 * Attempts move.  If successful moves a card from its source 
-	 * to the mapped destination.  Returns false on failure.
-	 * @param src source position
-	 * @param dest destination position
-	 * @return true if card was successfully moved
-	 */
-	public boolean makeMove(String src, String dest) {
+	public void makeMove(KeyMap k) {
 		
 		if (debug) out.println("\n---board.Board.makeMove---");
 		
-		if (tryMove(src, dest)) {
-			removeSource(src);
-			return true;
+		StdCard c = k.srcCard;
+		
+		place(c, k.getDestination());
+		remove(k.getSource());
+	}
+	
+	void place(StdCard c, Key dest) {
+		
+		int pos = dest.getPosition();
+		switch(dest.getRegion()) {
+		// into freecell
+		case 1	:
+			intoFreecell(c);
+			break;
+		// into homecell
+		case 2 :
+			intoHomecell(c);
+			break;
+		// into respective playing pile
+		case 3	:
+			intoPlayingPile(c, pileAry[pos]);
+			break;
+		default	:
+			if (debug) out.println
+				("ERROR - Unknown destination in board.Board.place");
+			break;
 		}
-		else {
-			out.println("\nIllegal move.");
-			return false;
+	}
+	
+	void remove(Key src) {
+		
+		switch(src.getRegion()) {
+		case 1 	:
+			freeAry[src.getPosition()].removeCard();
+			break;
+		case 2 	:
+			if (debug) out.println
+				("ERROR: homecell remove in board.Board.makeMove");
+			break;
+		case 3 	:
+			pileAry[src.getPosition()].removeCard();
+			break;
+		default	:
+			if (debug) out.println
+				("ERROR: Unknown source in board.Board.remove");
+			break;
 		}
 	}
 	
@@ -187,7 +244,7 @@ public class Board {
 	 * @param c card to insert
 	 * @return true if the card was successfully placed.
 	 */
-	private boolean intoFreecell(StdCard c) {
+	boolean intoFreecell(StdCard c) {
 		
 		if (debug) out.println("\n---board.Board.intoFreeCell---");
 		
@@ -204,7 +261,7 @@ public class Board {
 	 * @param c card to be inserted
 	 * @return true if the card was successfully placed
 	 */
-	private boolean intoHomecell(StdCard c) {
+	boolean intoHomecell(StdCard c) {
 
 		if (debug) out.println("\n---board.Board.intoHomeCell---");
 		
@@ -221,7 +278,7 @@ public class Board {
 	 * @param p playing pile destination
 	 * @return true if the card was successfully placed
 	 */
-	private boolean intoPlayingPile(StdCard c, PlayingPile p) {
+	boolean intoPlayingPile(StdCard c, PlayingPile p) {
 		
 		if (debug) out.println("\n---board.Board.intoPlayingPile---");
 		
@@ -286,136 +343,6 @@ public class Board {
 			else s += " " + p.getCardAt(rowNum).toString() + "  ";
 		}
 		return s;
-	}
-	
-	// Mapping ----------------------------------------------------------------
-	/**
-	 * Shows card at mapped position on the board.
-	 * @param src mapped source position of card
-	 * @return card in the source position
-	 */
-	private StdCard showSource(String src) {
-		
-		if (debug) out.println("\n---board.Board.showSource---");
-		
-		StdCard c = null;
-		
-		switch(src) {
-		// freecells
-		case "a"	:	c = freeAry[0].peekCard();	break;
-		case "b"	:	c = freeAry[1].peekCard();	break;
-		case "c"	:	c = freeAry[2].peekCard();	break;
-		case "d"	:	c = freeAry[3].peekCard();	break;
-		// homecells
-		case "e"	:
-		case "f"	:
-		case "g"	:
-		case "h"	:
-			if (debug) out.println
-				("ERROR: homecell remove in board.Board.showSource");
-			break;
-		// playing piles
-		case "i"	:	c = pileAry[0].peekLastCard();	break;
-		case "j"	:	c = pileAry[1].peekLastCard();	break;
-		case "k"	:	c = pileAry[2].peekLastCard();	break;
-		case "l"	:	c = pileAry[3].peekLastCard();	break;
-		case "m"	:	c = pileAry[4].peekLastCard();	break;
-		case "n"	:	c = pileAry[5].peekLastCard();	break;
-		case "o"	:	c = pileAry[6].peekLastCard();	break;
-		case "p"	:	c = pileAry[7].peekLastCard();	break;
-			
-		default		:
-			if (debug) out.println
-				("ERROR: invalid input in board.Board.showSource");
-		}
-		if (debug) out.println("source card: " + c);
-		return c;
-	}
-	
-	/**
-	 * Removes card from its current position on the board.
-	 * @param src mapped source position of card
-	 * @return card in the source position
-	 */
-	private StdCard removeSource(String src) {
-		
-		if (debug) out.println("\n---board.Board.removeSource---");
-		
-		StdCard c = null;
-		
-		switch(src) {
-		// freecells
-		case "a"	:	c = freeAry[0].removeCard();	break;
-		case "b"	:	c = freeAry[1].removeCard();	break;
-		case "c"	:	c = freeAry[2].removeCard();	break;
-		case "d"	:	c = freeAry[3].removeCard();	break;
-		// homecells
-		case "e"	:
-		case "f"	:
-		case "g"	:
-		case "h"	:
-			if (debug) out.println
-				("ERROR: homecell remove in board.Board.removeSource");
-			break;
-		// playing piles
-		case "i"	:	c = pileAry[0].removeCard();	break;
-		case "j"	:	c = pileAry[1].removeCard();	break;
-		case "k"	:	c = pileAry[2].removeCard();	break;
-		case "l"	:	c = pileAry[3].removeCard();	break;
-		case "m"	:	c = pileAry[4].removeCard();	break;
-		case "n"	:	c = pileAry[5].removeCard();	break;
-		case "o"	:	c = pileAry[6].removeCard();	break;
-		case "p"	:	c = pileAry[7].removeCard();	break;
-			
-		default		:
-			if (debug) out.println
-				("ERROR: invalid input in board.Board.removeSource");
-		}
-		return c;
-	}
-	
-	/**
-	 * Translates alphabetic destination map location
-	 * to a number-based region on the board.
-	 * @param dest alphabetic position key
-	 * @return numeric position key
-	 */
-	private int destSwitch(String dest) {
-		
-		if (debug) out.println("\n---board.Board.destSwitch---");
-		
-		int key = 999;
-		
-		switch(dest) {
-		// freecells
-		case "a"	:
-		case "b"	:
-		case "c"	:
-		case "d"	:
-			key = -2;
-			break;
-		// homecells
-		case "e"	:
-		case "f"	:
-		case "g"	:
-		case "h"	:
-			key = -1;
-			break;
-		// playing piles
-		case "i"	:	key = 0;	break;
-		case "j"	:	key = 1;	break;
-		case "k"	:	key = 2;	break;
-		case "l"	:	key = 3;	break;
-		case "m"	:	key = 4;	break;
-		case "n"	:	key = 5;	break;
-		case "o"	:	key = 6;	break;
-		case "p"	:	key = 7;	break;
-			
-		default		:
-			if (debug) out.println("ERROR: invalid input in board.Board.destSwitch");
-		}
-		if (debug) out.println("dest pos: " + key);
-		return key;
 	}
 
 	// Utilities --------------------------------------------------------------

@@ -1,6 +1,6 @@
 package board;
 
-public enum KeyEnum {
+public enum Key {
 		
 	A("a", 1, 0),		// free cells
 	B("b", 1, 1),
@@ -23,7 +23,7 @@ public enum KeyEnum {
 	private final int 		region;			// 1-free, 2-home, 3-pile
 	private final int 		position;		// index of region
 	
-	KeyEnum(	final String 	key, 
+	Key(	final String 	key, 
 				final int 		region,
 				final int 		position	) {
 		
@@ -54,5 +54,17 @@ public enum KeyEnum {
 	
 	public boolean isPlayingPile() {
 		return region == 3;
+	}
+	
+	public String toString() {
+		return "key: " + key + " | region: " + region + " | position: " + position;
+	}
+	
+	public boolean equals(Key k) {
+		
+		return 
+				key == k.getKey() &&
+				region == k.getRegion() &&
+				position == k.getPosition();
 	}
 }

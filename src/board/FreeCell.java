@@ -17,6 +17,7 @@ public class FreeCell implements CellInterface {
 	
 	// class variables
 	private StdCard cell;
+	private Key key;
 	
 	// Cell Manipulation ------------------------------------------------------
 	/**
@@ -50,6 +51,15 @@ public class FreeCell implements CellInterface {
 		return temp;
 	}
 	
+	/**
+	 * Sets the board key on this cell.
+	 * @param k key
+	 */
+	public void setKey(Key k) {
+		
+		key = k;
+	}
+	
 	// Cell Information -------------------------------------------------------
 	/**
 	 * Returns card currently in cell.
@@ -58,6 +68,18 @@ public class FreeCell implements CellInterface {
 	 */
 	public StdCard peekCard() {
 		return cell;
+	}
+	
+	public boolean check() {
+		return isEmpty();
+	}
+	
+	/**
+	 * Returns the key of this board element.
+	 * @return
+	 */
+	public Key getKey() {
+		return key;
 	}
 	
 	// Checks -----------------------------------------------------------------	

@@ -17,6 +17,7 @@ public class HomeCell implements CellInterface {
 	
 	// class variables
 	private StdCard cell;
+	private Key key;
 	
 	// Cell Manipulation ------------------------------------------------------
 	/**
@@ -44,6 +45,15 @@ public class HomeCell implements CellInterface {
 								"Cannot remove card from homecell.");
 		return null;
 	}
+	
+	/**
+	 * Sets the board key on this cell.
+	 * @param k key
+	 */
+	public void setKey(Key k) {
+		
+		key = k;
+	}
 
 	// Cell Information -------------------------------------------------------
 	/**
@@ -53,7 +63,19 @@ public class HomeCell implements CellInterface {
 	 */
 	public StdCard peekCard() {
 		return cell;
-	} 
+	}
+	
+	public boolean check(StdCard c) {
+		return isValid(c);
+	}
+	
+	/**
+	 * Returns the key of this board element.
+	 * @return
+	 */
+	public Key getKey() {
+		return key;
+	}
 	
 	// Checks -----------------------------------------------------------------
 	/**

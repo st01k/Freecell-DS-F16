@@ -31,5 +31,6 @@ public class Debugger {
 		Engine.toggleDebug();
 		Turn.toggleDebug();
 		Solver.toggleDebug();
+		KeyMap.toggleDebug();
 	}
 }
