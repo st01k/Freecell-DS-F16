@@ -12,7 +12,7 @@ import board.KeyMap;
 /**
  * Drives freecell game.
  * @author groovyLlama devteam
- * @version 0.3
+ * @version 0.4
  */
 public class Engine 
 {
@@ -99,9 +99,7 @@ public class Engine
 				dest = getDestCLI();
 			}
 			
-			// generate keymap here
 			KeyMap keymap = new KeyMap(src, dest, curBoard);
-			// check keymap
 			if (keymap.isValid()) {
 				
 				Turn turn = new Turn(++moveNum, curBoard, keymap);

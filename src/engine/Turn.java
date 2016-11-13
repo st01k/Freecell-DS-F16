@@ -34,8 +34,8 @@ public class Turn {
 		moveNum = move;
 		board = b;
 		keymap = km;
-		winnable = isWinnable();
 		
+		winnable = isWinnable();
 		board.makeMove(keymap);
 	}
 	
