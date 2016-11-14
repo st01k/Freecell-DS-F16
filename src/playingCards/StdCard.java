@@ -76,6 +76,10 @@ public class StdCard implements CardInterface {
 	
 	public static void toggleUni() {
 		unicode = !unicode;
+		
+		String s;
+		s = (unicode)? "on" : "off";
+		if (debug) out.println("unicode " + s);
 	}
 
 // Accessors ------------------------------------------------------------------

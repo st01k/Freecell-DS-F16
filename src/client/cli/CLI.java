@@ -65,6 +65,7 @@ public class CLI {
 				Engine.start(false);
 				out.println();
 				break;
+			case ("auto")	:
 			case ("show")	:
 			case ("new")	:
 			case ("undo")	:
@@ -114,6 +115,8 @@ public class CLI {
 				break;
 			case ("cli")	: out.println("Already in game.");
 				break;
+			case ("auto")	: Engine.toggleAutoStack();
+				break;
 			case ("show")	: Engine.printSnapshot();
 				break;
 			case ("new")	: Engine.newDeal();
@@ -159,6 +162,7 @@ public class CLI {
 		out.println("uni\tToggles unicode characters");
 		out.println("gui\tStarts game in GUI");
 		out.println("cli\tStarts game in CLI");
+		out.println("auto\tToggle auto-stacking");
 		out.println("show\tReprints current board");
 		out.println("new\tResets game with a new deal");
 		out.println("undo\tUndo last move");

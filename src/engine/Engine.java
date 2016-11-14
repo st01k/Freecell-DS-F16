@@ -20,6 +20,7 @@ public class Engine
 	// static variables
 	private static boolean isGui = false;
 	private static boolean gameOver = false;
+	private static boolean autoStack = false;
 	private static boolean debug = false;
 	private static int moveNum;
 	private static String src, dest;
@@ -79,7 +80,7 @@ public class Engine
 			if (debug) out.println("\n---loop begin---");
 			if (debug && isGui) printSnapshot();
 			
-			autoStack();
+			if (autoStack) autoStack();
 			
 			if (isGui) gui.Paint(curBoard);
 			else out.println(curBoard);
@@ -149,7 +150,7 @@ public class Engine
 		history = new Stack<Board>();
 		moveNum = 0;
 		snapshot();
-		autoStack();
+		if (autoStack) autoStack();
 		
 		if (!isGui) out.println(curBoard);
 		else gui.Paint(curBoard);
@@ -162,6 +163,8 @@ public class Engine
 		
 		if (debug) out.println("event: Undo");
 		if (debug) out.println("currently unavailable");
+		
+		//TODO no autostack on undo
 	}
 	
 	/**
@@ -259,6 +262,14 @@ public class Engine
 		boolean status = curBoard.winCheck();
 		if (debug) out.println(status);
 		return status;
+	}
+	
+	public static void toggleAutoStack() {
+		autoStack = !autoStack;
+		
+		String s;
+		s = (autoStack)? "on" : "off";
+		if (debug) out.println("auto-stack " + s);
 	}
 	
 	/**
