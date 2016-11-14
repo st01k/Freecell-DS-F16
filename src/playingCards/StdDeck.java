@@ -93,7 +93,7 @@ public class StdDeck implements DeckInterface {
     @Override
     public void shuffle() {
     	
-    	if (debug) out.println("---playingCards.StdDeck.shuffle--- ");
+    	if (debug) out.println("\n---playingCards.StdDeck.shuffle--- ");
     	
         deckCount = 0;
         for (int i = 0; i < SIZE; i++) {

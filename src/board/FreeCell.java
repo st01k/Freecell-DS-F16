@@ -17,7 +17,7 @@ public class FreeCell implements CellInterface {
 	
 	// class variables
 	private StdCard cell;
-	
+	private Key key;
 	
 	// Cell Manipulation ------------------------------------------------------
 	/**
@@ -30,6 +30,7 @@ public class FreeCell implements CellInterface {
 		
 		if (!isEmpty()) return false;
 		
+		if (debug) out.println("placed card: " + c + "\ninto " + key);
 		cell = c;
 		return true;
 	}
@@ -44,8 +45,19 @@ public class FreeCell implements CellInterface {
 		if (debug) out.println("\n---board.FreeCell.removeCard---");
 		
 		StdCard temp = cell;
+		if (debug) out.println("removed card: " + temp + "\nfrom " + key);
+		
 		cell = null;
 		return temp;
+	}
+	
+	/**
+	 * Sets the board key on this cell.
+	 * @param k key
+	 */
+	public void setKey(Key k) {
+		
+		key = k;
 	}
 	
 	// Cell Information -------------------------------------------------------
@@ -56,6 +68,23 @@ public class FreeCell implements CellInterface {
 	 */
 	public StdCard peekCard() {
 		return cell;
+	}
+	
+	/**
+	 * Checks if card can be moved into freecell.
+	 * @param c card to check
+	 * @return true if move is valid
+	 */
+	public boolean check() {
+		return isEmpty();
+	}
+	
+	/**
+	 * Returns the key of this board element.
+	 * @return
+	 */
+	public Key getKey() {
+		return key;
 	}
 	
 	// Checks -----------------------------------------------------------------	

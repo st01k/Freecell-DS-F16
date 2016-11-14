@@ -17,6 +17,7 @@ public class HomeCell implements CellInterface {
 	
 	// class variables
 	private StdCard cell;
+	private Key key;
 	
 	// Cell Manipulation ------------------------------------------------------
 	/**
@@ -29,6 +30,7 @@ public class HomeCell implements CellInterface {
 
 		if (!isValid(c)) return false;
 		
+		if (debug) out.println("placed card: " + c + "\ninto " + key);
 		cell = c;
 		return true;
 	}
@@ -43,6 +45,15 @@ public class HomeCell implements CellInterface {
 								"Cannot remove card from homecell.");
 		return null;
 	}
+	
+	/**
+	 * Sets the board key on this cell.
+	 * @param k key
+	 */
+	public void setKey(Key k) {
+		
+		key = k;
+	}
 
 	// Cell Information -------------------------------------------------------
 	/**
@@ -52,14 +63,31 @@ public class HomeCell implements CellInterface {
 	 */
 	public StdCard peekCard() {
 		return cell;
-	} 
+	}
+	
+	/**
+	 * Checks if card can be moved into homecell.
+	 * @param c card to check
+	 * @return true if move is valid
+	 */
+	public boolean check(StdCard c) {
+		return isValid(c);
+	}
+	
+	/**
+	 * Returns the key of this board element.
+	 * @return
+	 */
+	public Key getKey() {
+		return key;
+	}
 	
 	// Checks -----------------------------------------------------------------
 	/**
 	 * Returns true if the homecell is empty.
 	 * @return true if cell is empty.
 	 */
-	private boolean isEmpty() {
+	boolean isEmpty() {
 		
 		return cell == null;
 	}
