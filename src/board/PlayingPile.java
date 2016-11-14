@@ -18,6 +18,7 @@ public class PlayingPile {
 	
 	// class variables
 	private ArrayList<StdCard> pile;
+	private Key key;
 
 	/**
 	 * Creates new empty playing pile.
@@ -46,7 +47,7 @@ public class PlayingPile {
 		
 		if (!isValid(c)) return false;
 		
-		if (debug) out.println("added: " + c);
+		if (debug) out.println("placed card: " + c + "\ninto " + key);
 		pile.add(c);
 		return true;
 	}
@@ -58,10 +59,27 @@ public class PlayingPile {
 	StdCard removeCard() {
 		
 		if (debug) out.println("\n---board.PlayingPile.removeCard---");
-		if (!pile.isEmpty()) return pile.remove(pile.size() - 1);
-		if (debug) out.println("Playing pile is empty.");
 		
-		return null;
+		if (pile.isEmpty()) {
+			
+			if (debug) out.println("Playing pile is empty.");
+			return null;
+		}
+		else {
+			
+			if (debug) out.println("removed card: " + peekLastCard() + "\nfrom " + key);
+			return pile.remove(pile.size() - 1);
+		}
+		
+	}
+	
+	/**
+	 * Sets the board key on this pile.
+	 * @param k key
+	 */
+	public void setKey(Key k) {
+		
+		key = k;
 	}
 
 	// List Information -------------------------------------------------------
@@ -71,10 +89,10 @@ public class PlayingPile {
 	 * @param index index of card
 	 * @return card at index
 	 */
-	StdCard getCardAt(int index) {
+	public StdCard getCardAt(int index) {
 		
 		//TODO throw exception?
-		if (index > size() - 1) return null;
+		if (index > size() - 1 || index < 0) return null;
 		return pile.get(index);
 	}
 	
@@ -90,11 +108,28 @@ public class PlayingPile {
 	}
 	
 	/**
+	 * Checks if card can be moved into playing pile.
+	 * @param c card to check
+	 * @return true if move is valid
+	 */
+	public boolean check(StdCard c) {
+		return isValid(c);
+	}
+	
+	/**
 	 * Returns the size of the pile.
 	 * @return number of cards in pile
 	 */
-	int size() {
+	public int size() {
 		return pile.size();
+	}
+	
+	/**
+	 * Returns the key of this board element.
+	 * @return
+	 */
+	public Key getKey() {
+		return key;
 	}
 	
 	// Checks -----------------------------------------------------------------
@@ -102,7 +137,7 @@ public class PlayingPile {
 	 * Returns true if pile is empty.
 	 * @return true if pile is empty
 	 */
-	private boolean isEmpty() {
+	boolean isEmpty() {
 		return pile.isEmpty();
 	}
 	

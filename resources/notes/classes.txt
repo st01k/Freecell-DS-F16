@@ -19,7 +19,7 @@ PlayingPile
 freecell.engine package:
 ------------------------
 Rules
-Turn
+Turn (with state for history)
 
 freecell.solver package:
 ------------------------

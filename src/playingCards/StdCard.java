@@ -14,10 +14,11 @@ public class StdCard implements CardInterface {
 	static final String[] suitAry = { "Diamonds", "Clubs", "Hearts", "Spades" };
 	static final Character[] defSymAry = { 'd', 'c', 'h', 's' };
 	static final Character[] uniSymAry = { '♦', '♣', '♥', '♠' };
+	static final int maxValue = rankAry.length;
 
 	// class variables
 	private static boolean debug = false;
-	private static boolean unicode = false;
+	private static boolean unicode = false; 
 	
     // instance variables
     private int rank;
@@ -75,6 +76,10 @@ public class StdCard implements CardInterface {
 	
 	public static void toggleUni() {
 		unicode = !unicode;
+		
+		String s;
+		s = (unicode)? "on" : "off";
+		if (debug) out.println("unicode " + s);
 	}
 
 // Accessors ------------------------------------------------------------------
@@ -167,8 +172,21 @@ public class StdCard implements CardInterface {
     	return unicode;
     }
     
+    /**
+     * Returns true if suit is black,
+     * false if suit is red.
+     * @return true if suit is black
+     */
     public boolean isBlack() {
     	return suit == 1 || suit == 3;
+    }
+    
+    /**
+     * Returns face value of highest card (king).
+     * @return face value of highest card
+     */
+    public static int getMaxValue() {
+    	return maxValue;
     }
     
  // Testing -------------------------------------------------------------------

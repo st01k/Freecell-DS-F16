@@ -1,6 +1,7 @@
 package client.cli;
 
 import static java.lang.System.out;
+import engine.Turn;
 import board.Board;
 import board.FreeCell;
 import board.HomeCell;
@@ -38,6 +39,7 @@ public class Tester {
 		HomeCell.unitTest();
 		PlayingPile.unitTest();
 		Board.unitTest();
+		Turn.unitTest();
 		
 		out.println("Comprehensive Unit Testing Complete\n");
 	}
