@@ -2,6 +2,7 @@ package engine;
 
 import static java.lang.System.out;
 
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 import client.cli.CLI;
@@ -78,10 +79,10 @@ public class Engine
 			if (debug) out.println("\n---loop begin---");
 			if (debug && isGui) printSnapshot();
 			
+			autoStack();
+			
 			if (isGui) gui.Paint(curBoard);
 			else out.println(curBoard);
-			
-			//TODO auto stacks
 			
 			if (isGui) {
 				
@@ -148,6 +149,7 @@ public class Engine
 		history = new Stack<Board>();
 		moveNum = 0;
 		snapshot();
+		autoStack();
 		
 		if (!isGui) out.println(curBoard);
 		else gui.Paint(curBoard);
@@ -209,6 +211,18 @@ public class Engine
 	}
 	
 	// Utilities --------------------------------------------------------------
+	public static void autoStack() {
+		
+		Queue<KeyMap> autoStack = curBoard.autoStack();
+		while (!autoStack.isEmpty()) {
+			
+			KeyMap k = autoStack.remove();
+			Turn turn = new Turn(++moveNum, curBoard, k);
+			curBoard.updateBoardStats(turn);
+			snapshot();
+		}
+	}
+	
 	/**
 	 * Saves current board to history.
 	 */

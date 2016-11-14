@@ -17,6 +17,14 @@ public class KeyMap {
 	StdCard srcCard;
 	Board board;
 	
+	public KeyMap(Key s, Key d, Board b) {
+		
+		board = b;
+		src = s;
+		dest = d;
+		genCard();
+	}
+	
 	/**
 	 * Constructs a key map for a move.
 	 * @param s source position

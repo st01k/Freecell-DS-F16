@@ -1,8 +1,10 @@
 package board;
 
 import static java.lang.System.out;
-import engine.Turn;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import engine.Turn;
 import playingCards.*;
 
 /**
@@ -277,6 +279,28 @@ public class Board {
 	
 	// Placement --------------------------------------------------------------
 	/**
+	 * Auto-stacks pile cards into homecells.
+	 */
+	public Queue<KeyMap> autoStack() {
+		
+		if (debug) out.println("\n---board.Board.autoStack---");
+		
+		Queue<KeyMap> autos = new LinkedList<KeyMap>();
+		
+		for (PlayingPile p : pileAry) {
+			
+			Key src = p.getKey();
+			Key dest = Key.E;
+			
+			KeyMap keymap = new KeyMap(src, dest, this);
+			if (keymap.isValid()) autos.add(keymap);
+		}
+		
+		if (debug) out.println("\n---board.Board.autoStack END---");
+		return autos;
+	}
+	
+	/**
 	 * Places card into next available freecell.
 	 * @param c card to insert
 	 * @return true if the card was successfully placed.
@@ -287,6 +311,8 @@ public class Board {
 		
 		// tries user selected placement
 		if (freeAry[index].placeCard(c)) return true;
+		
+		if (debug) out.println("searching for open freecell...");
 		
 		// finds first available cell
 		for (FreeCell f : freeAry) {
@@ -307,6 +333,8 @@ public class Board {
 		
 		// tries user selected placement
 		if (homeAry[index].placeCard(c)) return true;
+		
+		if (debug) out.println("searching for homecell...");
 		
 		// finds first available or matching cell
 		for (HomeCell h : homeAry) {
