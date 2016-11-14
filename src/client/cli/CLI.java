@@ -162,7 +162,7 @@ public class CLI {
 		out.println("uni\tToggles unicode characters");
 		out.println("gui\tStarts game in GUI");
 		out.println("cli\tStarts game in CLI");
-		out.println("auto\tToggle auto-stacking");
+		out.println("auto\tToggles auto-stacking");
 		out.println("show\tReprints current board");
 		out.println("new\tResets game with a new deal");
 		out.println("undo\tUndo last move");
