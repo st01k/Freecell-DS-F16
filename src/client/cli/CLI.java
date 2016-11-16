@@ -4,6 +4,8 @@ import static java.lang.System.out;
 
 import java.util.Scanner;
 
+import board.Board;
+
 import playingCards.StdCard;
 import engine.Engine;
 import utils.*;
@@ -65,7 +67,10 @@ public class CLI {
 				Engine.start(false);
 				out.println();
 				break;
-			case ("auto")	:
+			case ("easy")	: Board.toggleEzWin();
+				break;
+			case ("auto")	: Engine.toggleAutoStack();
+				break;
 			case ("show")	:
 			case ("new")	:
 			case ("undo")	:
@@ -115,6 +120,8 @@ public class CLI {
 				break;
 			case ("cli")	: out.println("Already in game.");
 				break;
+			case ("easy")	: out.println("Cannot change decks while in game.");
+				break;
 			case ("auto")	: Engine.toggleAutoStack();
 				break;
 			case ("show")	: Engine.printSnapshot();
@@ -162,6 +169,7 @@ public class CLI {
 		out.println("uni\tToggles unicode characters");
 		out.println("gui\tStarts game in GUI");
 		out.println("cli\tStarts game in CLI");
+		out.println("easy\tEnables easy win deck");
 		out.println("auto\tToggles auto-stacking");
 		out.println("show\tReprints current board");
 		out.println("new\tResets game with a new deal");

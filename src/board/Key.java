@@ -26,7 +26,7 @@ public enum Key {
 	P("p", 3, 7);
 	
 	private final String key;			// key mapping on board
-	private final int 	 region;			// 1-free, 2-home, 3-pile
+	private final int 	 region;		// 1-free, 2-home, 3-pile
 	private final int 	 position;		// index of region
 	
 	Key(	final String key, 

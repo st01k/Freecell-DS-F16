@@ -31,8 +31,16 @@ public class StdDeck implements DeckInterface {
      */
     public StdDeck() {
     	
+    	deckCount = 0;
         deck = new StdCard[SIZE];
         init();
+    }
+    
+    public StdDeck(boolean b) {
+    	
+    	deckCount = 0;
+    	deck = new StdCard[SIZE];
+    	easyWin();
     }
     
     // Mutators ---------------------------------------------------------------    
@@ -81,9 +89,23 @@ public class StdDeck implements DeckInterface {
      */
     private void init() {
     	
-    	deckCount = 0;
         for (int i = 0; i < SIZE; i++) {
             deck[i] = new StdCard(i % RANKS, i / RANKS);
+        }
+    }
+    
+    /**
+     * Returns an easy win deck.
+     * @return easy win deck
+     */
+    private void easyWin() {
+    	
+    	int[] seq = { 12, 5, 11, 4, 10, 3, 9, 2, 8, 1, 7, 0, 6 };
+    	
+    	int j = -1;
+        for (int i = 0; i < SIZE; i++) {
+            if (i % SUITS == 0) j++;
+        	deck[i] = new StdCard(seq[j], i % SUITS);
         }
     }
 
@@ -135,10 +157,7 @@ public class StdDeck implements DeckInterface {
 		out.println("Deck initialized:");
 		d.print();
 		out.println();
-		
-		out.println("Turning on Unicode suit symbols...\n");
-		d.toggleUnicode();
-		
+				
 		out.println("Shuffling deck...");
 		d.shuffle();
 		d.print();
@@ -150,6 +169,9 @@ public class StdDeck implements DeckInterface {
 		// pulling one more
 		try { d.getCard(); }
 		catch (DeckException de) { out.println(ERR1); }
+		
+		StdDeck e = new StdDeck(true);
+		e.print();
 		
     	out.println("-------------------- StdDeck Unit Test Complete.\n");
     }

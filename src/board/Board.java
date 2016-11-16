@@ -20,6 +20,7 @@ public class Board {
 	
 	// static variables
 	private static boolean debug = false;
+	private static boolean ezWin = false;
 	
 	// class variables
 	private boolean winnable;
@@ -46,14 +47,19 @@ public class Board {
 	
 	// Initialization ---------------------------------------------------------
 	/**
-	 * Initializes board with a full deck dealt.
+	 * Initializes board with a full deck dealt.  If ezWin mode 
+	 * is on, the deck is stacked for an easy win.
 	 */
 	private void init() {
 		
 		final int INITROWS = 7;
 		
-		d = new StdDeck();
-		d.shuffle();
+		if (ezWin) d = new StdDeck(true);
+		else {
+			
+			d = new StdDeck();
+			d.shuffle();
+		}
 		
 		for (int i = 0; i < CELLS; i++) {
 			freeAry[i] = new FreeCell();
@@ -279,7 +285,7 @@ public class Board {
 	
 	// Placement --------------------------------------------------------------
 	/**
-	 * Auto-stacks pile cards into homecells.
+	 * Auto-stacks pile and freecell cards into homecells.
 	 */
 	public Queue<KeyMap> autoStack() {
 		//TODO add stacking from freecells
@@ -292,6 +298,15 @@ public class Board {
 		for (PlayingPile p : pileAry) {
 			
 			Key src = p.getKey();
+			Key dest = Key.E;
+			
+			KeyMap keymap = new KeyMap(src, dest, this);
+			if (keymap.isValid()) autos.add(keymap);
+		}
+		
+		for (FreeCell f : freeAry) {
+			
+			Key src = f.getKey();
 			Key dest = Key.E;
 			
 			KeyMap keymap = new KeyMap(src, dest, this);
@@ -419,6 +434,35 @@ public class Board {
 
 	// Utilities --------------------------------------------------------------
 	/**
+	 * Calculates the number of cards that can be moved in a turn.
+	 * Count is based on the number of empty freecells and piles.
+	 * @return number of moveable cards in a turn
+	 */
+	public int calcMoveableCards() {
+		
+		if (debug) out.println("\n---board.Board.calcMoveableCards---");
+		
+		int cntF = 0;
+		int cntP = 0;
+		
+		for (FreeCell f : freeAry) {
+			if (f.isEmpty()) ++cntF;
+		}
+		
+		for (PlayingPile p : pileAry) {
+			if (p.isEmpty()) ++cntP;
+		}
+		
+		int cnt = (cntF + 1) + (2 * cntP);
+		
+		if (debug) out.println("open freecells: " + cntF);
+		if (debug) out.println("open piles: " + cntP);
+		if (debug) out.println("moveable cards: " + cnt);
+		
+		return cnt;
+	}
+	
+	/**
 	 * Returns the number of cards contained 
 	 * in the largest playing pile.
 	 * @return size of the pile that is largest
@@ -430,6 +474,14 @@ public class Board {
 			if (p.size() > max) max = p.size();
 		}
 		return max;
+	}
+	
+	public static void toggleEzWin() {
+		ezWin = !ezWin;
+		
+		String s;
+		s = (ezWin)? "on" : "off";
+		if (debug) out.println("easy win deck " + s);
 	}
 	
 	/**
