@@ -225,6 +225,7 @@ public class Engine
 			snapshot();
 		}
 		
+		//TODO don't forget i'm here
 		curBoard.calcMoveableCards();
 	}
 	
