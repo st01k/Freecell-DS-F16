@@ -457,7 +457,7 @@ public class Board {
 		
 		if (debug) out.println("open freecells: " + cntF);
 		if (debug) out.println("open piles: " + cntP);
-		if (debug) out.println("moveable cards: " + cnt);
+		if (debug) out.println("moveable cards in one pile: " + cnt);
 		
 		return cnt;
 	}

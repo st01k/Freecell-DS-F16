@@ -3,7 +3,7 @@ package playingCards;
 import static java.lang.System.out;
 
 import playingCards.StdCard;
-//TODO make me a stack
+
 /**
  * Standard deck
  * @author groovyLlama devteam
@@ -36,6 +36,11 @@ public class StdDeck implements DeckInterface {
         init();
     }
     
+    /**
+     * Creates and initializes a new deck of 52 standard 
+     * playing cards sequenced for an easy win in Freecell.
+     * @param b value is irrelevant
+     */
     public StdDeck(boolean b) {
     	
     	deckCount = 0;
@@ -95,12 +100,11 @@ public class StdDeck implements DeckInterface {
     }
     
     /**
-     * Returns an easy win deck.
-     * @return easy win deck
+     * Creates an easy win deck.
      */
     private void easyWin() {
     	
-    	int[] seq = { 12, 5, 11, 4, 10, 3, 9, 2, 8, 1, 7, 0, 6 };
+    	int[] seq = { 12,5,11,4,10,3,9,2,8,1,7,0,6 };
     	
     	int j = -1;
         for (int i = 0; i < SIZE; i++) {
@@ -169,9 +173,6 @@ public class StdDeck implements DeckInterface {
 		// pulling one more
 		try { d.getCard(); }
 		catch (DeckException de) { out.println(ERR1); }
-		
-		StdDeck e = new StdDeck(true);
-		e.print();
 		
     	out.println("-------------------- StdDeck Unit Test Complete.\n");
     }

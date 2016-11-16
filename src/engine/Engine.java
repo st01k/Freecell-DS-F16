@@ -80,6 +80,9 @@ public class Engine
 			
 			if (debug) out.println("\n---loop begin---");
 			if (debug && isGui) printSnapshot();
+						
+			//TODO don't forget i'm here
+			curBoard.calcMoveableCards();
 			
 			if (isGui) gui.Paint(curBoard);
 			else out.println(curBoard);
@@ -224,9 +227,6 @@ public class Engine
 			curBoard.updateBoardStats(turn);
 			snapshot();
 		}
-		
-		//TODO don't forget i'm here
-		curBoard.calcMoveableCards();
 	}
 	
 	/**
