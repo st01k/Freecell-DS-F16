@@ -282,7 +282,9 @@ public class Board {
 	 * Auto-stacks pile cards into homecells.
 	 */
 	public Queue<KeyMap> autoStack() {
-		
+		//TODO add stacking from freecells
+		// and from appropriate cards under
+		// auto-stacked cards
 		if (debug) out.println("\n---board.Board.autoStack---");
 		
 		Queue<KeyMap> autos = new LinkedList<KeyMap>();
