@@ -28,9 +28,9 @@ public class Turn {
 	
 	/**
 	 * Creates a freecell turn with statistics.
-	 * @param isGui true if preferred UI is gui
 	 * @param move move number
 	 * @param b current board
+	 * @param km valid keymap
 	 */
 	public Turn(int move, Board b, KeyMap km) {
 		
@@ -57,6 +57,22 @@ public class Turn {
 	 */
 	public int getMoveNum() {
 		return moveNum;
+	}
+	
+	/**
+	 * Returns the board as it looks after the keymap has processed.
+	 * @return this turn's board
+	 */
+	public Board getBoard() {
+		return board;
+	}
+	
+	/**
+	 * Returns the key mapping for this turn.
+	 * @return key map for this turn
+	 */
+	public KeyMap getKeymap() {
+		return keymap;
 	}
 	
 	// Business ---------------------------------------------------------------

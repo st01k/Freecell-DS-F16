@@ -75,12 +75,14 @@ public class Engine
 		
 		gui = checkUiMode();
 		
+		if (autoStack) autoStack();
 		while(!gameOver) {
 			
 			if (debug) out.println("\n---loop begin---");
 			if (debug && isGui) printSnapshot();
-			
-			if (autoStack) autoStack();
+						
+			//TODO don't forget i'm here
+			curBoard.calcMoveableCards();
 			
 			if (isGui) gui.Paint(curBoard);
 			else out.println(curBoard);
@@ -111,6 +113,7 @@ public class Engine
 			}		
 			else { out.println("\nIllegal Move\n"); }
 			
+			if (autoStack) autoStack();
 			gameOver = checkGameOver();
 		}
 		
@@ -204,7 +207,7 @@ public class Engine
 	}
 	
 	/**
-	 * Drag and drop confirmation
+	 * Drag and drop confirmation.
 	 * @param src source card clicked (card position) 
 	 * @param dest destination position of card clicked
 	 */

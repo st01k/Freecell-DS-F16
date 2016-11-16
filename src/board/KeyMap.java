@@ -39,7 +39,8 @@ public class KeyMap {
 	}
 	
 	/**
-	 * Generates source and destination keys.
+	 * Generates source and destination keys if
+	 * strings are used to create the mapping..
 	 * @param s source position
 	 * @param d destination position
 	 */
@@ -112,7 +113,6 @@ public class KeyMap {
 			for (FreeCell f : fAry) {
 				if (f.check()) return true;
 			}
-			//FreeCell f = fAry[dest.getPosition()];
 			break;
 		// into homecell
 		case 2 	:
@@ -120,8 +120,6 @@ public class KeyMap {
 			for (HomeCell h : hAry) {
 				if (h.check(srcCard)) return true;
 			}
-			//HomeCell h = hAry[dest.getPosition()];
-			
 			break;
 		// into respective playing pile
 		case 3	:

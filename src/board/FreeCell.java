@@ -92,7 +92,7 @@ public class FreeCell implements CellInterface {
 	 * Returns true if freecell is empty.
 	 * @return true if cell is empty
 	 */
-	private boolean isEmpty() {
+	boolean isEmpty() {
 		return cell == null;
 	}
 
