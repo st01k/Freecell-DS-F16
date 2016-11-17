@@ -26,6 +26,12 @@ public class Turn {
 	private KeyMap keymap;
 	private Solution solution;
 	
+	public Turn(Board b) {
+		
+		moveNum = 0;
+		board = b;
+	}
+	
 	/**
 	 * Creates a freecell turn with statistics.
 	 * @param move move number
