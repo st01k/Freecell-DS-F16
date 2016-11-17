@@ -137,7 +137,7 @@ public class Engine
 		return CLI.inGame("dest");
 	}
 	
-	public static void getMappingGUI() {
+	public static void getMappingGUI(String src, String dest) {
 		
 	}
 	
