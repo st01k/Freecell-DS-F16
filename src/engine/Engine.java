@@ -137,8 +137,19 @@ public class Engine
 		return CLI.inGame("dest");
 	}
 	
-	public static void getMappingGUI(String src, String dest) {
+	public static void guiWait() {
 		
+		src = "";
+		dest = "";
+		
+		while (src.isEmpty() && dest.isEmpty()) {}
+		
+	}
+	
+	public static void getGuiMapping(String s, String d) {
+		
+		src = s;
+		dest = d;
 	}
 	
 	// In-game Action Handlers ------------------------------------------------
