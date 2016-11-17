@@ -2353,7 +2353,7 @@ import board.*;
 	    
 	    private static final int colX[] = {103,263,413,563,713,863,1013,1163};
 	    private static final int colY[] = {212,232,252,272,292,312,332,352,372,392,412,432,452,472,492,512,532,552,572};
-	    private static final int FreeX[] = {82,182,282,382};
+	    private static final int FreeX[] = {63,163,263,363};
 	    private static final int HomeX[] = {912,1012,1112,1212};
 	    private static final int FH_Y_CONST = 72;
 
@@ -2418,9 +2418,9 @@ import board.*;
 				{
 					if(x <= colX[i] + 43 && x >= colX[i] - 43)
 					{
-						for(int j = colY.length-1; j > 0; j--)
+						for(int j = colY.length-1; j >= 0; j--)
 						{
-							if(y <= colY[j] + 62 && y >= colY[j] - 62)
+							if(y <= colY[j] + 63 && y >= colY[j] - 63)
 							{
 								if(debug)
 								{
