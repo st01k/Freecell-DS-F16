@@ -1,18 +1,23 @@
 package client.gui;
 
 import javax.swing.JLabel;
+import javax.swing.event.MouseInputListener;
 
 import engine.Engine;
 import playingCards.StdCard;
 import utils.SysUtils;
 import static java.lang.System.out;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
 import board.*;
 
 	/**
 	 * @author Ryan Whytsell
 	 */
-	public class FreeGUI extends javax.swing.JFrame {
+	public class FreeGUI extends javax.swing.JFrame implements MouseMotionListener, MouseListener {
 
 		private static final long serialVersionUID = -2499184546285035594L;
 
@@ -2342,4 +2347,48 @@ import board.*;
 	    private static JLabel fcAry[] = new JLabel[NUMCELLS];
 	    private static JLabel hcAry[] = new JLabel[NUMCELLS];
 	    private static JLabel PlayPile[][] = new JLabel[NUMPILES][MAX_PILE_SIZE];
+
+		@Override
+		public void mouseDragged(MouseEvent e) //OnHold
+		{
+			// TODO This will be used to render where the cards that are dragged 
+		}
+
+		@Override
+		public void mouseMoved(MouseEvent e) 
+		{
+			// TODO Could be used to find position of mouse
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) 
+		{
+			// TODO Auto move that card
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e)  //OnClick
+		{
+			// TODO See where the mouse is and act accordingly
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) //OnDrop
+		{
+			// TODO See if the hand has cards, if it does calculate their position and act accordingly
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) 
+		{
+			// Not Used
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) 
+		{
+			// Not Used
+		}
+		
+		
 }
