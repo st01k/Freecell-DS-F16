@@ -274,9 +274,11 @@ public class Board {
 		
 		int king = StdCard.getMaxValue();
 		if (debug) out.println("king value: " + king);
+		
 		for (HomeCell h : homeAry) {
 			
 			if (h.isEmpty()) return false;
+			
 			if (debug) out.println(h.peekCard().getValue());
 			if (h.peekCard().getValue() != king) return false;
 		}
@@ -288,9 +290,8 @@ public class Board {
 	 * Auto-stacks pile and freecell cards into homecells.
 	 */
 	public Queue<KeyMap> autoStack() {
-		//TODO add stacking from freecells
-		// and from appropriate cards under
-		// auto-stacked cards
+		//TODO add stacking from appropriate 
+		// cards under auto-stacked cards
 		if (debug) out.println("\n---board.Board.autoStack---");
 		
 		Queue<KeyMap> autos = new LinkedList<KeyMap>();
