@@ -25,7 +25,7 @@ public class Engine
 	private static int moveNum;
 	private static String src, dest;
 	private static Board curBoard;
-	private static Stack<Board> history;
+	private static Stack<Turn> history;
 	private static FreeGUI gui;
 	
 	// Initialization ---------------------------------------------------------
@@ -39,7 +39,7 @@ public class Engine
 		if (debug) out.println("\n---engine.Engine.start---");
 		
 		curBoard = new Board();
-		history = new Stack<Board>();
+		history = new Stack<Turn>();
 		isGui = _isGui;
 		gameOver = false;
 				
@@ -71,7 +71,7 @@ public class Engine
 		if (debug) out.println("\n---engine.Engine.gameLoop---");
 		
 		moveNum = 0;
-		snapshot();
+		snapshot(new Turn(curBoard));
 		
 		gui = checkUiMode();
 		
@@ -109,7 +109,7 @@ public class Engine
 				
 				Turn turn = new Turn(++moveNum, curBoard, keymap);
 				curBoard.updateBoardStats(turn);
-				snapshot();
+				snapshot(turn);
 			}		
 			else { out.println("\nIllegal Move\n"); }
 			
@@ -137,7 +137,7 @@ public class Engine
 		return CLI.inGame("dest");
 	}
 	
-	public static void getMappingGUI() {
+	public static void getMappingGUI(String src, String dest) {
 		
 	}
 	
@@ -150,9 +150,9 @@ public class Engine
 		if (debug) out.println("event: New Deal");
 		
 		curBoard = new Board();
-		history = new Stack<Board>();
+		history = new Stack<Turn>();
 		moveNum = 0;
-		snapshot();
+		snapshot(new Turn(curBoard));
 		if (autoStack) autoStack();
 		
 		if (!isGui) out.println(curBoard);
@@ -217,6 +217,11 @@ public class Engine
 	}
 	
 	// Utilities --------------------------------------------------------------
+	/**
+	 * Processes all possible insertions into a homecell.
+	 * Currently only processes all freecells and cards on the last element
+	 * of its pile, not cards that open up as a result of the stacking.
+	 */
 	public static void autoStack() {
 		
 		Queue<KeyMap> autoStack = curBoard.autoStack();
@@ -225,15 +230,15 @@ public class Engine
 			KeyMap k = autoStack.remove();
 			Turn turn = new Turn(++moveNum, curBoard, k);
 			curBoard.updateBoardStats(turn);
-			snapshot();
+			snapshot(turn);
 		}
 	}
 	
 	/**
-	 * Saves current board to history.
+	 * Saves turn to history.
 	 */
-	public static void snapshot() {
-		history.push(curBoard);
+	public static void snapshot(Turn t) {
+		history.push(t);
 	}
 	
 	/**
@@ -244,7 +249,7 @@ public class Engine
 		if (debug) out.println("\n---engine.Engine.printSnapshot---\n");
 		out.println();
 		out.print("******************** Begin Snapshot ********************");
-		out.println(history.peek());
+		out.println(history.peek().getBoard());
 		
 		if (debug) {
 			String client = (isGui)? "GUI" : "CLI";

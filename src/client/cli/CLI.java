@@ -31,7 +31,7 @@ public class CLI {
 	 */
 	public static void prompt() {
 		
-		out.println("<<<<<<<<< Freecell CLI v0.4 >>>>>>>>>");
+		out.println("<<<<<<<<< Freecell CLI v0.5 >>>>>>>>>");
 		out.println("'help' for commands, 'exit' any time.");
 		out.println("-------------------------------------");
 		out.println();
@@ -197,9 +197,6 @@ public class CLI {
 		out.println();
 		out.println("Cell positions are referenced by the top letters.");
 		out.println("Pile positions are referenced by the bottom letters.");
-		out.println();
-		out.println("Cards inserted into cells will fill the next open cell.");
-		out.println("If card is bound for a home cell, it will auto match suit.");
 		out.println();
 		out.println("Black: Spades & Clubs     |\t Red: Hearts & Diamonds");
 		out.println();

@@ -27,6 +27,17 @@ public class Turn {
 	private Solution solution;
 	
 	/**
+	 * Creates an empty freecell turn.
+	 * For use with move 0.
+	 * @param b new board
+	 */
+	public Turn(Board b) {
+		
+		moveNum = 0;
+		board = b;
+	}
+	
+	/**
 	 * Creates a freecell turn with statistics.
 	 * @param move move number
 	 * @param b current board
