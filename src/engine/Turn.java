@@ -26,6 +26,11 @@ public class Turn {
 	private KeyMap keymap;
 	private Solution solution;
 	
+	/**
+	 * Creates an empty freecell turn.
+	 * For use with move 0.
+	 * @param b new board
+	 */
 	public Turn(Board b) {
 		
 		moveNum = 0;

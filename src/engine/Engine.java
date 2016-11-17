@@ -217,6 +217,11 @@ public class Engine
 	}
 	
 	// Utilities --------------------------------------------------------------
+	/**
+	 * Processes all possible insertions into a homecell that are possible.
+	 * Currently only processes all freecells and cards on the last element
+	 * of its pile, not cards that open up as a result of the stacking.
+	 */
 	public static void autoStack() {
 		
 		Queue<KeyMap> autoStack = curBoard.autoStack();
@@ -230,7 +235,7 @@ public class Engine
 	}
 	
 	/**
-	 * Saves current board to history.
+	 * Saves turn to history.
 	 */
 	public static void snapshot(Turn t) {
 		history.push(t);
