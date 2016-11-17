@@ -218,7 +218,7 @@ public class Engine
 	
 	// Utilities --------------------------------------------------------------
 	/**
-	 * Processes all possible insertions into a homecell that are possible.
+	 * Processes all possible insertions into a homecell.
 	 * Currently only processes all freecells and cards on the last element
 	 * of its pile, not cards that open up as a result of the stacking.
 	 */
