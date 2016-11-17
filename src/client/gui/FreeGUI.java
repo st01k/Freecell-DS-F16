@@ -125,7 +125,7 @@ import board.*;
 	    	{
 	    		out.println("\n---engine.FreeGUI.initComponents--- ");
 	    	}
-
+	    	
 	        BackgroundPan = new javax.swing.JLayeredPane();
 	        jLayeredPane1 = new javax.swing.JLayeredPane();
 	        TurnLabel = new javax.swing.JLabel();
@@ -304,6 +304,8 @@ import board.*;
 	        SolveBtn = new javax.swing.JButton();
 	        NewDealBtn = new javax.swing.JButton();
 
+	        BackgroundPan.addMouseMotionListener(this);
+	        BackgroundPan.addMouseListener(this);
 	        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 	        setTitle("Freecell by GroovyLlamas");
 	        setBackground(new java.awt.Color(255, 255, 255));
@@ -2347,17 +2349,22 @@ import board.*;
 	    private static JLabel fcAry[] = new JLabel[NUMCELLS];
 	    private static JLabel hcAry[] = new JLabel[NUMCELLS];
 	    private static JLabel PlayPile[][] = new JLabel[NUMPILES][MAX_PILE_SIZE];
+	    
+	    //private static final int ARR_X = {};
 
 		@Override
 		public void mouseDragged(MouseEvent e) //OnHold
 		{
-			// TODO This will be used to render where the cards that are dragged 
+			if(debug)
+			{
+				out.println("Mouse dragged at: (" + e.getX() + "," + e.getY() + ")");
+			}
 		}
 
 		@Override
 		public void mouseMoved(MouseEvent e) 
 		{
-			// TODO Could be used to find position of mouse
+			// Not Used
 		}
 
 		@Override
@@ -2369,13 +2376,19 @@ import board.*;
 		@Override
 		public void mousePressed(MouseEvent e)  //OnClick
 		{
-			// TODO See where the mouse is and act accordingly
+			if(debug)
+			{
+				out.println("Mouse pressed at: (" + e.getX() + "," + e.getY() + ")");
+			}
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) //OnDrop
 		{
-			// TODO See if the hand has cards, if it does calculate their position and act accordingly
+			if(debug)
+			{
+				out.println("Mouse released at: (" + e.getX() + "," + e.getY() + ")");
+			}
 		}
 
 		@Override
