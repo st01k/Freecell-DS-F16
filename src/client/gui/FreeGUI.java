@@ -1,7 +1,6 @@
 package client.gui;
 
 import javax.swing.JLabel;
-import javax.swing.event.MouseInputListener;
 
 import engine.Engine;
 import playingCards.StdCard;
@@ -27,6 +26,7 @@ import board.*;
 		private static final String SEP = SysUtils.getSeparator();
 		private static final String IMAGESDIR = SysUtils.getPath() + "resources" + SEP + "images" + SEP;
 		private static final String CARDIMAGESDIR = IMAGESDIR + "cards" + SEP;
+		private static Board ShownBoard;
 
 		
 
@@ -42,6 +42,7 @@ import board.*;
 
 	    public void Paint(Board curboard)
 	    {
+	    	ShownBoard = curboard.clone();
 	    	if (debug)
 	    	{
 	    		out.println("\n---engine.FreeGUI.paint---");
@@ -2393,11 +2394,20 @@ import board.*;
 			{
 				for(int i = 0,len = FreeX.length;i < len;i++)
 				{
-					if(x >= FreeX[i] - 43 && x <= FreeX[i] + 43)
+					if(x >= (FreeX[i] - 43) && x <= (FreeX[i] + 43))
 					{
-						if(fcAry[i] != null)
+						FreeCell[] fcells = ShownBoard.getFreecells();
+						if(!fcells[i].check())
 						{
+							if(debug)
+							{
+								out.println("Filled Freecell number " + i);
+							}
 							//TODO add it to the players hand
+						}
+						else
+						{
+							if(debug) out.println("Empty freecell number " + i);
 						}
 					}
 				}
@@ -2408,10 +2418,19 @@ import board.*;
 				{
 					if(x <= colX[i] + 43 && x >= colX[i] - 43)
 					{
-						for(int j = 0,leng = colY.length; i < leng; j++)
+						for(int j = colY.length-1; j > 0; j--)
 						{
 							if(y <= colY[j] + 62 && y >= colY[j] - 62)
 							{
+								if(debug)
+								{
+									PlayingPile column = ShownBoard.getPile(i);
+									if(column.size() > j)
+									{
+									out.println("Column :" + i + " Card :" + j);
+									break;
+									}
+								}
 								//TODO Check card and cards on top and check to see if they can be picked up.
 							}
 						}
