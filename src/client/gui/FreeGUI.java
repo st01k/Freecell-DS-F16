@@ -1777,7 +1777,7 @@ import board.*;
 	        home2.setPreferredSize(new java.awt.Dimension(86, 125));
 	        BackgroundPan.setLayer(home2, javax.swing.JLayeredPane.DRAG_LAYER);
 	        BackgroundPan.add(home2);
-	        home2.setBounds(960, 10, 86, 125);
+	        home2.setBounds(950, 10, 86, 125);
 
 	        home3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
 	        home3.setToolTipText(null);
@@ -1786,7 +1786,7 @@ import board.*;
 	        home3.setPreferredSize(new java.awt.Dimension(86, 125));
 	        BackgroundPan.setLayer(home3, javax.swing.JLayeredPane.DRAG_LAYER);
 	        BackgroundPan.add(home3);
-	        home3.setBounds(1070, 10, 86, 125);
+	        home3.setBounds(1050, 10, 86, 125);
 
 	        home4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
 	        home4.setToolTipText(null);
@@ -1795,7 +1795,7 @@ import board.*;
 	        home4.setPreferredSize(new java.awt.Dimension(86, 125));
 	        BackgroundPan.setLayer(home4, javax.swing.JLayeredPane.DRAG_LAYER);
 	        BackgroundPan.add(home4);
-	        home4.setBounds(1180, 10, 86, 125);
+	        home4.setBounds(1150, 10, 86, 125);
 
 	        getContentPane().add(BackgroundPan);
 	        BackgroundPan.setBounds(0, 30, 1287, 730);
@@ -2350,15 +2350,20 @@ import board.*;
 	    private static JLabel hcAry[] = new JLabel[NUMCELLS];
 	    private static JLabel PlayPile[][] = new JLabel[NUMPILES][MAX_PILE_SIZE];
 	    
-	    //private static final int ARR_X = {};
+	    private static final int colX[] = {103,263,413,563,713,863,1013,1163};
+	    private static final int colY[] = {212,232,252,272,292,312,332,352,372,392,412,432,452,472,492,512,532,552,572};
+	    private static final int FreeX[] = {82,182,282,382};
+	    private static final int HomeX[] = {912,1012,1112,1212};
+	    private static final int FH_Y_CONST = 72;
 
 		@Override
-		public void mouseDragged(MouseEvent e) //OnHold
+		public void mouseDragged(MouseEvent e)
 		{
 			if(debug)
 			{
 				out.println("Mouse dragged at: (" + e.getX() + "," + e.getY() + ")");
 			}
+			//TODO show any cards in the hand at the mouse pointer
 		}
 
 		@Override
@@ -2370,25 +2375,60 @@ import board.*;
 		@Override
 		public void mouseClicked(MouseEvent e) 
 		{
-			// TODO Auto move that card
+			// TODO Auto move double clicked card
 		}
 
 		@Override
-		public void mousePressed(MouseEvent e)  //OnClick
+		public void mousePressed(MouseEvent e)
 		{
 			if(debug)
 			{
 				out.println("Mouse pressed at: (" + e.getX() + "," + e.getY() + ")");
 			}
+			
+			int x = e.getX();
+			int y = e.getY();
+			
+			if(y >= FH_Y_CONST - 63 && y <= FH_Y_CONST + 63)
+			{
+				for(int i = 0,len = FreeX.length;i < len;i++)
+				{
+					if(x >= FreeX[i] - 43 && x <= FreeX[i] + 43)
+					{
+						if(fcAry[i] != null)
+						{
+							//TODO add it to the players hand
+						}
+					}
+				}
+			}
+			else
+			{
+				for(int i = 0,len = colX.length;i < len; i++)
+				{
+					if(x <= colX[i] + 43 && x >= colX[i] - 43)
+					{
+						for(int j = 0,leng = colY.length; i < leng; j++)
+						{
+							if(y <= colY[j] + 62 && y >= colY[j] - 62)
+							{
+								//TODO Check card and cards on top and check to see if they can be picked up.
+							}
+						}
+					}
+				}
+			}
 		}
 
 		@Override
-		public void mouseReleased(MouseEvent e) //OnDrop
+		public void mouseReleased(MouseEvent e)
 		{
 			if(debug)
 			{
 				out.println("Mouse released at: (" + e.getX() + "," + e.getY() + ")");
 			}
+			
+			//TODO if the hand has cards, check to see if the cards can go where the hand was released, if they can not, return them to where they were.
 		}
 
 		@Override
