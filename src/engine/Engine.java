@@ -137,7 +137,7 @@ public class Engine
 		return CLI.inGame("dest");
 	}
 	
-	public static void guiWait() {
+	private static void guiWait() {
 		
 		src = "";
 		dest = "";
