@@ -518,8 +518,9 @@ public class Board implements Cloneable{
 	/**
 	 * Clones this board.
 	 */
-	public Board clone() {
-		return this;
+	public Board clone() throws CloneNotSupportedException
+	{
+			return (Board) super.clone();
 	}
 	
 	public static void toggleEzWin() {
@@ -551,8 +552,5 @@ public class Board implements Cloneable{
 		out.println("-------------------- Board Unit Test Complete.\n");
 	}
 	
-	public Board clone() throws CloneNotSupportedException
-	{
-			return (Board) super.clone();
-	}
+
 }
