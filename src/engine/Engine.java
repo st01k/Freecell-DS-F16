@@ -26,7 +26,7 @@ public class Engine
 	private static String src, dest;
 	private static Board curBoard;
 	private static Stack<Turn> history;
-	private static Stack<Turn> revHistory;
+	private static Stack<Turn> rvrsHistory;
 	private static FreeGUI gui;
 	
 	// Initialization ---------------------------------------------------------
@@ -41,6 +41,7 @@ public class Engine
 		
 		curBoard = new Board();
 		history = new Stack<Turn>();
+		rvrsHistory = new Stack<Turn>();
 		isGui = _isGui;
 		gameOver = false;
 				
@@ -106,8 +107,10 @@ public class Engine
 			
 			KeyMap keymap = new KeyMap(src, dest, curBoard);
 			
-			if (revHistory != null) {
-				if (!keymap.equals(revHistory.peek())) revHistory.clear();
+			
+			if (!rvrsHistory.isEmpty()) {
+				// if new path is chosen, clear redo history
+				if (!keymap.equals(rvrsHistory.peek())) rvrsHistory.clear();
 			}
 			
 			if (keymap.isValid()) {
@@ -184,12 +187,11 @@ public class Engine
 		
 		if (history.size() <= 1) out.println("nothing to undo");
 		else {
-		
-			revHistory = new Stack<Turn>();
 			
 			Turn curTurn = history.pop();
-			revHistory.push(curTurn);
-			curBoard.forceUpdate(revHistory.peek());
+			rvrsHistory.push(curTurn);
+
+			curBoard.forceUpdate(rvrsHistory.peek());
 			if (debug) out.println("undoing:\n" + curTurn);
 			
 			Turn prevTurn = history.peek();
@@ -208,10 +210,12 @@ public class Engine
 	public static void redo() {
 		
 		if (debug) out.println("event: Redo");
-		if (revHistory.isEmpty()) out.println("nothing to redo");
+
+		if (rvrsHistory.isEmpty()) 
+			out.println("nothing to redo");
 		else {
 			
-			Turn nextTurn = revHistory.pop();
+			Turn nextTurn = rvrsHistory.pop();
 			history.push(nextTurn);
 			curBoard.forceUpdate(history.peek());
 			if (debug) out.println("redoing:\n" + nextTurn);
