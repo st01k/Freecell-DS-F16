@@ -111,20 +111,20 @@ public class KeyMap {
 		case 1	:
 			FreeCell[] fAry = board.getFreecells();
 			for (FreeCell f : fAry) {
-				if (f.check()) return true;
+				if (f.isValid()) return true;
 			}
 			break;
 		// into homecell
 		case 2 	:
 			HomeCell[] hAry = board.getHomecells();
 			for (HomeCell h : hAry) {
-				if (h.check(srcCard)) return true;
+				if (h.isValid(srcCard)) return true;
 			}
 			break;
 		// into respective playing pile
 		case 3	:
 			PlayingPile p = board.getPile(dest.getPosition());
-			if (p.check(srcCard)) return true;
+			if (p.isValid(srcCard)) return true;
 			break;
 		default	:
 			if (debug) out.println("ERROR - Unknown destination in board.KeyMap.isValid");
@@ -146,5 +146,12 @@ public class KeyMap {
 	 */
 	public static void toggleDebug() {
 		debug = !debug;
+	}
+	
+	/**
+	 * Unit test.
+	 */
+	public static void unitTest() {
+		//TODO feed me!
 	}
 }

@@ -2397,7 +2397,7 @@ import board.*;
 					if(x >= (FreeX[i] - 43) && x <= (FreeX[i] + 43))
 					{
 						FreeCell[] fcells = ShownBoard.getFreecells();
-						if(!fcells[i].check())
+						if(!fcells[i].isValid())
 						{
 							if(debug)
 							{
