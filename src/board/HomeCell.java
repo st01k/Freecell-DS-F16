@@ -47,17 +47,19 @@ public class HomeCell implements CellInterface {
 	}
 
 	/**
-	 * Returns null.  Cannot remove a card from a home cell.
+	 * Removes card from cell.  Restores next lower card.
+	 * @return removed card.
 	 */
 	@Override
 	public StdCard removeCard() {
 		
-		if (debug) out.println("---board.HomeCell.removeCard---\n");
+		if (debug) out.println("\n---board.HomeCell.removeCard---");
 		
 		StdCard temp = cell;
 		if (debug) out.println("removed card: " + temp + "\nfrom " + key);
 		
-		cell = null;
+		if (temp.getValue() == 1) cell = null;
+		else cell = new StdCard(temp.getRank() - 1, temp.getSuit());
 		return temp;
 	}
 	
