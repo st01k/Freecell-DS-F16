@@ -95,9 +95,6 @@ public class Engine
 				Scanner scan = new Scanner(System.in);
 				out.println("Press Enter for filler move.");
 				scan.nextLine();
-				// open a scanner and wait for input in method
-				// in gui send strings to the method
-				// scanner catches them on input and returns here
 			}
 			else {
 				src = getSourceCLI();
@@ -121,6 +118,7 @@ public class Engine
 		out.println("\nYou won the game!!!");
 	}
 	
+	// Move Input -------------------------------------------------------------
 	/**
 	 * Calls in game cli prompt, returns source string.
 	 * @return source string
@@ -231,7 +229,7 @@ public class Engine
 	/**
 	 * Processes all possible insertions into a homecell.
 	 * Currently only processes all freecells and cards on the last element
-	 * of its pile, not cards that open up as a result of the stacking.
+	 * of their pile, not cards that open up as a result of the stacking.
 	 */
 	public static void autoStack() {
 		

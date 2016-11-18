@@ -71,15 +71,6 @@ public class FreeCell implements CellInterface {
 	}
 	
 	/**
-	 * Checks if card can be moved into freecell.
-	 * @param c card to check
-	 * @return true if move is valid
-	 */
-	public boolean check() {
-		return isEmpty();
-	}
-	
-	/**
 	 * Returns the key of this board element.
 	 * @return
 	 */
@@ -92,8 +83,16 @@ public class FreeCell implements CellInterface {
 	 * Returns true if freecell is empty.
 	 * @return true if cell is empty
 	 */
-	boolean isEmpty() {
+	public boolean isEmpty() {
 		return cell == null;
+	}
+	
+	/**
+	 * Returns true if a card can be placed into cell.
+	 * @return true is card can be placed
+	 */
+	public boolean isValid() {
+		return isEmpty();
 	}
 
 	// Utilities --------------------------------------------------------------

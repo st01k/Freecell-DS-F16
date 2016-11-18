@@ -120,7 +120,7 @@ public class CLI {
 				break;
 			case ("cli")	: out.println("Already in game.");
 				break;
-			case ("easy")	: out.println("Cannot change decks while in game.");
+			case ("easy")	: Board.toggleEzWin();
 				break;
 			case ("auto")	: Engine.toggleAutoStack();
 				break;

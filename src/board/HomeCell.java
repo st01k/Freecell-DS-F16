@@ -66,15 +66,6 @@ public class HomeCell implements CellInterface {
 	}
 	
 	/**
-	 * Checks if card can be moved into homecell.
-	 * @param c card to check
-	 * @return true if move is valid
-	 */
-	public boolean check(StdCard c) {
-		return isValid(c);
-	}
-	
-	/**
 	 * Returns the key of this board element.
 	 * @return
 	 */
@@ -87,7 +78,7 @@ public class HomeCell implements CellInterface {
 	 * Returns true if the homecell is empty.
 	 * @return true if cell is empty.
 	 */
-	boolean isEmpty() {
+	public boolean isEmpty() {
 		
 		return cell == null;
 	}
@@ -106,7 +97,7 @@ public class HomeCell implements CellInterface {
 	
 	/**
 	 * Returns true if the card passed in is one face value more
-	 * than the last card on the pile or if the pile is empty.
+	 * than the last card on the pile, or if the pile is empty.
 	 * @param c card being passed in
 	 * @return true if card passed in is ascending by one, or cell empty
 	 */
@@ -124,7 +115,7 @@ public class HomeCell implements CellInterface {
 	 * @param c card being passed in
 	 * @return true if the card has been validated for placement
 	 */
-	private boolean isValid(StdCard c) {
+	public boolean isValid(StdCard c) {
 		
 		return isSameSuit(c) && isAsc(c);
 	}

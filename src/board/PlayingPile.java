@@ -77,21 +77,20 @@ public class PlayingPile {
 	 * Sets the board key on this pile.
 	 * @param k key
 	 */
-	public void setKey(Key k) {
+	void setKey(Key k) {
 		
 		key = k;
 	}
 
 	// List Information -------------------------------------------------------
 	/**
-	 * Returns card at index position.
+	 * Returns card at index position or null if empty.
 	 * Does not remove the card from the pile.
 	 * @param index index of card
 	 * @return card at index
 	 */
 	public StdCard getCardAt(int index) {
 		
-		//TODO throw exception?
 		if (index > size() - 1 || index < 0) return null;
 		return pile.get(index);
 	}
@@ -105,15 +104,6 @@ public class PlayingPile {
 		
 		//TODO check for null somewhere
 		return getCardAt(size() - 1);
-	}
-	
-	/**
-	 * Checks if card can be moved into playing pile.
-	 * @param c card to check
-	 * @return true if move is valid
-	 */
-	public boolean check(StdCard c) {
-		return isValid(c);
 	}
 	
 	/**
@@ -137,7 +127,7 @@ public class PlayingPile {
 	 * Returns true if pile is empty.
 	 * @return true if pile is empty
 	 */
-	boolean isEmpty() {
+	public boolean isEmpty() {
 		return pile.isEmpty();
 	}
 	
@@ -170,7 +160,7 @@ public class PlayingPile {
 	 * @param c card being passed in
 	 * @return true if the card has been validated for placement
 	 */
-	private boolean isValid(StdCard c) {
+	public boolean isValid(StdCard c) {
 		return isDsc(c) && isAltColor(c);
 	}
 	
