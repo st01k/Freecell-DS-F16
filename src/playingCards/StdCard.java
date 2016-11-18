@@ -189,6 +189,18 @@ public class StdCard implements CardInterface {
     	return maxValue;
     }
     
+    /**
+     * Returns true if the cards are the same.
+     * @param c card to compare
+     * @return true if cards are the same
+     */
+    public boolean equals(StdCard c) {
+    	
+    	return
+    			rank == c.getRank() &&
+    			suit == c.getSuit();
+    }
+    
  // Testing -------------------------------------------------------------------
     /**
      * Standard Card unit test.

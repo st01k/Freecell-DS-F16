@@ -47,7 +47,8 @@ public class HomeCell implements CellInterface {
 	}
 
 	/**
-	 * Removes card from cell.  Restores next lower card.
+	 * Removes card from cell.  Restores next lower card
+	 * or null if card in cell is an ace.
 	 * @return removed card.
 	 */
 	@Override

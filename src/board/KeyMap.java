@@ -153,6 +153,14 @@ public class KeyMap {
 		return "s - " + src + "\nd - " + dest;
 	}
 	
+	public boolean equals(KeyMap k) {
+		
+		return
+			src.equals(k.getSrcKey()) &&
+			dest.equals(k.getDestKey()) &&
+			srcCard.equals(k.getSourceCard());			 
+	}
+	
 	/**
 	 * Toggles debug mode.
 	 */

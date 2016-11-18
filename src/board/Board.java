@@ -288,10 +288,10 @@ public class Board {
 	}
 	
 	/**
-	 * Updates a board to a specific turn.
+	 * Updates the board to a specific previous turn.
 	 * @param t turn to update to
 	 */
-	public void updateBoard(Turn t) {
+	public void forceUpdate(Turn t) {
 		
 		t.getKeymap().invertKey();
 		Key src = t.getKeymap().getSrcKey();

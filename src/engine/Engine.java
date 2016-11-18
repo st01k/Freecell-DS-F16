@@ -26,6 +26,7 @@ public class Engine
 	private static String src, dest;
 	private static Board curBoard;
 	private static Stack<Turn> history;
+	private static Stack<Turn> revHistory;
 	private static FreeGUI gui;
 	
 	// Initialization ---------------------------------------------------------
@@ -99,13 +100,16 @@ public class Engine
 //				guiWait();
 			}
 			else {
-				out.println("i'm back");
 				src = getSourceCLI();
 				dest = getDestCLI();
-				out.println("i'm out");
 			}
 			
 			KeyMap keymap = new KeyMap(src, dest, curBoard);
+			
+			if (revHistory != null) {
+				if (!keymap.equals(revHistory.peek())) revHistory.clear();
+			}
+			
 			if (keymap.isValid()) {
 				
 				Turn turn = new Turn(++moveNum, curBoard, keymap);
@@ -178,20 +182,24 @@ public class Engine
 		
 		if (debug) out.println("event: Undo");
 		
-		Turn curTurn = history.pop();
-		if (debug) out.println("undoing:\n" + curTurn);
+		if (history.size() <= 1) out.println("nothing to undo");
+		else {
 		
-		Turn prevTurn = history.peek();
-		if (debug) out.println("restoring:\n" + prevTurn);
-		
-		
-		curBoard.updateBoard(curTurn);
-		moveNum = prevTurn.getMoveNum();
-		
-		curBoard.updateBoardStats(prevTurn);
-		
-		if (isGui) gui.Paint(curBoard); 
-		else out.println(curBoard);
+			revHistory = new Stack<Turn>();
+			
+			Turn curTurn = history.pop();
+			revHistory.push(curTurn);
+			curBoard.forceUpdate(revHistory.peek());
+			if (debug) out.println("undoing:\n" + curTurn);
+			
+			Turn prevTurn = history.peek();
+			if (debug) out.println("restoring:\n" + prevTurn);
+			moveNum = prevTurn.getMoveNum();
+			curBoard.updateBoardStats(prevTurn);
+			
+			if (isGui) gui.Paint(curBoard); 
+			else out.println(curBoard);
+		}
 	}
 	
 	/**
@@ -200,7 +208,20 @@ public class Engine
 	public static void redo() {
 		
 		if (debug) out.println("event: Redo");
-		if (debug) out.println("currently unavailable");
+		if (revHistory.isEmpty()) out.println("nothing to redo");
+		else {
+			
+			Turn nextTurn = revHistory.pop();
+			history.push(nextTurn);
+			curBoard.forceUpdate(history.peek());
+			if (debug) out.println("redoing:\n" + nextTurn);
+			
+			moveNum = nextTurn.getMoveNum();
+			curBoard.updateBoardStats(nextTurn);
+			
+			if (isGui) gui.Paint(curBoard); 
+			else out.println(curBoard);
+		}
 	}
 	
 	/**
