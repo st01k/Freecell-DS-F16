@@ -505,4 +505,9 @@ public class Board {
 		out.println();
 		out.println("-------------------- Board Unit Test Complete.\n");
 	}
+	
+	public Board clone()
+	{
+		return this;
+	}
 }
