@@ -42,7 +42,15 @@ import board.*;
 
 	    public void Paint(Board curboard)
 	    {
-	    	ShownBoard = curboard.clone();
+	    	try 
+	    	{
+				ShownBoard = curboard.clone();
+			} 
+	    	catch (CloneNotSupportedException e) 
+	    	{
+				out.println(e.getMessage());
+			}
+	    	
 	    	if (debug)
 	    	{
 	    		out.println("\n---engine.FreeGUI.paint---");

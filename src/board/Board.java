@@ -12,7 +12,7 @@ import playingCards.*;
  * @author groovyLlama devteam
  * @version 0.4
  */
-public class Board {
+public class Board implements Cloneable{
 
 	// static constants
 	private static final int CELLS = 4;
@@ -549,5 +549,10 @@ public class Board {
 		
 		out.println();
 		out.println("-------------------- Board Unit Test Complete.\n");
+	}
+	
+	public Board clone() throws CloneNotSupportedException
+	{
+			return (Board) super.clone();
 	}
 }
