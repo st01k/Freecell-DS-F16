@@ -34,6 +34,17 @@ public class HomeCell implements CellInterface {
 		cell = c;
 		return true;
 	}
+	
+	/**
+	 * Places card in cell.  No checks.
+	 * @param c card to place
+	 */
+	public void forcePlace(StdCard c) {
+		
+		if (debug) out.println("\n---board.HomeCell.forcePlace---");
+		cell  = c;
+		if (debug) out.println("placed card: " + c + "\ninto " + key);
+	}
 
 	/**
 	 * Returns null.  Cannot remove a card from a home cell.
@@ -41,9 +52,13 @@ public class HomeCell implements CellInterface {
 	@Override
 	public StdCard removeCard() {
 		
-		if (debug) out.println("---board.HomeCell.removeCard---\n" +
-								"Cannot remove card from homecell.");
-		return null;
+		if (debug) out.println("---board.HomeCell.removeCard---\n");
+		
+		StdCard temp = cell;
+		if (debug) out.println("removed card: " + temp + "\nfrom " + key);
+		
+		cell = null;
+		return temp;
 	}
 	
 	/**

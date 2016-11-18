@@ -22,6 +22,7 @@ public class FreeCell implements CellInterface {
 	// Cell Manipulation ------------------------------------------------------
 	/**
 	 * Places a card in the freecell if there is not one already present.
+	 * @param c card to place
 	 */
 	@Override
 	public boolean placeCard(StdCard c) {
@@ -33,6 +34,17 @@ public class FreeCell implements CellInterface {
 		if (debug) out.println("placed card: " + c + "\ninto " + key);
 		cell = c;
 		return true;
+	}
+	
+	/**
+	 * Places card in cell.  No checks.
+	 * @param c card to place
+	 */
+	public void forcePlace(StdCard c) {
+		
+		if (debug) out.println("\n---board.FreeCell.forcePlace---");
+		cell  = c;
+		if (debug) out.println("placed card: " + c + "\ninto " + key);
 	}
 	
 	/**

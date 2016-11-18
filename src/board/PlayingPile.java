@@ -53,6 +53,17 @@ public class PlayingPile {
 	}
 	
 	/**
+	 * Places card in cell.  No checks.
+	 * @param c card to place
+	 */
+	public void forcePlace(StdCard c) {
+		
+		if (debug) out.println("\n---board.PlayingPile.forcePlace---");
+		pile.add(c);
+		if (debug) out.println("placed card: " + c + "\ninto " + key);
+	}
+	
+	/**
 	 * Removes top card from pile and returns it.
 	 * @return top card on pile, null if empty
 	 */

@@ -65,6 +65,14 @@ public class KeyMap {
 		srcCard = board.getCardAt(src);
 	}
 	
+	void invertKey() {
+		
+		Key temp = src;
+		src = dest;
+		dest = temp;
+		genCard();
+	}
+	
 	/**
 	 * Returns source card.
 	 * @return source card
@@ -87,6 +95,10 @@ public class KeyMap {
 	 */
 	public Key getDestKey() {
 		return dest;
+	}
+	
+	void setDestKey(Key d) {
+		dest = d;
 	}
 	
 	/**

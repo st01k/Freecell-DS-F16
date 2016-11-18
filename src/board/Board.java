@@ -195,51 +195,74 @@ public class Board {
 		if (debug) out.println("\n---board.Board.makeMove---");
 		
 		StdCard c = k.srcCard;
+		Key destKey = k.getDestKey();
 		
-		place(c, k.getDestKey());
-		remove(k.getSrcKey());
+		Key actualPlacement = place(c, destKey, false);
+		remove(k.getSrcKey(), false);
+		
+		// if key had to be searched for
+		if (!destKey.equals(actualPlacement)) {
+			
+			if (debug) out.print("mod to keymap:\ndest(" + destKey.getKey());
+			k.setDestKey(actualPlacement);
+			if (debug) out.println(" --> " + k.getDestKey().getKey() + ")");
+			
+		}
 	}
 	
 	/**
 	 * Places card at destination based on keymap.
+	 * Will search region if destination is not valid.
+	 * Does not search piles.
 	 * @param c source card
 	 * @param dest destination position
 	 */
-	void place(StdCard c, Key dest) {
+	Key place(StdCard c, Key dest, boolean force) {
+		
+		// if destination has to be searched for
+		// this holds the actual placement, used
+		// to update the keymap
+		Key placedIn = null;
 		
 		int pos = dest.getPosition();
 		switch(dest.getRegion()) {
 		// into freecell
 		case 1	:
-			intoFreecell(c, dest.getPosition());
+			if (force) freeAry[pos].forcePlace(c);
+			else placedIn = intoFreecell(c, pos);
 			break;
 		// into homecell
 		case 2 :
-			intoHomecell(c, dest.getPosition());
+			if (force) homeAry[pos].forcePlace(c);
+			else placedIn = intoHomecell(c, pos);
 			break;
 		// into respective playing pile
 		case 3	:
-			intoPlayingPile(c, pileAry[pos]);
+			if (force) pileAry[pos].forcePlace(c);
+			else placedIn = intoPlayingPile(c, pileAry[pos]);
 			break;
 		default	:
 			if (debug) out.println
 				("ERROR - Unknown destination in board.Board.place");
 			break;
 		}
+		
+		return placedIn;
 	}
 	
 	/**
 	 * Removes card at source position, based on keymap.
 	 * @param src source position
 	 */
-	void remove(Key src) {
+	void remove(Key src, boolean force) {
 		
 		switch(src.getRegion()) {
 		case 1 	:
 			freeAry[src.getPosition()].removeCard();
 			break;
 		case 2 	:
-			if (debug) out.println
+			if (force) homeAry[src.getPosition()].removeCard();
+			if (debug && !force) out.println
 				("ERROR: homecell remove in board.Board.remove");
 			break;
 		case 3 	:
@@ -265,6 +288,21 @@ public class Board {
 	}
 	
 	/**
+	 * Updates a board to a specific turn.
+	 * @param t turn to update to
+	 */
+	public void updateBoard(Turn t) {
+		
+		t.getKeymap().invertKey();
+		Key src = t.getKeymap().getSrcKey();
+		Key dest = t.getKeymap().getDestKey();
+		StdCard card = t.getKeymap().getSourceCard();
+		
+		place(card, dest, true);
+		remove(src, true);
+	}
+	
+	/**
 	 * Checks if the game is won based on all homecells containing a king.
 	 * @return true if game is won
 	 */
@@ -279,7 +317,7 @@ public class Board {
 			
 			if (h.isEmpty()) return false;
 			
-			if (debug) out.println(h.peekCard().getValue());
+			if (debug) out.println("card value: " + h.peekCard().getValue());
 			if (h.peekCard().getValue() != king) return false;
 		}
 		return true;
@@ -323,20 +361,20 @@ public class Board {
 	 * @param c card to insert
 	 * @return true if the card was successfully placed.
 	 */
-	boolean intoFreecell(StdCard c, int index) {
+	Key intoFreecell(StdCard c, int index) {
 		
 		if (debug) out.println("\n---board.Board.intoFreeCell---");
 		
 		// tries user selected placement
-		if (freeAry[index].placeCard(c)) return true;
+		if (freeAry[index].placeCard(c)) return freeAry[index].getKey();
 		
 		if (debug) out.println("searching for open freecell...");
 		
 		// finds first available cell
 		for (FreeCell f : freeAry) {
-			if (f.placeCard(c)) return true;
+			if (f.placeCard(c)) return f.getKey();
 		}
-		return false;
+		return null;
 	}
 	
 	/**
@@ -345,20 +383,20 @@ public class Board {
 	 * @param c card to be inserted
 	 * @return true if the card was successfully placed
 	 */
-	boolean intoHomecell(StdCard c, int index) {
+	Key intoHomecell(StdCard c, int index) {
 
 		if (debug) out.println("\n---board.Board.intoHomeCell---");
 		
 		// tries user selected placement
-		if (homeAry[index].placeCard(c)) return true;
+		if (homeAry[index].placeCard(c)) return homeAry[index].getKey();
 		
 		if (debug) out.println("searching for homecell...");
 		
 		// finds first available or matching cell
 		for (HomeCell h : homeAry) {
-			if (h.placeCard(c)) return true;
+			if (h.placeCard(c)) return h.getKey();
 		}
-		return false;
+		return null;
 	}
 	
 	/**
@@ -367,12 +405,12 @@ public class Board {
 	 * @param p playing pile destination
 	 * @return true if the card was successfully placed
 	 */
-	boolean intoPlayingPile(StdCard c, PlayingPile p) {
+	Key intoPlayingPile(StdCard c, PlayingPile p) {
 		
 		if (debug) out.println("\n---board.Board.intoPlayingPile---");
 		
-		if (p.placeCard(c)) return true;
-		return false;
+		if (p.placeCard(c)) return p.getKey();
+		return null;
 	}
 	
 	// CLI --------------------------------------------------------------------
@@ -477,6 +515,13 @@ public class Board {
 		return max;
 	}
 	
+	/**
+	 * Clones this board.
+	 */
+	public Board clone() {
+		return this;
+	}
+	
 	public static void toggleEzWin() {
 		ezWin = !ezWin;
 		
@@ -504,10 +549,5 @@ public class Board {
 		
 		out.println();
 		out.println("-------------------- Board Unit Test Complete.\n");
-	}
-	
-	public Board clone()
-	{
-		return this;
 	}
 }

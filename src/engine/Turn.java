@@ -110,7 +110,7 @@ public class Turn {
 	public String toString() {
 		
 		return 	
-			keymap + " | move number: " + moveNum + " | winnable: " + winnable;
+			"turn: " + moveNum + " | winnable: " + winnable + "\n" + keymap;
 	}
 	
 	/**

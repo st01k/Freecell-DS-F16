@@ -84,6 +84,7 @@ public class Engine
 			//TODO don't forget i'm here
 			curBoard.calcMoveableCards();
 			
+			clearMapStrings();
 			if (isGui) gui.Paint(curBoard);
 			else out.println(curBoard);
 			
@@ -95,10 +96,13 @@ public class Engine
 				Scanner scan = new Scanner(System.in);
 				out.println("Press Enter for filler move.");
 				scan.nextLine();
+//				guiWait();
 			}
 			else {
+				out.println("i'm back");
 				src = getSourceCLI();
 				dest = getDestCLI();
+				out.println("i'm out");
 			}
 			
 			KeyMap keymap = new KeyMap(src, dest, curBoard);
@@ -110,6 +114,7 @@ public class Engine
 			}		
 			else { out.println("\nIllegal Move\n"); }
 			
+			clearMapStrings();
 			if (autoStack) autoStack();
 			gameOver = checkGameOver();
 		}
@@ -137,14 +142,12 @@ public class Engine
 	
 	private static void guiWait() {
 		
-		src = "";
-		dest = "";
-		
+		clearMapStrings();		
 		while (src.isEmpty() && dest.isEmpty()) {}
 		
 	}
 	
-	public static void getGuiMapping(String s, String d) {
+	public static void setGuiMapping(String s, String d) {
 		
 		src = s;
 		dest = d;
@@ -164,8 +167,8 @@ public class Engine
 		snapshot(new Turn(curBoard));
 		if (autoStack) autoStack();
 		
-		if (!isGui) out.println(curBoard);
-		else gui.Paint(curBoard);
+		if (isGui) gui.Paint(curBoard); 
+		else out.println(curBoard);
 	}
 	
 	/**
@@ -174,9 +177,21 @@ public class Engine
 	public static void undo() {
 		
 		if (debug) out.println("event: Undo");
-		if (debug) out.println("currently unavailable");
 		
-		//TODO no autostack on undo
+		Turn curTurn = history.pop();
+		if (debug) out.println("undoing:\n" + curTurn);
+		
+		Turn prevTurn = history.peek();
+		if (debug) out.println("restoring:\n" + prevTurn);
+		
+		
+		curBoard.updateBoard(curTurn);
+		moveNum = prevTurn.getMoveNum();
+		
+		curBoard.updateBoardStats(prevTurn);
+		
+		if (isGui) gui.Paint(curBoard); 
+		else out.println(curBoard);
 	}
 	
 	/**
@@ -241,6 +256,15 @@ public class Engine
 			curBoard.updateBoardStats(turn);
 			snapshot(turn);
 		}
+	}
+	
+	/**
+	 * Clears source and destingation strings.
+	 */
+	static void clearMapStrings() {
+		
+		src = "";
+		dest = "";
 	}
 	
 	/**
