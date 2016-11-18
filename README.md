@@ -25,5 +25,6 @@ Freecell card game
 0.1 -   skeleton<br>
 0.2 -   basic cli, basic gui, working card/deck<br>
 0.3 -   initial card placement on board<br>
-0.4 -   unpolished cli gameplay, gui rendering<br>
-0.5 -   cli gameplay mostly working
+0.4 -   unpolished cli gameplay, board rendering<br>
+0.5 -   cli gameplay mostly working, deal rendering<br>
+0.6 -		gameplay fully functional, undo/redo available<br>

@@ -13,7 +13,7 @@ import board.KeyMap;
 /**
  * Drives freecell game.
  * @author groovyLlama devteam
- * @version 0.5
+ * @version 0.6
  */
 public class Engine 
 {
