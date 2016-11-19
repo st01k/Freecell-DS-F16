@@ -252,6 +252,7 @@ public class Engine
 		
 		if (debug) out.println("event: Hint");
 		if (debug) out.println("currently unavailable");
+		if (isGui) FreeGUI.consoleOut("Currently Unavailable");
 	}
 	
 	/**
@@ -261,6 +262,7 @@ public class Engine
 		
 		if (debug) out.println("event: Solve");
 		if (debug) out.println("currently unavailable");
+		if (isGui) FreeGUI.consoleOut("Currently Unavailable");
 	}
 	
 	/**

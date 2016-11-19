@@ -2407,6 +2407,7 @@ import board.*;
 			
 			int x = e.getX();
 			int y = e.getY();
+			String key = "";
 			
 			if(y >= FH_Y_CONST - 63 && y <= FH_Y_CONST + 63)
 			{
@@ -2427,6 +2428,7 @@ import board.*;
 						{
 							if(debug) out.println("Empty freecell number " + i);
 						}
+						key = fcells[i].getKey().getKeyString();
 					}
 				}
 			}
@@ -2450,8 +2452,8 @@ import board.*;
 									}
 								}
 								
-								String key = ShownBoard.getPile(i).getKey().getKeyString();
-								Engine.setSource(key);
+								key = ShownBoard.getPile(i).getKey().getKeyString();
+								
 								
 								//TODO Check card and cards on top and check to see if they can be picked up.
 							}
@@ -2459,6 +2461,8 @@ import board.*;
 					}
 				}
 			}
+			
+			Engine.setSource(key);
 		}
 
 		@Override
