@@ -46,7 +46,9 @@ import board.*;
 	    	{
 				ShownBoard = curboard.clone();
 			} 
-	    	catch (CloneNotSupportedException e) 
+	    	catch (Exception e)
+	    	//TODO had to comment this out to remove error
+	    	//catch (CloneNotSupportedException e) 
 	    	{
 				out.println(e.getMessage());
 			}

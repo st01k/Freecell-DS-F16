@@ -119,15 +119,21 @@ public class Engine
 				curBoard.updateBoardStats(turn);
 				snapshot(turn);
 			}		
-			else { out.println("\nIllegal Move\n"); }
+			else { 
+				out.println("\nIllegal Move\n");
+				FreeGUI.consoleOut("Illegal Move");
+			}
 			
 			clearMapStrings();
 			if (autoStack) autoStack();
 			gameOver = checkGameOver();
 		}
 		
-		out.println(curBoard);
+		if (isGui) gui.Paint(curBoard); 
+		else out.println(curBoard);
+		
 		out.println("\nYou won the game!!!");
+		FreeGUI.consoleOut("You won the game!!!");
 	}
 	
 	// Move Input -------------------------------------------------------------
@@ -176,6 +182,7 @@ public class Engine
 		
 		if (isGui) gui.Paint(curBoard); 
 		else out.println(curBoard);
+		if (debug && isGui) printSnapshot();
 	}
 	
 	/**
@@ -185,7 +192,10 @@ public class Engine
 		
 		if (debug) out.println("event: Undo");
 		
-		if (history.size() <= 1) out.println("nothing to undo");
+		if (history.size() <= 1) {
+			out.println("nothing to undo");
+			FreeGUI.consoleOut("Nothing to Undo");
+		}
 		else {
 			
 			Turn curTurn = history.pop();
@@ -201,6 +211,7 @@ public class Engine
 			
 			if (isGui) gui.Paint(curBoard); 
 			else out.println(curBoard);
+			if (debug && isGui) printSnapshot();
 		}
 	}
 	
@@ -211,8 +222,10 @@ public class Engine
 		
 		if (debug) out.println("event: Redo");
 
-		if (rvrsHistory.isEmpty()) 
+		if (rvrsHistory.isEmpty()) {
 			out.println("nothing to redo");
+			FreeGUI.consoleOut("Nothing to Redo");
+		}
 		else {
 			
 			Turn nextTurn = rvrsHistory.pop();
@@ -225,6 +238,7 @@ public class Engine
 			
 			if (isGui) gui.Paint(curBoard); 
 			else out.println(curBoard);
+			if (debug && isGui) printSnapshot();
 		}
 	}
 	
