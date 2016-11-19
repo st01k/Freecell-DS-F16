@@ -2432,6 +2432,8 @@ import board.*;
 					}
 				}
 			}
+			//TODO else if homecell (key = "";)
+			// to stop null pointer exception if a home cell is clicked
 			else
 			{
 				for(int i = 0,len = colX.length;i < len; i++)
@@ -2453,8 +2455,6 @@ import board.*;
 								}
 								
 								key = ShownBoard.getPile(i).getKey().getKeyString();
-								
-								
 								//TODO Check card and cards on top and check to see if they can be picked up.
 							}
 						}

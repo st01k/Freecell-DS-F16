@@ -13,7 +13,7 @@ import board.KeyMap;
 /**
  * Drives freecell game.
  * @author groovyLlama devteam
- * @version 0.6
+ * @version 0.7
  */
 public class Engine 
 {
@@ -294,7 +294,9 @@ public class Engine
 	public static void setSource(String key) {
 		
 		src = key;
-		
+		if (src != null) {
+			
+		}
 		//TODO remove next line, just for testing
 		KeyMap temp = new KeyMap(key, "", curBoard);
 		if (debug) out.println("event: clicked card " + temp.getSourceCard());
