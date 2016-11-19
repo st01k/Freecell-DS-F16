@@ -84,6 +84,8 @@ public class Engine
 			if (debug && isGui) printSnapshot();
 						
 			//TODO don't forget i'm here
+			// use this to tell gui how many sequenced
+			// cards can be moved at one time
 			curBoard.calcMoveableCards();
 			
 			clearMapStrings();
@@ -93,12 +95,15 @@ public class Engine
 			if (isGui) {
 				
 				//TODO filler moves
+				// remove when gui can send the turn
 				src = "i";
 				dest = "a";
 				Scanner scan = new Scanner(System.in);
 				out.println("Press Enter for filler move.");
 				scan.nextLine();
-//				guiWait();
+				
+				//TODO and uncomment this
+				//guiWait();
 			}
 			else {
 				src = getSourceCLI();
@@ -133,7 +138,7 @@ public class Engine
 		else out.println(curBoard);
 		
 		out.println("\nYou won the game!!!");
-		FreeGUI.consoleOut("You won the game!!!");
+		if (isGui) FreeGUI.consoleOut("You won the game!!!");
 	}
 	
 	// Move Input -------------------------------------------------------------
@@ -153,17 +158,15 @@ public class Engine
 		return CLI.inGame("dest");
 	}
 	
+	/**
+	 * Clears src and dest strings and waits for
+	 * gui event to fill those values to return.
+	 */
 	private static void guiWait() {
 		
 		clearMapStrings();		
 		while (src.isEmpty() && dest.isEmpty()) {}
 		
-	}
-	
-	public static void setGuiMapping(String s, String d) {
-		
-		src = s;
-		dest = d;
 	}
 	
 	// In-game Action Handlers ------------------------------------------------
@@ -193,8 +196,8 @@ public class Engine
 		if (debug) out.println("event: Undo");
 		
 		if (history.size() <= 1) {
-			out.println("nothing to undo");
-			FreeGUI.consoleOut("Nothing to Undo");
+			out.println("Nothing to Undo");
+			if (isGui) FreeGUI.consoleOut("Nothing to Undo");
 		}
 		else {
 			
@@ -223,8 +226,8 @@ public class Engine
 		if (debug) out.println("event: Redo");
 
 		if (rvrsHistory.isEmpty()) {
-			out.println("nothing to redo");
-			FreeGUI.consoleOut("Nothing to Redo");
+			out.println("Nothing to Redo");
+			if (isGui) FreeGUI.consoleOut("Nothing to Redo");
 		}
 		else {
 			
@@ -262,21 +265,28 @@ public class Engine
 	
 	/**
 	 * Double click confirmation.
-	 * @param src source clicked (card position)
+	 * @param s source clicked (card position)
 	 */
-	public static void doubleClick(String src) {
+	public static void doubleClick(String s) {
 		
-		if (debug) out.println("event: Double-Click (" + src + ")");
+		if (debug) out.println("event: Double-Click (" + s + ")");
+		
+		src = s;
+		//TODO priority check homecells for placement
+		// if none, then check freecells for placement
 	}
 	
 	/**
 	 * Drag and drop confirmation.
-	 * @param src source card clicked (card position) 
-	 * @param dest destination position of card clicked
+	 * @param s source card clicked (card position) 
+	 * @param d destination position of card clicked
 	 */
-	public static void dragDrop(String src, String dest) {
+	public static void dragDrop(String s, String d) {
 		
-		if (debug) out.println("event: Drag and Drop (" + src + ", " + dest + ")");
+		if (debug) out.println("event: Drag and Drop (" + s + ", " + d + ")");
+		
+		src = s;
+		dest = d;
 	}
 	
 	// Utilities --------------------------------------------------------------
@@ -344,7 +354,11 @@ public class Engine
 		return status;
 	}
 	
+	/**
+	 * Toggles auto-stack mode.
+	 */
 	public static void toggleAutoStack() {
+		
 		autoStack = !autoStack;
 		
 		String s;

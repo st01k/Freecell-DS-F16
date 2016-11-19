@@ -194,7 +194,7 @@ public class Board implements Cloneable{
 		
 		if (debug) out.println("\n---board.Board.makeMove---");
 		
-		StdCard c = k.srcCard;
+		StdCard c = k.getSourceCard();
 		Key destKey = k.getDestKey();
 		
 		Key actualPlacement = place(c, destKey, false);

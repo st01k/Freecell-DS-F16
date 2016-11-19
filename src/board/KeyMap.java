@@ -12,10 +12,10 @@ public class KeyMap {
 
 	private static boolean debug = false;
 	
-	Key src;
-	Key dest;
-	StdCard srcCard;
-	Board board;
+	private Key src;
+	private Key dest;
+	private StdCard srcCard;
+	private Board board;
 	
 	public KeyMap(Key s, Key d, Board b) {
 		
@@ -153,6 +153,11 @@ public class KeyMap {
 		return "s - " + src + "\nd - " + dest;
 	}
 	
+	/**
+	 * Returns true if keymaps are the same.
+	 * @param k keymap to compare to
+	 * @return true if keymaps are the same
+	 */
 	public boolean equals(KeyMap k) {
 		
 		return
