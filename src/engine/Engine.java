@@ -164,9 +164,10 @@ public class Engine
 	 */
 	private static void guiWait() {
 		
-		clearMapStrings();		
-		while (src.isEmpty() && dest.isEmpty()) {}
-		
+		if (debug) out.println("\n---engine.Engine.guiWait---");
+		clearMapStrings();
+		while (src.matches("") && dest.matches("")) {}
+		if (debug) out.println("gui done waiting");
 	}
 	
 	// In-game Action Handlers ------------------------------------------------
@@ -297,14 +298,14 @@ public class Engine
 		if (!key.matches("")) {
 			
 			src = key;
-			
-			//TODO remove next line, just for testing
-			KeyMap temp = new KeyMap(key, "", curBoard);
-			if (debug) out.println("event: clicked card " + temp.getSourceCard());
 		}
+		
+		//TODO for testing
+		setDest("a");
 	}
 	
 	public static void setDest(String key) {
+		
 		dest = key;
 	}
 	
