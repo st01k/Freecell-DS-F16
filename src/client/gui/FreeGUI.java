@@ -58,6 +58,9 @@ import board.*;
 	    		out.println("\n---engine.FreeGUI.paint---");
 	    	}
 	    	
+	    	// clear consoleout on each turn
+	    	consoleOut("");
+	    	
 	    	//-----------Free Cells------------
 	    	
 	    	FreeCell[] fcArray = curboard.getFreecells().clone();
