@@ -126,7 +126,7 @@ public class Engine
 			}		
 			else { 
 				out.println("\nIllegal Move\n");
-				FreeGUI.consoleOut("Illegal Move");
+				if (isGui) FreeGUI.consoleOut("Illegal Move");
 			}
 			
 			clearMapStrings();
