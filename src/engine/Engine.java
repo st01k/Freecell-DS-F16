@@ -251,7 +251,7 @@ public class Engine
 	public static void hint() {
 		
 		if (debug) out.println("event: Hint");
-		if (debug) out.println("currently unavailable");
+		if (debug) out.println("Currently Unavailable");
 		if (isGui) FreeGUI.consoleOut("Currently Unavailable");
 	}
 	
@@ -261,7 +261,7 @@ public class Engine
 	public static void solve() {
 		
 		if (debug) out.println("event: Solve");
-		if (debug) out.println("currently unavailable");
+		if (debug) out.println("Currently Unavailable");
 		if (isGui) FreeGUI.consoleOut("Currently Unavailable");
 	}
 	
@@ -289,17 +289,19 @@ public class Engine
 		
 		src = s;
 		dest = d;
+		// a then e
 	}
 	
 	public static void setSource(String key) {
 		
-		src = key;
-		if (src != null) {
+		if (!key.matches("")) {
 			
+			src = key;
+			
+			//TODO remove next line, just for testing
+			KeyMap temp = new KeyMap(key, "", curBoard);
+			if (debug) out.println("event: clicked card " + temp.getSourceCard());
 		}
-		//TODO remove next line, just for testing
-		KeyMap temp = new KeyMap(key, "", curBoard);
-		if (debug) out.println("event: clicked card " + temp.getSourceCard());
 	}
 	
 	public static void setDest(String key) {

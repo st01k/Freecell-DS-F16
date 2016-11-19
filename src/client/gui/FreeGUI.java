@@ -2432,8 +2432,6 @@ import board.*;
 					}
 				}
 			}
-			//TODO else if homecell (key = "";)
-			// to stop null pointer exception if a home cell is clicked
 			else
 			{
 				for(int i = 0,len = colX.length;i < len; i++)
@@ -2444,17 +2442,16 @@ import board.*;
 						{
 							if(y <= colY[j] + 63 && y >= colY[j] - 63)
 							{
+								PlayingPile column = ShownBoard.getPile(i);
 								if(debug)
 								{
-									PlayingPile column = ShownBoard.getPile(i);
 									if(column.size() > j)
 									{
 									out.println("Column :" + i + " Card :" + j);
 									break;
 									}
 								}
-								
-								key = ShownBoard.getPile(i).getKey().getKeyString();
+								key = column.getKey().getKeyString();
 								//TODO Check card and cards on top and check to see if they can be picked up.
 							}
 						}
