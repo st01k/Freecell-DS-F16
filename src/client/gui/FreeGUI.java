@@ -2390,6 +2390,11 @@ import board.*;
 		public void mouseClicked(MouseEvent e) 
 		{
 			// TODO Auto move double clicked card
+
+			// right now this triggers with single click
+			// how to make it double?
+			//String s = "";
+			//Engine.doubleClick(s);
 		}
 
 		@Override
@@ -2444,6 +2449,10 @@ import board.*;
 									break;
 									}
 								}
+								
+								String key = ShownBoard.getPile(i).getKey().getKeyString();
+								Engine.setSource(key);
+								
 								//TODO Check card and cards on top and check to see if they can be picked up.
 							}
 						}

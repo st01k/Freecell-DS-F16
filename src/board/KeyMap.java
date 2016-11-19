@@ -49,8 +49,8 @@ public class KeyMap {
 		if (debug) out.println("\n---board.KeyMap.genKeys--- ");
 		
 		for (Key k : Key.values()) {
-			if (s.matches(k.getKey())) src = k;
-			if (d.matches(k.getKey())) dest = k;
+			if (s.matches(k.getKeyString())) src = k;
+			if (d.matches(k.getKeyString())) dest = k;
 		}
 		
 		if (debug) out.println(src + "\n" + dest);

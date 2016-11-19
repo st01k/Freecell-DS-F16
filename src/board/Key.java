@@ -42,7 +42,7 @@ public enum Key {
 	 * Returns key identifier.
 	 * @return key identifier
 	 */
-	public String getKey() {
+	public String getKeyString() {
 		return this.key;
 	}
 	
@@ -102,7 +102,7 @@ public enum Key {
 	public boolean equals(Key k) {
 		
 		return 
-				key == k.getKey() &&
+				key == k.getKeyString() &&
 				region == k.getRegion() &&
 				position == k.getPosition();
 	}

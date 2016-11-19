@@ -203,9 +203,9 @@ public class Board implements Cloneable{
 		// if key had to be searched for
 		if (!destKey.equals(actualPlacement)) {
 			
-			if (debug) out.print("mod to keymap:\ndest(" + destKey.getKey());
+			if (debug) out.print("mod to keymap:\ndest(" + destKey.getKeyString());
 			k.setDestKey(actualPlacement);
-			if (debug) out.println(" --> " + k.getDestKey().getKey() + ")");
+			if (debug) out.println(" --> " + k.getDestKey().getKeyString() + ")");
 			
 		}
 	}

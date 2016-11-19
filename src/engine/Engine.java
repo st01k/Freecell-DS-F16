@@ -96,14 +96,14 @@ public class Engine
 				
 				//TODO filler moves
 				// remove when gui can send the turn
-				src = "i";
-				dest = "a";
-				Scanner scan = new Scanner(System.in);
-				out.println("Press Enter for filler move.");
-				scan.nextLine();
+//				src = "i";
+//				dest = "a";
+//				Scanner scan = new Scanner(System.in);
+//				out.println("Press Enter for filler move.");
+//				scan.nextLine();
 				
 				//TODO and uncomment this
-				//guiWait();
+				guiWait();
 			}
 			else {
 				src = getSourceCLI();
@@ -271,7 +271,7 @@ public class Engine
 		
 		if (debug) out.println("event: Double-Click (" + s + ")");
 		
-		src = s;
+		//src = s;
 		//TODO priority check homecells for placement
 		// if none, then check freecells for placement
 	}
@@ -287,6 +287,19 @@ public class Engine
 		
 		src = s;
 		dest = d;
+	}
+	
+	public static void setSource(String key) {
+		
+		src = key;
+		
+		//TODO remove next line, just for testing
+		KeyMap temp = new KeyMap(key, "", curBoard);
+		if (debug) out.println("event: clicked card " + temp.getSourceCard());
+	}
+	
+	public static void setDest(String key) {
+		dest = key;
 	}
 	
 	// Utilities --------------------------------------------------------------
