@@ -104,7 +104,7 @@ import board.*;
 	    	PlayingPile[] pPile = curboard.getPiles().clone();
 	    	for(int i = 0, len = pPile.length; i < len; i++)
 	    	{
-	    		for(int j = 0, len2 = pPile[i].size(); j < len2; j++)
+	    		for(int j = 0, len2 = MAX_PILE_SIZE - 1; j < len2; j++)
 	    		{
 	    			StdCard temp = pPile[i].getCardAt(j);
 	    			if(temp != null)
