@@ -324,6 +324,10 @@ public class Engine
 			Turn turn = new Turn(++moveNum, curBoard, k);
 			curBoard.updateBoardStats(turn);
 			snapshot(turn);
+			
+			if (isGui) gui.Paint(curBoard); 
+			else out.println(curBoard);
+			if (debug && isGui) printSnapshot();
 		}
 	}
 	
