@@ -1,5 +1,8 @@
 package solver;
 
+import static java.lang.System.out;
+
+import java.util.Queue;
 import board.Board;
 import board.KeyMap;
 
@@ -12,7 +15,7 @@ public class Solver {
 
 	private static boolean debug = false;
 	
-	private KeyMap[] possibleMoves;
+	private Queue<KeyMap> possibleMoves;
 	private Board board;
 	private boolean movePossible;
 	// alert user that there are no moves
@@ -34,9 +37,17 @@ public class Solver {
 	 * Returns whether a move is possible on current board.
 	 * @return true if move is possible
 	 */
-	public boolean moveIsPossible() {
+	public boolean getMovePossible() {
 		
 		return movePossible;
+	}
+	
+	/**
+	 * Returns all possible moves.
+	 * @return all possible moves as KeyMaps
+	 */
+	public Queue<KeyMap> getPossibleMoves() {
+		return possibleMoves;
 	}
 	
 	/**
@@ -48,21 +59,13 @@ public class Solver {
 	}
 	
 	/**
-	 * Sets whether a move is possible on current board.
-	 * @param in whether moves are available
-	 */
-	private void setMovePossible(boolean in) {
-		
-		movePossible = in;
-	}
-	
-	/**
 	 * Initializes solver.  
 	 * Runs multiple threads to check for solution.
 	 */
 	private void init() {
 		
 		findMoves();
+		//TODO sort moves in order of priority OR compare as they enter pattern/search?
 		//TODO create threads based on possible moves
 	}
 	
@@ -71,11 +74,11 @@ public class Solver {
 	 */
 	private void findMoves() {
 		
-		//TODO find all possible moves
-		// assign their keymap to possibleMoves array
+		possibleMoves = board.getAllMoves();
+		movePossible = (possibleMoves.isEmpty())? false : true;
 		
-		// if moves possible
-		setMovePossible(true);
+		out.println("\n---solver.Solver.findMoves---");
+		out.print(possibleMoves.toString());
 	}
 	
 	/**

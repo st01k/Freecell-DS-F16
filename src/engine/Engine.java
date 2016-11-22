@@ -83,8 +83,8 @@ public class Engine
 			if (debug) out.println("\n---loop begin---");
 			if (debug && isGui) printSnapshot();
 						
-			//TODO don't forget i'm here
-			// use this to tell gui how many sequenced
+			//TODO here to confirm accuracy
+			// use this method to tell gui how many sequenced
 			// cards can be moved at one time
 			curBoard.calcMoveableCards();
 			
@@ -92,19 +92,7 @@ public class Engine
 			if (isGui) gui.Paint(curBoard);
 			else out.println(curBoard);
 			
-			if (isGui) {
-				
-				//TODO filler moves
-				// remove when gui can send the turn
-//				src = "i";
-//				dest = "a";
-//				Scanner scan = new Scanner(System.in);
-//				out.println("Press Enter for filler move.");
-//				scan.nextLine();
-				
-				//TODO and uncomment this
-				guiWait();
-			}
+			if (isGui) guiWait();
 			else {
 				src = getSourceCLI();
 				dest = getDestCLI();
@@ -114,7 +102,7 @@ public class Engine
 			
 			
 			if (!rvrsHistory.isEmpty()) {
-				// if new path is chosen, clear redo history
+				// if new path is chosen, clears redo history
 				if (!keymap.equals(rvrsHistory.peek())) rvrsHistory.clear();
 			}
 			
@@ -343,7 +331,7 @@ public class Engine
 	 */
 	public static void autoStack() {
 		
-		Queue<KeyMap> autoStack = curBoard.autoStack();
+		Queue<KeyMap> autoStack = curBoard.toHome();
 		while (!autoStack.isEmpty()) {
 			
 			KeyMap k = autoStack.remove();

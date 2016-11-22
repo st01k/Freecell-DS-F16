@@ -16,7 +16,7 @@ public class KeyMap {
 	private Key dest;
 	private StdCard srcCard;
 	private Board board;
-	
+		
 	public KeyMap(Key s, Key d, Board b) {
 		
 		board = b;
@@ -59,7 +59,7 @@ public class KeyMap {
 	/**
 	 * Generates the card in the source position.
 	 */
-	private void genCard() {
+	public void genCard() {
 		
 		if (debug) out.println("\n---board.KeyMap.genCard--- ");
 		srcCard = board.getCardAt(src);
@@ -95,6 +95,10 @@ public class KeyMap {
 	 */
 	public Key getDestKey() {
 		return dest;
+	}
+	
+	void setSrcKey(Key s) {
+		src = s;
 	}
 	
 	void setDestKey(Key d) {
@@ -143,6 +147,18 @@ public class KeyMap {
 			break;
 		}
 		return false;
+	}
+	
+	public KeyMap srcToHome() {
+		
+	}
+	
+	public KeyMap srcToFree() {
+		
+	}
+	
+	public KeyMap srcToPile() {
+		
 	}
 	
 	/**

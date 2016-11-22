@@ -2,6 +2,7 @@ package board;
 
 import static java.lang.System.out;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import engine.Turn;
@@ -25,7 +26,7 @@ public class Board implements Cloneable{
 	// class variables
 	private boolean winnable;
 	private int moveNum;
-	private StdDeck d;
+	private StdDeck deck;
 	private FreeCell[] freeAry;
 	private HomeCell[] homeAry;
 	private PlayingPile[] pileAry;
@@ -43,6 +44,36 @@ public class Board implements Cloneable{
 		homeAry = new HomeCell[CELLS];
 		pileAry = new PlayingPile[PILES];
 		init();
+		genMap();
+	}
+	
+	/**
+	 * Deep copy constructor.
+	 * @param source board to copy
+	 */
+	public Board(Board source) {
+		
+		winnable = source.winnable;
+		moveNum = source.moveNum;
+				
+		freeAry = new FreeCell[CELLS];
+		homeAry = new HomeCell[CELLS];
+		pileAry = new PlayingPile[PILES];
+		
+		freeAry = Arrays.copyOf(source.freeAry, source.freeAry.length);
+		homeAry = Arrays.copyOf(source.homeAry, source.homeAry.length);
+		
+		for (int i = 0; i < PILES; i++) {
+			
+			PlayingPile srcPile = source.pileAry[i];
+			PlayingPile copyPile = pileAry[i];
+			
+			for (int j = 0; j < srcPile.size(); j++) {
+				copyPile.placeCard(srcPile.getCardAt(j));
+			}
+		}
+		
+		genMap();
 	}
 	
 	// Initialization ---------------------------------------------------------
@@ -54,11 +85,11 @@ public class Board implements Cloneable{
 		
 		final int INITROWS = 7;
 		
-		if (ezWin) d = new StdDeck(true);
+		if (ezWin) deck = new StdDeck(true);
 		else {
 			
-			d = new StdDeck();
-			d.shuffle();
+			deck = new StdDeck();
+			deck.shuffle();
 		}
 		
 		for (int i = 0; i < CELLS; i++) {
@@ -68,7 +99,6 @@ public class Board implements Cloneable{
 		for (int i = 0; i < PILES; i++) pileAry[i] = new PlayingPile();
 		
 		for (int i = 0; i < INITROWS; i++) dealRow();
-		genMap();
 	}
 	
 	/**
@@ -108,9 +138,9 @@ public class Board implements Cloneable{
 		
 		if (debug) out.println("\n---board.Board.dealRow---");
 		
-		for (int i = 0; i < PILES && !d.isEmpty(); i++) {
+		for (int i = 0; i < PILES && !deck.isEmpty(); i++) {
 			
-			StdCard c = d.getCard();
+			StdCard c = deck.getCard();
 			pileAry[i].placeCardOnDeal(c);
 			
 			if (debug) out.println(i + " " + c);
@@ -182,8 +212,118 @@ public class Board implements Cloneable{
 		return c;
 	}
 	
-
-
+	/**
+	 * Finds all possible moves in one turn.
+	 * @return KeyMap queue with valid moves
+	 */
+	public Queue<KeyMap> getAllMoves() {
+		
+		Queue<KeyMap> moves = new LinkedList<KeyMap>();
+		Queue<KeyMap> holder = new LinkedList<KeyMap>();
+		
+		for (int i = 0; i < 3; i++) {
+			
+			switch(i) {
+			
+			case 0	:
+				holder = toHome();
+				break;
+			case 1	:
+				holder = toFree();
+				break;
+			case 2	:
+				holder = toPile();
+				break;
+			}
+			
+			for(KeyMap k : holder) {
+				moves.add(k);
+			}
+		}
+		
+		return moves;
+	}
+	
+	/**
+	 * Finds all cards that can be added to homecells within one turn.
+	 * @return all valid moves into a homecell
+	 */
+	public Queue<KeyMap> toHome() {
+		//TODO add stacking from appropriate 
+		// cards under auto-stacked cards
+		if (debug) out.println("\n---board.Board.toHome---");
+		
+		Queue<KeyMap> moves = new LinkedList<KeyMap>();
+		Key dest = Key.E;
+		
+		// from freecell
+		for (FreeCell f : freeAry) {
+			
+			KeyMap keymap = new KeyMap(f.getKey(), dest, this);
+			if (keymap.isValid()) moves.add(keymap);
+		}
+		
+		// from pile
+		for (PlayingPile p : pileAry) {
+			
+			KeyMap keymap = new KeyMap(p.getKey(), dest, this);
+			if (keymap.isValid()) moves.add(keymap);
+		}
+		
+		System.gc();
+		if (debug) out.println("\n---board.Board.toHome END---");
+		return moves;
+	}
+	
+	/**
+	 * Finds all cards that can be added to freecells within one turn.
+	 * @return all valid moves into a freecell
+	 */
+	public Queue<KeyMap> toFree() {
+		
+		Queue<KeyMap> moves = new LinkedList<KeyMap>();
+		Key dest = Key.A;
+		
+		// from pile
+		for (PlayingPile p : pileAry) {
+			
+			KeyMap keymap = new KeyMap(p.getKey(), dest, this);
+			if (keymap.isValid()) moves.add(keymap);
+		}
+		
+		System.gc();
+		return moves;
+	}
+	
+	/**
+	 * Finds all cards that can be added to piles within one turn.
+	 * @return all valid moves into a playing pile
+	 */
+	public Queue<KeyMap> toPile() {
+		
+		Queue<KeyMap> moves = new LinkedList<KeyMap>();
+		
+		for (PlayingPile p : pileAry) {
+		
+			// from freecell
+			for (FreeCell f : freeAry) {
+				
+				KeyMap keymap = new KeyMap(f.getKey(), p.getKey(), this);
+				if (keymap.isValid()) moves.add(keymap);
+			}
+			
+			// from other pile
+			for (PlayingPile pp : pileAry) {
+				
+				KeyMap keymap = new KeyMap(pp.getKey(), p.getKey(), this);
+				if (keymap.isValid()) moves.add(keymap);
+			}
+		}
+		
+		System.gc();
+		return moves;
+	}
+	
 	// Update -----------------------------------------------------------------
 	/**
 	 * Moves source card to destination.
@@ -317,45 +457,13 @@ public class Board implements Cloneable{
 			
 			if (h.isEmpty()) return false;
 			
-			if (debug) out.println("card value: " + h.peekCard().getValue());
+			if (debug) out.println("homecell card value: " + h.peekCard().getValue());
 			if (h.peekCard().getValue() != king) return false;
 		}
 		return true;
 	}
 	
 	// Placement --------------------------------------------------------------
-	/**
-	 * Auto-stacks pile and freecell cards into homecells.
-	 */
-	public Queue<KeyMap> autoStack() {
-		//TODO add stacking from appropriate 
-		// cards under auto-stacked cards
-		if (debug) out.println("\n---board.Board.autoStack---");
-		
-		Queue<KeyMap> autos = new LinkedList<KeyMap>();
-		
-		for (PlayingPile p : pileAry) {
-			
-			Key src = p.getKey();
-			Key dest = Key.E;
-			
-			KeyMap keymap = new KeyMap(src, dest, this);
-			if (keymap.isValid()) autos.add(keymap);
-		}
-		
-		for (FreeCell f : freeAry) {
-			
-			Key src = f.getKey();
-			Key dest = Key.E;
-			
-			KeyMap keymap = new KeyMap(src, dest, this);
-			if (keymap.isValid()) autos.add(keymap);
-		}
-		
-		if (debug) out.println("\n---board.Board.autoStack END---");
-		return autos;
-	}
-	
 	/**
 	 * Places card into next available freecell.
 	 * @param c card to insert
