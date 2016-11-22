@@ -309,6 +309,11 @@ public class Engine
 //		dest = d;
 //	}
 	
+	/**
+	 * Sets source string for keymap
+	 * creation and validation.
+	 * @param key key value of source
+	 */
 	public static void setSource(String key) {
 		
 		if (!key.matches("")) {
@@ -320,6 +325,11 @@ public class Engine
 		setDest("a");
 	}
 	
+	/**
+	 * Sets destination string for keymap
+	 * creation and validation.
+	 * @param key key value of destination
+	 */
 	public static void setDest(String key) {
 		
 		dest = key;
