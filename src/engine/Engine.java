@@ -267,31 +267,47 @@ public class Engine
 	}
 	
 	/**
-	 * Double click confirmation.
+	 * Double click action and confirmation.
+	 * Searches for valid homecell placement.  If none is
+	 * found, searches for valid freecell placement.  Sets
+	 * the source and destination appropriately.  If no
+	 * valid placement is found, sets destination to an invalid
+	 * position to trigger skip to next turn.
 	 * @param s source clicked (card position)
 	 */
 	public static void doubleClick(String s) {
 		
-		if (debug) out.println("event: Double-Click (" + s + ")");
+		src = s;
 		
-		//src = s;
-		//TODO priority check homecells for placement
-		// if none, then check freecells for placement
+		KeyMap k = new KeyMap(s, "e", curBoard);
+		
+		if (debug) out.println("event: Double-Click (" + k.getSourceCard() + ")");
+		
+		// if valid, destination to homecell
+		if (k.isValid()) dest = "e";
+		// if not valid, try place in freecell
+		else {
+			k = new KeyMap(s, "a", curBoard);
+			// if valid, destination to freecell
+			if (k.isValid()) dest = "a";
+		}
+		// if can't be placed, set to invalid position
+		// to go to the next turn
+		dest = "z";
 	}
 	
-	/**
-	 * Drag and drop confirmation.
-	 * @param s source card clicked (card position) 
-	 * @param d destination position of card clicked
-	 */
-	public static void dragDrop(String s, String d) {
-		
-		if (debug) out.println("event: Drag and Drop (" + s + ", " + d + ")");
-		
-		src = s;
-		dest = d;
-		// a then e
-	}
+//	/**
+//	 * Drag and drop confirmation.
+//	 * @param s source card clicked (card position) 
+//	 * @param d destination position of card clicked
+//	 */
+//	public static void dragDrop(String s, String d) {
+//		
+//		if (debug) out.println("event: Drag and Drop (" + s + ", " + d + ")");
+//		
+//		src = s;
+//		dest = d;
+//	}
 	
 	public static void setSource(String key) {
 		
