@@ -149,18 +149,6 @@ public class KeyMap {
 		return false;
 	}
 	
-	public KeyMap srcToHome() {
-		
-	}
-	
-	public KeyMap srcToFree() {
-		
-	}
-	
-	public KeyMap srcToPile() {
-		
-	}
-	
 	/**
 	 * Returns keymap string.
 	 */
