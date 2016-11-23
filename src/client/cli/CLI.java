@@ -175,7 +175,7 @@ public class CLI {
 		out.println("new\tResets game with a new deal");
 		out.println("undo\tUndo last move");
 		out.println("redo\tRedo next move");
-		out.println("hint\tDisplays next move in solution");
+		out.println("hint\tDisplays all possible moves");
 		out.println("solve\tInitiates automated gameplay");
 		out.println("cls\tClear screen");
 		out.println("cred\tPrints credits");
