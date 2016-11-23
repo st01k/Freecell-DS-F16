@@ -1,7 +1,7 @@
 # Freecell-DS-F16
 <div align="center">
 	<b>Freecell Game and Solver</b><br>
-	v0.6<br><br>
+	v0.7<br><br>
 	Final project for Data Structures (Fall 2016 - WVUP)<br><br>
 	<img src="https://github.com/st01k/Freecell-DS-F16/blob/cDev/resources/images/groovyLlama.jpg?raw=true" alt="groovyLlama" height="400" width="400"><br>
 
@@ -28,3 +28,4 @@ Freecell card game
 0.4 -   unpolished cli gameplay, board rendering<br>
 0.5 -   cli gameplay mostly working, deal rendering<br>
 0.6 -		gameplay fully functional, undo/redo available<br>
+0.7 -		gameplay in gui is functional<br>
