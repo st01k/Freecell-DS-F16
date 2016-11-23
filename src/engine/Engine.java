@@ -343,7 +343,7 @@ public class Engine
 		PlayingPile p = curBoard.getPileByKey(src);
 		int cardsTryMove = p.size() - index;
 		
-		if (cardsCanMove == cardsTryMove) return true;
+		if (cardsCanMove <= cardsTryMove) return true;
 		
 		return false;
 	}
