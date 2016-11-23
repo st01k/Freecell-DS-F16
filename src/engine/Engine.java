@@ -304,10 +304,10 @@ public class Engine
 		if (k.isValid()) {
 			dest = "e";
 		}
+		// try destination to freecell
 		else {
 			k = new KeyMap(s, "a", curBoard);
 			if (k.isValid()) dest = "a";
-			else dest = "";
 		}
 	}
 	
