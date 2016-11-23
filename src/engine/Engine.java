@@ -337,8 +337,16 @@ public class Engine
 		dest = key;
 	}
 	
+	/**
+	 * Moves a sequence of cards from one pile to another pile.
+	 * @param src
+	 * @param dest
+	 * @param index
+	 * @return
+	 */
 	public static boolean seqMove(String src, String dest, int index) {
 		
+		//TODO clean me up so import is not needed
 		int cardsCanMove = curBoard.calcMoveableCards();
 		PlayingPile p = curBoard.getPileByKey(src);
 		int cardsTryMove = p.size() - index;

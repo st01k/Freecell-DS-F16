@@ -637,7 +637,9 @@ public class Board implements Cloneable{
 			if (p.isEmpty()) ++cntP;
 		}
 		
-		int cnt = (cntF + 1) + (2 * cntP);
+		int cnt = 0;
+		if (cntP > 1) cnt = (cntF + 1) + (2 * cntP);
+		else cnt = cntF + 1;
 		
 		if (debug) out.println("open freecells: " + cntF);
 		if (debug) out.println("open piles: " + cntP);
