@@ -218,6 +218,8 @@ public class Board implements Cloneable{
 	 */
 	public Queue<KeyMap> getAllMoves() {
 		
+		out.println("\n---board.Board.getAllMoves--- BEGIN");
+		
 		Queue<KeyMap> moves = new LinkedList<KeyMap>();
 		Queue<KeyMap> holder = new LinkedList<KeyMap>();
 		
@@ -241,6 +243,7 @@ public class Board implements Cloneable{
 			}
 		}
 		
+		out.println("\n---board.Board.getAllMoves--- END");
 		return moves;
 	}
 	
@@ -251,7 +254,7 @@ public class Board implements Cloneable{
 	public Queue<KeyMap> toHome() {
 		//TODO add stacking from appropriate 
 		// cards under auto-stacked cards
-		if (debug) out.println("\n---board.Board.toHome---");
+		if (debug) out.println("\n---board.Board.toHome--- BEGIN");
 		
 		Queue<KeyMap> moves = new LinkedList<KeyMap>();
 		Key dest = Key.E;
@@ -271,7 +274,7 @@ public class Board implements Cloneable{
 		}
 		
 		System.gc();
-		if (debug) out.println("\n---board.Board.toHome END---");
+		if (debug) out.println("\n---board.Board.toHome--- END");
 		return moves;
 	}
 	
@@ -280,6 +283,8 @@ public class Board implements Cloneable{
 	 * @return all valid moves into a freecell
 	 */
 	public Queue<KeyMap> toFree() {
+		
+		if (debug) out.println("\n---board.Board.toFree--- BEGIN");
 		
 		Queue<KeyMap> moves = new LinkedList<KeyMap>();
 		Key dest = Key.A;
@@ -292,6 +297,7 @@ public class Board implements Cloneable{
 		}
 		
 		System.gc();
+		if (debug) out.println("\n---board.Board.toHome--- END");
 		return moves;
 	}
 	
@@ -300,6 +306,8 @@ public class Board implements Cloneable{
 	 * @return all valid moves into a playing pile
 	 */
 	public Queue<KeyMap> toPile() {
+		
+		if (debug) out.println("\n---board.Board.toPile--- BEGIN");
 		
 		Queue<KeyMap> moves = new LinkedList<KeyMap>();
 		
@@ -313,14 +321,15 @@ public class Board implements Cloneable{
 			}
 			
 			// from other pile
-			for (PlayingPile pp : pileAry) {
+			for (PlayingPile otherPile : pileAry) {
 				
-				KeyMap keymap = new KeyMap(pp.getKey(), p.getKey(), this);
+				KeyMap keymap = new KeyMap(p.getKey(), otherPile.getKey(), this);
 				if (keymap.isValid()) moves.add(keymap);
 			}
 		}
 		
 		System.gc();
+		if (debug) out.println("\n---board.Board.toPile--- END");
 		return moves;
 	}
 	

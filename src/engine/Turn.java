@@ -35,6 +35,7 @@ public class Turn {
 		
 		moveNum = 0;
 		board = b;
+		winnable = isWinnable();
 	}
 	
 	/**
@@ -49,8 +50,8 @@ public class Turn {
 		board = b;
 		keymap = km;
 		
-		winnable = isWinnable();
 		board.makeMove(keymap);
+		winnable = isWinnable();
 	}
 	
 	// Accessors --------------------------------------------------------------

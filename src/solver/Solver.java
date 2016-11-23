@@ -74,11 +74,16 @@ public class Solver {
 	 */
 	private void findMoves() {
 		
+		out.println("\n---solver.Solver.findMoves---");
 		possibleMoves = board.getAllMoves();
 		movePossible = (possibleMoves.isEmpty())? false : true;
 		
-		out.println("\n---solver.Solver.findMoves---");
-		out.print(possibleMoves.toString());
+		if (debug) {
+			
+			for (KeyMap k : possibleMoves) {
+				out.println(k + "\n");
+			}
+		}
 	}
 	
 	/**
