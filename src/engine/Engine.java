@@ -9,6 +9,7 @@ import client.cli.CLI;
 import client.gui.FreeGUI;
 import board.Board;
 import board.KeyMap;
+import board.PlayingPile;
 
 /**
  * Drives freecell game.
@@ -337,6 +338,12 @@ public class Engine
 	}
 	
 	public static boolean seqMove(String src, String dest, int index) {
+		
+		int cardsCanMove = curBoard.calcMoveableCards();
+		PlayingPile p = curBoard.getPileByKey(src);
+		int cardsTryMove = p.size() - index;
+		
+		if (cardsCanMove == cardsTryMove) return true;
 		
 		return false;
 	}

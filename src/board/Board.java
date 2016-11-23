@@ -189,6 +189,19 @@ public class Board implements Cloneable{
 	}
 	
 	/**
+	 * Returns
+	 * @param k
+	 * @return
+	 */
+	public PlayingPile getPileByKey(String key) {
+		
+		for (PlayingPile p : pileAry) {
+			if (p.getKey().getKeyString().matches(key)) return p;
+		}
+		return null;
+	}
+	
+	/**
 	 * Gets card on the board at specified key.
 	 * @param k key
 	 * @return card in key position
