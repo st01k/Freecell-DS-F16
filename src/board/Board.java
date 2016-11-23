@@ -218,7 +218,7 @@ public class Board implements Cloneable{
 	 */
 	public Queue<KeyMap> getAllMoves() {
 		
-		out.println("\n---board.Board.getAllMoves--- BEGIN");
+		if (debug) out.println("\n---board.Board.getAllMoves--- BEGIN");
 		
 		Queue<KeyMap> moves = new LinkedList<KeyMap>();
 		Queue<KeyMap> holder = new LinkedList<KeyMap>();
@@ -243,7 +243,14 @@ public class Board implements Cloneable{
 			}
 		}
 		
-		out.println("\n---board.Board.getAllMoves--- END");
+		if (debug) {
+			
+			for (KeyMap k : moves) {
+				out.println(k + "\n");
+			}
+			out.println("\n---board.Board.getAllMoves--- END");
+		}
+		
 		return moves;
 	}
 	

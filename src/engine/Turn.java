@@ -2,6 +2,8 @@ package engine;
 
 import static java.lang.System.out;
 
+import java.util.Queue;
+
 import solver.Solver;
 import solver.Solution;
 import board.Board;
@@ -25,10 +27,11 @@ public class Turn {
 	private Board board;
 	private KeyMap keymap;
 	private Solution solution;
+	private Queue<KeyMap> possibleMoves;
 	
 	/**
 	 * Creates an empty freecell turn.
-	 * For use with move 0.
+	 * For use with move 0 at start of game.
 	 * @param b new board
 	 */
 	public Turn(Board b) {
@@ -36,6 +39,7 @@ public class Turn {
 		moveNum = 0;
 		board = b;
 		winnable = isWinnable();
+		possibleMoves = board.getAllMoves();
 	}
 	
 	/**
@@ -52,6 +56,7 @@ public class Turn {
 		
 		board.makeMove(keymap);
 		winnable = isWinnable();
+		possibleMoves = board.getAllMoves();
 	}
 	
 	// Accessors --------------------------------------------------------------
@@ -87,6 +92,21 @@ public class Turn {
 		return keymap;
 	}
 	
+	/**
+	 * Returns all possible moves from current turn.
+	 * @return all possible moves
+	 */
+	public Queue<KeyMap> getPossibleMoves() {
+		return possibleMoves;
+	}
+	
+	/**
+	 * Returns true if a move is possible.
+	 * @return true if a move is possible
+	 */
+	public boolean movePossible() {
+		return possibleMoves.isEmpty();
+	}
 	// Business ---------------------------------------------------------------
 	/**
 	 * Runs solver and sets winnable status on the turn.
