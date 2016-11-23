@@ -8,6 +8,7 @@ import java.util.Stack;
 import client.cli.CLI;
 import client.gui.FreeGUI;
 import board.Board;
+import board.Key;
 import board.KeyMap;
 import board.PlayingPile;
 
@@ -249,9 +250,24 @@ public class Engine
 			
 			for (KeyMap k : moves) {
 				
-				String s = k.getSrcKey().getKeyString();
-				String d = k.getDestKey().getKeyString();
-				out.println(s + " --> " + d);
+				Key s = k.getSrcKey();
+				Key d = k.getDestKey();
+				
+				if (isGui && debug) {
+					
+					String sGui = "";
+					sGui += (s.isFreecell())? "Freecell #" : "Pile #";
+					sGui += (s.getPosition() + 1) + " --> ";
+					
+					if (d.isFreecell()) sGui += "Freecell";
+					if (d.isHomecell()) sGui += "Homecell";
+					if (d.isPlayingPile()) sGui += "Pile #" + (d.getPosition() + 1);
+					out.println(sGui);
+				}
+				
+				String sS = k.getSrcKey().getKeyString();
+				String dS = k.getDestKey().getKeyString();
+				out.println(sS.toUpperCase() + " --> " + dS.toUpperCase());
 			}
 		}
 		

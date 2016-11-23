@@ -641,9 +641,11 @@ public class Board implements Cloneable{
 		if (cntP > 1) cnt = (cntF + 1) + (2 * cntP);
 		else cnt = cntF + 1;
 		
-		if (debug) out.println("open freecells: " + cntF);
-		if (debug) out.println("open piles: " + cntP);
-		if (debug) out.println("moveable cards in one pile: " + cnt);
+		if (debug) {
+			out.println("open freecells: " + cntF);
+			out.println("open piles: " + cntP);
+			out.println("moveable cards in one pile: " + cnt);
+		}
 		
 		return cnt;
 	}
