@@ -212,6 +212,7 @@ public class Board implements Cloneable{
 		if (debug) out.println(k);
 		
 		StdCard c;
+		if (k == null) return null;
 		int pos = k.getPosition();
 		
 		switch (k.getRegion()) {

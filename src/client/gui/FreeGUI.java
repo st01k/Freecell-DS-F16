@@ -2372,10 +2372,11 @@ import board.*;
 		@Override
 		public void mouseDragged(MouseEvent e)
 		{
-			if(debug)
-			{
-				out.println("Mouse dragged at: (" + e.getX() + "," + e.getY() + ")");
-			}
+			//TODO commented out to see debug statements more clearly
+//			if(debug)
+//			{
+//				out.println("Mouse dragged at: (" + e.getX() + "," + e.getY() + ")");
+//			}
 			//TODO show any cards in the hand at the mouse pointer
 		}
 
