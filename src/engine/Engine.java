@@ -336,6 +336,11 @@ public class Engine
 		dest = key;
 	}
 	
+	public static boolean seqMove(String src, String dest, int index) {
+		
+		return false;
+	}
+	
 	// Utilities --------------------------------------------------------------
 	/**
 	 * Processes all possible insertions into a homecell.

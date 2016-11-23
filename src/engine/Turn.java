@@ -106,11 +106,11 @@ public class Turn {
 	 */
 	public boolean movePossible() {
 		
-		// only happens on first turn
-		if (possibleMoves == null) return true;
-		
-		return !possibleMoves.isEmpty();
+		return 
+				possibleMoves == null ||
+				!possibleMoves.isEmpty();
 	}
+	
 	// Business ---------------------------------------------------------------
 	/**
 	 * Runs solver and sets winnable status on the turn.
