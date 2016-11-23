@@ -2459,7 +2459,7 @@ import board.*;
 				}
 			}
 			
-			if (e.getClickCount() >= 2) Engine.doubleClick(key);
+			if (e.getClickCount() == 2) Engine.doubleClick(key);
 			else Engine.setSource(key);
 		}
 
