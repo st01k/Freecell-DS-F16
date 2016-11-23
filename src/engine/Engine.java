@@ -151,8 +151,9 @@ public class Engine
 		
 		if (debug) out.println("\n---engine.Engine.guiWait---");
 		clearMapStrings();
-		while (src.matches("") && dest.matches("")) {}
+		while (dest.matches("")) {}
 		if (debug) out.println("gui done waiting");
+		if (debug) out.println("src: " + src + ", dest: " + dest);
 	}
 	
 	// In-game Action Handlers ------------------------------------------------
@@ -293,21 +294,21 @@ public class Engine
 		
 		src = s;
 		
+		out.println("test");
 		KeyMap k = new KeyMap(s, "e", curBoard);
+		out.println("test over");
 		
 		if (debug) out.println("event: Double-Click (" + k.getSourceCard() + ")");
 		
 		// if valid, destination to homecell
-		if (k.isValid()) dest = "e";
-		// if not valid, try place in freecell
+		if (k.isValid()) {
+			dest = "e";
+		}
 		else {
 			k = new KeyMap(s, "a", curBoard);
-			// if valid, destination to freecell
 			if (k.isValid()) dest = "a";
+			else dest = "";
 		}
-		// if can't be placed, set to invalid position
-		// to go to the next turn
-		dest = "z";
 	}
 	
 //	/**
@@ -336,7 +337,7 @@ public class Engine
 		}
 		
 		//TODO for testing
-		setDest("a");
+		//setDest("a");
 	}
 	
 	/**

@@ -2459,7 +2459,8 @@ import board.*;
 				}
 			}
 			
-			Engine.setSource(key);
+			if (e.getClickCount() >= 2) Engine.doubleClick(key);
+			else Engine.setSource(key);
 		}
 
 		@Override
