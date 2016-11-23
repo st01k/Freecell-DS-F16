@@ -3,7 +3,6 @@ package engine;
 import static java.lang.System.out;
 
 import java.util.Queue;
-import java.util.Scanner;
 import java.util.Stack;
 import client.cli.CLI;
 import client.gui.FreeGUI;
@@ -259,7 +258,7 @@ public class Engine
 					if (d.isFreecell()) sGui += "Freecell";
 					if (d.isHomecell()) sGui += "Homecell";
 					if (d.isPlayingPile()) sGui += "Pile #" + (d.getPosition() + 1);
-					out.println(sGui);
+					out.print(sGui + " : ");
 				}
 				
 				String sS = k.getSrcKey().getKeyString();
@@ -294,9 +293,7 @@ public class Engine
 		
 		src = s;
 		
-		out.println("test");
 		KeyMap k = new KeyMap(s, "e", curBoard);
-		out.println("test over");
 		
 		if (debug) out.println("event: Double-Click (" + k.getSourceCard() + ")");
 		
