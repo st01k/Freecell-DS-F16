@@ -240,8 +240,21 @@ public class Engine
 	public static void hint() {
 		
 		if (debug) out.println("event: Hint");
-		if (debug) out.println("Currently Unavailable");
-		if (isGui) FreeGUI.consoleOut("Currently Unavailable");
+		
+		if (!curBoard.getMovePossible()) out.println("No Possible Moves");
+		else {
+			
+			Queue<KeyMap> moves = history.peek().getPossibleMoves();
+			
+			for (KeyMap k : moves) {
+				
+				String s = k.getSrcKey().getKeyString();
+				String d = k.getDestKey().getKeyString();
+				out.println(s + " --> " + d);
+			}
+		}
+		
+		if (isGui) FreeGUI.consoleOut("Implement Me in GUI");
 	}
 	
 	/**

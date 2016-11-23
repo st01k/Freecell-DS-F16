@@ -105,7 +105,11 @@ public class Turn {
 	 * @return true if a move is possible
 	 */
 	public boolean movePossible() {
-		return possibleMoves.isEmpty();
+		
+		// only happens on first turn
+		if (possibleMoves == null) return true;
+		
+		return !possibleMoves.isEmpty();
 	}
 	// Business ---------------------------------------------------------------
 	/**
@@ -115,6 +119,8 @@ public class Turn {
 	private boolean isWinnable() {
 		
 		if (debug) out.println("\n---engine.Turn.isWinnable---");
+		
+		if (!movePossible()) return false;
 		
 		Solver solver = new Solver(board);
 		solution = solver.getSolution();

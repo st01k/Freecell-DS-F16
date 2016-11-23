@@ -25,6 +25,7 @@ public class Board implements Cloneable{
 	
 	// class variables
 	private boolean winnable;
+	private boolean movePossible;
 	private int moveNum;
 	private StdDeck deck;
 	private FreeCell[] freeAry;
@@ -39,6 +40,7 @@ public class Board implements Cloneable{
 		//TODO winnable dynamically gen'd on move 0
 		// instead of hard set to true.
 		winnable = true;
+		movePossible = true;
 		moveNum = 0;
 		freeAry = new FreeCell[CELLS];
 		homeAry = new HomeCell[CELLS];
@@ -54,8 +56,9 @@ public class Board implements Cloneable{
 	public Board(Board source) {
 		
 		winnable = source.winnable;
+		movePossible = source.movePossible;
 		moveNum = source.moveNum;
-				
+		
 		freeAry = new FreeCell[CELLS];
 		homeAry = new HomeCell[CELLS];
 		pileAry = new PlayingPile[PILES];
@@ -148,6 +151,10 @@ public class Board implements Cloneable{
 	}
 	
 	// Accessors --------------------------------------------------------------
+	public boolean getMovePossible() {
+		return movePossible;
+	}
+	
 	/**
 	 * Returns the freecell array.
 	 * @return freecell array
@@ -441,6 +448,7 @@ public class Board implements Cloneable{
 		
 		moveNum = t.getMoveNum();
 		winnable = t.getWinnable();
+		movePossible = t.movePossible();
 	}
 	
 	/**
