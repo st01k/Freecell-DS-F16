@@ -84,11 +84,6 @@ public class Engine
 			
 			if (debug) out.println("\n---loop begin---");
 			if (debug && isGui) printSnapshot();
-						
-			//TODO here to confirm accuracy
-			// use this method to tell gui how many sequenced
-			// cards can be moved at one time
-			curBoard.calcMoveableCards();
 			
 			clearMapStrings();
 			if (isGui) gui.Paint(curBoard);
@@ -243,6 +238,7 @@ public class Engine
 		
 		if (debug) out.println("event: Hint");
 		
+		//TODO if there are no moves, winnable should change to false for display
 		if (!curBoard.getMovePossible()) out.println("No Possible Moves");
 		else {
 			
