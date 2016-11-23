@@ -2148,7 +2148,6 @@ import board.*;
 	    	debug = !debug;
 	    }
 
-	    // TODO rename main for entry from driver
 	    /**
 	     * @param args the command line arguments
 	     */
@@ -2389,12 +2388,7 @@ import board.*;
 		@Override
 		public void mouseClicked(MouseEvent e) 
 		{
-			// TODO Auto move double clicked card
 
-			// right now this triggers with single click
-			// how to make it double?
-			//String s = "";
-			//Engine.doubleClick(s);
 		}
 
 		@Override
@@ -2471,6 +2465,61 @@ import board.*;
 				out.println("Mouse released at: (" + e.getX() + "," + e.getY() + ")");
 			}
 			
+			int x = e.getX();
+			int y = e.getY();
+			String key = "";
+			
+			if(y >= FH_Y_CONST - 63 && y <= FH_Y_CONST + 63)
+			{
+				for(int i = 0,len = FreeX.length;i < len;i++)
+				{
+					if(x >= (FreeX[i] - 43) && x <= (FreeX[i] + 43))
+					{
+						FreeCell[] fcells = ShownBoard.getFreecells();
+						if(!fcells[i].isValid())
+						{
+							if(debug)
+							{
+								out.println("Filled Freecell number " + i);
+							}
+							//TODO add it to the players hand
+						}
+						else
+						{
+							if(debug) out.println("Empty freecell number " + i);
+						}
+						key = fcells[i].getKey().getKeyString();
+					}
+				}
+			}
+			else
+			{
+				for(int i = 0,len = colX.length;i < len; i++)
+				{
+					if(x <= colX[i] + 43 && x >= colX[i] - 43)
+					{
+						for(int j = colY.length-1; j >= 0; j--)
+						{
+							if(y <= colY[j] + 63 && y >= colY[j] - 63)
+							{
+								PlayingPile column = ShownBoard.getPile(i);
+								if(debug)
+								{
+									if(column.size() > j)
+									{
+									out.println("Column :" + i + " Card :" + j);
+									break;
+									}
+								}
+								key = column.getKey().getKeyString();
+								//TODO Check card and cards on top and check to see if they can be picked up.
+							}
+						}
+					}
+				}
+			}
+			
+			Engine.setDest(key);
 			//TODO if the hand has cards, check to see if the cards can go where the hand was released, if they can not, return them to where they were.
 		}
 
