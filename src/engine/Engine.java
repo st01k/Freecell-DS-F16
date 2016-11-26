@@ -334,19 +334,6 @@ public class Engine
 		}
 	}
 	
-//	/**
-//	 * Drag and drop confirmation.
-//	 * @param s source card clicked (card position) 
-//	 * @param d destination position of card clicked
-//	 */
-//	public static void dragDrop(String s, String d) {
-//		
-//		if (debug) out.println("event: Drag and Drop (" + s + ", " + d + ")");
-//		
-//		src = s;
-//		dest = d;
-//	}
-	
 	/**
 	 * Moves a sequence of cards from one pile to another pile.
 	 * @param src
