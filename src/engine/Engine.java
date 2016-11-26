@@ -381,6 +381,7 @@ public class Engine
 			Turn turn = new Turn(++moveNum, curBoard, k);
 			curBoard.updateBoardStats(turn);
 			snapshot(turn);
+			autoStack = curBoard.toHome();
 		}
 	}
 	

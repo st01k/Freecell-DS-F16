@@ -8,7 +8,7 @@ import static java.lang.System.out;
  * @version 1.0
  */
 public class StdCard implements CardInterface {
-    
+
 	// class constants
 	static final String[] rankAry = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
 	static final String[] suitAry = { "Diamonds", "Clubs", "Hearts", "Spades" };
@@ -189,17 +189,28 @@ public class StdCard implements CardInterface {
     	return maxValue;
     }
     
-    /**
-     * Returns true if the cards are the same.
-     * @param c card to compare
-     * @return true if cards are the same
-     */
-    public boolean equals(StdCard c) {
+    @Override
+	public int hashCode() {
     	
-    	return
-    			rank == c.getRank() &&
-    			suit == c.getSuit();
-    }
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + rank;
+		result = prime * result + suit;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		
+		StdCard other = (StdCard) obj;
+		if (rank != other.rank) return false;
+		if (suit != other.suit) return false;
+		return true;
+	}
     
  // Testing -------------------------------------------------------------------
     /**
