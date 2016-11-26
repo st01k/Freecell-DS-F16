@@ -69,10 +69,12 @@ public class Board implements Cloneable{
 		for (int i = 0; i < PILES; i++) {
 			
 			PlayingPile srcPile = source.pileAry[i];
-			PlayingPile copyPile = pileAry[i];
+			pileAry[i] = new PlayingPile();
+			PlayingPile copyPile = pileAry[i]; 
 			
 			for (int j = 0; j < srcPile.size(); j++) {
-				copyPile.placeCard(srcPile.getCardAt(j));
+				StdCard c = srcPile.getCardAt(j);
+				copyPile.placeCardOnDeal(c);
 			}
 		}
 		
@@ -697,6 +699,9 @@ public class Board implements Cloneable{
 		
 		Board test = new Board();
 		out.println(test);
+		
+		Board clone = new Board(test);
+		out.println(clone);
 		
 		out.println();
 		out.println("-------------------- Board Unit Test Complete.\n");
