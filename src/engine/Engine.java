@@ -370,6 +370,7 @@ public class Engine
 			snapshot(turn);
 			autoStack = curBoard.toHome();
 		}
+		gameOver = checkGameOver();
 	}
 	
 	/**
