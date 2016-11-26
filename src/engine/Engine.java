@@ -121,8 +121,9 @@ public class Engine
 		if (isGui) gui.Paint(curBoard); 
 		else out.println(curBoard);
 		
-		out.println("\nYou won the game!!!");
-		if (isGui) FreeGUI.consoleOut("You won the game!!!");
+		String winMsg = "You won the game!!!";
+		out.println("\n" + winMsg);
+		if (isGui) FreeGUI.consoleOut(winMsg);
 	}
 	
 	// Move Input -------------------------------------------------------------
@@ -153,6 +154,29 @@ public class Engine
 		while (dest.matches("")) {}
 		if (debug) out.println("gui done waiting");
 		if (debug) out.println("src: " + src + ", dest: " + dest);
+	}
+	
+	/**
+	 * Sets source string for keymap
+	 * creation and validation.
+	 * @param key key value of source
+	 */
+	public static void setSource(String key) {
+		
+		if (!key.matches("")) {
+			
+			src = key;
+		}
+	}
+	
+	/**
+	 * Sets destination string for keymap
+	 * creation and validation.
+	 * @param key key value of destination
+	 */
+	public static void setDest(String key) {
+		
+		dest = key;
 	}
 	
 	// In-game Action Handlers ------------------------------------------------
@@ -258,12 +282,14 @@ public class Engine
 					if (d.isFreecell()) sGui += "Freecell";
 					if (d.isHomecell()) sGui += "Homecell";
 					if (d.isPlayingPile()) sGui += "Pile #" + (d.getPosition() + 1);
-					out.print(sGui + " : ");
+					out.println(sGui);
 				}
+				if (!isGui) {
 				
-				String sS = k.getSrcKey().getKeyString();
-				String dS = k.getDestKey().getKeyString();
-				out.println(sS.toUpperCase() + " --> " + dS.toUpperCase());
+					String sS = k.getSrcKey().getKeyString();
+					String dS = k.getDestKey().getKeyString();
+					out.println(sS.toUpperCase() + " --> " + dS.toUpperCase());
+				}
 			}
 		}
 		
@@ -306,45 +332,6 @@ public class Engine
 			k = new KeyMap(s, "a", curBoard);
 			if (k.isValid()) dest = "a";
 		}
-	}
-	
-//	/**
-//	 * Drag and drop confirmation.
-//	 * @param s source card clicked (card position) 
-//	 * @param d destination position of card clicked
-//	 */
-//	public static void dragDrop(String s, String d) {
-//		
-//		if (debug) out.println("event: Drag and Drop (" + s + ", " + d + ")");
-//		
-//		src = s;
-//		dest = d;
-//	}
-	
-	/**
-	 * Sets source string for keymap
-	 * creation and validation.
-	 * @param key key value of source
-	 */
-	public static void setSource(String key) {
-		
-		if (!key.matches("")) {
-			
-			src = key;
-		}
-		
-		//TODO for testing
-		//setDest("a");
-	}
-	
-	/**
-	 * Sets destination string for keymap
-	 * creation and validation.
-	 * @param key key value of destination
-	 */
-	public static void setDest(String key) {
-		
-		dest = key;
 	}
 	
 	/**
