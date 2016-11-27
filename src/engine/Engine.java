@@ -206,7 +206,7 @@ public class Engine
 		if (debug) out.println("event: Undo");
 		
 		if (history.size() <= 1) {
-			out.println("Nothing to Undo");
+			if (debug) out.println("Nothing to Undo");
 			if (isGui) FreeGUI.consoleOut("Nothing to Undo");
 		}
 		else {
@@ -236,7 +236,7 @@ public class Engine
 		if (debug) out.println("event: Redo");
 
 		if (rvrsHistory.isEmpty()) {
-			out.println("Nothing to Redo");
+			if (debug) out.println("Nothing to Redo");
 			if (isGui) FreeGUI.consoleOut("Nothing to Redo");
 		}
 		else {
@@ -263,7 +263,8 @@ public class Engine
 		if (debug) out.println("event: Hint");
 		
 		//TODO if there are no moves, winnable should change to false for display
-		if (!curBoard.getMovePossible()) out.println("No Possible Moves");
+		if (!curBoard.getMovePossible()) 
+			out.println("No Possible Moves");
 		else {
 			
 			Queue<KeyMap> moves = history.peek().getPossibleMoves();
