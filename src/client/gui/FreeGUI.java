@@ -7,6 +7,7 @@ import playingCards.StdCard;
 import utils.SysUtils;
 import static java.lang.System.out;
 
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -27,6 +28,7 @@ import board.*;
 		private static final String IMAGESDIR = SysUtils.getPath() + "resources" + SEP + "images" + SEP;
 		private static final String CARDIMAGESDIR = IMAGESDIR + "cards" + SEP;
 		private static Board ShownBoard;
+		private static final Font font = new Font("Ariel", Font.PLAIN ,12);
 
 		
 
@@ -334,24 +336,31 @@ import board.*;
 	        BackgroundPan.setOpaque(true);
 
 	        TurnLabel.setText("Turn:");
+	        TurnLabel.setFont(font);
 	        jLayeredPane1.add(TurnLabel);
 	        TurnLabel.setBounds(20, 20, 34, 14);
 	        jLayeredPane1.add(Turn);
 	        Turn.setBounds(50, 20, 0, 0);
+	        Turn.setFont(font);
 
 	        TimeLabel.setText("Time: ");
+	        TimeLabel.setFont(font);
 	        jLayeredPane1.add(TimeLabel);
 	        TimeLabel.setBounds(240, 20, 35, 14);
 	        jLayeredPane1.add(Time);
 	        Time.setBounds(270, 20, 90, 0);
+	        Time.setFont(font);
 
 	        SolvableLable.setText("Solvable: ");
+	        SolvableLable.setFont(font);
 	        jLayeredPane1.add(SolvableLable);
 	        SolvableLable.setBounds(20, 60, 55, 14);
 	        jLayeredPane1.add(Solvable);
 	        Solvable.setBounds(70, 60, 0, 0);
+	        Solvable.setFont(font);
 
 	        Output.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+	        Output.setFont(font);
 	        jLayeredPane1.add(Output);
 	        Output.setBounds(20, 90, 340, 30);
 
