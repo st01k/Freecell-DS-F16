@@ -31,7 +31,7 @@ public class CLI {
 	 */
 	public static void prompt() {
 		
-		out.println("<<<<<<<<< Freecell CLI v0.6 >>>>>>>>>");
+		out.println("<<<<<<<<< Freecell CLI v0.7 >>>>>>>>>");
 		out.println("'help' for commands, 'exit' any time.");
 		out.println("-------------------------------------");
 		out.println();
