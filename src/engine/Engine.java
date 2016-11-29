@@ -30,6 +30,8 @@ public class Engine
 	private static Stack<Turn> rvrsHistory;
 	private static FreeGUI gui;
 	
+	private static boolean newGUIGame = false;
+	
 	// Initialization ---------------------------------------------------------
 	/**
 	 * Creates board and solver.
@@ -77,6 +79,9 @@ public class Engine
 		snapshot(new Turn(curBoard));
 		
 		gui = checkUiMode();
+		
+		//TODO
+		if (!newGUIGame) waitGUIStart();
 		
 		if (autoStack) autoStack();
 		while(!gameOver) {
@@ -154,6 +159,17 @@ public class Engine
 		while (dest.matches("")) {}
 		if (debug) out.println("gui done waiting");
 		if (debug) out.println("src: " + src + ", dest: " + dest);
+	}
+	
+	//TODO
+	private static void waitGUIStart() {
+		while (!newGUIGame) {
+			out.println("here");
+		}
+	}
+	
+	public static void toggleNewGUIGame() {
+		newGUIGame = !newGUIGame;
 	}
 	
 	/**

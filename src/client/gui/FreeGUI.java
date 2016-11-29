@@ -2136,6 +2136,7 @@ import board.*;
 
 	    private void NewDealBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
+	    	Engine.toggleNewGUIGame();
 	    	Engine.newDeal();
 		}
 
@@ -2483,13 +2484,21 @@ import board.*;
 							{
 								out.println("Filled Freecell number " + i);
 							}
-							//TODO add it to the players hand
+							
 						}
 						else
 						{
 							if(debug) out.println("Empty freecell number " + i);
 						}
 						key = fcells[i].getKey().getKeyString();
+					}
+				}
+				for(int i = 0,len = HomeX.length;i < len;i++)
+				{
+					if(x >= (HomeX[i] - 43) && x <= (HomeX[i] + 43))
+					{
+						HomeCell[] hcells = ShownBoard.getHomecells();
+						key = hcells[i].getKey().getKeyString();
 					}
 				}
 			}
