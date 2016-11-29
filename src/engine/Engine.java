@@ -81,7 +81,7 @@ public class Engine
 		gui = checkUiMode();
 		
 		//TODO
-		if (!newGUIGame) waitGUIStart();
+		if (isGui && !newGUIGame) waitGUIStart();
 		
 		if (autoStack) autoStack();
 		while(!gameOver) {
