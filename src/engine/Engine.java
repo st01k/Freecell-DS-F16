@@ -163,9 +163,7 @@ public class Engine
 	
 	//TODO
 	private static void waitGUIStart() {
-		while (!newGUIGame) {
-			out.println("here");
-		}
+		while (!newGUIGame) {}
 	}
 	
 	public static void toggleNewGUIGame() {
