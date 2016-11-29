@@ -28,7 +28,7 @@ import board.*;
 		private static final String IMAGESDIR = SysUtils.getPath() + "resources" + SEP + "images" + SEP;
 		private static final String CARDIMAGESDIR = IMAGESDIR + "cards" + SEP;
 		private static Board ShownBoard;
-		private static final Font font = new Font("Ariel", Font.PLAIN ,12);
+		private static final Font font = new Font("Arial", Font.PLAIN ,12);
 
 		
 
