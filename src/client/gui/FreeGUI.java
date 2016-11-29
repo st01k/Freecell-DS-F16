@@ -130,6 +130,17 @@ import board.*;
 	    {
 	    	Output.setText(s);
 	    }
+	    
+	    public static void setMoveNumber(int i)
+	    {
+	    	Turn.setText("" + i);
+	    }
+	    
+	    public static void setWinnable(boolean b)
+	    {
+	    	if(b) Solvable.setText("True");
+	    	else Solvable.setText("False");
+	    }
 
 	    /**
 	     * This method is called from within the constructor to initialize the form.
