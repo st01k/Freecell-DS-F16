@@ -20,6 +20,7 @@ public class Engine
 {
 	// static variables
 	private static boolean isGui = false;
+	private static boolean GUInewGame = false;
 	private static boolean gameOver = false;
 	private static boolean autoStack = false;
 	private static boolean debug = false;
@@ -29,8 +30,6 @@ public class Engine
 	private static Stack<Turn> history;
 	private static Stack<Turn> rvrsHistory;
 	private static FreeGUI gui;
-	
-	private static boolean newGUIGame = false;
 	
 	// Initialization ---------------------------------------------------------
 	/**
@@ -47,8 +46,20 @@ public class Engine
 		rvrsHistory = new Stack<Turn>();
 		isGui = _isGui;
 		gameOver = false;
-				
+		gui = checkUiMode();
+		
 		gameLoop();
+	}
+	
+	public static void reinitialize() {
+	
+		curBoard = new Board();
+		history = new Stack<Turn>();
+		rvrsHistory = new Stack<Turn>();
+		moveNum = 0;
+		gameOver = false;
+		//if (isGui) gui.refresh();
+		snapshot(new Turn(curBoard));
 	}
 	
 	/**
@@ -61,6 +72,7 @@ public class Engine
 		if (isGui) {
 		
 			FreeGUI gui = new FreeGUI();
+			FreeGUI.simClick();
 			gui.start();
 			return gui;
 		}
@@ -75,23 +87,22 @@ public class Engine
 		
 		if (debug) out.println("\n---engine.Engine.gameLoop---");
 		
+		String winMsg = "You won the game!!!";
 		moveNum = 0;
 		snapshot(new Turn(curBoard));
 		
-		gui = checkUiMode();
+		//gui = checkUiMode();
 		
 		//TODO
-		if (isGui && !newGUIGame) waitGUIStart();
+		//if (isGui && !GUInewGame) waitGUIStart();
 		
 		if (autoStack) autoStack();
-		while(!gameOver) {
+		while(isGui || !gameOver) {
 			
 			if (debug) out.println("\n---loop begin---");
-			if (debug && isGui) printSnapshot();
 			
 			clearMapStrings();
-			if (isGui) gui.Paint(curBoard);
-			else out.println(curBoard);
+			refresh();
 			
 			if (isGui) guiWait();
 			else {
@@ -101,34 +112,40 @@ public class Engine
 			
 			KeyMap keymap = new KeyMap(src, dest, curBoard);
 			
-			
+			// if redo history is not empty
 			if (!rvrsHistory.isEmpty()) {
-				// if new path is chosen, clears redo history
+				// check for new path.  if it's new, clear redo history
 				if (!keymap.equals(rvrsHistory.peek())) rvrsHistory.clear();
 			}
 			
 			if (keymap.isValid()) {
 				
+				if (debug) out.println("move is valid");
 				Turn turn = new Turn(++moveNum, curBoard, keymap);
-				curBoard.updateBoardStats(turn);
+				updateStats(turn);
 				snapshot(turn);
 			}		
 			else { 
-				out.println("\nIllegal Move\n");
+				out.println("\nIllegal Move");
 				if (isGui) FreeGUI.consoleOut("Illegal Move");
 			}
 			
 			clearMapStrings();
 			if (autoStack) autoStack();
 			gameOver = checkGameOver();
+			
+			// if gui, stays in loop
+			if (isGui && gameOver) {
+				
+				refresh();
+				//TODO fix so that win message stays on console display in gui
+				if (isGui) FreeGUI.consoleOut(winMsg);
+			}
 		}
 		
-		if (isGui) gui.Paint(curBoard); 
-		else out.println(curBoard);
-		
-		String winMsg = "You won the game!!!";
+		// if cli, exits to main prompt
+		out.println(curBoard);
 		out.println("\n" + winMsg);
-		if (isGui) FreeGUI.consoleOut(winMsg);
 	}
 	
 	// Move Input -------------------------------------------------------------
@@ -155,7 +172,7 @@ public class Engine
 	private static void guiWait() {
 		
 		if (debug) out.println("\n---engine.Engine.guiWait---");
-		clearMapStrings();
+		
 		while (dest.matches("")) {}
 		if (debug) out.println("gui done waiting");
 		if (debug) out.println("src: " + src + ", dest: " + dest);
@@ -163,11 +180,11 @@ public class Engine
 	
 	//TODO
 	private static void waitGUIStart() {
-		while (!newGUIGame) {}
+		while (!GUInewGame) {}
 	}
 	
-	public static void toggleNewGUIGame() {
-		newGUIGame = !newGUIGame;
+	public static void newGame() {
+		GUInewGame = true;
 	}
 	
 	/**
@@ -201,15 +218,12 @@ public class Engine
 		
 		if (debug) out.println("event: New Deal");
 		
-		curBoard = new Board();
-		history = new Stack<Turn>();
-		moveNum = 0;
-		snapshot(new Turn(curBoard));
+		reinitialize();
 		if (autoStack) autoStack();
 		
-		if (isGui) gui.Paint(curBoard); 
-		else out.println(curBoard);
-		if (debug && isGui) printSnapshot();
+		refresh();
+		
+		if (gameOver) gameLoop();
 	}
 	
 	/**
@@ -234,11 +248,8 @@ public class Engine
 			Turn prevTurn = history.peek();
 			if (debug) out.println("restoring:\n" + prevTurn);
 			moveNum = prevTurn.getMoveNum();
-			curBoard.updateBoardStats(prevTurn);
-			
-			if (isGui) gui.Paint(curBoard); 
-			else out.println(curBoard);
-			if (debug && isGui) printSnapshot();
+			updateStats(prevTurn);
+			refresh();
 		}
 	}
 	
@@ -261,11 +272,8 @@ public class Engine
 			if (debug) out.println("redoing:\n" + nextTurn);
 			
 			moveNum = nextTurn.getMoveNum();
-			curBoard.updateBoardStats(nextTurn);
-			
-			if (isGui) gui.Paint(curBoard); 
-			else out.println(curBoard);
-			if (debug && isGui) printSnapshot();
+			updateStats(nextTurn);
+			refresh();
 		}
 	}
 	
@@ -299,16 +307,11 @@ public class Engine
 					if (d.isPlayingPile()) sGui += "Pile #" + (d.getPosition() + 1);
 					out.println(sGui);
 				}
-				if (!isGui) {
-				
-					String sS = k.getSrcKey().getKeyString();
-					String dS = k.getDestKey().getKeyString();
-					out.println(sS.toUpperCase() + " --> " + dS.toUpperCase());
-				}
 			}
 		}
 		
-		if (isGui) FreeGUI.consoleOut("Implement Me in GUI");
+		//TODO remove this when implemented
+		if (isGui) FreeGUI.consoleOut("See console for moves");
 	}
 	
 	/**
@@ -370,12 +373,37 @@ public class Engine
 	
 	// Utilities --------------------------------------------------------------
 	/**
+	 * Update board stats, and if in gui mode, updates gui stats.
+	 * @param turn most recent turn
+	 */
+	static void updateStats(Turn turn) {
+		
+		curBoard.updateBoardStats(turn);
+		if (isGui) {
+			
+			FreeGUI.setMoveNumber(turn.getMoveNum());
+			FreeGUI.setWinnable(turn.getWinnable());
+		}
+	}
+	
+	/**
+	 * Prints or paints current board according to global perferences.
+	 */
+	static void refresh() {
+		
+		if (isGui) gui.Paint(curBoard); 
+		else out.println(curBoard);
+		if (debug && isGui) printSnapshot();
+	}
+	
+	/**
 	 * Processes all possible insertions into a homecell.
 	 * Currently only processes all freecells and cards on the last element
 	 * of their pile, not cards that open up as a result of the stacking.
 	 */
-	public static void autoStack() {
+	static void autoStack() {
 		
+		if (debug) out.println("\n---engine.Engine.autoStack--- BEGIN");
 		Queue<KeyMap> autoStack = curBoard.toHome();
 		while (!autoStack.isEmpty()) {
 			
@@ -386,6 +414,8 @@ public class Engine
 			autoStack = curBoard.toHome();
 		}
 		gameOver = checkGameOver();
+		
+		if (debug) out.println("\n---engine.Engine.autoStack--- END");
 	}
 	
 	/**
@@ -400,7 +430,7 @@ public class Engine
 	/**
 	 * Saves turn to history.
 	 */
-	public static void snapshot(Turn t) {
+	static void snapshot(Turn t) {
 		history.push(t);
 	}
 	
@@ -417,7 +447,7 @@ public class Engine
 		if (debug) {
 			String client = (isGui)? "GUI" : "CLI";
 			out.println			 
-				("\nstate [client: " + client + " | history size: " + history.size() + "]");
+				("state [client: " + client + " | history size: " + history.size() + "]");
 		}
 		
 		out.println("********************* End Snapshot *********************");
@@ -428,7 +458,7 @@ public class Engine
 	 * Determines if game has been won.
 	 * @return true if game has been won
 	 */
-	public static boolean checkGameOver() {
+	static boolean checkGameOver() {
 		
 		boolean status = curBoard.winCheck();
 		if (debug) out.println(status);

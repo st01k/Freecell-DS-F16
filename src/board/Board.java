@@ -269,14 +269,15 @@ public class Board implements Cloneable{
 		if (debug) {
 			
 			for (KeyMap k : moves) {
-				out.println(k + "\n");
+				out.println(k);
 			}
-			out.println("\n---board.Board.getAllMoves--- END");
+			out.println("\n---board.Board.getAllMoves--- END\n");
 		}
 		
 		return moves;
 	}
 	
+	// Searching --------------------------------------------------------------
 	/**
 	 * Finds all cards that can be added to homecells within one turn.
 	 * @return all valid moves into a homecell
@@ -304,7 +305,7 @@ public class Board implements Cloneable{
 		}
 		
 		System.gc();
-		if (debug) out.println("\n---board.Board.toHome--- END");
+		if (debug) out.println("\n---board.Board.toHome--- END\n");
 		return moves;
 	}
 	
@@ -327,7 +328,7 @@ public class Board implements Cloneable{
 		}
 		
 		System.gc();
-		if (debug) out.println("\n---board.Board.toHome--- END");
+		if (debug) out.println("\n---board.Board.toHome--- END\n");
 		return moves;
 	}
 	
@@ -359,7 +360,7 @@ public class Board implements Cloneable{
 		}
 		
 		System.gc();
-		if (debug) out.println("\n---board.Board.toPile--- END");
+		if (debug) out.println("\n---board.Board.toPile--- END\n");
 		return moves;
 	}
 	
@@ -382,10 +383,13 @@ public class Board implements Cloneable{
 		// if key had to be searched for
 		if (!destKey.equals(actualPlacement)) {
 			
-			if (debug) out.print("mod to keymap:\ndest(" + destKey.getKeyString());
 			k.setDestKey(actualPlacement);
-			if (debug) out.println(" --> " + k.getDestKey().getKeyString() + ")");
-			
+			if (debug) {
+				out.println("\n---makeMove---");
+				out.println("auto search led to destination: " 
+							+ k.getDestKey().getKeyString());
+				out.println("modifying keymap for history...");
+			}
 		}
 	}
 	
@@ -464,7 +468,7 @@ public class Board implements Cloneable{
 		
 		moveNum = t.getMoveNum();
 		winnable = t.getWinnable();
-		movePossible = t.movePossible();
+		//movePossible = t.movePossible();
 	}
 	
 	/**
@@ -673,14 +677,18 @@ public class Board implements Cloneable{
 	public Board clone() throws CloneNotSupportedException
 	{
 			return (Board) super.clone();
+			//TODO for copy constructor:
+			//return new Board(this);
 	}
 	
 	public static void toggleEzWin() {
 		ezWin = !ezWin;
 		
-		String s;
-		s = (ezWin)? "on" : "off";
-		if (debug) out.println("easy win deck " + s);
+		if (debug) {
+			
+			String s = (ezWin)? "on" : "off";
+			out.println("easy win deck " + s);
+		}
 	}
 	
 	/**

@@ -7,7 +7,11 @@ import playingCards.StdCard;
 import utils.SysUtils;
 import static java.lang.System.out;
 
+import java.awt.AWTException;
 import java.awt.Font;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -133,13 +137,12 @@ import board.*;
 	    
 	    public static void setMoveNumber(int i)
 	    {
-	    	Turn.setText("" + i);
+	    	TurnLabel.setText("Turn: " + i);
 	    }
 	    
 	    public static void setWinnable(boolean b)
 	    {
-	    	if(b) Solvable.setText("True");
-	    	else Solvable.setText("False");
+	    	SolvableLabel.setText("Solvable: " + b);
 	    }
 
 	    /**
@@ -159,7 +162,7 @@ import board.*;
 	        Turn = new javax.swing.JLabel();
 	        TimeLabel = new javax.swing.JLabel();
 	        Time = new javax.swing.JLabel();
-	        SolvableLable = new javax.swing.JLabel();
+	        SolvableLabel = new javax.swing.JLabel();
 	        Solvable = new javax.swing.JLabel();
 	        Output = new javax.swing.JLabel();
 	        InfoBackground = new javax.swing.JLabel();
@@ -349,7 +352,7 @@ import board.*;
 	        TurnLabel.setText("Turn:");
 	        TurnLabel.setFont(font);
 	        jLayeredPane1.add(TurnLabel);
-	        TurnLabel.setBounds(20, 20, 34, 14);
+	        TurnLabel.setBounds(20, 20, 50, 14);
 	        jLayeredPane1.add(Turn);
 	        Turn.setBounds(50, 20, 0, 0);
 	        Turn.setFont(font);
@@ -362,10 +365,10 @@ import board.*;
 	        Time.setBounds(270, 20, 90, 0);
 	        Time.setFont(font);
 
-	        SolvableLable.setText("Solvable: ");
-	        SolvableLable.setFont(font);
-	        jLayeredPane1.add(SolvableLable);
-	        SolvableLable.setBounds(20, 60, 55, 14);
+	        SolvableLabel.setText("Solvable: ");
+	        SolvableLabel.setFont(font);
+	        jLayeredPane1.add(SolvableLabel);
+	        SolvableLabel.setBounds(20, 60, 80, 14);
 	        jLayeredPane1.add(Solvable);
 	        Solvable.setBounds(70, 60, 0, 0);
 	        Solvable.setFont(font);
@@ -2156,7 +2159,7 @@ import board.*;
 
 	    private void NewDealBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
-	    	Engine.toggleNewGUIGame();
+	    	Engine.newGame();
 	    	Engine.newDeal();
 		}
 
@@ -2363,7 +2366,7 @@ import board.*;
 	    private static javax.swing.JLabel R8C9;
 	    private static javax.swing.JButton RedoBtn;
 	    private static javax.swing.JLabel Solvable;
-	    private static javax.swing.JLabel SolvableLable;
+	    private static javax.swing.JLabel SolvableLabel;
 	    private static javax.swing.JButton SolveBtn;
 	    private static javax.swing.JLabel Time;
 	    private static javax.swing.JLabel TimeLabel;
@@ -2475,7 +2478,7 @@ import board.*;
 				}
 			}
 			
-			if (e.getClickCount() == 2) Engine.doubleClick(key);
+			if (e.getClickCount() % 2 == 0) Engine.doubleClick(key);
 			else Engine.setSource(key);
 		}
 
@@ -2565,5 +2568,34 @@ import board.*;
 			// Not Used
 		}
 		
-		
+		/**
+		 * TODO
+		 * Simulates a mouse click.  Used to break out of initComponents...
+		 * It does initiate guiWait in the loop, but then initComponents 
+		 * is called again somehow in the debug output.  I tried inserting
+		 * test prints to track down where it was getting stuck after initComponents.  
+		 * Seems to happen between initComponents and start.  Tried inserting this into
+		 * several places to see if it would trigger the cards to render, but it hasn't.
+		 * Left the call in Engine.checkUiMode so that it at least triggers guiWait.
+		 * Might be totally unneccessary for release, but going to keep testing with
+		 * it.
+		 */
+		public static void simClick() {
+			
+			try {
+			    Robot robot = new Robot();
+			     
+			    // Simulate a mouse click
+			    robot.mouseMove(1163, 568);
+			    robot.mousePress(InputEvent.BUTTON1_MASK);
+			    robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			    
+//			    // simulate a key press
+//			    robot.keyPress(KeyEvent.VK_ENTER);
+//			    robot.keyRelease(KeyEvent.VK_ENTER);
+			    
+			} catch (AWTException e) {
+			    e.printStackTrace();
+			}
+		}
 }

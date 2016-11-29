@@ -38,8 +38,7 @@ public class Turn {
 		
 		moveNum = 0;
 		board = b;
-		winnable = isWinnable();
-		possibleMoves = board.getAllMoves();
+		winnable = true;
 	}
 	
 	/**
@@ -55,8 +54,9 @@ public class Turn {
 		keymap = km;
 		
 		board.makeMove(keymap);
-		winnable = isWinnable();
-		possibleMoves = board.getAllMoves();
+		//TODO hard set until solver is in place
+		// then should call isWinnable to run solver
+		winnable = true;;
 	}
 	
 	// Accessors --------------------------------------------------------------
@@ -97,6 +97,8 @@ public class Turn {
 	 * @return all possible moves
 	 */
 	public Queue<KeyMap> getPossibleMoves() {
+		
+		possibleMoves = board.getAllMoves();
 		return possibleMoves;
 	}
 	
@@ -106,6 +108,7 @@ public class Turn {
 	 */
 	public boolean movePossible() {
 		
+		possibleMoves = getPossibleMoves();
 		return 
 				possibleMoves == null ||
 				!possibleMoves.isEmpty();
@@ -120,8 +123,13 @@ public class Turn {
 		
 		if (debug) out.println("\n---engine.Turn.isWinnable---");
 		
-		if (!movePossible()) return false;
+		if (!movePossible()) {
+			
+			if (debug) out.println("false");
+			return false;
+		}
 		
+		if (debug) out.println("true");
 		Solver solver = new Solver(board);
 		solution = solver.getSolution();
 		

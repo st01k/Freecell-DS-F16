@@ -114,12 +114,23 @@ public class KeyMap {
 		if (debug) out.println("\n---board.KeyMap.isValid---");
 		if (debug) out.println(this);
 		
+		boolean valid = false;
+		
 		// no card
-		if (srcCard == null) return false;
+		if (srcCard == null) {
+			out.println(valid);
+			return false;
+		}
 		// same card
-		if (src.equals(dest)) return false;
+		if (src.equals(dest)) {
+			out.println(valid);
+			return false;
+		}
 		// homecell remove
-		if (src.isHomecell()) return false;
+		if (src.isHomecell()) {
+			out.println(valid);
+			return false;
+		}
 		
 		
 		switch(dest.getRegion()) {
@@ -127,25 +138,39 @@ public class KeyMap {
 		case 1	:
 			FreeCell[] fAry = board.getFreecells();
 			for (FreeCell f : fAry) {
-				if (f.isValid()) return true;
+				if (f.isValid()) {
+					valid = true;
+					out.println(valid);
+					return true;
+				}
 			}
 			break;
 		// into homecell
 		case 2 	:
 			HomeCell[] hAry = board.getHomecells();
 			for (HomeCell h : hAry) {
-				if (h.isValid(srcCard)) return true;
+				if (h.isValid(srcCard)) {
+					valid = true;
+					out.println(valid);
+					return true;
+				}
 			}
 			break;
 		// into respective playing pile
 		case 3	:
 			PlayingPile p = board.getPile(dest.getPosition());
-			if (p.isValid(srcCard)) return true;
+			if (p.isValid(srcCard)) {
+				
+				valid = true;
+				out.println(valid);
+				return true;
+			}
 			break;
 		default	:
 			if (debug) out.println("ERROR - Unknown destination in board.KeyMap.isValid");
 			break;
 		}
+		out.println(valid);
 		return false;
 	}
 	

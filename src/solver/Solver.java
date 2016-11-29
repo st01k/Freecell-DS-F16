@@ -60,7 +60,7 @@ public class Solver {
 	 */
 	private void init() {
 		
-		possibleMoves = board.getAllMoves();
+		//possibleMoves = board.getAllMoves();
 		//TODO sort moves in order of priority OR compare as they enter pattern/search?
 		//TODO create threads based on possible moves
 	}
