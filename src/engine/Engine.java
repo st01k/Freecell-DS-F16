@@ -94,7 +94,7 @@ public class Engine
 		snapshot(new Turn(curBoard));
 		
 		//FIXME
-		//if (!GUInewGame && isGui) waitGUIStart();
+		//if (!GUInewGame && isGui) waitNewGame();
 		
 		if (autoStack) autoStack();
 		while (isGui || !gameOver) {
@@ -131,7 +131,6 @@ public class Engine
 				if (isGui) FreeGUI.consoleOut("Illegal Move");
 			}
 			
-			clearMapStrings();
 			if (autoStack) autoStack();
 			gameOver = checkGameOver();
 			
@@ -451,6 +450,7 @@ public class Engine
 		
 		if (debug) out.println("\n---engine.Engine.autoStack--- BEGIN");
 		
+		clearMapStrings();
 		Queue<KeyMap> autoStack = curBoard.toHome();
 		while (!autoStack.isEmpty()) {
 			

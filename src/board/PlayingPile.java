@@ -29,14 +29,6 @@ public class PlayingPile {
 	
 	// List Manipulation ------------------------------------------------------
 	/**
-	 * Places a card in pile on the deal (without validation).
-	 * @param c card to be placed
-	 */
-	void placeCardOnDeal(StdCard c) {
-		pile.add(c);
-	}
-	
-	/**
 	 * Places a card in the pile if it is a valid placement.
 	 * @param c card being placed
 	 * @return true if card was added
@@ -53,7 +45,7 @@ public class PlayingPile {
 	}
 	
 	/**
-	 * Places card in cell.  No checks.
+	 * Places card in pile without validation.
 	 * @param c card to place
 	 */
 	public void forcePlace(StdCard c) {
@@ -204,7 +196,7 @@ public class PlayingPile {
 		for (int i = 0; i < 5; i++) {
 		
 			StdCard c = d.getCard();
-			p.placeCardOnDeal(c);
+			p.forcePlace(c);
 			out.println("Placed: " + c);
 			out.println("Cards in pile: " + p.size());
 			out.println();

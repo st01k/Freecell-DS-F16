@@ -74,7 +74,7 @@ public class Board {
 			
 			for (int j = 0; j < srcPile.size(); j++) {
 				StdCard c = srcPile.getCardAt(j);
-				copyPile.placeCardOnDeal(c);
+				copyPile.forcePlace(c);
 			}
 		}
 		
@@ -148,7 +148,7 @@ public class Board {
 		for (int i = 0; i < PILES && !deck.isEmpty(); i++) {
 			
 			StdCard c = deck.getCard();
-			pileAry[i].placeCardOnDeal(c);
+			pileAry[i].forcePlace(c);
 			
 			if (debug) out.println(i + " " + c);
 		}
