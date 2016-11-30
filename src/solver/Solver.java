@@ -1,10 +1,9 @@
 package solver;
 
-import static java.lang.System.out;
-
 import java.util.Queue;
 import board.Board;
 import board.KeyMap;
+import engine.Turn;
 
 /**
  * Freecell solver.
@@ -16,6 +15,7 @@ public class Solver {
 	private static boolean debug = false;
 	
 	private Queue<KeyMap> possibleMoves;
+	private Turn turn;
 	private Board board;
 	private Solution solution;
 	
@@ -23,11 +23,12 @@ public class Solver {
 	 * Constructs a new solver.
 	 * @param b
 	 */
-	public Solver(Board b) {
+	public Solver(Turn t) {
 		
-		board = b;
+		turn = t;
+		board = t.getBoard();
+		possibleMoves = t.getPossibleMoves();
 		init();
-		solution = new Solution();
 	}
 	
 	/**
@@ -60,7 +61,7 @@ public class Solver {
 	 */
 	private void init() {
 		
-		//possibleMoves = board.getAllMoves();
+		solution = new Solution();
 		//TODO sort moves in order of priority OR compare as they enter pattern/search?
 		//TODO create threads based on possible moves
 	}

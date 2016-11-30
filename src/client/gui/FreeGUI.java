@@ -48,24 +48,17 @@ import board.*;
 
 	    public void Paint(Board curboard)
 	    {
-	    	try 
-	    	{
-				ShownBoard = curboard.clone();
-			} 
-	    	catch (Exception e)
-	    	//TODO had to comment this out to remove error
-	    	//catch (CloneNotSupportedException e) 
-	    	{
-				out.println(e.getMessage());
-			}
-	    	
+	    	ShownBoard = curboard.clone();
+			
 	    	if (debug)
 	    	{
-	    		out.println("\n---engine.FreeGUI.paint---");
+	    		out.println("\n---engine.FreeGUI.Paint---");
 	    	}
 	    	
-	    	// clear consoleout on each turn
-	    	consoleOut("");
+	    	// clear consoleout on each turn except for 
+	    	// win messages and illegal move messages
+	    	if ((Output.getText().contains("won")) || (Output.getText().contains("Illegal"))) {}
+	    	else consoleOut("");
 	    	
 	    	//-----------Free Cells------------
 	    	
@@ -2419,10 +2412,10 @@ import board.*;
 		@Override
 		public void mousePressed(MouseEvent e)
 		{
-			if(debug)
-			{
-				out.println("Mouse pressed at: (" + e.getX() + "," + e.getY() + ")");
-			}
+//			if(debug)
+//			{
+//				out.println("Mouse pressed at: (" + e.getX() + "," + e.getY() + ")");
+//			}
 			
 			int x = e.getX();
 			int y = e.getY();
@@ -2435,18 +2428,18 @@ import board.*;
 					if(x >= (FreeX[i] - 43) && x <= (FreeX[i] + 43))
 					{
 						FreeCell[] fcells = ShownBoard.getFreecells();
-						if(!fcells[i].isValid())
-						{
-							if(debug)
-							{
-								out.println("Filled Freecell number " + i);
-							}
-							//TODO add it to the players hand
-						}
-						else
-						{
-							if(debug) out.println("Empty freecell number " + i);
-						}
+//						if(!fcells[i].isValid())
+//						{
+//							if(debug)
+//							{
+//								out.println("Filled Freecell number " + i);
+//							}
+//							//TODO add it to the players hand
+//						}
+//						else
+//						{
+//							if(debug) out.println("Empty freecell number " + i);
+//						}
 						key = fcells[i].getKey().getKeyString();
 					}
 				}
@@ -2462,14 +2455,14 @@ import board.*;
 							if(y <= colY[j] + 63 && y >= colY[j] - 63)
 							{
 								PlayingPile column = ShownBoard.getPile(i);
-								if(debug)
-								{
-									if(column.size() > j)
-									{
-									out.println("Column :" + i + " Card :" + j);
-									break;
-									}
-								}
+//								if(debug)
+//								{
+//									if(column.size() > j)
+//									{
+//									out.println("Column :" + i + " Card :" + j);
+//									break;
+//									}
+//								}
 								key = column.getKey().getKeyString();
 								//TODO Check card and cards on top and check to see if they can be picked up.
 							}
@@ -2479,16 +2472,16 @@ import board.*;
 			}
 			
 			if (e.getClickCount() % 2 == 0) Engine.doubleClick(key);
-			else Engine.setSource(key);
+			else if (e.getClickCount() == 1) Engine.setSource(key);
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e)
 		{
-			if(debug)
-			{
-				out.println("Mouse released at: (" + e.getX() + "," + e.getY() + ")");
-			}
+//			if(debug)
+//			{
+//				out.println("Mouse released at: (" + e.getX() + "," + e.getY() + ")");
+//			}
 			
 			int x = e.getX();
 			int y = e.getY();
@@ -2501,18 +2494,18 @@ import board.*;
 					if(x >= (FreeX[i] - 43) && x <= (FreeX[i] + 43))
 					{
 						FreeCell[] fcells = ShownBoard.getFreecells();
-						if(!fcells[i].isValid())
-						{
-							if(debug)
-							{
-								out.println("Filled Freecell number " + i);
-							}
-							
-						}
-						else
-						{
-							if(debug) out.println("Empty freecell number " + i);
-						}
+//						if(!fcells[i].isValid())
+//						{
+//							if(debug)
+//							{
+//								out.println("Filled Freecell number " + i);
+//							}
+//							
+//						}
+//						else
+//						{
+//							if(debug) out.println("Empty freecell number " + i);
+//						}
 						key = fcells[i].getKey().getKeyString();
 					}
 				}
@@ -2536,14 +2529,14 @@ import board.*;
 							if(y <= colY[j] + 63 && y >= colY[j] - 63)
 							{
 								PlayingPile column = ShownBoard.getPile(i);
-								if(debug)
-								{
-									if(column.size() > j)
-									{
-									out.println("Column :" + i + " Card :" + j);
-									break;
-									}
-								}
+//								if(debug)
+//								{
+//									if(column.size() > j)
+//									{
+//									out.println("Column :" + i + " Card :" + j);
+//									break;
+//									}
+//								}
 								key = column.getKey().getKeyString();
 								//TODO Check card and cards on top and check to see if they can be picked up.
 							}
@@ -2552,7 +2545,8 @@ import board.*;
 				}
 			}
 			
-			Engine.setDest(key);
+			if (!Engine.getSource().matches("") && !Engine.getSource().matches(key)) Engine.setDest(key);
+			
 			//TODO if the hand has cards, check to see if the cards can go where the hand was released, if they can not, return them to where they were.
 		}
 

@@ -6,27 +6,22 @@ import playingCards.StdCard;
 /**
  * Key mapping for a move.
  * @author groovyLlama devteam
- * @version 0.1
+ * @version 0.3
  */
 public class KeyMap {
 
+	// static variables
 	private static boolean debug = false;
 	
+	// class variables
 	private Key src;
 	private Key dest;
 	private StdCard srcCard;
 	private Board board;
 		
-	public KeyMap(Key s, Key d, Board b) {
-		
-		board = b;
-		src = s;
-		dest = d;
-		genCard();
-	}
-	
+	// Constructors -----------------------------------------------------------
 	/**
-	 * Constructs a key map for a move.
+	 * Constructs a key map for a move using strings.
 	 * @param s source position
 	 * @param d destination position
 	 * @param b current board
@@ -38,6 +33,21 @@ public class KeyMap {
 		genCard();
 	}
 	
+	/**
+	 * Constructs a key map for a move using keys.
+	 * @param s source key
+	 * @param d destination key
+	 * @param b current board
+	 */
+	public KeyMap(Key s, Key d, Board b) {
+		
+		board = b;
+		src = s;
+		dest = d;
+		genCard();
+	}
+	
+	// Generation -------------------------------------------------------------
 	/**
 	 * Generates source and destination keys if
 	 * strings are used to create the mapping..
@@ -59,20 +69,13 @@ public class KeyMap {
 	/**
 	 * Generates the card in the source position.
 	 */
-	public void genCard() {
+	private void genCard() {
 		
 		if (debug) out.println("\n---board.KeyMap.genCard--- ");
 		srcCard = board.getCardAt(src);
 	}
-	
-	void invertKey() {
-		
-		Key temp = src;
-		src = dest;
-		dest = temp;
-		genCard();
-	}
-	
+
+	// Accessors --------------------------------------------------------------
 	/**
 	 * Returns source card.
 	 * @return source card
@@ -97,12 +100,34 @@ public class KeyMap {
 		return dest;
 	}
 	
+	// Mutators ---------------------------------------------------------------
+	/**
+	 * Sets source key.
+	 * @param s new source key
+	 */
 	void setSrcKey(Key s) {
 		src = s;
 	}
 	
+	/**
+	 * Sets destination key.
+	 * @param d new destination key
+	 */
 	void setDestKey(Key d) {
 		dest = d;
+	}
+	
+	// Utilities --------------------------------------------------------------
+	/**
+	 * Inverts this key.  Source key becomes destination key, 
+	 * and destination key becomes source key.  Card is generated.
+	 */
+	void invertKey() {
+		
+		Key temp = src;
+		src = dest;
+		dest = temp;
+		genCard();
 	}
 	
 	/**
@@ -112,23 +137,22 @@ public class KeyMap {
 	public boolean isValid() {
 		
 		if (debug) out.println("\n---board.KeyMap.isValid---");
-		if (debug) out.println(this);
 		
 		boolean valid = false;
 		
 		// no card
 		if (srcCard == null) {
-			out.println(valid);
+			if (debug) out.println(valid);
 			return false;
 		}
 		// same card
 		if (src.equals(dest)) {
-			out.println(valid);
+			if (debug) out.println(valid);
 			return false;
 		}
 		// homecell remove
 		if (src.isHomecell()) {
-			out.println(valid);
+			if (debug) out.println(valid);
 			return false;
 		}
 		
@@ -140,7 +164,7 @@ public class KeyMap {
 			for (FreeCell f : fAry) {
 				if (f.isValid()) {
 					valid = true;
-					out.println(valid);
+					if (debug) out.println(valid);
 					return true;
 				}
 			}
@@ -151,7 +175,7 @@ public class KeyMap {
 			for (HomeCell h : hAry) {
 				if (h.isValid(srcCard)) {
 					valid = true;
-					out.println(valid);
+					if (debug) out.println(valid);
 					return true;
 				}
 			}
@@ -162,7 +186,7 @@ public class KeyMap {
 			if (p.isValid(srcCard)) {
 				
 				valid = true;
-				out.println(valid);
+				if (debug) out.println(valid);
 				return true;
 			}
 			break;
@@ -170,7 +194,7 @@ public class KeyMap {
 			if (debug) out.println("ERROR - Unknown destination in board.KeyMap.isValid");
 			break;
 		}
-		out.println(valid);
+		if (debug) out.println(valid);
 		return false;
 	}
 	

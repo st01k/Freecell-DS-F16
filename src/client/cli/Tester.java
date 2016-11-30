@@ -39,7 +39,6 @@ public class Tester {
 		HomeCell.unitTest();
 		PlayingPile.unitTest();
 		Board.unitTest();
-		Turn.unitTest();
 		
 		out.println("Comprehensive Unit Testing Complete\n");
 	}

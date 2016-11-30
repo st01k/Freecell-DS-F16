@@ -11,9 +11,9 @@ import playingCards.*;
 /**
  * Freecell game board.
  * @author groovyLlama devteam
- * @version 0.4
+ * @version 0.6
  */
-public class Board implements Cloneable{
+public class Board {
 
 	// static constants
 	private static final int CELLS = 4;
@@ -37,23 +37,23 @@ public class Board implements Cloneable{
 	 */
 	public Board() {
 		
-		//TODO winnable dynamically gen'd on move 0
-		// instead of hard set to true.
 		winnable = true;
 		movePossible = true;
 		moveNum = 0;
 		freeAry = new FreeCell[CELLS];
 		homeAry = new HomeCell[CELLS];
 		pileAry = new PlayingPile[PILES];
+		
 		init();
 		genMap();
 	}
 	
 	/**
 	 * Deep copy constructor.
+	 * Access with clone method.
 	 * @param source board to copy
 	 */
-	public Board(Board source) {
+	private Board(Board source) {
 		
 		winnable = source.winnable;
 		movePossible = source.movePossible;
@@ -83,13 +83,12 @@ public class Board implements Cloneable{
 	
 	// Initialization ---------------------------------------------------------
 	/**
-	 * Initializes board with a full deck dealt.  If ezWin mode 
-	 * is on, the deck is stacked for an easy win.
+	 * Initializes board with a full deck dealt.  If easy 
+	 * win mode is on, the deck is stacked for an easy win.
 	 */
 	private void init() {
 		
-		final int INITROWS = 7;
-		
+		// initialize deck
 		if (ezWin) deck = new StdDeck(true);
 		else {
 			
@@ -97,12 +96,15 @@ public class Board implements Cloneable{
 			deck.shuffle();
 		}
 		
+		// initialize board regions
 		for (int i = 0; i < CELLS; i++) {
 			freeAry[i] = new FreeCell();
 			homeAry[i] = new HomeCell();
 		}
 		for (int i = 0; i < PILES; i++) pileAry[i] = new PlayingPile();
 		
+		// deal one row at a time
+		final int INITROWS = 7;
 		for (int i = 0; i < INITROWS; i++) dealRow();
 	}
 	
@@ -191,9 +193,9 @@ public class Board implements Cloneable{
 	}
 	
 	/**
-	 * Returns
-	 * @param k
-	 * @return
+	 * Returns the pile at the specified key.
+	 * @param k key
+	 * @return pile at key
 	 */
 	public PlayingPile getPileByKey(String key) {
 		
@@ -246,7 +248,7 @@ public class Board implements Cloneable{
 		Queue<KeyMap> moves = new LinkedList<KeyMap>();
 		Queue<KeyMap> holder = new LinkedList<KeyMap>();
 		
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < Key.getMaxRegion(); i++) {
 			
 			switch(i) {
 			
@@ -273,6 +275,10 @@ public class Board implements Cloneable{
 			}
 			out.println("\n---board.Board.getAllMoves--- END\n");
 		}
+		System.gc();
+		
+		if (!moves.isEmpty()) movePossible = true;
+		else movePossible = false;
 		
 		return moves;
 	}
@@ -283,8 +289,7 @@ public class Board implements Cloneable{
 	 * @return all valid moves into a homecell
 	 */
 	public Queue<KeyMap> toHome() {
-		//TODO add stacking from appropriate 
-		// cards under auto-stacked cards
+
 		if (debug) out.println("\n---board.Board.toHome--- BEGIN");
 		
 		Queue<KeyMap> moves = new LinkedList<KeyMap>();
@@ -394,11 +399,11 @@ public class Board implements Cloneable{
 	}
 	
 	/**
-	 * Places card at destination based on keymap.
+	 * Places card at destination based on keymap if not being forced.
 	 * Will search region if destination is not valid.
-	 * Does not search piles.
 	 * @param c source card
 	 * @param dest destination position
+	 * @param force true to ignore rules for placement
 	 */
 	Key place(StdCard c, Key dest, boolean force) {
 		
@@ -434,8 +439,9 @@ public class Board implements Cloneable{
 	}
 	
 	/**
-	 * Removes card at source position, based on keymap.
+	 * Removes card at source position, based on keymap if not being forced.
 	 * @param src source position
+	 * @param force true to ignore game rules for removal
 	 */
 	void remove(Key src, boolean force) {
 		
@@ -674,13 +680,14 @@ public class Board implements Cloneable{
 	/**
 	 * Clones this board.
 	 */
-	public Board clone() throws CloneNotSupportedException
-	{
-			return (Board) super.clone();
-			//TODO for copy constructor:
-			//return new Board(this);
+	public Board clone() {
+		return new Board(this);
 	}
 	
+	// Toggles ----------------------------------------------------------------
+	/**
+	 * Toggles the easy win deck.
+	 */
 	public static void toggleEzWin() {
 		ezWin = !ezWin;
 		
@@ -698,6 +705,7 @@ public class Board implements Cloneable{
 		debug = !debug;
 	}
 	
+	// Unit Test --------------------------------------------------------------
 	/**
 	 * Unit test.
 	 */

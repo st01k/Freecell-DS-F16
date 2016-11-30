@@ -106,4 +106,35 @@ public enum Key {
 				region == k.getRegion() &&
 				position == k.getPosition();
 	}
+	
+	/**
+	 * Returns the key that matches a passed in letter.
+	 * @param keyString letter to match
+	 * @return matching key
+	 */
+	public static Key toKey(String keyString) {
+		
+		Key target = null;
+		for (Key k : Key.values()) {
+			if (k.getKeyString().matches(keyString))
+				target = k;
+		}
+		return target;
+	}
+	
+	/**
+	 * Returns the highest region number.
+	 * @return highest region
+	 */
+	public static int getMaxRegion() {
+		
+		int max = 0;
+		for (Key k : Key.values()) {
+			
+			int temp = k.getRegion();
+			if (temp > max) max = temp; 
+		}
+		
+		return max;
+	}
 }

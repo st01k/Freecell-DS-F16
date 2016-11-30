@@ -36,6 +36,7 @@ public class Turn {
 	 */
 	public Turn(Board b) {
 		
+		if (debug) out.println("\n---engine.Turn.constructor---");
 		moveNum = 0;
 		board = b;
 		winnable = true;
@@ -49,11 +50,13 @@ public class Turn {
 	 */
 	public Turn(int move, Board b, KeyMap km) {
 		
+		if (debug) out.println("\n---engine.Turn.constructor---");
 		moveNum = move;
 		board = b;
 		keymap = km;
 		
 		board.makeMove(keymap);
+		
 		//TODO hard set until solver is in place
 		// then should call isWinnable to run solver
 		winnable = true;;
@@ -130,7 +133,7 @@ public class Turn {
 		}
 		
 		if (debug) out.println("true");
-		Solver solver = new Solver(board);
+		Solver solver = new Solver(this);
 		solution = solver.getSolution();
 		
 		if (solution == null) return false;
@@ -153,12 +156,5 @@ public class Turn {
 	 */
 	public static void toggleDebug() {
 		debug = !debug;
-	}
-	
-	/**
-	 * Unit test.
-	 */
-	public static void unitTest() {
-		//TODO feed me!
 	}
 }

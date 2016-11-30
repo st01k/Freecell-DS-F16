@@ -51,6 +51,9 @@ public class Engine
 		gameLoop();
 	}
 	
+	/**
+	 * Re-initializes the board to turn 0 with a new deal.
+	 */
 	public static void reinitialize() {
 	
 		curBoard = new Board();
@@ -58,7 +61,6 @@ public class Engine
 		rvrsHistory = new Stack<Turn>();
 		moveNum = 0;
 		gameOver = false;
-		//if (isGui) gui.refresh();
 		snapshot(new Turn(curBoard));
 	}
 	
@@ -91,13 +93,11 @@ public class Engine
 		moveNum = 0;
 		snapshot(new Turn(curBoard));
 		
-		//gui = checkUiMode();
-		
-		//TODO
-		//if (isGui && !GUInewGame) waitGUIStart();
+		//FIXME
+		//if (!GUInewGame && isGui) waitGUIStart();
 		
 		if (autoStack) autoStack();
-		while(isGui || !gameOver) {
+		while (isGui || !gameOver) {
 			
 			if (debug) out.println("\n---loop begin---");
 			
@@ -120,12 +120,13 @@ public class Engine
 			
 			if (keymap.isValid()) {
 				
-				if (debug) out.println("move is valid");
 				Turn turn = new Turn(++moveNum, curBoard, keymap);
 				updateStats(turn);
 				snapshot(turn);
+				if (isGui) FreeGUI.consoleOut("");
 			}		
-			else { 
+			else {
+				
 				out.println("\nIllegal Move");
 				if (isGui) FreeGUI.consoleOut("Illegal Move");
 			}
@@ -138,9 +139,10 @@ public class Engine
 			if (isGui && gameOver) {
 				
 				refresh();
-				//TODO fix so that win message stays on console display in gui
 				if (isGui) FreeGUI.consoleOut(winMsg);
 			}
+			
+			System.gc();
 		}
 		
 		// if cli, exits to main prompt
@@ -165,6 +167,7 @@ public class Engine
 		return CLI.inGame("dest");
 	}
 	
+	// Loop Pauses and Controls -----------------------------------------------
 	/**
 	 * Clears src and dest strings and waits for
 	 * gui event to fill those values to return.
@@ -174,17 +177,13 @@ public class Engine
 		if (debug) out.println("\n---engine.Engine.guiWait---");
 		
 		while (dest.matches("")) {}
-		if (debug) out.println("gui done waiting");
-		if (debug) out.println("src: " + src + ", dest: " + dest);
-	}
-	
-	//TODO
-	private static void waitGUIStart() {
-		while (!GUInewGame) {}
-	}
-	
-	public static void newGame() {
-		GUInewGame = true;
+		
+		if (debug) {
+			
+			out.println("\n---guiWait---");
+			out.println("gui done waiting");
+			out.println("src: " + src + ", dest: " + dest);
+		}
 	}
 	
 	/**
@@ -210,9 +209,28 @@ public class Engine
 		dest = key;
 	}
 	
+	/**
+	 * Makes gui wait for new deal to be clicked before
+	 * rendering the newly dealt game board.
+	 */
+	private static void waitNewGame() {
+		
+		//FIXME
+		if (debug) out.println("\n---engine.Engine.waitNewGame---");
+		while (!GUInewGame) {}
+	}
+	
+	/**
+	 * Sets global variable that is used to regulate rendering.
+	 */
+	public static void newGame() {
+		GUInewGame = true;
+	}
+	
 	// In-game Action Handlers ------------------------------------------------
 	/**
-	 * Deals a new game, resets game stats.
+	 * When 'New Deal' button is pressed this executes.
+	 * Re-initializes the board with a new game and refreshes the output.
 	 */
 	public static void newDeal() {
 		
@@ -222,11 +240,11 @@ public class Engine
 		if (autoStack) autoStack();
 		
 		refresh();
-		
-		if (gameOver) gameLoop();
+		if (isGui) FreeGUI.consoleOut("");
 	}
 	
 	/**
+	 * When 'Undo' button is pressed this executes.
 	 * Reverts game state to previous turn.
 	 */
 	public static void undo() {
@@ -234,8 +252,9 @@ public class Engine
 		if (debug) out.println("event: Undo");
 		
 		if (history.size() <= 1) {
-			if (debug) out.println("Nothing to Undo");
+			
 			if (isGui) FreeGUI.consoleOut("Nothing to Undo");
+			if (!isGui || (isGui && debug)) out.println("Nothing to Undo");
 		}
 		else {
 			
@@ -247,13 +266,16 @@ public class Engine
 			
 			Turn prevTurn = history.peek();
 			if (debug) out.println("restoring:\n" + prevTurn);
+			
 			moveNum = prevTurn.getMoveNum();
 			updateStats(prevTurn);
+			
 			refresh();
 		}
 	}
 	
 	/**
+	 * When 'Redo' button is pressed this executes.
 	 * Reapplies the most recent turn if it exists.
 	 */
 	public static void redo() {
@@ -261,60 +283,69 @@ public class Engine
 		if (debug) out.println("event: Redo");
 
 		if (rvrsHistory.isEmpty()) {
-			if (debug) out.println("Nothing to Redo");
+			
 			if (isGui) FreeGUI.consoleOut("Nothing to Redo");
+			if (!isGui || (isGui && debug)) out.println("Nothing to Redo");
 		}
 		else {
 			
 			Turn nextTurn = rvrsHistory.pop();
 			history.push(nextTurn);
+			
 			curBoard.forceUpdate(history.peek());
 			if (debug) out.println("redoing:\n" + nextTurn);
 			
 			moveNum = nextTurn.getMoveNum();
 			updateStats(nextTurn);
+			
 			refresh();
 		}
 	}
 	
 	/**
-	 * Shows next move in the solution from current turn.
+	 * When 'Hint' button is pressed this executes.
+	 * Displays possible moves on current board.
 	 */
 	public static void hint() {
 		
 		if (debug) out.println("event: Hint");
 		
-		//TODO if there are no moves, winnable should change to false for display
-		if (!curBoard.getMovePossible()) 
-			out.println("No Possible Moves");
+		String sGui = "No Moves Possible";
+		Queue<KeyMap> moves = history.peek().getPossibleMoves();
+		
+		if (moves.isEmpty()) {
+			
+			out.println(sGui);
+			if (isGui) FreeGUI.consoleOut(sGui);
+		}
 		else {
 			
-			Queue<KeyMap> moves = history.peek().getPossibleMoves();
-			
+			sGui = "";
 			for (KeyMap k : moves) {
 				
 				Key s = k.getSrcKey();
 				Key d = k.getDestKey();
 				
-				if (isGui && debug) {
+				if (!isGui || (isGui && debug)) {
 					
-					String sGui = "";
 					sGui += (s.isFreecell())? "Freecell #" : "Pile #";
 					sGui += (s.getPosition() + 1) + " --> ";
 					
 					if (d.isFreecell()) sGui += "Freecell";
 					if (d.isHomecell()) sGui += "Homecell";
 					if (d.isPlayingPile()) sGui += "Pile #" + (d.getPosition() + 1);
-					out.println(sGui);
+					
+					sGui += "\n";
 				}
 			}
+			out.println(sGui);
 		}
-		
 		//TODO remove this when implemented
 		if (isGui) FreeGUI.consoleOut("See console for moves");
 	}
 	
 	/**
+	 * When 'Solve' button is pressed this executes.
 	 * Initiates turn movement without user interaction towards the current solution.
 	 */
 	public static void solve() {
@@ -328,40 +359,40 @@ public class Engine
 	 * Double click action and confirmation.
 	 * Searches for valid homecell placement.  If none is
 	 * found, searches for valid freecell placement.  Sets
-	 * the source and destination appropriately.  If no
-	 * valid placement is found, sets destination to an invalid
-	 * position to trigger skip to next turn.
-	 * @param s source clicked (card position)
+	 * the source and destination appropriately.
+	 * @param s source clicked (position key string)
 	 */
 	public static void doubleClick(String s) {
 		
 		src = s;
+		String homecell = "e";
+		String freecell = "a";
 		
-		KeyMap k = new KeyMap(s, "e", curBoard);
+		KeyMap k = new KeyMap(s, homecell, curBoard);
 		
 		if (debug) out.println("event: Double-Click (" + k.getSourceCard() + ")");
 		
 		// if valid, destination to homecell
 		if (k.isValid()) {
-			dest = "e";
+			dest = homecell;
 		}
 		// try destination to freecell
 		else {
-			k = new KeyMap(s, "a", curBoard);
-			if (k.isValid()) dest = "a";
+			k = new KeyMap(s, freecell, curBoard);
+			if (k.isValid()) dest = freecell;
 		}
 	}
 	
 	/**
 	 * Moves a sequence of cards from one pile to another pile.
-	 * @param src
-	 * @param dest
-	 * @param index
-	 * @return
+	 * @param src source pile key string
+	 * @param dest destination pile key string
+	 * @param index index of the card clicked
+	 * @return true if the cards from index to top of pile can be moved as a group
 	 */
 	public static boolean seqMove(String src, String dest, int index) {
 		
-		//TODO clean me up so import is not needed
+		//TODO clean me up so import is not needed, and add functionality
 		int cardsCanMove = curBoard.calcMoveableCards();
 		PlayingPile p = curBoard.getPileByKey(src);
 		int cardsTryMove = p.size() - index;
@@ -371,9 +402,26 @@ public class Engine
 		return false;
 	}
 	
+	// Accessors --------------------------------------------------------------
+	/**
+	 * Returns source string.
+	 * @return source string
+	 */
+	public static String getSource() {
+		return src;
+	}
+	
+	/**
+	 * Returns destination string.
+	 * @return destination string
+	 */
+	public static String getDest() {
+		return dest;
+	}
+	
 	// Utilities --------------------------------------------------------------
 	/**
-	 * Update board stats, and if in gui mode, updates gui stats.
+	 * Update board stats, and if in gui mode, update gui stats.
 	 * @param turn most recent turn
 	 */
 	static void updateStats(Turn turn) {
@@ -398,18 +446,17 @@ public class Engine
 	
 	/**
 	 * Processes all possible insertions into a homecell.
-	 * Currently only processes all freecells and cards on the last element
-	 * of their pile, not cards that open up as a result of the stacking.
 	 */
 	static void autoStack() {
 		
 		if (debug) out.println("\n---engine.Engine.autoStack--- BEGIN");
+		
 		Queue<KeyMap> autoStack = curBoard.toHome();
 		while (!autoStack.isEmpty()) {
 			
 			KeyMap k = autoStack.remove();
 			Turn turn = new Turn(++moveNum, curBoard, k);
-			curBoard.updateBoardStats(turn);
+			updateStats(turn);
 			snapshot(turn);
 			autoStack = curBoard.toHome();
 		}
@@ -465,6 +512,7 @@ public class Engine
 		return status;
 	}
 	
+	// Toggles ----------------------------------------------------------------
 	/**
 	 * Toggles auto-stack mode.
 	 */
