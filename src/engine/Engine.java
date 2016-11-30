@@ -20,7 +20,6 @@ public class Engine
 {
 	// static variables
 	private static boolean isGui = false;
-	private static boolean GUInewGame = false;
 	private static boolean gameOver = false;
 	private static boolean autoStack = false;
 	private static boolean debug = false;
@@ -61,7 +60,9 @@ public class Engine
 		rvrsHistory = new Stack<Turn>();
 		moveNum = 0;
 		gameOver = false;
-		snapshot(new Turn(curBoard));
+		Turn turn = new Turn(curBoard);
+		snapshot(turn);
+		updateStats(turn);
 	}
 	
 	/**
@@ -74,7 +75,6 @@ public class Engine
 		if (isGui) {
 		
 			FreeGUI gui = new FreeGUI();
-			FreeGUI.simClick();
 			gui.start();
 			return gui;
 		}
@@ -93,8 +93,7 @@ public class Engine
 		moveNum = 0;
 		snapshot(new Turn(curBoard));
 		
-		//FIXME
-		//if (!GUInewGame && isGui) waitNewGame();
+		if (isGui) FreeGUI.simClick();
 		
 		if (autoStack) autoStack();
 		while (isGui || !gameOver) {
@@ -206,24 +205,6 @@ public class Engine
 	public static void setDest(String key) {
 		
 		dest = key;
-	}
-	
-	/**
-	 * Makes gui wait for new deal to be clicked before
-	 * rendering the newly dealt game board.
-	 */
-	private static void waitNewGame() {
-		
-		//FIXME
-		if (debug) out.println("\n---engine.Engine.waitNewGame---");
-		while (!GUInewGame) {}
-	}
-	
-	/**
-	 * Sets global variable that is used to regulate rendering.
-	 */
-	public static void newGame() {
-		GUInewGame = true;
 	}
 	
 	// In-game Action Handlers ------------------------------------------------

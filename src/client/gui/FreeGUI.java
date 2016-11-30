@@ -52,7 +52,7 @@ import board.*;
 			
 	    	if (debug)
 	    	{
-	    		out.println("\n---engine.FreeGUI.Paint---");
+	    		out.println("\n---client.gui.FreeGUI.Paint---");
 	    	}
 	    	
 	    	// clear consoleout on each turn except for 
@@ -2152,7 +2152,6 @@ import board.*;
 
 	    private void NewDealBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
-	    	Engine.newGame();
 	    	Engine.newDeal();
 		}
 
@@ -2576,12 +2575,22 @@ import board.*;
 		 */
 		public static void simClick() {
 			
+			if (debug) out.println("\n---client.gui.FreeGUI.simClick---");
 			try {
 			    Robot robot = new Robot();
-			     
-			    // Simulate a mouse click
+			    if (debug) out.println("simulating double-click"); 
+			    
+			    // simulate a double click
 			    robot.mouseMove(1163, 568);
+			    
 			    robot.mousePress(InputEvent.BUTTON1_MASK);
+			    robot.delay(100);
+			    robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			    
+			    robot.delay(200);
+			    
+			    robot.mousePress(InputEvent.BUTTON1_MASK);
+			    robot.delay(100);
 			    robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			    
 //			    // simulate a key press
