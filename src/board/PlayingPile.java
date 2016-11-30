@@ -50,9 +50,7 @@ public class PlayingPile {
 	 */
 	public void forcePlace(StdCard c) {
 		
-		if (debug) out.println("\n---board.PlayingPile.forcePlace---");
 		pile.add(c);
-		if (debug) out.println("placed card: " + c + "\ninto " + key);
 	}
 	
 	/**
