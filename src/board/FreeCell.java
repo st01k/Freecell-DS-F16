@@ -84,7 +84,7 @@ public class FreeCell implements CellInterface {
 	
 	/**
 	 * Returns the key of this board element.
-	 * @return
+	 * @return key for this board element
 	 */
 	public Key getKey() {
 		return key;

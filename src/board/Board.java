@@ -139,7 +139,6 @@ public class Board {
 	
 	/**
 	 * Fills a row of cards by cycling through each pile.
-	 * @param rowNum row number to fill
 	 */
 	private void dealRow() {	
 		
@@ -194,7 +193,7 @@ public class Board {
 	
 	/**
 	 * Returns the pile at the specified key.
-	 * @param k key
+	 * @param key key
 	 * @return pile at key
 	 */
 	public PlayingPile getPileByKey(String key) {

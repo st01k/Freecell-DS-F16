@@ -2165,7 +2165,7 @@ import board.*;
 	    }
 
 	    /**
-	     * @param args the command line arguments
+	     * Starts GUI
 	     */
 	    public void start() {
 

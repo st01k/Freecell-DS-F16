@@ -16,8 +16,8 @@ import board.PlayingPile;
  * @author groovyLlama devteam
  * @version 0.7
  */
-public class Engine 
-{
+public class Engine {
+	
 	// static variables
 	private static boolean isGui = false;
 	private static boolean gameOver = false;
@@ -34,7 +34,7 @@ public class Engine
 	/**
 	 * Creates board and solver.
 	 * Starts game in preferred user interface.
-	 * @param isGui true if UI is gui
+	 * @param _isGui true if UI is gui
 	 */
 	public static void start(boolean _isGui) {
 		
@@ -45,7 +45,9 @@ public class Engine
 		rvrsHistory = new Stack<Turn>();
 		isGui = _isGui;
 		gameOver = false;
+		moveNum = 0;
 		gui = checkUiMode();
+		snapshot(new Turn(curBoard));
 		
 		gameLoop();
 	}
@@ -53,13 +55,13 @@ public class Engine
 	/**
 	 * Re-initializes the board to turn 0 with a new deal.
 	 */
-	public static void reinitialize() {
+	private static void reinitialize() {
 	
 		curBoard = new Board();
 		history = new Stack<Turn>();
 		rvrsHistory = new Stack<Turn>();
-		moveNum = 0;
 		gameOver = false;
+		moveNum = 0;
 		Turn turn = new Turn(curBoard);
 		snapshot(turn);
 		updateStats(turn);
@@ -90,8 +92,6 @@ public class Engine
 		if (debug) out.println("\n---engine.Engine.gameLoop---");
 		
 		String winMsg = "You won the game!!!";
-		moveNum = 0;
-		snapshot(new Turn(curBoard));
 		
 		if (isGui) FreeGUI.simClick();
 		
@@ -447,7 +447,7 @@ public class Engine
 	}
 	
 	/**
-	 * Clears source and destingation strings.
+	 * Clears source and destination strings.
 	 */
 	static void clearMapStrings() {
 		

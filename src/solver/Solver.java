@@ -21,7 +21,7 @@ public class Solver {
 	
 	/**
 	 * Constructs a new solver.
-	 * @param b
+	 * @param t turn
 	 */
 	public Solver(Turn t) {
 		
