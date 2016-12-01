@@ -11,7 +11,6 @@ import java.awt.AWTException;
 import java.awt.Font;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -66,11 +65,11 @@ import board.*;
 	    		if(temp != null)
 	    		{
 	    			String filename = temp.getValue() + temp.getDefSym() + ".jpg";
-	    			fcAry[i].setIcon(createImageIcon(IMAGESDIR + filename, ""));
+	    			fcAry[i].setIcon(createImageIcon(filename));
 	    		}
 	    		else
 	    		{
-	    			fcAry[i].setIcon(createImageIcon(IMAGESDIR + "FreeCell.png", ""));
+	    			fcAry[i].setIcon(createImageIcon("FreeCell.png"));
 	    		}
 	    		
 	    	}
@@ -85,11 +84,11 @@ import board.*;
 	    		if(temp != null)
 	    		{
 	    			String filename = temp.getValue() + temp.getDefSym() + ".jpg";
-	    			hcAry[i].setIcon(createImageIcon(IMAGESDIR + filename, ""));
+	    			hcAry[i].setIcon(createImageIcon(filename));
 	    		}
 	    		else
 	    		{
-	    			hcAry[i].setIcon(createImageIcon(IMAGESDIR + "HomeCell.png", ""));
+	    			hcAry[i].setIcon(createImageIcon("HomeCell.png"));
 	    		}
 	    		
 	    	}
@@ -105,11 +104,11 @@ import board.*;
 	    			if(temp != null)
 	    			{
 		    			String filename = temp.getValue() + temp.getDefSym() + ".jpg";
-		    			PlayPile[i][j].setIcon(createImageIcon(IMAGESDIR + filename, ""));
+		    			PlayPile[i][j].setIcon(createImageIcon(filename));
 	    			}
 	    			else
 	    			{
-	    				PlayPile[i][j].setIcon(createImageIcon(IMAGESDIR + "blank.png", ""));
+	    				PlayPile[i][j].setIcon(createImageIcon("blank.png"));
 	    			}
 	    		}
 	    	}
@@ -377,7 +376,7 @@ import board.*;
 	        jLayeredPane1.setBounds(440, 10, 380, 130);
 
 	        Background.setBackground(new java.awt.Color(100, 100, 100));
-	        Background.setIcon(createImageIcon(IMAGESDIR + "felt.png", ""));
+	        Background.setIcon(createImageIcon("felt.png"));
 	        Background.setToolTipText(null);
 	        Background.setOpaque(true);
 	        BackgroundPan.add(Background);
@@ -1751,7 +1750,7 @@ import board.*;
 	        BackgroundPan.add(R8C0);
 	        R8C0.setBounds(1120, 150, 86, 125);
 
-	        free1.setIcon(createImageIcon(IMAGESDIR + "FreeCell.png", ""));
+	        free1.setIcon(createImageIcon("FreeCell.png"));
 	        free1.setToolTipText(null);
 	        free1.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free1.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1760,7 +1759,7 @@ import board.*;
 	        BackgroundPan.add(free1);
 	        free1.setBounds(20, 10, 86, 125);
 
-	        free2.setIcon(createImageIcon(IMAGESDIR + "FreeCell.png", ""));
+	        free2.setIcon(createImageIcon("FreeCell.png"));
 	        free2.setToolTipText(null);
 	        free2.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free2.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1769,7 +1768,7 @@ import board.*;
 	        BackgroundPan.add(free2);
 	        free2.setBounds(120, 10, 86, 125);
 
-	        free3.setIcon(createImageIcon(IMAGESDIR + "FreeCell.png", ""));
+	        free3.setIcon(createImageIcon("FreeCell.png"));
 	        free3.setToolTipText(null);
 	        free3.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free3.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1778,7 +1777,7 @@ import board.*;
 	        BackgroundPan.add(free3);
 	        free3.setBounds(220, 10, 86, 125);
 
-	        free4.setIcon(createImageIcon(IMAGESDIR + "FreeCell.png", "")); 
+	        free4.setIcon(createImageIcon("FreeCell.png")); 
 	        free4.setToolTipText(null);
 	        free4.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free4.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1787,7 +1786,7 @@ import board.*;
 	        BackgroundPan.add(free4);
 	        free4.setBounds(320, 10, 86, 125);
 
-	        home1.setIcon(createImageIcon(IMAGESDIR + "HomeCell.png", ""));
+	        home1.setIcon(createImageIcon("HomeCell.png"));
 	        home1.setToolTipText(null);
 	        home1.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home1.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1796,7 +1795,7 @@ import board.*;
 	        BackgroundPan.add(home1);
 	        home1.setBounds(850, 10, 86, 125);
 
-	        home2.setIcon(createImageIcon(IMAGESDIR + "HomeCell.png", ""));
+	        home2.setIcon(createImageIcon("HomeCell.png"));
 	        home2.setToolTipText(null);
 	        home2.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home2.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1805,7 +1804,7 @@ import board.*;
 	        BackgroundPan.add(home2);
 	        home2.setBounds(950, 10, 86, 125);
 
-	        home3.setIcon(createImageIcon(IMAGESDIR + "HomeCell.png", ""));
+	        home3.setIcon(createImageIcon("HomeCell.png"));
 	        home3.setToolTipText(null);
 	        home3.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home3.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1814,7 +1813,7 @@ import board.*;
 	        BackgroundPan.add(home3);
 	        home3.setBounds(1050, 10, 86, 125);
 
-	        home4.setIcon(createImageIcon(IMAGESDIR + "HomeCell.png", ""));
+	        home4.setIcon(createImageIcon("HomeCell.png"));
 	        home4.setToolTipText(null);
 	        home4.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home4.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -2124,8 +2123,6 @@ import board.*;
 	       
 	    }
 
-
-	    //TODO set button actions
 	    private void UndoBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
 	    	Engine.undo();
@@ -2563,13 +2560,13 @@ import board.*;
 		 * @param description image description
 		 * @return image icon
 		 */
-		protected javax.swing.ImageIcon createImageIcon(String path, String description) {
+		protected javax.swing.ImageIcon createImageIcon(String filename) {
 			
-		    java.net.URL imgURL = getClass().getResource(path);
+		    java.net.URL imgURL = getClass().getResource(IMAGESDIR + filename);
 		    if (imgURL != null) {
-		        return new javax.swing.ImageIcon(imgURL, description);
+		        return new javax.swing.ImageIcon(imgURL);
 		    } else {
-		        System.err.println("Couldn't find file: " + path);
+		        System.err.println("Couldn't find file: " + IMAGESDIR + filename);
 		        return null;
 		    }
 		}
@@ -2586,8 +2583,6 @@ import board.*;
 			    if (debug) out.println("simulating double-click"); 
 			    
 			    // simulate a double click
-			    //robot.mouseMove(1163, 568);
-			    
 			    robot.mousePress(InputEvent.BUTTON1_MASK);
 			    robot.delay(100);
 			    robot.mouseRelease(InputEvent.BUTTON1_MASK);
@@ -2597,10 +2592,6 @@ import board.*;
 			    robot.mousePress(InputEvent.BUTTON1_MASK);
 			    robot.delay(100);
 			    robot.mouseRelease(InputEvent.BUTTON1_MASK);
-			    
-//			    // simulate a key press
-//			    robot.keyPress(KeyEvent.VK_ENTER);
-//			    robot.keyRelease(KeyEvent.VK_ENTER);
 			    
 			} catch (AWTException e) {
 			    e.printStackTrace();
