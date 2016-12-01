@@ -125,6 +125,42 @@ public class FreeCell implements CellInterface {
 		debug = !debug;
 	}
 	
+	// Equality ---------------------------------------------------------------
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cell == null) ? 0 : cell.hashCode());
+		result = prime * result + ((key == null) ? 0 : key.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		FreeCell other = (FreeCell) obj;
+		if (cell == null) {
+			if (other.cell != null) {
+				return false;
+			}
+		} else if (!cell.equals(other.cell)) {
+			return false;
+		}
+		if (key != other.key) {
+			return false;
+		}
+		return true;
+	}
+
+	// Testing ----------------------------------------------------------------
 	/**
 	 * Unit test.
 	 */

@@ -683,6 +683,61 @@ public class Board {
 		return new Board(this);
 	}
 	
+	// Equality ---------------------------------------------------------------
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((deck == null) ? 0 : deck.hashCode());
+		result = prime * result + Arrays.hashCode(freeAry);
+		result = prime * result + Arrays.hashCode(homeAry);
+		result = prime * result + moveNum;
+		result = prime * result + (movePossible ? 1231 : 1237);
+		result = prime * result + Arrays.hashCode(pileAry);
+		result = prime * result + (winnable ? 1231 : 1237);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Board other = (Board) obj;
+		if (deck == null) {
+			if (other.deck != null) {
+				return false;
+			}
+		} else if (!deck.equals(other.deck)) {
+			return false;
+		}
+		if (!Arrays.equals(freeAry, other.freeAry)) {
+			return false;
+		}
+		if (!Arrays.equals(homeAry, other.homeAry)) {
+			return false;
+		}
+		if (moveNum != other.moveNum) {
+			return false;
+		}
+		if (movePossible != other.movePossible) {
+			return false;
+		}
+		if (!Arrays.equals(pileAry, other.pileAry)) {
+			return false;
+		}
+		if (winnable != other.winnable) {
+			return false;
+		}
+		return true;
+	}
+	
 	// Toggles ----------------------------------------------------------------
 	/**
 	 * Toggles the easy win deck.
@@ -696,7 +751,7 @@ public class Board {
 			out.println("easy win deck " + s);
 		}
 	}
-	
+
 	/**
 	 * Toggles debug mode.
 	 */
@@ -717,6 +772,8 @@ public class Board {
 		
 		Board clone = new Board(test);
 		out.println(clone);
+		
+		out.println("clone board = test board? " + test.equals(clone));
 		
 		out.println();
 		out.println("-------------------- Board Unit Test Complete.\n");

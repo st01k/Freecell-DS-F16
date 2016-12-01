@@ -181,6 +181,42 @@ public class PlayingPile {
 		debug = !debug;
 	}
 	
+	// Equality ---------------------------------------------------------------
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((key == null) ? 0 : key.hashCode());
+		result = prime * result + ((pile == null) ? 0 : pile.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		PlayingPile other = (PlayingPile) obj;
+		if (key != other.key) {
+			return false;
+		}
+		if (pile == null) {
+			if (other.pile != null) {
+				return false;
+			}
+		} else if (!pile.equals(other.pile)) {
+			return false;
+		}
+		return true;
+	}
+
+	// Testing ----------------------------------------------------------------
 	/**
 	 * Unit test.
 	 */
