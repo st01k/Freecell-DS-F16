@@ -15,8 +15,8 @@ public class Solver {
 	private static boolean debug = false;
 	
 	private Queue<KeyMap> possibleMoves;
-	private Turn turn;
-	private Board board;
+	private Turn rootTurn;
+	private Board boardClone;
 	private Solution solution;
 	
 	/**
@@ -25,8 +25,8 @@ public class Solver {
 	 */
 	public Solver(Turn t) {
 		
-		turn = t;
-		board = t.getBoard();
+		rootTurn = t;
+		boardClone = t.getBoard().clone();
 		possibleMoves = t.getPossibleMoves();
 		init();
 	}
@@ -53,6 +53,22 @@ public class Solver {
 	 */
 	public Solution getSolution() {
 		return solution;
+	}
+	
+	/**
+	 * Returns the root turn that this solver is based on.
+	 * @return root turn
+	 */
+	public Turn getRootTurn() {
+		return rootTurn;
+	}
+	
+	/**
+	 * Returns the cloned board for use in the solver.
+	 * @return cloned board
+	 */
+	public Board getBoardClone() {
+		return boardClone;
 	}
 	
 	/**

@@ -122,7 +122,7 @@ public class Turn {
 	 * Runs solver and sets winnable status on the turn.
 	 * @return true if game from this turn is winnable
 	 */
-	private boolean isWinnable() {
+	public boolean isWinnable() {
 		
 		if (debug) out.println("\n---engine.Turn.isWinnable---");
 		

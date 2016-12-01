@@ -1,7 +1,6 @@
 package client.cli;
 
 import static java.lang.System.out;
-import engine.Turn;
 import board.Board;
 import board.FreeCell;
 import board.HomeCell;

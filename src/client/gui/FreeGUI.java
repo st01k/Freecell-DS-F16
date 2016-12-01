@@ -2556,8 +2556,8 @@ import board.*;
 		
 		/**
 		 * Returns an ImageIcon, or null if the path was invalid.
-		 * @param path path to file
-		 * @param description image description
+		 * JAR friendly packaging of image resources.
+		 * @param filename name of image file
 		 * @return image icon
 		 */
 		protected javax.swing.ImageIcon createImageIcon(String filename) {
@@ -2594,7 +2594,7 @@ import board.*;
 			    robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			    
 			} catch (AWTException e) {
-			    e.printStackTrace();
+			    if (debug) e.printStackTrace();
 			}
 		}
 }
