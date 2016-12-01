@@ -24,19 +24,15 @@ import board.*;
 	public class FreeGUI extends javax.swing.JFrame implements MouseMotionListener, MouseListener {
 
 		private static final long serialVersionUID = -2499184546285035594L;
-
 		private static final int NUMCELLS = 4;
 		private static final int NUMPILES = 8;
 		private static final int MAX_PILE_SIZE = 19;
 		private static final String SEP = SysUtils.getSeparator();
-		private static final String IMAGESDIR = SysUtils.getPath() + "resources" + SEP + "images" + SEP;
-		private static final String CARDIMAGESDIR = IMAGESDIR + "cards" + SEP;
-		private static Board ShownBoard;
+		private static final String IMAGESDIR = "images" + SEP;
 		private static final Font font = new Font("Arial", Font.PLAIN ,12);
 
-		
-
 		private static boolean debug = false;
+		private static Board ShownBoard;
 
 		/**
 	     * Creates new form FreeGUI
@@ -70,11 +66,11 @@ import board.*;
 	    		if(temp != null)
 	    		{
 	    			String filename = temp.getValue() + temp.getDefSym() + ".jpg";
-	    			fcAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
+	    			fcAry[i].setIcon(createImageIcon(IMAGESDIR + filename, ""));
 	    		}
 	    		else
 	    		{
-	    			fcAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
+	    			fcAry[i].setIcon(createImageIcon(IMAGESDIR + "FreeCell.png", ""));
 	    		}
 	    		
 	    	}
@@ -89,11 +85,11 @@ import board.*;
 	    		if(temp != null)
 	    		{
 	    			String filename = temp.getValue() + temp.getDefSym() + ".jpg";
-	    			hcAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
+	    			hcAry[i].setIcon(createImageIcon(IMAGESDIR + filename, ""));
 	    		}
 	    		else
 	    		{
-	    			hcAry[i].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
+	    			hcAry[i].setIcon(createImageIcon(IMAGESDIR + "HomeCell.png", ""));
 	    		}
 	    		
 	    	}
@@ -109,11 +105,11 @@ import board.*;
 	    			if(temp != null)
 	    			{
 		    			String filename = temp.getValue() + temp.getDefSym() + ".jpg";
-		    			PlayPile[i][j].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + filename));
+		    			PlayPile[i][j].setIcon(createImageIcon(IMAGESDIR + filename, ""));
 	    			}
 	    			else
 	    			{
-	    				PlayPile[i][j].setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "blank.png"));
+	    				PlayPile[i][j].setIcon(createImageIcon(IMAGESDIR + "blank.png", ""));
 	    			}
 	    		}
 	    	}
@@ -345,7 +341,7 @@ import board.*;
 	        TurnLabel.setText("Turn:");
 	        TurnLabel.setFont(font);
 	        jLayeredPane1.add(TurnLabel);
-	        TurnLabel.setBounds(20, 20, 50, 14);
+	        TurnLabel.setBounds(20, 20, 60, 14);
 	        jLayeredPane1.add(Turn);
 	        Turn.setBounds(50, 20, 0, 0);
 	        Turn.setFont(font);
@@ -353,7 +349,7 @@ import board.*;
 	        TimeLabel.setText("Time: ");
 	        TimeLabel.setFont(font);
 	        jLayeredPane1.add(TimeLabel);
-	        TimeLabel.setBounds(240, 20, 35, 14);
+	        TimeLabel.setBounds(240, 20, 65, 14);
 	        jLayeredPane1.add(Time);
 	        Time.setBounds(270, 20, 90, 0);
 	        Time.setFont(font);
@@ -361,7 +357,7 @@ import board.*;
 	        SolvableLabel.setText("Solvable: ");
 	        SolvableLabel.setFont(font);
 	        jLayeredPane1.add(SolvableLabel);
-	        SolvableLabel.setBounds(20, 60, 80, 14);
+	        SolvableLabel.setBounds(20, 60, 99, 14);
 	        jLayeredPane1.add(Solvable);
 	        Solvable.setBounds(70, 60, 0, 0);
 	        Solvable.setFont(font);
@@ -381,7 +377,7 @@ import board.*;
 	        jLayeredPane1.setBounds(440, 10, 380, 130);
 
 	        Background.setBackground(new java.awt.Color(100, 100, 100));
-	        Background.setIcon(new javax.swing.ImageIcon(IMAGESDIR + "felt.png"));
+	        Background.setIcon(createImageIcon(IMAGESDIR + "felt.png", ""));
 	        Background.setToolTipText(null);
 	        Background.setOpaque(true);
 	        BackgroundPan.add(Background);
@@ -1755,7 +1751,7 @@ import board.*;
 	        BackgroundPan.add(R8C0);
 	        R8C0.setBounds(1120, 150, 86, 125);
 
-	        free1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
+	        free1.setIcon(createImageIcon(IMAGESDIR + "FreeCell.png", ""));
 	        free1.setToolTipText(null);
 	        free1.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free1.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1764,7 +1760,7 @@ import board.*;
 	        BackgroundPan.add(free1);
 	        free1.setBounds(20, 10, 86, 125);
 
-	        free2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
+	        free2.setIcon(createImageIcon(IMAGESDIR + "FreeCell.png", ""));
 	        free2.setToolTipText(null);
 	        free2.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free2.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1773,7 +1769,7 @@ import board.*;
 	        BackgroundPan.add(free2);
 	        free2.setBounds(120, 10, 86, 125);
 
-	        free3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png"));
+	        free3.setIcon(createImageIcon(IMAGESDIR + "FreeCell.png", ""));
 	        free3.setToolTipText(null);
 	        free3.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free3.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1782,7 +1778,7 @@ import board.*;
 	        BackgroundPan.add(free3);
 	        free3.setBounds(220, 10, 86, 125);
 
-	        free4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "FreeCell.png")); 
+	        free4.setIcon(createImageIcon(IMAGESDIR + "FreeCell.png", "")); 
 	        free4.setToolTipText(null);
 	        free4.setMaximumSize(new java.awt.Dimension(86, 125));
 	        free4.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1791,7 +1787,7 @@ import board.*;
 	        BackgroundPan.add(free4);
 	        free4.setBounds(320, 10, 86, 125);
 
-	        home1.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
+	        home1.setIcon(createImageIcon(IMAGESDIR + "HomeCell.png", ""));
 	        home1.setToolTipText(null);
 	        home1.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home1.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1800,7 +1796,7 @@ import board.*;
 	        BackgroundPan.add(home1);
 	        home1.setBounds(850, 10, 86, 125);
 
-	        home2.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
+	        home2.setIcon(createImageIcon(IMAGESDIR + "HomeCell.png", ""));
 	        home2.setToolTipText(null);
 	        home2.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home2.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1809,7 +1805,7 @@ import board.*;
 	        BackgroundPan.add(home2);
 	        home2.setBounds(950, 10, 86, 125);
 
-	        home3.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
+	        home3.setIcon(createImageIcon(IMAGESDIR + "HomeCell.png", ""));
 	        home3.setToolTipText(null);
 	        home3.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home3.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -1818,7 +1814,7 @@ import board.*;
 	        BackgroundPan.add(home3);
 	        home3.setBounds(1050, 10, 86, 125);
 
-	        home4.setIcon(new javax.swing.ImageIcon(CARDIMAGESDIR + "HomeCell.png"));
+	        home4.setIcon(createImageIcon(IMAGESDIR + "HomeCell.png", ""));
 	        home4.setToolTipText(null);
 	        home4.setMaximumSize(new java.awt.Dimension(86, 125));
 	        home4.setMinimumSize(new java.awt.Dimension(86, 125));
@@ -2462,7 +2458,7 @@ import board.*;
 //									break;
 //									}
 //								}
-								key = column.getKey().getKeyString();
+								if (column != null) key = column.getKey().getKeyString();
 								//TODO Check card and cards on top and check to see if they can be picked up.
 							}
 						}
@@ -2536,7 +2532,7 @@ import board.*;
 //									break;
 //									}
 //								}
-								key = column.getKey().getKeyString();
+								if (column != null) key = column.getKey().getKeyString();
 								//TODO Check card and cards on top and check to see if they can be picked up.
 							}
 						}
@@ -2562,16 +2558,25 @@ import board.*;
 		}
 		
 		/**
-		 * TODO
-		 * Simulates a mouse click.  Used to break out of initComponents...
-		 * It does initiate guiWait in the loop, but then initComponents 
-		 * is called again somehow in the debug output.  I tried inserting
-		 * test prints to track down where it was getting stuck after initComponents.  
-		 * Seems to happen between initComponents and start.  Tried inserting this into
-		 * several places to see if it would trigger the cards to render, but it hasn't.
-		 * Left the call in Engine.checkUiMode so that it at least triggers guiWait.
-		 * Might be totally unneccessary for release, but going to keep testing with
-		 * it.
+		 * Returns an ImageIcon, or null if the path was invalid.
+		 * @param path path to file
+		 * @param description image description
+		 * @return image icon
+		 */
+		protected javax.swing.ImageIcon createImageIcon(String path, String description) {
+			
+		    java.net.URL imgURL = getClass().getResource(path);
+		    if (imgURL != null) {
+		        return new javax.swing.ImageIcon(imgURL, description);
+		    } else {
+		        System.err.println("Couldn't find file: " + path);
+		        return null;
+		    }
+		}
+		
+		/**
+		 * Simulate a mouse double click in the board.  
+		 * Temporary fix for initial rendering problem.
 		 */
 		public static void simClick() {
 			
@@ -2581,7 +2586,7 @@ import board.*;
 			    if (debug) out.println("simulating double-click"); 
 			    
 			    // simulate a double click
-			    robot.mouseMove(1163, 568);
+			    //robot.mouseMove(1163, 568);
 			    
 			    robot.mousePress(InputEvent.BUTTON1_MASK);
 			    robot.delay(100);
