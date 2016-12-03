@@ -133,6 +133,10 @@ import board.*;
 	    	SolvableLabel.setText("Solvable: " + b);
 	    }
 
+	    public static void setTime(String s)
+	    {
+	    	TimeLabel.setText("Time: " + s);
+	    }
 	    /**
 	     * This method is called from within the constructor to initialize the form.
 	     */
