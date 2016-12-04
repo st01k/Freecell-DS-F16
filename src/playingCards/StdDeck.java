@@ -2,6 +2,8 @@ package playingCards;
 
 import static java.lang.System.out;
 
+import java.util.Arrays;
+
 import playingCards.StdCard;
 
 /**
@@ -10,7 +12,7 @@ import playingCards.StdCard;
  * @version 1.0
  */
 public class StdDeck implements DeckInterface {
-    
+
 	// class constants
 	private static final int SUITS = StdCard.suitAry.length;
     private static final int RANKS = StdCard.rankAry.length;
@@ -151,6 +153,33 @@ public class StdDeck implements DeckInterface {
     public void toggleUnicode() {
     	for (StdCard c : deck) c.toggleUnicode();
     }
+    
+    // Equality ---------------------------------------------------------------
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(deck);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		StdDeck other = (StdDeck) obj;
+		if (!Arrays.equals(deck, other.deck)) {
+			return false;
+		}
+		return true;
+	}
 
     // Testing ----------------------------------------------------------------
     public static void unitTest() {
