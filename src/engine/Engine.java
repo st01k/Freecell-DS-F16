@@ -15,7 +15,7 @@ import board.PlayingPile;
 /**
  * Drives freecell game.
  * @author groovyLlama devteam
- * @version 0.7
+ * @version 0.8
  */
 public class Engine {
 	
