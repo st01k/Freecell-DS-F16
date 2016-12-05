@@ -130,7 +130,8 @@ import board.*;
 	    
 	    public static void setWinnable(boolean b)
 	    {
-	    	SolvableLabel.setText("Solvable: " + b);
+	    	String solveMsg = (b)? "Fo' sho!" : "Nah, dawg...";
+	    	SolvableLabel.setText("Solvable: " + solveMsg);
 	    }
 
 	    public static void setTime(String s)
@@ -352,7 +353,7 @@ import board.*;
 	        TimeLabel.setText("Time: ");
 	        TimeLabel.setFont(font);
 	        jLayeredPane1.add(TimeLabel);
-	        TimeLabel.setBounds(240, 20, 65, 14);
+	        TimeLabel.setBounds(240, 20, 100, 14);
 	        jLayeredPane1.add(Time);
 	        Time.setBounds(270, 20, 90, 0);
 	        Time.setFont(font);
@@ -360,7 +361,7 @@ import board.*;
 	        SolvableLabel.setText("Solvable: ");
 	        SolvableLabel.setFont(font);
 	        jLayeredPane1.add(SolvableLabel);
-	        SolvableLabel.setBounds(20, 60, 99, 14);
+	        SolvableLabel.setBounds(20, 60, 150, 14);
 	        jLayeredPane1.add(Solvable);
 	        Solvable.setBounds(70, 60, 0, 0);
 	        Solvable.setFont(font);
@@ -2147,9 +2148,11 @@ import board.*;
 			Engine.solve();
 		}
 
+		private static client.gui.Stopwatch stopwatch;
 	    private void NewDealBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
 	    	Engine.newDeal();
+	    	stopwatch.reset();
 		}
 
 	    /**
@@ -2171,6 +2174,8 @@ import board.*;
 	    	out.println("\n---client.gui.FreeGUI.start---");
 	    	}
 
+	    	stopwatch = new client.gui.Stopwatch();
+	    	
 	        try {
 	            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 	                if ("Nimbus".equals(info.getName())) {
