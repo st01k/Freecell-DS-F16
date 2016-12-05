@@ -17,8 +17,8 @@ public class Stopwatch {
 	private final static SimpleDateFormat timerFormat = new SimpleDateFormat("mm:ss");
 	
 	// static variables
-	private static long startTime;
-	private static Timer timer;
+	private long startTime;
+	private Timer timer;
     
     public Stopwatch() {
     	
@@ -44,7 +44,7 @@ public class Stopwatch {
      * Returns the time that this stopwatch was started.
      * @return time watch was started
      */
-    public static long getStartTime() {
+    public long getStartTime() {
     	
     	return startTime;
     }
@@ -61,7 +61,7 @@ public class Stopwatch {
     /**
      * Stops stopwatch.
      */
-    public static void stop() {
+    public void stop() {
     	
     	timer.cancel();
     }
@@ -69,7 +69,7 @@ public class Stopwatch {
     /**
      * Resets elapsed time.
      */
-    public static void reset() {
+    public void reset() {
     	
     	startTime = System.currentTimeMillis();
     }
