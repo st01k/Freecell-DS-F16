@@ -14,7 +14,7 @@ public class Stopwatch {
 	
 	// static constants
 	//TODO add hours when fixed
-	private final static SimpleDateFormat timerFormat = new SimpleDateFormat("hh:mm:ss");
+	private final static SimpleDateFormat timerFormat = new SimpleDateFormat("mm:ss");
 	
 	// static variables
 	private static long startTime;
