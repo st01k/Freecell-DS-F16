@@ -2158,6 +2158,7 @@ import board.*;
 	    private void NewDealBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
 	    	Engine.newDeal();
+	    	stopwatch.stop();
 	    	stopwatch = new Stopwatch();
 		}
 
@@ -2180,7 +2181,7 @@ import board.*;
 	    	out.println("\n---client.gui.FreeGUI.start---");
 	    	}
 
-	    	stopwatch = new client.gui.Stopwatch();
+	    	stopwatch = new Stopwatch();
 	    	
 	        try {
 	            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
