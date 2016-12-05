@@ -2154,7 +2154,7 @@ import board.*;
 	    private void NewDealBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
 	    	Engine.newDeal();
-	    	stopwatch.reset();
+	    	stopwatch = new Stopwatch();
 		}
 
 	    /**
