@@ -41,6 +41,15 @@ public class Stopwatch {
     }
     
     /**
+     * Returns the time that this stopwatch was started.
+     * @return time watch was started
+     */
+    public static long getStartTime() {
+    	
+    	return startTime;
+    }
+    
+    /**
      * Displays elapsed time in GUI.
      * @param elapsedTime time elapsed
      */
