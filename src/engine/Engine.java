@@ -306,7 +306,7 @@ public class Engine {
 				Key s = k.getSrcKey();
 				Key d = k.getDestKey();
 				
-				if (!isGui || (isGui && debug)) {
+//				if (!isGui || (isGui && debug)) {
 					
 					sGui += (s.isFreecell())? "Freecell #" : "Pile #";
 					sGui += (s.getPosition() + 1) + " --> ";
@@ -316,7 +316,7 @@ public class Engine {
 					if (d.isPlayingPile()) sGui += "Pile #" + (d.getPosition() + 1);
 					
 					sGui += "\n";
-				}
+//				}
 			}
 			out.println(sGui);
 		}

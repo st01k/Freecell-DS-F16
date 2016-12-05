@@ -14,7 +14,7 @@ public class Stopwatch {
 	
 	// static constants
 	//TODO add hours when fixed
-	private final static SimpleDateFormat timerFormat = new SimpleDateFormat("mm:ss");
+	private final static SimpleDateFormat timerFormat = new SimpleDateFormat("hh:mm:ss");
 	
 	// static variables
 	private static long startTime;
@@ -44,15 +44,23 @@ public class Stopwatch {
      * Displays elapsed time in GUI.
      * @param elapsedTime time elapsed
      */
-    private void displayElapsedTime(long elapsedTime) {
+    private static void displayElapsedTime(long elapsedTime) {
     	
         FreeGUI.setTime(timerFormat.format(elapsedTime));
     }
     
     /**
+     * Stops stopwatch.
+     */
+    public static void stop() {
+    	
+    	timer.cancel();
+    }
+    
+    /**
      * Resets elapsed time.
      */
-    public void reset() {
+    public static void reset() {
     	
     	startTime = System.currentTimeMillis();
     }

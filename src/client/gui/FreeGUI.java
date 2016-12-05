@@ -52,7 +52,9 @@ import board.*;
 	    	
 	    	// clear consoleout on each turn except for 
 	    	// win messages and illegal move messages
-	    	if ((Output.getText().contains("won")) || (Output.getText().contains("Illegal"))) {}
+	    	if ((Output.getText().contains("won")) || (Output.getText().contains("Illegal"))) {
+	    		if (Output.getText().contains("won")) stopwatch.stop();
+	    	}
 	    	else consoleOut("");
 	    	
 	    	//-----------Free Cells------------
@@ -2152,7 +2154,7 @@ import board.*;
 	    private void NewDealBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
 	    	Engine.newDeal();
-	    	stopwatch.reset();
+	    	stopwatch = new Stopwatch();
 		}
 
 	    /**
