@@ -14,6 +14,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.LinkedList;
 
 import board.*;
 
@@ -2142,7 +2143,10 @@ import board.*;
 
 		private void HintBtnActionPerformed(java.awt.event.ActionEvent evt)
 		{
-			Engine.hint();
+			LinkedList<Key> list = Engine.hint();
+			
+			//TODO make the cards pretty
+			consoleOut(list.toString());
 		}
 
 		private void SolveBtnActionPerformed(java.awt.event.ActionEvent evt)

@@ -2,6 +2,7 @@ package engine;
 
 import static java.lang.System.out;
 
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 import client.cli.CLI;
@@ -286,12 +287,13 @@ public class Engine {
 	 * When 'Hint' button is pressed this executes.
 	 * Displays possible moves on current board.
 	 */
-	public static void hint() {
+	public static LinkedList<Key> hint() {
 		
 		if (debug) out.println("event: Hint");
 		
 		String sGui = "No Moves Possible";
 		Queue<KeyMap> moves = history.peek().getPossibleMoves();
+		LinkedList<Key> keyList = new LinkedList<Key>();
 		
 		if (moves.isEmpty()) {
 			
@@ -305,8 +307,9 @@ public class Engine {
 				
 				Key s = k.getSrcKey();
 				Key d = k.getDestKey();
+				keyList.add(s);
 				
-//				if (!isGui || (isGui && debug)) {
+				if (!isGui || (isGui && debug)) {
 					
 					sGui += (s.isFreecell())? "Freecell #" : "Pile #";
 					sGui += (s.getPosition() + 1) + " --> ";
@@ -316,12 +319,13 @@ public class Engine {
 					if (d.isPlayingPile()) sGui += "Pile #" + (d.getPosition() + 1);
 					
 					sGui += "\n";
-//				}
+				}
 			}
 			out.println(sGui);
 		}
 		//TODO remove this when implemented
-		if (isGui) FreeGUI.consoleOut("See console for moves");
+		//if (isGui) FreeGUI.consoleOut("See console for moves");
+		return keyList;
 	}
 	
 	/**

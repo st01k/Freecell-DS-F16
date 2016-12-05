@@ -700,41 +700,23 @@ public class Board {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		
 		Board other = (Board) obj;
 		if (deck == null) {
 			if (other.deck != null) {
 				return false;
 			}
-		} else if (!deck.equals(other.deck)) {
-			return false;
-		}
-		if (!Arrays.equals(freeAry, other.freeAry)) {
-			return false;
-		}
-		if (!Arrays.equals(homeAry, other.homeAry)) {
-			return false;
-		}
-		if (moveNum != other.moveNum) {
-			return false;
-		}
-		if (movePossible != other.movePossible) {
-			return false;
-		}
-		if (!Arrays.equals(pileAry, other.pileAry)) {
-			return false;
-		}
-		if (winnable != other.winnable) {
-			return false;
-		}
+		} else if (!deck.equals(other.deck)) return false;
+		
+		if (!Arrays.equals(freeAry, other.freeAry)) return false;
+		if (!Arrays.equals(homeAry, other.homeAry)) return false;
+		if (moveNum != other.moveNum) return false;
+		if (movePossible != other.movePossible) return false;
+		if (!Arrays.equals(pileAry, other.pileAry)) return false;
+		if (winnable != other.winnable) return false;
 		return true;
 	}
 	
