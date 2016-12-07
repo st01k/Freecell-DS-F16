@@ -2149,7 +2149,7 @@ import board.*;
 		private void HintBtnActionPerformed(java.awt.event.ActionEvent evt)
 		{
 			LinkedList<Key> list = Engine.hint();
-			Border border = BorderFactory.createLineBorder(Color.yellow, 3);
+			Border border = BorderFactory.createEtchedBorder(Color.orange, Color.orange);
 			
 			for (Key k : list) {
 				
