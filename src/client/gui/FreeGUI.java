@@ -2,7 +2,6 @@ package client.gui;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
-import javax.swing.OverlayLayout;
 import javax.swing.border.Border;
 
 import engine.Engine;
