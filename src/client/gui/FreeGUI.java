@@ -2157,13 +2157,13 @@ import board.*;
 				
 				if (k.isFreecell()) {
 					fcAry[pos].setBorder(border);
-					if (debug) out.println("gui: setting freecell hint border");
+					if (debug) out.println("gui: setting freecell " + (pos + 1) + " hint border");
 				}
 				
 				if (k.isPlayingPile()) {
 					int index = ShownBoard.getPile(pos).size() - 1;
 					PlayPile[pos][index].setBorder(border);
-					if (debug) out.println("gui: setting pile hint border");
+					if (debug) out.println("gui: setting pile " + (pos + 1) + " hint border");
 				}
 			}
 		}
