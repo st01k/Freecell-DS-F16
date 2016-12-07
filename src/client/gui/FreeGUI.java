@@ -1,6 +1,9 @@
 package client.gui;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.OverlayLayout;
+import javax.swing.border.Border;
 
 import engine.Engine;
 import playingCards.StdCard;
@@ -8,6 +11,7 @@ import utils.SysUtils;
 import static java.lang.System.out;
 
 import java.awt.AWTException;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
@@ -50,6 +54,8 @@ import board.*;
 	    	{
 	    		out.println("\n---client.gui.FreeGUI.Paint---");
 	    	}
+	    	
+	    	clearBorders();
 	    	
 	    	// clear consoleout on each turn except for 
 	    	// win messages and illegal move messages
@@ -133,7 +139,7 @@ import board.*;
 	    
 	    public static void setWinnable(boolean b)
 	    {
-	    	String solveMsg = (b)? "Fo' sho!" : "Nah, dawg...";
+	    	String solveMsg = (b)? "Yes" : "No";
 	    	SolvableLabel.setText("Solvable: " + solveMsg);
 	    }
 
@@ -2144,9 +2150,23 @@ import board.*;
 		private void HintBtnActionPerformed(java.awt.event.ActionEvent evt)
 		{
 			LinkedList<Key> list = Engine.hint();
+			Border border = BorderFactory.createLineBorder(Color.yellow, 3);
 			
-			//TODO make the cards pretty
-			consoleOut(list.toString());
+			for (Key k : list) {
+				
+				int pos = k.getPosition();
+				
+				if (k.isFreecell()) {
+					fcAry[pos].setBorder(border);
+					if (debug) out.println("setting freecell hint border");
+				}
+				
+				if (k.isPlayingPile()) {
+					int index = ShownBoard.getPile(pos).size() - 1;
+					PlayPile[pos][index].setBorder(border);
+					if (debug) out.println("setting pile hint border");
+				}
+			}
 		}
 
 		private void SolveBtnActionPerformed(java.awt.event.ActionEvent evt)
@@ -2585,6 +2605,22 @@ import board.*;
 		        System.err.println("Couldn't find file: " + IMAGESDIR + filename);
 		        return null;
 		    }
+		}
+		
+		private void clearBorders() {
+			
+			Border border = BorderFactory.createEmptyBorder();
+			
+			for (int i = 0; i < NUMCELLS; i++) {
+				fcAry[i].setBorder(border);
+			}
+			
+			for (int i = 0; i < NUMPILES; i++) {
+				
+				for (int j = 0; j < PlayPile.length - 1; j++) {
+					PlayPile[i][j].setBorder(border);
+				}
+			}
 		}
 		
 		/**
