@@ -2607,18 +2607,21 @@ import board.*;
 		    }
 		}
 		
+		/**
+		 * Clears the borders of highlighted cards.
+		 */
 		private void clearBorders() {
 			
-			Border border = BorderFactory.createEmptyBorder();
+			Border emptyBorder = BorderFactory.createEmptyBorder();
 			
 			for (int i = 0; i < NUMCELLS; i++) {
-				fcAry[i].setBorder(border);
+				fcAry[i].setBorder(emptyBorder);
 			}
 			
 			for (int i = 0; i < NUMPILES; i++) {
 				
-				for (int j = 0; j < PlayPile.length - 1; j++) {
-					PlayPile[i][j].setBorder(border);
+				for (int j = 0; j < PlayPile.length; j++) {
+					PlayPile[i][j].setBorder(emptyBorder);
 				}
 			}
 		}
