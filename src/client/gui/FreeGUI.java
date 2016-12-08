@@ -2590,7 +2590,7 @@ import board.*;
 			}
 			
 			if (!Engine.getSource().matches("") && !Engine.getSource().matches(key)) Engine.setDest(key);
-			Paint(ShownBoard);
+			else Paint(ShownBoard);
 		}
 
 		@Override
