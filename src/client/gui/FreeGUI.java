@@ -2506,7 +2506,7 @@ import board.*;
 								{
 									int index = column.size() - 1;
 									Icon temp = PlayPile[i][index].getIcon();
-									PlayPile[i][index].setIcon(createImageIcon("freecell.png"));
+									PlayPile[i][index].setIcon(createImageIcon("blank.png"));
 									Hand.add(temp);
 									
 									key = column.getKey().getKeyString();
@@ -2570,12 +2570,9 @@ import board.*;
 			{
 				for(int i = 0,len = colX.length;i < len; i++)
 				{
-					if(x <= colX[i] + 43 && x >= colX[i] - 43)
+					if(x <= colX[i] + 63 && x >= colX[i] - 63)
 					{
-						for(int j = colY.length-1; j >= 0; j--)
-						{
-							if(y <= colY[j] + 63 && y >= colY[j] - 63)
-							{
+
 								PlayingPile column = ShownBoard.getPile(i);
 //								if(debug)
 //								{
@@ -2586,16 +2583,14 @@ import board.*;
 //									}
 //								}
 								if (column != null) key = column.getKey().getKeyString();
-								//TODO Check card and cards on top and check to see if they can be picked up.
-							}
-						}
+
+
 					}
 				}
 			}
 			
 			if (!Engine.getSource().matches("") && !Engine.getSource().matches(key)) Engine.setDest(key);
-			
-			//TODO if the hand has cards, check to see if the cards can go where the hand was released, if they can not, return them to where they were.
+			Paint(ShownBoard);
 		}
 
 		@Override
