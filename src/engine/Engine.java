@@ -15,7 +15,7 @@ import board.PlayingPile;
 /**
  * Drives freecell game.
  * @author groovyLlama devteam
- * @version 0.8
+ * @version 1.0
  */
 public class Engine {
 	
@@ -206,6 +206,7 @@ public class Engine {
 	public static void setDest(String key) {
 		
 		dest = key;
+		refresh();
 	}
 	
 	// In-game Action Handlers ------------------------------------------------
@@ -323,8 +324,6 @@ public class Engine {
 			}
 			out.println(sGui);
 		}
-		//TODO remove this when implemented
-		//if (isGui) FreeGUI.consoleOut("See console for moves");
 		return keyList;
 	}
 	
@@ -376,7 +375,7 @@ public class Engine {
 	 */
 	public static boolean seqMove(String src, String dest, int index) {
 		
-		//TODO clean me up so import is not needed, and add functionality
+		//TODO add functionality
 		int cardsCanMove = curBoard.calcMoveableCards();
 		PlayingPile p = curBoard.getPileByKey(src);
 		int cardsTryMove = p.size() - index;

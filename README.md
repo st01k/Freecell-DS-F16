@@ -1,7 +1,7 @@
 # Freecell-DS-F16
 <div align="center">
 	<b>groovyLlama Freecell</b><br>
-	v0.8<br><br>
+	v1.0<br><br>
 	Final project for Data Structures (Fall 2016 - WVUP)<br><br>
 	<img src="https://github.com/st01k/Freecell-DS-F16/blob/master/src/client/gui/images/groovyLlama.jpg?raw=true" alt="groovyLlama" height="400" width="400"><br>
 
@@ -30,3 +30,5 @@ Freecell card game
 0.6 -		gameplay fully functional, undo/redo available<br>
 0.7 -		gameplay in gui is functional<br>
 0.8 -		optimized resource usage, added timer, fixed rendering<br>
+0.9 -		hint functionality in gui
+1.0 -		drag and drop integrated in gui

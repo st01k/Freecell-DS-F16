@@ -27,7 +27,7 @@ public class Debugger {
 		HomeCell.toggleDebug();
 		PlayingPile.toggleDebug();
 		Board.toggleDebug();
-		FreeGUI.toogleDebug();
+		FreeGUI.toggleDebug();
 		Engine.toggleDebug();
 		Turn.toggleDebug();
 		Solver.toggleDebug();

@@ -8,7 +8,7 @@ import engine.Engine;
 /**
  * Driver for Freecell card game.
  * @author groovyLlama devteam
- * @version 0.2
+ * @version 1.0
  */
 public class Driver {
 	
@@ -19,7 +19,7 @@ public class Driver {
 	public static void main(String[] args) {
 		
 		// TODO remove/comment next line to auto enter gui
-		args = "--test".split(" ");
+		//args = "--test".split(" ");
 		
 		if (args.length > 0) {
 			

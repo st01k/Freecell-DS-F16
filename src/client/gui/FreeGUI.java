@@ -23,7 +23,7 @@ import java.util.LinkedList;
 import board.*;
 
 	/**
-	 * @author Ryan Whytsell
+	 * @author groovyLlama devteam
 	 */
 	public class FreeGUI extends javax.swing.JFrame implements MouseMotionListener, MouseListener {
 
@@ -132,31 +132,44 @@ import board.*;
 	    	Output.setText(s);
 	    }
 	    
+	    /**
+	     * Sets the move number in console panel.
+	     * @param i move number
+	     */
 	    public static void setMoveNumber(int i)
 	    {
 	    	TurnLabel.setText("Turn: " + i);
 	    }
 	    
+	    /**
+	     * Sets the winnable status in console panel.
+	     * @param b true if game is winnable
+	     */
 	    public static void setWinnable(boolean b)
 	    {
-	    	String solveMsg = (b)? "Yes" : "No";
-	    	SolvableLabel.setText("Solvable: " + solveMsg);
+	    	String solveMsg = (b)? "Winnable" : "Lost";
+	    	SolvableLabel.setText(solveMsg);
 	    }
 
+	    /**
+	     * Sets the timer output in console panel.
+	     * @param s timer
+	     */
 	    public static void setTime(String s)
 	    {
 	    	TimeLabel.setText("Time: " + s);
 	    }
+	    
 	    /**
-	     * This method is called from within the constructor to initialize the form.
+	     * Called from within the constructor to initialize the form.
 	     */
 	    private void initComponents() {
 
-	    	// path test logged to console
 	    	if (debug) 
 	    	{
 	    		out.println("\n---engine.FreeGUI.initComponents--- ");
 	    	}
+	    	
 	    	pHand = new Hand();
 	        BackgroundPan = new javax.swing.JLayeredPane();
 	        jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -340,7 +353,7 @@ import board.*;
 	        BackgroundPan.addMouseMotionListener(this);
 	        BackgroundPan.addMouseListener(this);
 	        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-	        setTitle("Freecell by GroovyLlamas");
+	        setTitle("glFreecell v1.0");
 	        setBackground(new java.awt.Color(255, 255, 255));
 	        setMaximumSize(new java.awt.Dimension(1280, 720));
 	        setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -368,7 +381,7 @@ import board.*;
 	        Time.setBounds(270, 20, 90, 0);
 	        Time.setFont(font);
 
-	        SolvableLabel.setText("Solvable: ");
+	        SolvableLabel.setText("");
 	        SolvableLabel.setFont(font);
 	        jLayeredPane1.add(SolvableLabel);
 	        SolvableLabel.setBounds(20, 60, 150, 14);
@@ -2146,19 +2159,33 @@ import board.*;
 	       
 	    }
 
+	    /**
+	     * Action performed when 'undo' pressed.
+	     * @param evt event
+	     */
 	    private void UndoBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
 	    	Engine.undo();
 	    }
 
+	    /**
+	     * Action performed when 'redo' pressed.
+	     * @param evt event
+	     */
 	    private void RedoBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
 	    	Engine.redo();
 	    }
 
+	    /**
+	     * Action performed when 'hint' pressed.
+	     * @param evt event
+	     */
 		private void HintBtnActionPerformed(java.awt.event.ActionEvent evt)
 		{
 			LinkedList<Key> list = Engine.hint();
+			if (list.isEmpty()) setWinnable(false);
+			
 			Border border = BorderFactory.createEtchedBorder(Color.orange, Color.orange);
 			
 			for (Key k : list) {
@@ -2178,12 +2205,20 @@ import board.*;
 			}
 		}
 
+		/**
+	     * Action performed when 'solve' pressed.
+	     * @param evt event
+	     */
 		private void SolveBtnActionPerformed(java.awt.event.ActionEvent evt)
 		{
 			Engine.solve();
 		}
 
 		private static client.gui.Stopwatch stopwatch;
+		/**
+	     * Action performed when 'new deal' pressed.
+	     * @param evt event
+	     */
 	    private void NewDealBtnActionPerformed(java.awt.event.ActionEvent evt)
 	    {
 	    	Engine.newDeal();
@@ -2196,7 +2231,7 @@ import board.*;
 	     * Allows for debug statements to logger.
 	     * Prints to console.
 	     */
-	    public static void toogleDebug() {
+	    public static void toggleDebug() {
 	    	debug = !debug;
 	    }
 
@@ -2421,43 +2456,52 @@ import board.*;
 	    private static JLabel PlayPile[][] = new JLabel[NUMPILES][MAX_PILE_SIZE];
 	    
 	    private static final int colX[] = {103,263,413,563,713,863,1013,1163};
-	    private static final int colY[] = {212,232,252,272,292,312,332,352,372,392,412,432,452,472,492,512,532,552,572};
+	    //private static final int colY[] = {212,232,252,272,292,312,332,352,372,392,412,432,452,472,492,512,532,552,572};
 	    private static final int FreeX[] = {63,163,263,363};
 	    private static final int HomeX[] = {912,1012,1112,1212};
 	    private static final int FH_Y_CONST = 72;
 
+	    private static Key keyPressed = null;
 		@Override
 		public void mouseDragged(MouseEvent e)
 		{
-			if(debug)
-			{
-				out.println("Dragged at : (" + e.getX() + "," + e.getY() + ")");
+//			if(debug)
+//			{
+//				out.println("Dragged at : (" + e.getX() + "," + e.getY() + ")");
+//			}
+			
+			
+			if (keyPressed.isFreecell()) {
+				
+
+				fcAry[keyPressed.getPosition()].setIcon(createImageIcon("FreeCell.png"));
 			}
+			else if (keyPressed.isPlayingPile()) {
+				
+				PlayingPile column = ShownBoard.getPile(keyPressed.getPosition());
+				
+				if (!column.isEmpty()) {
+				
+					int index = column.size() - 1;
+					JLabel label = PlayPile[keyPressed.getPosition()][index];
+					label.setIcon(createImageIcon("blank.png"));
+				}
+			}
+			
 			Icon temp = Hand.getIcon();
 			HandLabel.setIcon(temp);
 			HandLabel.setBounds(e.getX() , e.getY(), 86, 125);
 		}
 
 		@Override
-		public void mouseMoved(MouseEvent e) 
-		{
-			// Not Used
-		}
+		public void mouseMoved(MouseEvent e) {}
 
 		@Override
-		public void mouseClicked(MouseEvent e) 
-		{
-
-		}
+		public void mouseClicked(MouseEvent e) {}
 
 		@Override
 		public void mousePressed(MouseEvent e)
 		{
-//			if(debug)
-//			{
-//				out.println("Mouse pressed at: (" + e.getX() + "," + e.getY() + ")");
-//			}
-			
 			int x = e.getX();
 			int y = e.getY();
 			String key = "";
@@ -2469,23 +2513,13 @@ import board.*;
 					if(x >= (FreeX[i] - 43) && x <= (FreeX[i] + 43))
 					{
 						FreeCell[] fcells = ShownBoard.getFreecells();
-						if(!fcells[i].isValid())
+						if(!fcells[i].isEmpty())
 						{
-							if(debug)
-							{
-								out.println("Filled Freecell number " + i);
-							}
 							Icon temp = fcAry[i].getIcon();
-							
-							fcAry[i].setIcon(createImageIcon("freecell.png"));
 							Hand.add(temp);
 						}
-						else
-						{
-							if(debug) out.println("Empty freecell number " + i);
-						}
+						keyPressed = fcells[i].getKey();
 						key = fcells[i].getKey().getKeyString();
-
 					}
 				}
 			}
@@ -2495,39 +2529,34 @@ import board.*;
 				{
 					if(x <= colX[i] + 43 && x >= colX[i] - 43)
 					{
-								PlayingPile column = ShownBoard.getPile(i);
+						PlayingPile column = ShownBoard.getPile(i);
 
-									if(debug)
-									{
-									out.println("Column :" + i);
-									}
-									
-								if (column != null)
-								{
-									int index = column.size() - 1;
-									Icon temp = PlayPile[i][index].getIcon();
-									PlayPile[i][index].setIcon(createImageIcon("blank.png"));
-									Hand.add(temp);
-									
-									key = column.getKey().getKeyString();
-									break;
-								}
-								//TODO Check card and cards on top and check to see if they can be picked up.
+						if (!column.isEmpty()) {
+						
+							int index = column.size() - 1;
+							JLabel label = PlayPile[i][index];
+							
+							Icon temp = label.getIcon();
+							Hand.add(temp);
+							
+							keyPressed = column.getKey();
+							key = column.getKey().getKeyString();
+							break;
+						}
+						
+					//TODO Check card and cards on top and check to see if they can be picked up.
 					}
 				}
 			}
 			
 			if (e.getClickCount() % 2 == 0) Engine.doubleClick(key);
 			else if (e.getClickCount() == 1) Engine.setSource(key);
+			clearBorders();
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e)
 		{
-//			if(debug)
-//			{
-//				out.println("Mouse released at: (" + e.getX() + "," + e.getY() + ")");
-//			}
 			pHand.remove();
 			HandLabel.setIcon(createImageIcon("blank.png"));
 			
@@ -2542,23 +2571,13 @@ import board.*;
 					if(x >= (FreeX[i] - 43) && x <= (FreeX[i] + 43))
 					{
 						FreeCell[] fcells = ShownBoard.getFreecells();
-//						if(!fcells[i].isValid())
-//						{
-//							if(debug)
-//							{
-//								out.println("Filled Freecell number " + i);
-//							}
-//							
-//						}
-//						else
-//						{
-//							if(debug) out.println("Empty freecell number " + i);
-//						}
 						key = fcells[i].getKey().getKeyString();
 					}
 				}
+				
 				for(int i = 0,len = HomeX.length;i < len;i++)
 				{
+					//TODO adjust for placement in far left side of cell doesn't place
 					if(x >= (HomeX[i] - 43) && x <= (HomeX[i] + 43))
 					{
 						HomeCell[] hcells = ShownBoard.getHomecells();
@@ -2572,38 +2591,20 @@ import board.*;
 				{
 					if(x <= colX[i] + 63 && x >= colX[i] - 63)
 					{
-
-								PlayingPile column = ShownBoard.getPile(i);
-//								if(debug)
-//								{
-//									if(column.size() > j)
-//									{
-//									out.println("Column :" + i + " Card :" + j);
-//									break;
-//									}
-//								}
-								if (column != null) key = column.getKey().getKeyString();
-
-
+						PlayingPile column = ShownBoard.getPile(i);
+						if (column != null) key = column.getKey().getKeyString();
 					}
 				}
 			}
 			
 			if (!Engine.getSource().matches("") && !Engine.getSource().matches(key)) Engine.setDest(key);
-			else Paint(ShownBoard);
 		}
 
 		@Override
-		public void mouseEntered(MouseEvent e) 
-		{
-			// Not Used
-		}
+		public void mouseEntered(MouseEvent e) {}
 
 		@Override
-		public void mouseExited(MouseEvent e) 
-		{
-			// Not Used
-		}
+		public void mouseExited(MouseEvent e) {}
 		
 		/**
 		 * Returns an ImageIcon, or null if the path was invalid.
