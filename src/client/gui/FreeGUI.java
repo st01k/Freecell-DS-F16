@@ -1,6 +1,7 @@
 package client.gui;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
@@ -156,7 +157,7 @@ import board.*;
 	    	{
 	    		out.println("\n---engine.FreeGUI.initComponents--- ");
 	    	}
-	    	
+	    	pHand = new Hand();
 	        BackgroundPan = new javax.swing.JLayeredPane();
 	        jLayeredPane1 = new javax.swing.JLayeredPane();
 	        TurnLabel = new javax.swing.JLabel();
@@ -168,6 +169,7 @@ import board.*;
 	        Output = new javax.swing.JLabel();
 	        InfoBackground = new javax.swing.JLabel();
 	        Background = new javax.swing.JLabel();
+	        HandLabel = new javax.swing.JLabel();
 	        R1C18 = new javax.swing.JLabel();
 	        R1C17 = new javax.swing.JLabel();
 	        R1C16 = new javax.swing.JLabel();
@@ -394,6 +396,14 @@ import board.*;
 	        Background.setOpaque(true);
 	        BackgroundPan.add(Background);
 	        Background.setBounds(0, 0, 1280, 690);
+	        
+	        HandLabel.setToolTipText(null);
+	        HandLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+	        HandLabel.setMaximumSize(new java.awt.Dimension(86, 125));
+	        HandLabel.setMinimumSize(new java.awt.Dimension(86, 125));
+	        HandLabel.setPreferredSize(new java.awt.Dimension(86, 125));
+	        BackgroundPan.setLayer(HandLabel, javax.swing.JLayeredPane.DRAG_LAYER);
+	        BackgroundPan.add(HandLabel);
 
 	        R1C18.setToolTipText(null);
 	        R1C18.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -2224,7 +2234,7 @@ import board.*;
 	            }
 	        });
 	    }
-
+	    
 	    private javax.swing.JLabel Background;
 	    private javax.swing.JLayeredPane BackgroundPan;
 	    private javax.swing.JButton HintBtn;
@@ -2232,6 +2242,8 @@ import board.*;
 	    private javax.swing.JPanel MenuPanel;
 	    private javax.swing.JButton NewDealBtn;
 	    private static javax.swing.JLabel Output;
+	    private static Hand pHand;
+	    private static javax.swing.JLabel HandLabel;
 	    private static javax.swing.JLabel R1C0;
 	    private static javax.swing.JLabel R1C1;
 	    private static javax.swing.JLabel R1C10;
@@ -2401,6 +2413,7 @@ import board.*;
 	    private static javax.swing.JLabel home2;
 	    private static javax.swing.JLabel home3;
 	    private static javax.swing.JLabel home4;
+	    
 	    private javax.swing.JLayeredPane jLayeredPane1;
 	    
 	    private static JLabel fcAry[] = new JLabel[NUMCELLS];
@@ -2416,12 +2429,13 @@ import board.*;
 		@Override
 		public void mouseDragged(MouseEvent e)
 		{
-			//TODO commented out to see debug statements more clearly
-//			if(debug)
-//			{
-//				out.println("Mouse dragged at: (" + e.getX() + "," + e.getY() + ")");
-//			}
-			//TODO show any cards in the hand at the mouse pointer
+			if(debug)
+			{
+				out.println("Dragged at : (" + e.getX() + "," + e.getY() + ")");
+			}
+			Icon temp = Hand.getIcon();
+			HandLabel.setIcon(temp);
+			HandLabel.setBounds(e.getX() , e.getY(), 86, 125);
 		}
 
 		@Override
@@ -2455,19 +2469,23 @@ import board.*;
 					if(x >= (FreeX[i] - 43) && x <= (FreeX[i] + 43))
 					{
 						FreeCell[] fcells = ShownBoard.getFreecells();
-//						if(!fcells[i].isValid())
-//						{
-//							if(debug)
-//							{
-//								out.println("Filled Freecell number " + i);
-//							}
-//							//TODO add it to the players hand
-//						}
-//						else
-//						{
-//							if(debug) out.println("Empty freecell number " + i);
-//						}
+						if(!fcells[i].isValid())
+						{
+							if(debug)
+							{
+								out.println("Filled Freecell number " + i);
+							}
+							Icon temp = fcAry[i].getIcon();
+							
+							fcAry[i].setIcon(createImageIcon("freecell.png"));
+							Hand.add(temp);
+						}
+						else
+						{
+							if(debug) out.println("Empty freecell number " + i);
+						}
 						key = fcells[i].getKey().getKeyString();
+
 					}
 				}
 			}
@@ -2477,23 +2495,24 @@ import board.*;
 				{
 					if(x <= colX[i] + 43 && x >= colX[i] - 43)
 					{
-						for(int j = colY.length-1; j >= 0; j--)
-						{
-							if(y <= colY[j] + 63 && y >= colY[j] - 63)
-							{
 								PlayingPile column = ShownBoard.getPile(i);
-//								if(debug)
-//								{
-//									if(column.size() > j)
-//									{
-//									out.println("Column :" + i + " Card :" + j);
-//									break;
-//									}
-//								}
-								if (column != null) key = column.getKey().getKeyString();
+
+									if(debug)
+									{
+									out.println("Column :" + i);
+									}
+									
+								if (column != null)
+								{
+									int index = column.size() - 1;
+									Icon temp = PlayPile[i][index].getIcon();
+									PlayPile[i][index].setIcon(createImageIcon("blank.png"));
+									Hand.add(temp);
+									
+									key = column.getKey().getKeyString();
+									break;
+								}
 								//TODO Check card and cards on top and check to see if they can be picked up.
-							}
-						}
 					}
 				}
 			}
@@ -2509,6 +2528,8 @@ import board.*;
 //			{
 //				out.println("Mouse released at: (" + e.getX() + "," + e.getY() + ")");
 //			}
+			pHand.remove();
+			HandLabel.setIcon(createImageIcon("blank.png"));
 			
 			int x = e.getX();
 			int y = e.getY();
@@ -2549,12 +2570,9 @@ import board.*;
 			{
 				for(int i = 0,len = colX.length;i < len; i++)
 				{
-					if(x <= colX[i] + 43 && x >= colX[i] - 43)
+					if(x <= colX[i] + 63 && x >= colX[i] - 63)
 					{
-						for(int j = colY.length-1; j >= 0; j--)
-						{
-							if(y <= colY[j] + 63 && y >= colY[j] - 63)
-							{
+
 								PlayingPile column = ShownBoard.getPile(i);
 //								if(debug)
 //								{
@@ -2565,16 +2583,14 @@ import board.*;
 //									}
 //								}
 								if (column != null) key = column.getKey().getKeyString();
-								//TODO Check card and cards on top and check to see if they can be picked up.
-							}
-						}
+
+
 					}
 				}
 			}
 			
 			if (!Engine.getSource().matches("") && !Engine.getSource().matches(key)) Engine.setDest(key);
-			
-			//TODO if the hand has cards, check to see if the cards can go where the hand was released, if they can not, return them to where they were.
+			else Paint(ShownBoard);
 		}
 
 		@Override
