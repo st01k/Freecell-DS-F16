@@ -2502,12 +2502,13 @@ import board.*;
 									out.println("Column :" + i);
 									}
 									
-									Icon temp = PlayPile[i][column.size()].getIcon();
-									fcAry[i].setIcon(createImageIcon("freecell.png"));
-									Hand.add(temp);
-									
 								if (column != null)
 								{
+									int index = column.size() - 1;
+									Icon temp = PlayPile[i][index].getIcon();
+									PlayPile[i][index].setIcon(createImageIcon("freecell.png"));
+									Hand.add(temp);
+									
 									key = column.getKey().getKeyString();
 									break;
 								}
