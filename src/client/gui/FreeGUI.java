@@ -2472,7 +2472,6 @@ import board.*;
 			
 			
 			if (keyPressed.isFreecell()) {
-				
 
 				fcAry[keyPressed.getPosition()].setIcon(createImageIcon("FreeCell.png"));
 			}
@@ -2490,7 +2489,7 @@ import board.*;
 			
 			Icon temp = Hand.getIcon();
 			HandLabel.setIcon(temp);
-			HandLabel.setBounds(e.getX() , e.getY(), 86, 125);
+			HandLabel.setBounds(e.getX(), e.getY(), 86, 125);
 		}
 
 		@Override
@@ -2557,12 +2556,11 @@ import board.*;
 		@Override
 		public void mouseReleased(MouseEvent e)
 		{
-			pHand.remove();
-			HandLabel.setIcon(createImageIcon("blank.png"));
-			
 			int x = e.getX();
 			int y = e.getY();
 			String key = "";
+			
+			
 			
 			if(y >= FH_Y_CONST - 63 && y <= FH_Y_CONST + 63)
 			{
@@ -2597,6 +2595,9 @@ import board.*;
 				}
 			}
 			
+			pHand.remove();
+			HandLabel.setIcon(createImageIcon("blank.png"));
+			if (Engine.getSource().matches(key)) Paint(ShownBoard);
 			if (!Engine.getSource().matches("") && !Engine.getSource().matches(key)) Engine.setDest(key);
 		}
 

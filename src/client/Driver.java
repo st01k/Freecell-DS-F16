@@ -19,7 +19,7 @@ public class Driver {
 	public static void main(String[] args) {
 		
 		// TODO remove/comment next line to auto enter gui
-		//args = "--test".split(" ");
+		args = "--test".split(" ");
 		
 		if (args.length > 0) {
 			
