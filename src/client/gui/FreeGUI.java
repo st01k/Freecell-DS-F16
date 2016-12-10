@@ -2505,6 +2505,8 @@ import board.*;
 			int y = e.getY();
 			String key = "";
 			
+			if (debug) out.println("pressed @ x: " + x + " | y: " + y);
+			
 			if(y >= FH_Y_CONST - 63 && y <= FH_Y_CONST + 63)
 			{
 				for(int i = 0,len = FreeX.length;i < len;i++)
@@ -2542,8 +2544,6 @@ import board.*;
 							key = column.getKey().getKeyString();
 							break;
 						}
-						
-					//TODO Check card and cards on top and check to see if they can be picked up.
 					}
 				}
 			}
@@ -2560,7 +2560,7 @@ import board.*;
 			int y = e.getY();
 			String key = "";
 			
-			
+			if (debug) out.println("released @ x: " + x + " | y: " + y);
 			
 			if(y >= FH_Y_CONST - 63 && y <= FH_Y_CONST + 63)
 			{
@@ -2575,7 +2575,7 @@ import board.*;
 				
 				for(int i = 0,len = HomeX.length;i < len;i++)
 				{
-					//TODO adjust for placement in far left side of cell doesn't place
+					//TODO adjust for placement in far left side of home cell doesn't place
 					if(x >= (HomeX[i] - 43) && x <= (HomeX[i] + 43))
 					{
 						HomeCell[] hcells = ShownBoard.getHomecells();
@@ -2597,7 +2597,7 @@ import board.*;
 			
 			pHand.remove();
 			HandLabel.setIcon(createImageIcon("blank.png"));
-			if (Engine.getSource().matches(key)) Paint(ShownBoard);
+			Paint(ShownBoard);
 			if (!Engine.getSource().matches("") && !Engine.getSource().matches(key)) Engine.setDest(key);
 		}
 

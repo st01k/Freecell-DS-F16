@@ -191,11 +191,7 @@ public class Engine {
 	 * @param key key value of source
 	 */
 	public static void setSource(String key) {
-		
-		if (!key.matches("")) {
-			
-			src = key;
-		}
+		if (!key.matches("")) src = key;
 	}
 	
 	/**
@@ -204,9 +200,7 @@ public class Engine {
 	 * @param key key value of destination
 	 */
 	public static void setDest(String key) {
-		
 		dest = key;
-		refresh();
 	}
 	
 	// In-game Action Handlers ------------------------------------------------
