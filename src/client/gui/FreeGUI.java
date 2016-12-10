@@ -2576,7 +2576,7 @@ import board.*;
 				for(int i = 0,len = HomeX.length;i < len;i++)
 				{
 					//TODO adjust for placement in far left side of home cell doesn't place
-					if(x >= (HomeX[i] - 43) && x <= (HomeX[i] + 43))
+					if(x >= (HomeX[i] - 58) && x <= (HomeX[i] + 43))
 					{
 						HomeCell[] hcells = ShownBoard.getHomecells();
 						key = hcells[i].getKey().getKeyString();
