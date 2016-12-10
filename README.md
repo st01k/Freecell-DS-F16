@@ -30,5 +30,5 @@ Freecell card game
 0.6 -		gameplay fully functional, undo/redo available<br>
 0.7 -		gameplay in gui is functional<br>
 0.8 -		optimized resource usage, added timer, fixed rendering<br>
-0.9 -		hint functionality in gui
+0.9 -		hint functionality in gui<br>
 1.0 -		drag and drop integrated in gui
