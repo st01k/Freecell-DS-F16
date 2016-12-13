@@ -1,5 +1,6 @@
 package client.gui;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JLabel;
@@ -13,11 +14,15 @@ import static java.lang.System.out;
 import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 
 import board.*;
@@ -2621,9 +2626,18 @@ import board.*;
 			String standard = IMAGESDIR + "standard" + SEP;
 			
 			if (isCard) {
+				try {
+					BufferedImage img = ImageIO.read(new File("src" + SEP + "client" + SEP + "gui" + SEP + "images" + SEP + "ornate" + SEP + filename));
+					
+					Image dimg = img.getScaledInstance(fcAry[0].getWidth(), fcAry[0].getHeight(), Image.SCALE_SMOOTH);
+					if (dimg != null) return new javax.swing.ImageIcon(dimg);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
-				java.net.URL imgURL = getClass().getResource(ornate + filename);
-			    if (imgURL != null) return new javax.swing.ImageIcon(imgURL);
+//				java.net.URL imgURL = getClass().getResource(ornate + filename);
+//			    if (imgURL != null) return new javax.swing.ImageIcon(imgURL);
 			}
 			else {
 			
