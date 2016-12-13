@@ -409,7 +409,7 @@ import board.*;
 	        jLayeredPane1.setBounds(440, 10, 380, 130);
 
 	        Background.setBackground(new java.awt.Color(100, 100, 100));
-	        Background.setIcon(createImageIcon("felt.png", false));
+	        Background.setIcon(createImageIcon("dark.jpg", false));
 	        Background.setToolTipText(null);
 	        Background.setOpaque(true);
 	        BackgroundPan.add(Background);
