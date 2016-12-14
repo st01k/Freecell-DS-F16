@@ -42,7 +42,7 @@ import board.*;
 		private static final Font font = new Font("Arial", Font.PLAIN ,12);
 		
 		// 'standard' and 'ornate' themes available
-		private static String theme = "ornate";
+		private static String theme = "standard";
 		private static boolean debug = false;
 		private static Board ShownBoard;
 
