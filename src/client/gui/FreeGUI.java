@@ -1,15 +1,16 @@
 package client.gui;
 
-import javax.imageio.ImageIO;
+import static java.lang.System.out;
+
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
 import engine.Engine;
 import playingCards.StdCard;
 import utils.SysUtils;
-import static java.lang.System.out;
 
 import java.awt.AWTException;
 import java.awt.Color;
@@ -20,9 +21,9 @@ import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+
+import java.net.URL;
+
 import java.util.LinkedList;
 
 import board.*;
@@ -39,7 +40,8 @@ import board.*;
 		private static final String SEP = SysUtils.getSeparator();
 		private static final String IMAGESDIR = "images" + SEP;
 		private static final Font font = new Font("Arial", Font.PLAIN ,12);
-
+		
+		private static String theme = "ornate";
 		private static boolean debug = false;
 		private static Board ShownBoard;
 
@@ -78,7 +80,7 @@ import board.*;
 	    		
 	    		if(temp != null)
 	    		{
-	    			String filename = temp.getValue() + temp.getDefSym() + ".png";
+	    			String filename = temp.getValue() + temp.getDefSym();
 	    			fcAry[i].setIcon(createImageIcon(filename, true));
 	    		}
 	    		else
@@ -97,7 +99,7 @@ import board.*;
 	    		
 	    		if(temp != null)
 	    		{
-	    			String filename = temp.getValue() + temp.getDefSym() + ".png";
+	    			String filename = temp.getValue() + temp.getDefSym();
 	    			hcAry[i].setIcon(createImageIcon(filename, true));
 	    		}
 	    		else
@@ -117,7 +119,7 @@ import board.*;
 	    			StdCard temp = pPile[i].getCardAt(j);
 	    			if(temp != null)
 	    			{
-		    			String filename = temp.getValue() + temp.getDefSym() + ".png";
+		    			String filename = temp.getValue() + temp.getDefSym();
 		    			PlayPile[i][j].setIcon(createImageIcon(filename, true));
 	    			}
 	    			else
@@ -409,7 +411,8 @@ import board.*;
 	        jLayeredPane1.setBounds(440, 10, 380, 130);
 
 	        Background.setBackground(new java.awt.Color(100, 100, 100));
-	        Background.setIcon(createImageIcon("dark.jpg", false));
+	        String background = (theme.matches("standard"))? "felt.png" : "dark.jpg";
+	        Background.setIcon(createImageIcon(background, false));
 	        Background.setToolTipText(null);
 	        Background.setOpaque(true);
 	        BackgroundPan.add(Background);
@@ -2558,7 +2561,8 @@ import board.*;
 			
 			if (e.getClickCount() % 2 == 0) Engine.doubleClick(key);
 			else if (e.getClickCount() == 1) Engine.setSource(key);
-			clearBorders();
+			//clearBorders();
+			Paint(ShownBoard);
 		}
 
 		@Override
@@ -2620,32 +2624,43 @@ import board.*;
 		 * @param filename name of image file
 		 * @return image icon
 		 */
-		protected javax.swing.ImageIcon createImageIcon(String filename, boolean isCard) {
+		protected ImageIcon createImageIcon(String filename, boolean isCard) {
 			
-			String ornate = IMAGESDIR + "ornate" + SEP;
-			String standard = IMAGESDIR + "standard" + SEP;
+			String themeDir = "";
+			String fileExt = "";
+			
+			int width = 86;
+			int height = 125;
 			
 			if (isCard) {
-				try {
-					BufferedImage img = ImageIO.read(new File("src" + SEP + "client" + SEP + "gui" + SEP + "images" + SEP + "ornate" + SEP + filename));
+
+				if (theme.matches("standard")) {
 					
-					Image dimg = img.getScaledInstance(fcAry[0].getWidth(), fcAry[0].getHeight(), Image.SCALE_SMOOTH);
-					if (dimg != null) return new javax.swing.ImageIcon(dimg);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					themeDir = IMAGESDIR + "standard" + SEP;
+					fileExt = ".jpg";
+					filename += fileExt;
+					URL imgURL = getClass().getResource(themeDir + filename);
+				    if (imgURL != null) return new ImageIcon(imgURL);
+				}
+				else {
+					
+					themeDir = IMAGESDIR + "ornate" + SEP;
+					fileExt = ".png";
+					filename += fileExt;
+					java.net.URL imgURL = getClass().getResource(themeDir + filename);
+				    if (imgURL != null) return new ImageIcon (
+				    		new ImageIcon(imgURL).getImage().getScaledInstance(width, height,Image.SCALE_FAST)
+				    );
 				}
 				
-//				java.net.URL imgURL = getClass().getResource(ornate + filename);
-//			    if (imgURL != null) return new javax.swing.ImageIcon(imgURL);
 			}
 			else {
 			
 				java.net.URL imgURL = getClass().getResource(IMAGESDIR + filename);
-			    if (imgURL != null) return new javax.swing.ImageIcon(imgURL);
+			    if (imgURL != null) return new ImageIcon(imgURL);
 			}
 			
-			System.err.println("Couldn't find file: " + ornate + filename);
+			System.err.println("Couldn't find file: " + themeDir + filename);
 	        return null;
 		}
 		
