@@ -42,7 +42,7 @@ import board.*;
 		private static final Font font = new Font("Arial", Font.PLAIN ,12);
 		
 		// 'standard' and 'ornate' themes available
-		private static String theme = "standard";
+		private static String theme = "ornate";
 		private static boolean debug = false;
 		private static Board ShownBoard;
 
@@ -2650,7 +2650,7 @@ import board.*;
 					filename += fileExt;
 					java.net.URL imgURL = getClass().getResource(themeDir + filename);
 				    if (imgURL != null) return new ImageIcon (
-				    		new ImageIcon(imgURL).getImage().getScaledInstance(width, height,Image.SCALE_SMOOTH)
+				    		new ImageIcon(imgURL).getImage().getScaledInstance(width, height,Image.SCALE_DEFAULT)
 				    );
 				}
 				
