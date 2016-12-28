@@ -439,6 +439,7 @@ public class Engine {
 			autoStack = curBoard.toHome();
 		}
 		gameOver = checkGameOver();
+		refresh();
 		
 		if (debug) out.println("\n---engine.Engine.autoStack--- END");
 	}
